@@ -4,590 +4,416 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Geo Digital Media — GeoDMus | Digital Growth Agency</title>
+<title>Geo Digital Media | GeoDMus</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --black: #050508;
-  --deep: #0a0a12;
-  --surface: #10101c;
-  --border: rgba(255,255,255,0.07);
-  --white: #f0f0f8;
-  --muted: #7a7a9a;
-  --electric: #00f5a0;
-  --flame: #ff4d1c;
-  --sky: #00b4ff;
-  --gold: #ffd166;
-}
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { background: var(--black); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; cursor: none; }
-.cursor { width: 12px; height: 12px; background: var(--electric); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transition: transform 0.15s ease, background 0.2s ease; mix-blend-mode: difference; }
-.cursor-ring { width: 36px; height: 36px; border: 1px solid rgba(0,245,160,0.4); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; }
-#bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.35; }
-section { position: relative; z-index: 1; }
-
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 24px 48px; background: linear-gradient(to bottom, rgba(5,5,8,0.95), transparent); backdrop-filter: blur(2px); }
-.nav-logo { font-family: ‘Bebas Neue’, sans-serif; font-size: 2rem; letter-spacing: 0.1em; color: var(–white); text-decoration: none; }
-.nav-logo span { color: var(–electric); }
-.nav-logo small { font-family: ‘Syne’, sans-serif; font-size: 0.45rem; letter-spacing: 0.2em; vertical-align: middle; margin-left: 4px; color: var(–muted); font-weight: 600; }
-.nav-links { display: flex; gap: 40px; list-style: none; }
-.nav-links a { font-family: ‘Syne’, sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(–muted); text-decoration: none; transition: color 0.2s; }
-.nav-links a:hover { color: var(–electric); }
-.nav-cta { font-family: ‘Syne’, sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(–black); background: var(–electric); padding: 12px 24px; text-decoration: none; clip-path: polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%); transition: background 0.2s, transform 0.2s; }
-.nav-cta:hover { background: var(–gold); transform: scale(1.03); }
-
-.hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 120px 48px 80px; overflow: hidden; }
-.hero-eyebrow { font-family: ‘Syne’, sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(–electric); margin-bottom: 24px; opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards; display: flex; align-items: center; gap: 16px; }
-.hero-eyebrow::before { content: ‘’; display: block; width: 40px; height: 1px; background: var(–electric); }
-.hero-title { font-family: ‘Bebas Neue’, sans-serif; font-size: clamp(5rem, 12vw, 13rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 32px; opacity: 0; animation: fadeUp 0.8s ease 0.4s forwards; }
-.hero-title .line2 { color: transparent; -webkit-text-stroke: 1px rgba(240,240,248,0.3); display: block; }
-.hero-title .line3 { display: block; background: linear-gradient(90deg, var(–electric), var(–sky)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.hero-body-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 48px; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.8s ease 0.6s forwards; }
-.hero-desc { font-size: 1.05rem; line-height: 1.7; color: var(–muted); max-width: 420px; }
-.hero-desc strong { color: var(–white); font-weight: 400; }
-.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
-.btn-primary { font-family: ‘Syne’, sans-serif; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(–black); background: var(–electric); padding: 18px 40px; text-decoration: none; clip-path: polygon(12px 0%,100% 0%,calc(100% - 12px) 100%,0% 100%); transition: all 0.2s; white-space: nowrap; }
-.btn-primary:hover { background: var(–gold); transform: translateY(-2px); }
-.btn-secondary { font-family: ‘Syne’, sans-serif; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(–white); background: transparent; border: 1px solid var(–border); padding: 18px 40px; text-decoration: none; transition: all 0.2s; white-space: nowrap; }
-.btn-secondary:hover { border-color: var(–sky); color: var(–sky); transform: translateY(-2px); }
-.hero-stats { display: flex; gap: 48px; }
-.stat-item { text-align: center; }
-.stat-num { font-family: ‘Bebas Neue’, sans-serif; font-size: 3rem; letter-spacing: 0.05em; background: linear-gradient(135deg, var(–electric), var(–sky)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; }
-.stat-label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(–muted); margin-top: 4px; }
-
-.ticker { background: var(–electric); padding: 14px 0; overflow: hidden; white-space: nowrap; position: relative; z-index: 2; }
-.ticker-inner { display: inline-flex; animation: ticker 30s linear infinite; }
-.ticker-item { font-family: ‘Bebas Neue’, sans-serif; font-size: 1.1rem; letter-spacing: 0.2em; color: var(–black); padding: 0 48px; }
-.ticker-dot { color: rgba(0,0,0,0.35); font-size: 1rem; vertical-align: middle; }
-
-.section-label { font-family: ‘Syne’, sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.35em; text-transform: uppercase; color: var(–electric); display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
-.section-label::before { content: ‘’; width: 24px; height: 1px; background: var(–electric); display: block; }
-.section-title { font-family: ‘Bebas Neue’, sans-serif; font-size: clamp(3rem, 6vw, 6rem); line-height: 0.95; letter-spacing: 0.02em; margin-bottom: 24px; }
-
-.services { padding: 120px 48px; background: var(–deep); }
-.services-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 80px; gap: 32px; }
-.services-header p { max-width: 320px; color: var(–muted); line-height: 1.7; font-size: 0.95rem; }
-.services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
-.service-card { background: var(–surface); padding: 48px 32px; position: relative; overflow: hidden; transition: all 0.3s ease; }
-.service-card::before { content: ‘’; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(–electric), var(–sky)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
-.service-card:hover::before { transform: scaleX(1); }
-.service-card:hover { background: #14141f; transform: translateY(-4px); }
-.service-icon { font-size: 2.5rem; margin-bottom: 24px; display: block; }
-.service-num { font-family: ‘Bebas Neue’, sans-serif; font-size: 4rem; color: var(–border); position: absolute; top: 16px; right: 24px; line-height: 1; transition: color 0.3s; }
-.service-card:hover .service-num { color: rgba(0,245,160,0.08); }
-.service-name { font-family: ‘Syne’, sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; color: var(–white); }
-.service-desc { font-size: 0.875rem; line-height: 1.7; color: var(–muted); margin-bottom: 32px; }
-.service-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-.tag { font-size: 0.65rem; font-family: ‘Syne’, sans-serif; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(–electric); border: 1px solid rgba(0,245,160,0.2); padding: 4px 10px; }
-
-.process { padding: 120px 48px; background: var(–black); }
-.process-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; margin-top: 80px; position: relative; }
-.process-steps::before { content: ‘’; position: absolute; top: 32px; left: 10%; right: 10%; height: 1px; background: linear-gradient(90deg, transparent, var(–electric), var(–sky), var(–flame), transparent); opacity: 0.4; }
-.process-step { text-align: center; padding: 0 16px; }
-.step-circle { width: 64px; height: 64px; border-radius: 50%; border: 1px solid var(–border); display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-family: ‘Bebas Neue’, sans-serif; font-size: 1.5rem; background: var(–surface); position: relative; z-index: 1; transition: all 0.3s; }
-.step-circle:hover { border-color: var(–electric); color: var(–electric); box-shadow: 0 0 30px rgba(0,245,160,0.2); }
-.step-title { font-family: ‘Syne’, sans-serif; font-size: 0.9rem; font-weight: 700; margin-bottom: 12px; color: var(–white); }
-.step-desc { font-size: 0.8rem; color: var(–muted); line-height: 1.6; }
-
-.pricing { padding: 120px 48px; background: var(–deep); position: relative; overflow: hidden; }
-.pricing::before { content: ‘PRICING’; position: absolute; font-family: ‘Bebas Neue’, sans-serif; font-size: 30vw; color: rgba(255,255,255,0.015); top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; white-space: nowrap; }
-.pricing-header { text-align: center; margin-bottom: 80px; }
-.pricing-header p { color: var(–muted); max-width: 480px; margin: 0 auto; line-height: 1.7; }
-.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
-.price-card { background: var(–surface); padding: 56px 40px; position: relative; transition: transform 0.3s; }
-.price-card:hover { transform: translateY(-8px); }
-.price-card.featured { background: linear-gradient(145deg, #0f1a14, #0a1510); border: 1px solid rgba(0,245,160,0.3); transform: translateY(-16px); }
-.price-card.featured:hover { transform: translateY(-22px); }
-.price-badge { position: absolute; top: -1px; right: 32px; background: var(–electric); color: var(–black); font-family: ‘Syne’, sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 6px 16px 16px; clip-path: polygon(0 0,100% 0,100% 70%,50% 100%,0 70%); }
-.price-tier { font-family: ‘Syne’, sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(–muted); margin-bottom: 16px; }
-.price-name { font-family: ‘Bebas Neue’, sans-serif; font-size: 2.5rem; letter-spacing: 0.05em; color: var(–white); margin-bottom: 8px; }
-.price-amount { display: flex; align-items: flex-start; gap: 4px; margin-bottom: 8px; }
-.price-currency { font-family: ‘Syne’, sans-serif; font-size: 1.2rem; font-weight: 700; color: var(–electric); margin-top: 8px; }
-.price-num { font-family: ‘Bebas Neue’, sans-serif; font-size: 5rem; line-height: 1; color: var(–white); letter-spacing: -0.02em; }
-.price-period { font-size: 0.8rem; color: var(–muted); align-self: flex-end; margin-bottom: 12px; }
-.price-desc { font-size: 0.85rem; color: var(–muted); line-height: 1.6; margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid var(–border); }
-.price-features { list-style: none; margin-bottom: 40px; }
-.price-features li { font-size: 0.875rem; color: var(–muted); padding: 10px 0; border-bottom: 1px solid var(–border); display: flex; align-items: center; gap: 12px; line-height: 1.4; }
-.price-features li::before { content: ‘->’; color: var(–electric); font-size: 0.9rem; flex-shrink: 0; }
-.price-features li.off { opacity: 0.35; }
-.price-features li.off::before { content: ‘–’; color: var(–muted); }
-.price-cta { display: block; text-align: center; font-family: ‘Syne’, sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; padding: 16px; transition: all 0.2s; }
-.price-cta.outline { border: 1px solid var(–border); color: var(–white); }
-.price-cta.outline:hover { border-color: var(–electric); color: var(–electric); }
-.price-cta.solid { background: var(–electric); color: var(–black); clip-path: polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%); }
-.price-cta.solid:hover { background: var(–gold); }
-
-.proof { padding: 100px 48px; background: var(–black); }
-.proof-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 64px; }
-.proof-card { background: var(–surface); padding: 40px; }
-.proof-quote { font-size: 3rem; color: var(–electric); font-family: ‘Bebas Neue’, sans-serif; line-height: 1; margin-bottom: 20px; opacity: 0.4; }
-.proof-text { font-size: 0.95rem; color: var(–white); line-height: 1.7; margin-bottom: 32px; font-style: italic; }
-.proof-author { display: flex; align-items: center; gap: 16px; }
-.proof-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(–electric), var(–sky)); display: flex; align-items: center; justify-content: center; font-family: ‘Bebas Neue’, sans-serif; font-size: 1.1rem; color: var(–black); flex-shrink: 0; }
-.proof-name { font-family: ‘Syne’, sans-serif; font-weight: 700; font-size: 0.875rem; color: var(–white); }
-.proof-biz { font-size: 0.75rem; color: var(–muted); margin-top: 2px; }
-
-.markets { padding: 80px 48px; background: var(–deep); display: flex; align-items: center; gap: 80px; flex-wrap: wrap; }
-.markets-text { flex: 1; min-width: 280px; }
-.markets-text p { color: var(–muted); line-height: 1.7; margin-top: 24px; max-width: 400px; }
-.markets-tags { display: flex; flex-wrap: wrap; gap: 12px; flex: 1; min-width: 280px; }
-.market-tag { font-family: ‘Syne’, sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 12px 20px; border: 1px solid var(–border); color: var(–muted); transition: all 0.2s; cursor: default; }
-.market-tag:hover { border-color: var(–electric); color: var(–electric); }
-.market-tag.hot { border-color: rgba(0,245,160,0.3); color: var(–electric); }
-
-.cta-section { padding: 140px 48px; text-align: center; background: var(–black); position: relative; overflow: hidden; }
-.cta-section::before { content: ‘’; position: absolute; bottom: -200px; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; border-radius: 50%; background: radial-gradient(circle, rgba(0,245,160,0.06) 0%, transparent 70%); pointer-events: none; }
-.cta-title { font-family: ‘Bebas Neue’, sans-serif; font-size: clamp(3.5rem, 8vw, 8rem); line-height: 0.95; margin-bottom: 32px; position: relative; z-index: 1; }
-.cta-title span { background: linear-gradient(90deg, var(–electric), var(–sky)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: block; }
-.cta-sub { color: var(–muted); font-size: 1rem; line-height: 1.7; max-width: 480px; margin: 0 auto 48px; position: relative; z-index: 1; }
-.cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
-
-footer { background: var(–deep); border-top: 1px solid var(–border); padding: 64px 48px 40px; }
-.footer-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 48px; margin-bottom: 64px; flex-wrap: wrap; }
-.footer-brand .logo { font-family: ‘Bebas Neue’, sans-serif; font-size: 2.5rem; letter-spacing: 0.1em; color: var(–white); margin-bottom: 12px; }
-.footer-brand .logo span { color: var(–electric); }
-.footer-brand .logo small { font-family: ‘Syne’, sans-serif; font-size: 0.4rem; letter-spacing: 0.2em; vertical-align: middle; margin-left: 4px; color: var(–muted); font-weight: 600; }
-.footer-brand p { font-size: 0.875rem; color: var(–muted); max-width: 260px; line-height: 1.6; }
-.footer-col h4 { font-family: ‘Syne’, sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(–white); margin-bottom: 20px; }
-.footer-col ul { list-style: none; }
-.footer-col ul li { margin-bottom: 10px; }
-.footer-col ul li a { font-size: 0.875rem; color: var(–muted); text-decoration: none; transition: color 0.2s; }
-.footer-col ul li a:hover { color: var(–electric); }
-.footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 32px; border-top: 1px solid var(–border); flex-wrap: wrap; gap: 16px; }
-.footer-bottom p { font-size: 0.775rem; color: var(–muted); }
-.footer-bottom p span { color: var(–electric); }
-.social-links { display: flex; gap: 16px; }
-.social-links a { font-family: ‘Syne’, sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(–muted); text-decoration: none; border: 1px solid var(–border); padding: 8px 16px; transition: all 0.2s; }
-.social-links a:hover { border-color: var(–electric); color: var(–electric); }
-
-@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-.reveal-delay-4 { transition-delay: 0.4s; }
-
-@media (max-width: 900px) {
-nav { padding: 20px 24px; }
-.nav-links { display: none; }
-.hero { padding: 100px 24px 80px; }
-.hero-body-row { flex-direction: column; align-items: flex-start; }
-.hero-stats { gap: 24px; }
-.services { padding: 80px 24px; }
-.services-grid { grid-template-columns: 1fr 1fr; }
-.services-header { flex-direction: column; }
-.process { padding: 80px 24px; }
-.process-steps { grid-template-columns: 1fr; gap: 40px; }
-.process-steps::before { display: none; }
-.pricing { padding: 80px 24px; }
-.pricing-grid { grid-template-columns: 1fr; }
-.price-card.featured { transform: none; }
-.proof-grid { grid-template-columns: 1fr; }
-.markets { padding: 60px 24px; flex-direction: column; }
-.cta-section { padding: 100px 24px; }
-footer { padding: 48px 24px 32px; }
-}
+:root{--black:#070c0d;--deep:#0c1315;--surface:#111d1f;--card:#162426;--border:rgba(0,200,212,0.15);--white:#edfcff;--muted:#5b8a8f;--cyan:#00c8d4;--green:#00d25a;--magenta:#cc2d8f;--gold:#f5c842;--glow:rgba(0,200,212,0.2);}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--white);font-family:'Montserrat',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
+.cur{width:10px;height:10px;background:var(--cyan);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;mix-blend-mode:difference;transition:transform .15s,background .2s;}
+.cur-r{width:32px;height:32px;border:1px solid rgba(0,200,212,.5);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;}
+#bgc{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;opacity:.4;}
+section{position:relative;z-index:1;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 48px;background:linear-gradient(to bottom,rgba(7,12,13,.97) 70%,transparent);border-bottom:1px solid var(--border);}
+.logo-wrap{display:flex;flex-direction:column;line-height:1;text-decoration:none;}
+.logo-top{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;letter-spacing:.15em;color:var(--white);display:flex;align-items:center;gap:6px;}
+.logo-top span{color:var(--cyan);}
+.logo-sub{font-family:'Space Mono',monospace;font-size:.42rem;letter-spacing:.35em;text-transform:uppercase;color:var(--muted);margin-top:2px;}
+.nav-links{display:flex;gap:36px;list-style:none;}
+.nav-links a{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--cyan);}
+.nav-cta{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--black);background:var(--cyan);padding:11px 22px;text-decoration:none;border-radius:2px;transition:background .2s,transform .15s;font-weight:700;}
+.nav-cta:hover{background:var(--green);transform:scale(1.04);}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:130px 48px 80px;overflow:hidden;position:relative;}
+.hero::before{content:'';position:absolute;top:-100px;right:-200px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(0,200,212,.06) 0%,transparent 70%);pointer-events:none;}
+.hero-tag{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.35em;text-transform:uppercase;color:var(--cyan);margin-bottom:28px;opacity:0;animation:fadeUp .7s ease .1s forwards;display:flex;align-items:center;gap:14px;}
+.hero-tag::before{content:'';width:36px;height:1px;background:var(--cyan);display:block;}
+.brand-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,9vw,9.5rem);line-height:.88;letter-spacing:.04em;margin-bottom:8px;opacity:0;animation:fadeUp .7s ease .25s forwards;}
+.brand-name .geo{color:var(--cyan);}
+.brand-name .med{color:transparent;-webkit-text-stroke:1px rgba(204,45,143,.45);}
+.brand-handle{font-family:'Space Mono',monospace;font-size:clamp(.8rem,2vw,1.1rem);letter-spacing:.25em;color:var(--muted);margin-bottom:48px;opacity:0;animation:fadeUp .7s ease .35s forwards;}
+.brand-handle span{color:var(--cyan);}
+.hero-row{display:flex;align-items:flex-end;justify-content:space-between;gap:48px;flex-wrap:wrap;opacity:0;animation:fadeUp .7s ease .5s forwards;}
+.hero-desc{font-size:.95rem;line-height:1.8;color:var(--muted);max-width:400px;}
+.hero-desc strong{color:var(--white);font-weight:600;}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
+.btn-g{font-family:'Space Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--black);background:var(--cyan);padding:16px 36px;text-decoration:none;border-radius:2px;transition:all .2s;white-space:nowrap;}
+.btn-g:hover{background:var(--green);transform:translateY(-2px);}
+.btn-o{font-family:'Space Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);background:transparent;border:1px solid var(--cyan);padding:16px 36px;text-decoration:none;border-radius:2px;transition:all .2s;white-space:nowrap;}
+.btn-o:hover{background:rgba(0,200,212,.08);color:var(--green);border-color:var(--green);transform:translateY(-2px);}
+.hero-stats{display:flex;gap:40px;flex-shrink:0;}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:3.2rem;color:var(--cyan);line-height:1;letter-spacing:.05em;}
+.stat-l{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:4px;}
+.ticker{background:var(--cyan);padding:12px 0;overflow:hidden;white-space:nowrap;position:relative;z-index:2;}
+.ticker-inner{display:inline-flex;animation:tick 30s linear infinite;}
+.t-item{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.25em;color:var(--black);padding:0 40px;}
+.t-dot{color:rgba(0,0,0,.3);font-size:.9rem;vertical-align:middle;}
+.social-bar{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:18px 48px;display:flex;align-items:center;justify-content:center;gap:28px;position:relative;z-index:1;flex-wrap:wrap;}
+.social-bar p{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);}
+.s-btn{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:'Space Mono',monospace;font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--white);border:1px solid var(--border);padding:10px 20px;border-radius:2px;transition:all .2s;}
+.s-btn:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,200,212,.05);}
+.s-btn svg{width:16px;height:16px;fill:currentColor;flex-shrink:0;}
+.s-label{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;color:var(--cyan);display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.s-label::before{content:'';width:20px;height:1px;background:var(--cyan);display:block;}
+.s-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,5.5vw,5.5rem);line-height:.92;letter-spacing:.03em;margin-bottom:20px;}
+.services{padding:110px 48px;background:var(--deep);}
+.srv-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:72px;gap:32px;}
+.srv-head p{max-width:300px;color:var(--muted);line-height:1.7;font-size:.875rem;}
+.srv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
+.srv-card{background:var(--surface);padding:44px 28px;position:relative;overflow:hidden;transition:all .3s;}
+.srv-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--magenta));transform:scaleX(0);transform-origin:left;transition:transform .4s;}
+.srv-card:hover::after{transform:scaleX(1);}
+.srv-card:hover{background:var(--card);transform:translateY(-4px);}
+.srv-icon{font-size:2rem;margin-bottom:20px;display:block;}
+.srv-num{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:rgba(0,200,212,.06);position:absolute;top:12px;right:20px;line-height:1;}
+.srv-name{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:700;margin-bottom:14px;color:var(--white);}
+.srv-desc{font-size:.82rem;line-height:1.7;color:var(--muted);margin-bottom:28px;}
+.srv-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-size:.6rem;font-family:'Space Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);border:1px solid rgba(0,200,212,.25);padding:4px 9px;border-radius:2px;}
+.process{padding:110px 48px;background:var(--black);}
+.proc-steps{display:grid;grid-template-columns:repeat(5,1fr);margin-top:72px;position:relative;}
+.proc-steps::before{content:'';position:absolute;top:30px;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),var(--magenta),var(--cyan),transparent);opacity:.35;}
+.proc-step{text-align:center;padding:0 12px;}
+.step-c{width:60px;height:60px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:'Space Mono',monospace;font-size:.75rem;font-weight:700;color:var(--muted);background:var(--surface);position:relative;z-index:1;transition:all .3s;}
+.step-c:hover{border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 24px var(--glow);}
+.step-t{font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:700;margin-bottom:10px;color:var(--white);}
+.step-d{font-size:.75rem;color:var(--muted);line-height:1.6;}
+.pricing{padding:110px 48px;background:var(--deep);position:relative;overflow:hidden;}
+.pricing::before{content:'GEO';position:absolute;font-family:'Bebas Neue',sans-serif;font-size:40vw;color:rgba(0,200,212,.025);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;white-space:nowrap;}
+.price-head{text-align:center;margin-bottom:72px;}
+.price-head p{color:var(--muted);max-width:440px;margin:0 auto;line-height:1.7;font-size:.875rem;}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:1060px;margin:0 auto;position:relative;z-index:1;}
+.p-card{background:var(--surface);padding:52px 36px;position:relative;transition:transform .3s;}
+.p-card:hover{transform:translateY(-6px);}
+.p-card.feat{background:linear-gradient(155deg,#0d2022,#091618);border:1px solid rgba(0,200,212,.35);transform:translateY(-14px);}
+.p-card.feat:hover{transform:translateY(-20px);}
+.p-badge{position:absolute;top:0;left:50%;transform:translateX(-50%);background:var(--cyan);color:var(--black);font-family:'Space Mono',monospace;font-size:.55rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:5px 18px;border-radius:0 0 6px 6px;}
+.p-tier{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.p-name{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:.05em;color:var(--white);margin-bottom:6px;}
+.p-amt{display:flex;align-items:flex-start;gap:3px;margin-bottom:6px;}
+.p-cur{font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:700;color:var(--cyan);margin-top:8px;}
+.p-num{font-family:'Bebas Neue',sans-serif;font-size:4.5rem;line-height:1;color:var(--white);letter-spacing:-.02em;}
+.p-per{font-size:.75rem;color:var(--muted);align-self:flex-end;margin-bottom:10px;}
+.p-desc{font-size:.8rem;color:var(--muted);line-height:1.6;margin-bottom:36px;padding-bottom:36px;border-bottom:1px solid var(--border);}
+.p-features{list-style:none;margin-bottom:36px;}
+.p-features li{font-size:.8rem;color:var(--muted);padding:9px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;line-height:1.4;}
+.p-features li::before{content:'>';color:var(--cyan);flex-shrink:0;font-weight:700;}
+.p-features li.off{opacity:.3;}
+.p-features li.off::before{content:'-';color:var(--muted);}
+.p-cta{display:block;text-align:center;font-family:'Space Mono',monospace;font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:15px;border-radius:2px;transition:all .2s;}
+.p-cta.ol{border:1px solid var(--border);color:var(--white);}
+.p-cta.ol:hover{border-color:var(--cyan);color:var(--cyan);}
+.p-cta.sl{background:var(--cyan);color:var(--black);}
+.p-cta.sl:hover{background:var(--green);}
+.proof{padding:100px 48px;background:var(--black);}
+.proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:60px;}
+.pr-card{background:var(--surface);padding:36px;}
+.pr-q{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--cyan);opacity:.35;line-height:1;margin-bottom:16px;}
+.pr-txt{font-size:.875rem;color:var(--white);line-height:1.75;margin-bottom:28px;font-style:italic;}
+.pr-auth{display:flex;align-items:center;gap:14px;}
+.pr-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--magenta));display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1rem;color:var(--white);flex-shrink:0;}
+.pr-name{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.8rem;color:var(--white);}
+.pr-biz{font-size:.7rem;color:var(--muted);margin-top:2px;}
+.markets{padding:80px 48px;background:var(--deep);display:flex;align-items:center;gap:72px;flex-wrap:wrap;}
+.mkt-txt{flex:1;min-width:260px;}
+.mkt-txt p{color:var(--muted);line-height:1.7;margin-top:20px;font-size:.875rem;}
+.mkt-tags{display:flex;flex-wrap:wrap;gap:10px;flex:1;min-width:260px;}
+.m-tag{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;padding:10px 16px;border:1px solid var(--border);color:var(--muted);transition:all .2s;border-radius:2px;cursor:default;}
+.m-tag:hover,.m-tag.h{border-color:rgba(0,200,212,.4);color:var(--cyan);}
+.cta-sec{padding:130px 48px;text-align:center;background:var(--black);position:relative;overflow:hidden;}
+.cta-sec::before{content:'';position:absolute;bottom:-300px;left:50%;transform:translateX(-50%);width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(0,200,212,.05) 0%,transparent 65%);pointer-events:none;}
+.cta-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,8vw,8rem);line-height:.9;margin-bottom:28px;position:relative;z-index:1;}
+.cta-title .hl{color:var(--cyan);display:block;}
+.cta-sub{color:var(--muted);font-size:.95rem;line-height:1.75;max-width:460px;margin:0 auto 44px;position:relative;z-index:1;}
+.cta-acts{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;}
+footer{background:var(--deep);border-top:1px solid var(--border);padding:60px 48px 36px;}
+.ft-top{display:flex;align-items:flex-start;justify-content:space-between;gap:48px;margin-bottom:56px;flex-wrap:wrap;}
+.ft-brand .fl{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.12em;color:var(--white);margin-bottom:4px;display:flex;align-items:center;gap:6px;}
+.ft-brand .fl span{color:var(--cyan);}
+.ft-brand .fls{font-family:'Space Mono',monospace;font-size:.38rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:14px;}
+.ft-brand p{font-size:.8rem;color:var(--muted);max-width:240px;line-height:1.6;}
+.ft-col h4{font-family:'Space Mono',monospace;font-size:.58rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--white);margin-bottom:18px;}
+.ft-col ul{list-style:none;}
+.ft-col ul li{margin-bottom:10px;}
+.ft-col ul li a{font-size:.8rem;color:var(--muted);text-decoration:none;transition:color .2s;}
+.ft-col ul li a:hover{color:var(--cyan);}
+.ft-bot{display:flex;justify-content:space-between;align-items:center;padding-top:28px;border-top:1px solid var(--border);flex-wrap:wrap;gap:16px;}
+.ft-bot p{font-size:.7rem;color:var(--muted);}
+.ft-bot p span{color:var(--cyan);}
+.ft-socials{display:flex;gap:12px;}
+.ft-socials a{display:flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:7px 14px;border-radius:2px;transition:all .2s;}
+.ft-socials a:hover{border-color:var(--cyan);color:var(--cyan);}
+.ft-socials a svg{width:13px;height:13px;fill:currentColor;}
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}.d4{transition-delay:.4s;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+@keyframes tick{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+@media(max-width:900px){
+nav{padding:16px 20px;}.nav-links{display:none;}
+.hero{padding:100px 20px 60px;}.hero-row{flex-direction:column;align-items:flex-start;}
+.services,.process,.pricing,.proof,.cta-sec,footer{padding-left:20px;padding-right:20px;}
+.srv-grid{grid-template-columns:1fr 1fr;}.srv-head{flex-direction:column;}
+.proc-steps{grid-template-columns:1fr;gap:36px;}.proc-steps::before{display:none;}
+.price-grid{grid-template-columns:1fr;}.p-card.feat{transform:none;}
+.proof-grid{grid-template-columns:1fr;}.markets{padding:60px 20px;flex-direction:column;}
+.social-bar{padding:16px 20px;}}
 </style>
-
 </head>
 <body>
-
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-<canvas id="bg-canvas"></canvas>
-
+<div class="cur" id="cur"></div>
+<div class="cur-r" id="curR"></div>
+<canvas id="bgc"></canvas>
 <nav>
-  <a href="#" class="nav-logo">GEO<span>DM</span><small>US</small></a>
+  <a href="#" class="logo-wrap">
+    <div class="logo-top">
+      <svg width="18" height="14" viewBox="0 0 28 22" fill="none"><polygon points="0,11 28,0 21,11 28,22" fill="#cc2d8f"/><polygon points="0,11 28,0 23,16" fill="#00c8d4"/></svg>
+      GEO<span>DM</span>us
+    </div>
+    <div class="logo-sub">Geo Digital Media</div>
+  </a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#process">Process</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="#contact" class="nav-cta">Get Started</a>
+  <a href="#contact" class="nav-cta">Free Strategy Call</a>
 </nav>
-
 <section class="hero" id="home">
-  <div class="hero-eyebrow">Geo Digital Media — Worldwide</div>
-  <h1 class="hero-title">
-    WE BUILD
-    <span class="line2">DIGITAL</span>
-    <span class="line3">EMPIRES</span>
-  </h1>
-  <div class="hero-body-row">
-    <p class="hero-desc">
-      <strong>Geo Digital Media</strong> — known as GeoDMus — is a full-service digital growth agency. We use geolocation strategy, AI-powered automations, and precision marketing to help businesses <strong>dominate their market</strong> anywhere in the world.
-    </p>
+  <div class="hero-tag">Geo Digital Media &mdash; Global Digital Growth</div>
+  <div class="brand-name">
+    <span class="geo">GEO </span>DIGITAL<br><span class="med">MEDIA</span>
+  </div>
+  <div class="brand-handle">@<span>geodmus</span> &nbsp;&middot;&nbsp; geodm.us</div>
+  <div class="hero-row">
+    <p class="hero-desc"><strong>Geo Digital Media</strong> &mdash; GeoDMus &mdash; builds websites, AI automations, email systems, and social media that turn your digital presence into a <strong>revenue machine.</strong> Anywhere in the world.</p>
     <div class="hero-actions">
-      <a href="#pricing" class="btn-primary">See Our Packages</a>
-      <a href="#process" class="btn-secondary">How It Works</a>
+      <a href="#pricing" class="btn-g">See Our Packages</a>
+      <a href="#process" class="btn-o">How It Works</a>
     </div>
     <div class="hero-stats">
-      <div class="stat-item"><div class="stat-num">48H</div><div class="stat-label">Launch Time</div></div>
-      <div class="stat-item"><div class="stat-num">3X</div><div class="stat-label">Avg Lead Growth</div></div>
-      <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Done For You</div></div>
+      <div><div class="stat-n">48H</div><div class="stat-l">Launch Time</div></div>
+      <div><div class="stat-n">3X</div><div class="stat-l">Lead Growth</div></div>
+      <div><div class="stat-n">100%</div><div class="stat-l">Done For You</div></div>
     </div>
   </div>
 </section>
-
-<div class="ticker">
-  <div class="ticker-inner">
-    <span class="ticker-item">Geo Digital Media</span><span class="ticker-dot"> &diams; </span>
-    <span class="ticker-item">Websites</span><span class="ticker-dot"> &diams; </span>
-    <span class="ticker-item">Automations</span><span class="ticker-dot"> &diams; </span>
-    <span class="ticker-item">Email Marketing</span><span class="ticker-dot"> &diams; </span>
-    <span class="ticker-item">Appointment Systems</span><span class="ticker-dot"> &diams; </span>
-    <span class="ticker-item">Social Media</span><span class="ticker-dot"> &diams; </span>
-    <span class="ticker-item">Lead Generation</span><span class="ticker-dot"> &diams; </span>
-    <span class="ticker-item">GeoDMus</span><span class="ticker-dot"> &diams; </span>
-    <span class="ticker-item">Geo Digital Media</span><span class="ticker-dot"> &diams; </span>
-    <span class="ticker-item">Websites</span><span class="ticker-dot"> &diams; </span>
-    <span class="ticker-item">Automations</span><span class="ticker-dot"> &diams; </span>
-    <span class="ticker-item">Email Marketing</span><span class="ticker-dot"> &diams; </span>
-    <span class="ticker-item">Appointment Systems</span><span class="ticker-dot"> &diams; </span>
-    <span class="ticker-item">Social Media</span><span class="ticker-dot"> &diams; </span>
-    <span class="ticker-item">Lead Generation</span><span class="ticker-dot"> &diams; </span>
-    <span class="ticker-item">GeoDMus</span><span class="ticker-dot"> &diams; </span>
-  </div>
+<div class="ticker"><div class="ticker-inner">
+  <span class="t-item">Geo Digital Media</span><span class="t-dot"> &#9670; </span>
+  <span class="t-item">GeoDMus</span><span class="t-dot"> &#9670; </span>
+  <span class="t-item">Websites</span><span class="t-dot"> &#9670; </span>
+  <span class="t-item">Automations</span><span class="t-dot"> &#9670; </span>
+  <span class="t-item">Email Marketing</span><span class="t-dot"> &#9670; </span>
+  <span class="t-item">Appointment Systems</span><span class="t-dot"> &#9670; </span>
+  <span class="t-item">Social Media</span><span class="t-dot"> &#9670; </span>
+  <span class="t-item">Lead Generation</span><span class="t-dot"> &#9670; </span>
+  <span class="t-item">Geo Digital Media</span><span class="t-dot"> &#9670; </span>
+  <span class="t-item">GeoDMus</span><span class="t-dot"> &#9670; </span>
+  <span class="t-item">Websites</span><span class="t-dot"> &#9670; </span>
+  <span class="t-item">Automations</span><span class="t-dot"> &#9670; </span>
+  <span class="t-item">Email Marketing</span><span class="t-dot"> &#9670; </span>
+  <span class="t-item">Appointment Systems</span><span class="t-dot"> &#9670; </span>
+  <span class="t-item">Social Media</span><span class="t-dot"> &#9670; </span>
+  <span class="t-item">Lead Generation</span><span class="t-dot"> &#9670; </span>
+</div></div>
+<div class="social-bar">
+  <p>Follow Us &mdash;</p>
+  <a href="https://instagram.com/geodm.us" target="_blank" rel="noopener" class="s-btn">
+    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    @geodm.us
+  </a>
+  <a href="https://x.com/geodmus" target="_blank" rel="noopener" class="s-btn">
+    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    @geodmus
+  </a>
 </div>
-
 <section class="services" id="services">
-  <div class="services-header reveal">
-    <div>
-      <div class="section-label">What We Do</div>
-      <h2 class="section-title">SERVICES THAT<br>MOVE NEEDLES</h2>
-    </div>
-    <p>We don't sell you software. We build a complete digital growth engine — then keep it running, optimizing, and scaling every month.</p>
+  <div class="srv-head reveal">
+    <div><div class="s-label">What We Do</div><h2 class="s-title">SERVICES THAT<br>MOVE NEEDLES</h2></div>
+    <p>We don't sell software. We build your complete digital growth engine &mdash; then keep it running and scaling every month.</p>
   </div>
-  <div class="services-grid">
-    <div class="service-card reveal">
-      <span class="service-icon">&#127760;</span>
-      <span class="service-num">01</span>
-      <h3 class="service-name">Website Design &amp; Dev</h3>
-      <p class="service-desc">Fast, mobile-first, conversion-optimized websites built to turn visitors into customers. Your 24/7 salesperson.</p>
-      <div class="service-tags"><span class="tag">Custom Design</span><span class="tag">SEO Ready</span><span class="tag">48hr Turnaround</span></div>
-    </div>
-    <div class="service-card reveal reveal-delay-1">
-      <span class="service-icon">&#9889;</span>
-      <span class="service-num">02</span>
-      <h3 class="service-name">Appointment Automation</h3>
-      <p class="service-desc">Automated booking, confirmation texts, reminders, and follow-ups. No more phone tag. No more no-shows.</p>
-      <div class="service-tags"><span class="tag">AI Booking</span><span class="tag">SMS Alerts</span><span class="tag">CRM Sync</span></div>
-    </div>
-    <div class="service-card reveal reveal-delay-2">
-      <span class="service-icon">&#128231;</span>
-      <span class="service-num">03</span>
-      <h3 class="service-name">Email Marketing</h3>
-      <p class="service-desc">Targeted campaigns, automated sequences, and newsletters that nurture leads and bring customers back again and again.</p>
-      <div class="service-tags"><span class="tag">Sequences</span><span class="tag">Segmentation</span><span class="tag">A/B Testing</span></div>
-    </div>
-    <div class="service-card reveal reveal-delay-3">
-      <span class="service-icon">&#128241;</span>
-      <span class="service-num">04</span>
-      <h3 class="service-name">Social Media Management</h3>
-      <p class="service-desc">Consistent, strategic content across Instagram, Facebook, and X that builds your brand, community, and inbound leads.</p>
-      <div class="service-tags"><span class="tag">Content Calendar</span><span class="tag">AI-Assisted</span><span class="tag">Analytics</span></div>
-    </div>
+  <div class="srv-grid">
+    <div class="srv-card reveal"><span class="srv-icon">&#127760;</span><span class="srv-num">01</span><h3 class="srv-name">Website Design &amp; Dev</h3><p class="srv-desc">Fast, mobile-first, conversion-optimized websites that turn visitors into paying customers. Your 24/7 salesperson.</p><div class="srv-tags"><span class="tag">Custom Design</span><span class="tag">SEO Ready</span><span class="tag">48hr Launch</span></div></div>
+    <div class="srv-card reveal d1"><span class="srv-icon">&#9889;</span><span class="srv-num">02</span><h3 class="srv-name">Appointment Automation</h3><p class="srv-desc">AI-powered booking, confirmation texts, reminders, and follow-ups. No more phone tag. No more no-shows.</p><div class="srv-tags"><span class="tag">AI Booking</span><span class="tag">SMS Alerts</span><span class="tag">CRM Sync</span></div></div>
+    <div class="srv-card reveal d2"><span class="srv-icon">&#128231;</span><span class="srv-num">03</span><h3 class="srv-name">Email Marketing</h3><p class="srv-desc">Targeted campaigns and automated sequences that nurture leads and bring customers back again and again.</p><div class="srv-tags"><span class="tag">Sequences</span><span class="tag">Segmentation</span><span class="tag">A/B Testing</span></div></div>
+    <div class="srv-card reveal d3"><span class="srv-icon">&#128241;</span><span class="srv-num">04</span><h3 class="srv-name">Social Media Management</h3><p class="srv-desc">Consistent strategic content that builds your brand, grows your community, and drives inbound leads.</p><div class="srv-tags"><span class="tag">Content Calendar</span><span class="tag">AI-Assisted</span><span class="tag">Analytics</span></div></div>
   </div>
 </section>
-
 <section class="process" id="process">
-  <div class="reveal" style="text-align:center;max-width:600px;margin:0 auto;">
-    <div class="section-label" style="justify-content:center;">How It Works</div>
-    <h2 class="section-title">FROM ZERO TO<br>REVENUE IN 5 STEPS</h2>
+  <div class="reveal" style="text-align:center;max-width:560px;margin:0 auto;">
+    <div class="s-label" style="justify-content:center;">How It Works</div>
+    <h2 class="s-title">ZERO TO REVENUE<br>IN 5 STEPS</h2>
   </div>
-  <div class="process-steps">
-    <div class="process-step reveal">
-      <div class="step-circle">01</div>
-      <h4 class="step-title">Discovery Call</h4>
-      <p class="step-desc">We learn your business, goals, and biggest pain points in a free 30-min strategy session.</p>
-    </div>
-    <div class="process-step reveal reveal-delay-1">
-      <div class="step-circle">02</div>
-      <h4 class="step-title">Custom Strategy</h4>
-      <p class="step-desc">We build a tailored growth plan — no cookie-cutter packages, no fluff.</p>
-    </div>
-    <div class="process-step reveal reveal-delay-2">
-      <div class="step-circle">03</div>
-      <h4 class="step-title">Build &amp; Launch</h4>
-      <p class="step-desc">Your website and automation systems go live within 48 to 72 hours of approval.</p>
-    </div>
-    <div class="process-step reveal reveal-delay-3">
-      <div class="step-circle">04</div>
-      <h4 class="step-title">Marketing Kicks In</h4>
-      <p class="step-desc">Email campaigns and social content start running. Your pipeline fills up.</p>
-    </div>
-    <div class="process-step reveal reveal-delay-4">
-      <div class="step-circle">05</div>
-      <h4 class="step-title">Scale &amp; Optimize</h4>
-      <p class="step-desc">Monthly reports, ongoing tweaks, and expansion as your business grows.</p>
-    </div>
+  <div class="proc-steps">
+    <div class="proc-step reveal"><div class="step-c">01</div><h4 class="step-t">Discovery Call</h4><p class="step-d">Free 30-min session to understand your business, goals, and biggest gaps.</p></div>
+    <div class="proc-step reveal d1"><div class="step-c">02</div><h4 class="step-t">Custom Strategy</h4><p class="step-d">A tailored growth plan built specifically for your business.</p></div>
+    <div class="proc-step reveal d2"><div class="step-c">03</div><h4 class="step-t">Build &amp; Launch</h4><p class="step-d">Website and automations live within 48&ndash;72 hours of approval.</p></div>
+    <div class="proc-step reveal d3"><div class="step-c">04</div><h4 class="step-t">Marketing Kicks In</h4><p class="step-d">Email and social content runs on autopilot. Pipeline fills up.</p></div>
+    <div class="proc-step reveal d4"><div class="step-c">05</div><h4 class="step-t">Scale &amp; Grow</h4><p class="step-d">Monthly reports, strategy calls, and ongoing expansion.</p></div>
   </div>
 </section>
-
 <section class="pricing" id="pricing">
-  <div class="pricing-header reveal">
-    <div class="section-label" style="justify-content:center;">Transparent Pricing</div>
-    <h2 class="section-title">SIMPLE.<br>POWERFUL.<br>ALL-INCLUSIVE.</h2>
-    <p>One flat monthly retainer. No hidden fees. No surprise invoices. Cancel anytime after 3 months.</p>
+  <div class="price-head reveal">
+    <div class="s-label" style="justify-content:center;">Transparent Pricing</div>
+    <h2 class="s-title">SIMPLE.<br>POWERFUL.<br>ALL-INCLUSIVE.</h2>
+    <p>One flat monthly retainer. No hidden fees. Cancel anytime after 3 months.</p>
   </div>
-  <div class="pricing-grid">
-    <div class="price-card reveal">
-      <div class="price-tier">Tier 01</div>
-      <div class="price-name">Launchpad</div>
-      <div class="price-amount">
-        <span class="price-currency">$</span><span class="price-num">799</span><span class="price-period">/mo</span>
-      </div>
-      <p class="price-desc">Perfect for new businesses or those who need to get online with the basics locked in fast.</p>
-      <ul class="price-features">
-        <li>5-Page Custom Website</li>
-        <li>Mobile Optimized + SEO Setup</li>
-        <li>Online Booking Integration</li>
-        <li>1 Email Campaign / Month</li>
-        <li>Social Media Setup (2 Platforms)</li>
-        <li class="off">Appointment Automation</li>
-        <li class="off">Social Media Management</li>
-        <li class="off">Monthly Strategy Call</li>
+  <div class="price-grid">
+    <div class="p-card reveal">
+      <div class="p-tier">Tier 01</div><div class="p-name">Launchpad</div>
+      <div class="p-amt"><span class="p-cur">$</span><span class="p-num">799</span><span class="p-per">/mo</span></div>
+      <p class="p-desc">Perfect for new businesses who need to get online fast with core essentials locked in.</p>
+      <ul class="p-features">
+        <li>5-Page Custom Website</li><li>Mobile Optimized + SEO Setup</li><li>Online Booking Integration</li>
+        <li>1 Email Campaign / Month</li><li>Social Media Setup (2 Platforms)</li>
+        <li class="off">Appointment Automation</li><li class="off">Social Media Management</li><li class="off">Monthly Strategy Call</li>
       </ul>
-      <a href="#contact" class="price-cta outline">Get Started</a>
+      <a href="mailto:hello&#64;geodm.us" class="p-cta ol">Get Started</a>
     </div>
-    <div class="price-card featured reveal reveal-delay-1">
-      <div class="price-badge">Most Popular</div>
-      <div class="price-tier">Tier 02</div>
-      <div class="price-name">Growth Engine</div>
-      <div class="price-amount">
-        <span class="price-currency">$</span><span class="price-num">1,599</span><span class="price-period">/mo</span>
-      </div>
-      <p class="price-desc">The full system. Built for businesses ready to dominate their market and turn leads into loyal customers.</p>
-      <ul class="price-features">
-        <li>10-Page Premium Website</li>
-        <li>Advanced SEO + Speed Optimization</li>
-        <li>Full Appointment Automation + SMS</li>
-        <li>4 Email Campaigns / Month</li>
-        <li>Social Media (3 Platforms, 4x/week)</li>
-        <li>Lead Capture Funnels</li>
-        <li>Monthly Analytics Report</li>
-        <li>Monthly Strategy Call</li>
+    <div class="p-card feat reveal d1">
+      <div class="p-badge">Most Popular</div>
+      <div class="p-tier">Tier 02</div><div class="p-name">Growth Engine</div>
+      <div class="p-amt"><span class="p-cur">$</span><span class="p-num">1,599</span><span class="p-per">/mo</span></div>
+      <p class="p-desc">The full system. Built for businesses ready to dominate their market and turn leads into loyal customers.</p>
+      <ul class="p-features">
+        <li>10-Page Premium Website</li><li>Advanced SEO + Speed Optimization</li>
+        <li>Full Appointment Automation + SMS</li><li>4 Email Campaigns / Month</li>
+        <li>Social Media (3 Platforms, 4x/week)</li><li>Lead Capture Funnels</li>
+        <li>Monthly Analytics Report</li><li>Monthly Strategy Call</li>
       </ul>
-      <a href="#contact" class="price-cta solid">Get Started</a>
+      <a href="mailto:hello&#64;geodm.us" class="p-cta sl">Get Started</a>
     </div>
-    <div class="price-card reveal reveal-delay-2">
-      <div class="price-tier">Tier 03</div>
-      <div class="price-name">Empire Mode</div>
-      <div class="price-amount">
-        <span class="price-currency">$</span><span class="price-num">2,999</span><span class="price-period">/mo</span>
-      </div>
-      <p class="price-desc">For businesses scaling fast across multiple markets — or those who want to completely dominate their niche.</p>
-      <ul class="price-features">
-        <li>Custom Multi-Page Website + Blog</li>
-        <li>Full AI Automation Suite</li>
-        <li>Unlimited Email Campaigns</li>
-        <li>Daily Social Media (All Platforms)</li>
-        <li>Paid Ad Management (Meta / Google)</li>
-        <li>Dedicated Account Manager</li>
-        <li>Weekly Analytics + Strategy Calls</li>
-        <li>Priority 24hr Support</li>
+    <div class="p-card reveal d2">
+      <div class="p-tier">Tier 03</div><div class="p-name">Empire Mode</div>
+      <div class="p-amt"><span class="p-cur">$</span><span class="p-num">2,999</span><span class="p-per">/mo</span></div>
+      <p class="p-desc">For businesses scaling fast across multiple markets who want to completely dominate their niche.</p>
+      <ul class="p-features">
+        <li>Custom Multi-Page Website + Blog</li><li>Full AI Automation Suite</li>
+        <li>Unlimited Email Campaigns</li><li>Daily Social Media (All Platforms)</li>
+        <li>Paid Ad Management (Meta/Google)</li><li>Dedicated Account Manager</li>
+        <li>Weekly Analytics + Strategy Calls</li><li>Priority 24hr Support</li>
       </ul>
-      <a href="#contact" class="price-cta outline">Let's Talk</a>
+      <a href="mailto:hello&#64;geodm.us" class="p-cta ol">Let's Talk</a>
     </div>
   </div>
-  <div class="reveal" style="text-align:center;margin-top:48px;">
-    <p style="color:var(--muted);font-size:0.85rem;">Need something custom? <a href="#contact" style="color:var(--electric);text-decoration:none;">Let's build a package around your goals</a></p>
+  <div class="reveal" style="text-align:center;margin-top:44px;">
+    <p style="color:var(--muted);font-size:.8rem;">Need something custom? <a href="mailto:hello&#64;geodm.us" style="color:var(--cyan);text-decoration:none;">Let's build a package around your goals &rarr;</a></p>
   </div>
 </section>
-
 <section class="proof" id="testimonials">
-  <div class="reveal">
-    <div class="section-label">Social Proof</div>
-    <h2 class="section-title">REAL RESULTS.<br>REAL BUSINESSES.</h2>
-  </div>
+  <div class="reveal"><div class="s-label">Social Proof</div><h2 class="s-title">REAL RESULTS.<br>REAL BUSINESSES.</h2></div>
   <div class="proof-grid">
-    <div class="proof-card reveal">
-      <div class="proof-quote">"</div>
-      <p class="proof-text">Before Geo Digital Media, I was booking everything by phone. Now 80% of my appointments are automated. My front desk can actually focus on clients.</p>
-      <div class="proof-author">
-        <div class="proof-avatar">TM</div>
-        <div><div class="proof-name">Tanya M.</div><div class="proof-biz">Bloom Beauty Studio</div></div>
-      </div>
-    </div>
-    <div class="proof-card reveal reveal-delay-1">
-      <div class="proof-quote">"</div>
-      <p class="proof-text">Our old website was costing us business. GeoDMus rebuilt it in 3 days — within the first month we had 40+ new leads come through. Unreal.</p>
-      <div class="proof-author">
-        <div class="proof-avatar">DR</div>
-        <div><div class="proof-name">DeShawn R.</div><div class="proof-biz">Peak Performance Gym</div></div>
-      </div>
-    </div>
-    <div class="proof-card reveal reveal-delay-2">
-      <div class="proof-quote">"</div>
-      <p class="proof-text">The email campaigns alone brought back 6 old clients in the first month. That more than paid for the entire package. These guys understand business.</p>
-      <div class="proof-author">
-        <div class="proof-avatar">AL</div>
-        <div><div class="proof-name">Angela L.</div><div class="proof-biz">Restore Wellness Clinic</div></div>
-      </div>
-    </div>
+    <div class="pr-card reveal"><div class="pr-q">"</div><p class="pr-txt">Before Geo Digital Media, I was booking everything by phone. Now 80% of my appointments are automated. My front desk can actually focus on clients.</p><div class="pr-auth"><div class="pr-av">TM</div><div><div class="pr-name">Tanya M.</div><div class="pr-biz">Bloom Beauty Studio</div></div></div></div>
+    <div class="pr-card reveal d1"><div class="pr-q">"</div><p class="pr-txt">Our old website was costing us business. GeoDMus rebuilt it in 3 days &mdash; within the first month we had 40+ new leads come through. Unreal.</p><div class="pr-auth"><div class="pr-av">DR</div><div><div class="pr-name">DeShawn R.</div><div class="pr-biz">Peak Performance Gym</div></div></div></div>
+    <div class="pr-card reveal d2"><div class="pr-q">"</div><p class="pr-txt">The email campaigns alone brought back 6 old clients in the first month. That more than paid for the entire package. These guys understand business.</p><div class="pr-auth"><div class="pr-av">AL</div><div><div class="pr-name">Angela L.</div><div class="pr-biz">Restore Wellness Clinic</div></div></div></div>
   </div>
 </section>
-
 <section class="markets">
-  <div class="markets-text reveal">
-    <div class="section-label">Who We Serve</div>
-    <h2 class="section-title">YOUR INDUSTRY.<br>OUR EXPERTISE.</h2>
-    <p>We specialize in service businesses that rely on appointments, repeat customers, and community trust — built to scale any business, anywhere in the world.</p>
-  </div>
-  <div class="markets-tags reveal reveal-delay-1">
-    <span class="market-tag hot">Hair Salons</span>
-    <span class="market-tag hot">Barbershops</span>
-    <span class="market-tag hot">Med Spas</span>
-    <span class="market-tag hot">Gyms &amp; Fitness</span>
-    <span class="market-tag hot">Dental Clinics</span>
-    <span class="market-tag hot">Chiropractic</span>
-    <span class="market-tag">Restaurants</span>
-    <span class="market-tag">Auto Shops</span>
-    <span class="market-tag">Real Estate</span>
-    <span class="market-tag">Law Firms</span>
-    <span class="market-tag">Coaches</span>
-    <span class="market-tag">Contractors</span>
-    <span class="market-tag">Nail Studios</span>
-    <span class="market-tag">Tattoo Shops</span>
-    <span class="market-tag">Pet Services</span>
-    <span class="market-tag">Tutoring</span>
+  <div class="mkt-txt reveal"><div class="s-label">Who We Serve</div><h2 class="s-title">YOUR INDUSTRY.<br>OUR EXPERTISE.</h2><p>Service businesses that rely on appointments, repeat customers, and trust &mdash; built to scale anywhere in the world.</p></div>
+  <div class="mkt-tags reveal d1">
+    <span class="m-tag h">Hair Salons</span><span class="m-tag h">Barbershops</span><span class="m-tag h">Med Spas</span>
+    <span class="m-tag h">Gyms &amp; Fitness</span><span class="m-tag h">Dental Clinics</span><span class="m-tag h">Chiropractic</span>
+    <span class="m-tag">Restaurants</span><span class="m-tag">Auto Shops</span><span class="m-tag">Real Estate</span>
+    <span class="m-tag">Law Firms</span><span class="m-tag">Coaches</span><span class="m-tag">Contractors</span>
+    <span class="m-tag">Nail Studios</span><span class="m-tag">Tattoo Shops</span><span class="m-tag">Pet Services</span><span class="m-tag">Tutoring</span>
   </div>
 </section>
-
-<section class="cta-section" id="contact">
+<section class="cta-sec" id="contact">
   <div class="reveal">
-    <div class="section-label" style="justify-content:center;">Ready?</div>
-    <h2 class="cta-title">STOP LOSING<br><span>CUSTOMERS ONLINE</span></h2>
-    <p class="cta-sub">Book a free 30-minute strategy call. We'll analyze your digital presence and show you exactly what's leaving money on the table — no strings attached.</p>
-    <div class="cta-actions">
-      <a href="mailto:hello@geodm.us" class="btn-primary">Book a Free Strategy Call</a>
-      <a href="mailto:hello@geodm.us" class="btn-secondary">Email Us Directly</a>
+    <div class="s-label" style="justify-content:center;">Ready To Grow?</div>
+    <h2 class="cta-title">STOP LOSING<br><span class="hl">CUSTOMERS ONLINE</span></h2>
+    <p class="cta-sub">Book a free 30-minute strategy call. We'll analyze your digital presence and show you exactly what's leaving money on the table &mdash; no strings attached.</p>
+    <div class="cta-acts">
+      <a href="mailto:hello&#64;geodm.us" class="btn-g">Book Free Strategy Call</a>
+      <a href="mailto:hello&#64;geodm.us" class="btn-o">Email Us Directly</a>
     </div>
   </div>
 </section>
-
 <footer>
-  <div class="footer-top">
-    <div class="footer-brand">
-      <div class="logo">GEO<span>DM</span><small>US</small></div>
-      <p>Geo Digital Media — full-service digital growth for businesses ready to scale.</p>
+  <div class="ft-top">
+    <div class="ft-brand">
+      <div class="fl"><svg width="16" height="13" viewBox="0 0 28 22" fill="none"><polygon points="0,11 28,0 21,11 28,22" fill="#cc2d8f"/><polygon points="0,11 28,0 23,16" fill="#00c8d4"/></svg>GEO<span>DM</span>us</div>
+      <span class="fls">Geo Digital Media</span>
+      <p>Full-service digital growth for businesses ready to scale &mdash; websites, automations, email, and social.</p>
     </div>
-    <div class="footer-col">
-      <h4>Services</h4>
-      <ul>
-        <li><a href="#services">Website Design</a></li>
-        <li><a href="#services">Appointment Automation</a></li>
-        <li><a href="#services">Email Marketing</a></li>
-        <li><a href="#services">Social Media Management</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Company</h4>
-      <ul>
-        <li><a href="#process">How It Works</a></li>
-        <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#testimonials">Case Studies</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Connect</h4>
-      <ul>
-        <li><a href="mailto:hello@geodm.us">hello@geodm.us</a></li>
-        <li><a href="https://instagram.com/geodm.us" target="_blank">IG: @geodm.us</a></li>
-        <li><a href="https://x.com/geodmus" target="_blank">X: @geodmus</a></li>
-      </ul>
-    </div>
+    <div class="ft-col"><h4>Services</h4><ul><li><a href="#services">Website Design</a></li><li><a href="#services">Appointment Automation</a></li><li><a href="#services">Email Marketing</a></li><li><a href="#services">Social Media Management</a></li></ul></div>
+    <div class="ft-col"><h4>Company</h4><ul><li><a href="#process">How It Works</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#testimonials">Case Studies</a></li><li><a href="#contact">Contact</a></li></ul></div>
+    <div class="ft-col"><h4>Connect</h4><ul>
+      <li><a href="mailto:hello&#64;geodm.us">hello&#64;geodm.us</a></li>
+      <li><a href="https://instagram.com/geodm.us" target="_blank" rel="noopener">Instagram: @geodm.us</a></li>
+      <li><a href="https://x.com/geodmus" target="_blank" rel="noopener">X: @geodmus</a></li>
+    </ul></div>
   </div>
-  <div class="footer-bottom">
-    <p>&#169; 2025 <span>Geo Digital Media</span> &#183; geodm.us &#183; All rights reserved.</p>
-    <div class="social-links">
-      <a href="https://instagram.com/geodm.us" target="_blank">Instagram</a>
-      <a href="https://x.com/geodmus" target="_blank">X @geodmus</a>
+  <div class="ft-bot">
+    <p>&#169; 2025 <span>Geo Digital Media</span> &middot; GeoDMus &middot; geodm.us</p>
+    <div class="ft-socials">
+      <a href="https://instagram.com/geodm.us" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>Instagram</a>
+      <a href="https://x.com/geodmus" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>X @geodmus</a>
     </div>
   </div>
 </footer>
-
 <script>
 (function(){
-  var cursor = document.getElementById('cursor');
-  var ring = document.getElementById('cursorRing');
-  var mx=0,my=0,rx=0,ry=0;
-  document.addEventListener('mousemove',function(e){
-    mx=e.clientX; my=e.clientY;
-    cursor.style.left=(mx-6)+'px';
-    cursor.style.top=(my-6)+'px';
-  });
-  function animRing(){
-    rx+=(mx-rx-18)*0.15;
-    ry+=(my-ry-18)*0.15;
-    ring.style.left=rx+'px';
-    ring.style.top=ry+'px';
-    requestAnimationFrame(animRing);
-  }
-  animRing();
-  document.querySelectorAll('a,button').forEach(function(el){
-    el.addEventListener('mouseenter',function(){cursor.style.transform='scale(2.5)';cursor.style.background='#00b4ff';});
-    el.addEventListener('mouseleave',function(){cursor.style.transform='scale(1)';cursor.style.background='#00f5a0';});
-  });
-
-  var canvas=document.getElementById('bg-canvas');
-  var ctx=canvas.getContext('2d');
-  var W,H,pts=[];
-  function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
-  resize();
-  window.addEventListener('resize',resize);
-  function Pt(){this.reset();}
-  Pt.prototype.reset=function(){
-    this.x=Math.random()*W; this.y=Math.random()*H;
-    this.vx=(Math.random()-0.5)*0.3; this.vy=(Math.random()-0.5)*0.3;
-    this.r=Math.random()*1.5+0.5;
-    var a=Math.random()*0.5+0.1;
-    var roll=Math.random();
-    this.color=roll>0.6?'rgba(0,245,160,'+a+')':roll>0.3?'rgba(0,180,255,'+a+')':'rgba(240,240,255,'+(a*0.3)+')';
-  };
-  Pt.prototype.update=function(){
-    this.x+=this.vx; this.y+=this.vy;
-    if(this.x<0||this.x>W||this.y<0||this.y>H) this.reset();
-  };
-  Pt.prototype.draw=function(){
-    ctx.beginPath(); ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
-    ctx.fillStyle=this.color; ctx.fill();
-  };
-  for(var i=0;i<100;i++) pts.push(new Pt());
-  function frame(){
-    ctx.clearRect(0,0,W,H);
-    for(var i=0;i<pts.length;i++){pts[i].update();pts[i].draw();}
-    for(var i=0;i<pts.length;i++){
-      for(var j=i+1;j<pts.length;j++){
-        var dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y;
-        var d=Math.sqrt(dx*dx+dy*dy);
-        if(d<100){
-          ctx.beginPath();
-          ctx.strokeStyle='rgba(0,245,160,'+(0.05*(1-d/100))+')';
-          ctx.lineWidth=0.5;
-          ctx.moveTo(pts[i].x,pts[i].y);
-          ctx.lineTo(pts[j].x,pts[j].y);
-          ctx.stroke();
-        }
+var c=document.getElementById('cur'),r=document.getElementById('curR');
+var mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',function(e){
+  mx=e.clientX;my=e.clientY;
+  c.style.left=(mx-5)+'px';c.style.top=(my-5)+'px';
+});
+function ar(){rx+=(mx-rx-16)*.14;ry+=(my-ry-16)*.14;r.style.left=rx+'px';r.style.top=ry+'px';requestAnimationFrame(ar);}
+ar();
+document.querySelectorAll('a,button').forEach(function(el){
+  el.addEventListener('mouseenter',function(){c.style.transform='scale(2.5)';c.style.background='#00d25a';});
+  el.addEventListener('mouseleave',function(){c.style.transform='scale(1)';c.style.background='#00c8d4';});
+});
+var cv=document.getElementById('bgc'),ctx=cv.getContext('2d'),W,H,pts=[];
+function rsz(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;}
+rsz();window.addEventListener('resize',rsz);
+function Pt(){this.reset();}
+Pt.prototype.reset=function(){
+  this.x=Math.random()*W;this.y=Math.random()*H;
+  this.vx=(Math.random()-.5)*.25;this.vy=(Math.random()-.5)*.25;
+  this.r=Math.random()*1.5+.4;
+  var a=Math.random()*.45+.08,roll=Math.random();
+  this.color=roll>.65?'rgba(0,200,212,'+a+')':roll>.45?'rgba(204,45,143,'+(a*.6)+')':'rgba(237,252,255,'+(a*.15)+')';
+};
+Pt.prototype.update=function(){
+  this.x+=this.vx;this.y+=this.vy;
+  if(this.x<0||this.x>W||this.y<0||this.y>H)this.reset();
+};
+Pt.prototype.draw=function(){
+  ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+  ctx.fillStyle=this.color;ctx.fill();
+};
+for(var i=0;i<90;i++)pts.push(new Pt());
+function frame(){
+  ctx.clearRect(0,0,W,H);
+  for(var i=0;i<pts.length;i++){pts[i].update();pts[i].draw();}
+  for(var i=0;i<pts.length;i++){
+    for(var j=i+1;j<pts.length;j++){
+      var dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<110){
+        ctx.beginPath();
+        ctx.strokeStyle='rgba(0,200,212,'+(0.04*(1-d/110))+')';
+        ctx.lineWidth=.4;
+        ctx.moveTo(pts[i].x,pts[i].y);
+        ctx.lineTo(pts[j].x,pts[j].y);
+        ctx.stroke();
       }
     }
-    requestAnimationFrame(frame);
   }
-  frame();
-
-  var revs=document.querySelectorAll('.reveal');
-  var obs=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});
-  },{threshold:0.1});
-  revs.forEach(function(r){obs.observe(r);});
+  requestAnimationFrame(frame);
+}
+frame();
+var revs=document.querySelectorAll('.reveal');
+var obs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:.08});
+revs.forEach(function(r){obs.observe(r);});
 })();
 </script>
-
 </body>
 </html>
