@@ -5,146 +5,142 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Geo Digital Media | GeoDMus</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{--black:#070c0d;--deep:#0c1315;--surface:#111d1f;--card:#162426;--border:rgba(0,200,212,0.15);--white:#edfcff;--muted:#5b8a8f;--cyan:#00c8d4;--green:#00d25a;--magenta:#cc2d8f;--gold:#f5c842;--glow:rgba(0,200,212,0.2);}
+:root{--blk:#070c0d;--deep:#0c1315;--surf:#111d1f;--card:#162426;--bdr:rgba(0,200,212,.15);--wht:#edfcff;--mut:#5b8a8f;--cyn:#00c8d4;--grn:#00d25a;--mag:#cc2d8f;--glow:rgba(0,200,212,.2);}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{background:var(--black);color:var(--white);font-family:'Montserrat',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
-.cur{width:10px;height:10px;background:var(--cyan);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;mix-blend-mode:difference;transition:transform .15s,background .2s;}
-.cur-r{width:32px;height:32px;border:1px solid rgba(0,200,212,.5);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;}
-#bgc{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;opacity:.4;}
-section{position:relative;z-index:1;}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 48px;background:linear-gradient(to bottom,rgba(7,12,13,.97) 70%,transparent);border-bottom:1px solid var(--border);}
+body{background:var(--blk);color:var(--wht);font-family:'Montserrat',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
+.cur{width:10px;height:10px;background:var(--cyn);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;mix-blend-mode:difference;transition:transform .15s,background .2s;}
+.cur-r{width:32px;height:32px;border:1px solid rgba(0,200,212,.5);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transition:left .08s,top .08s;}
+.bg-grad{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;background:radial-gradient(ellipse at 20% 20%,rgba(0,200,212,.04) 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(204,45,143,.03) 0%,transparent 50%);pointer-events:none;}
+section,nav,.ticker,.social-bar,footer{position:relative;z-index:1;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 48px;background:rgba(7,12,13,.96);border-bottom:1px solid var(--bdr);backdrop-filter:blur(8px);}
 .logo-wrap{display:flex;flex-direction:column;line-height:1;text-decoration:none;}
-.logo-top{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;letter-spacing:.15em;color:var(--white);display:flex;align-items:center;gap:6px;}
-.logo-top span{color:var(--cyan);}
-.logo-sub{font-family:'Space Mono',monospace;font-size:.42rem;letter-spacing:.35em;text-transform:uppercase;color:var(--muted);margin-top:2px;}
+.logo-top{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;letter-spacing:.15em;color:var(--wht);display:flex;align-items:center;gap:7px;}
+.logo-top span{color:var(--cyn);}
+.logo-sub{font-family:'Space Mono',monospace;font-size:.42rem;letter-spacing:.35em;text-transform:uppercase;color:var(--mut);margin-top:2px;}
 .nav-links{display:flex;gap:36px;list-style:none;}
-.nav-links a{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s;}
-.nav-links a:hover{color:var(--cyan);}
-.nav-cta{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--black);background:var(--cyan);padding:11px 22px;text-decoration:none;border-radius:2px;transition:background .2s,transform .15s;font-weight:700;}
-.nav-cta:hover{background:var(--green);transform:scale(1.04);}
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:130px 48px 80px;overflow:hidden;position:relative;}
-.hero::before{content:'';position:absolute;top:-100px;right:-200px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(0,200,212,.06) 0%,transparent 70%);pointer-events:none;}
-.hero-tag{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.35em;text-transform:uppercase;color:var(--cyan);margin-bottom:28px;opacity:0;animation:fadeUp .7s ease .1s forwards;display:flex;align-items:center;gap:14px;}
-.hero-tag::before{content:'';width:36px;height:1px;background:var(--cyan);display:block;}
-.brand-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,9vw,9.5rem);line-height:.88;letter-spacing:.04em;margin-bottom:8px;opacity:0;animation:fadeUp .7s ease .25s forwards;}
-.brand-name .geo{color:var(--cyan);}
+.nav-links a{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--cyn);}
+.nav-cta{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--blk);background:var(--cyn);padding:11px 22px;text-decoration:none;border-radius:2px;transition:background .2s,transform .15s;font-weight:700;}
+.nav-cta:hover{background:var(--grn);transform:scale(1.04);}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:130px 48px 80px;}
+.hero-tag{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.35em;text-transform:uppercase;color:var(--cyn);margin-bottom:28px;display:flex;align-items:center;gap:14px;animation:fadeUp .7s ease .1s both;}
+.hero-tag::before{content:'';width:36px;height:1px;background:var(--cyn);display:block;}
+.brand-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,9vw,9.5rem);line-height:.88;letter-spacing:.04em;margin-bottom:48px;animation:fadeUp .7s ease .25s both;}
+.brand-name .geo{color:var(--cyn);}
 .brand-name .med{color:transparent;-webkit-text-stroke:1px rgba(204,45,143,.45);}
-.brand-handle{font-family:'Space Mono',monospace;font-size:clamp(.8rem,2vw,1.1rem);letter-spacing:.25em;color:var(--muted);margin-bottom:48px;opacity:0;animation:fadeUp .7s ease .35s forwards;}
-.brand-handle span{color:var(--cyan);}
-.hero-row{display:flex;align-items:flex-end;justify-content:space-between;gap:48px;flex-wrap:wrap;opacity:0;animation:fadeUp .7s ease .5s forwards;}
-.hero-desc{font-size:.95rem;line-height:1.8;color:var(--muted);max-width:400px;}
-.hero-desc strong{color:var(--white);font-weight:600;}
+.hero-row{display:flex;align-items:flex-end;justify-content:space-between;gap:48px;flex-wrap:wrap;animation:fadeUp .7s ease .4s both;}
+.hero-desc{font-size:.95rem;line-height:1.8;color:var(--mut);max-width:400px;}
+.hero-desc strong{color:var(--wht);font-weight:600;}
 .hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
-.btn-g{font-family:'Space Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--black);background:var(--cyan);padding:16px 36px;text-decoration:none;border-radius:2px;transition:all .2s;white-space:nowrap;}
-.btn-g:hover{background:var(--green);transform:translateY(-2px);}
-.btn-o{font-family:'Space Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);background:transparent;border:1px solid var(--cyan);padding:16px 36px;text-decoration:none;border-radius:2px;transition:all .2s;white-space:nowrap;}
-.btn-o:hover{background:rgba(0,200,212,.08);color:var(--green);border-color:var(--green);transform:translateY(-2px);}
+.btn-g{font-family:'Space Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blk);background:var(--cyn);padding:16px 36px;text-decoration:none;border-radius:2px;transition:all .2s;white-space:nowrap;}
+.btn-g:hover{background:var(--grn);transform:translateY(-2px);}
+.btn-o{font-family:'Space Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--cyn);background:transparent;border:1px solid var(--cyn);padding:16px 36px;text-decoration:none;border-radius:2px;transition:all .2s;white-space:nowrap;}
+.btn-o:hover{background:rgba(0,200,212,.08);color:var(--grn);border-color:var(--grn);transform:translateY(-2px);}
 .hero-stats{display:flex;gap:40px;flex-shrink:0;}
-.stat-n{font-family:'Bebas Neue',sans-serif;font-size:3.2rem;color:var(--cyan);line-height:1;letter-spacing:.05em;}
-.stat-l{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:4px;}
-.ticker{background:var(--cyan);padding:12px 0;overflow:hidden;white-space:nowrap;position:relative;z-index:2;}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:3.2rem;color:var(--cyn);line-height:1;}
+.stat-l{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);margin-top:4px;}
+.ticker{background:var(--cyn);padding:12px 0;overflow:hidden;white-space:nowrap;}
 .ticker-inner{display:inline-flex;animation:tick 30s linear infinite;}
-.t-item{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.25em;color:var(--black);padding:0 40px;}
-.t-dot{color:rgba(0,0,0,.3);font-size:.9rem;vertical-align:middle;}
-.social-bar{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:18px 48px;display:flex;align-items:center;justify-content:center;gap:28px;position:relative;z-index:1;flex-wrap:wrap;}
-.social-bar p{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);}
-.s-btn{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:'Space Mono',monospace;font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--white);border:1px solid var(--border);padding:10px 20px;border-radius:2px;transition:all .2s;}
-.s-btn:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,200,212,.05);}
+.t-item{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.25em;color:var(--blk);padding:0 40px;}
+.t-dot{color:rgba(0,0,0,.3);}
+.social-bar{background:var(--surf);border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr);padding:18px 48px;display:flex;align-items:center;justify-content:center;gap:28px;flex-wrap:wrap;}
+.social-bar p{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--mut);}
+.s-btn{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:'Space Mono',monospace;font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--wht);border:1px solid var(--bdr);padding:10px 20px;border-radius:2px;transition:all .2s;}
+.s-btn:hover{border-color:var(--cyn);color:var(--cyn);background:rgba(0,200,212,.05);}
 .s-btn svg{width:16px;height:16px;fill:currentColor;flex-shrink:0;}
-.s-label{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;color:var(--cyan);display:flex;align-items:center;gap:12px;margin-bottom:16px;}
-.s-label::before{content:'';width:20px;height:1px;background:var(--cyan);display:block;}
+.s-label{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;color:var(--cyn);display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.s-label::before{content:'';width:20px;height:1px;background:var(--cyn);display:block;}
 .s-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,5.5vw,5.5rem);line-height:.92;letter-spacing:.03em;margin-bottom:20px;}
 .services{padding:110px 48px;background:var(--deep);}
 .srv-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:72px;gap:32px;}
-.srv-head p{max-width:300px;color:var(--muted);line-height:1.7;font-size:.875rem;}
+.srv-head p{max-width:300px;color:var(--mut);line-height:1.7;font-size:.875rem;}
 .srv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
-.srv-card{background:var(--surface);padding:44px 28px;position:relative;overflow:hidden;transition:all .3s;}
-.srv-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--magenta));transform:scaleX(0);transform-origin:left;transition:transform .4s;}
+.srv-card{background:var(--surf);padding:44px 28px;position:relative;overflow:hidden;transition:all .3s;}
+.srv-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyn),var(--mag));transform:scaleX(0);transform-origin:left;transition:transform .4s;}
 .srv-card:hover::after{transform:scaleX(1);}
 .srv-card:hover{background:var(--card);transform:translateY(-4px);}
-.srv-icon{font-size:2rem;margin-bottom:20px;display:block;}
 .srv-num{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:rgba(0,200,212,.06);position:absolute;top:12px;right:20px;line-height:1;}
-.srv-name{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:700;margin-bottom:14px;color:var(--white);}
-.srv-desc{font-size:.82rem;line-height:1.7;color:var(--muted);margin-bottom:28px;}
+.srv-icon{font-size:2rem;margin-bottom:20px;display:block;}
+.srv-name{font-size:1rem;font-weight:700;margin-bottom:14px;color:var(--wht);}
+.srv-desc{font-size:.82rem;line-height:1.7;color:var(--mut);margin-bottom:28px;}
 .srv-tags{display:flex;flex-wrap:wrap;gap:6px;}
-.tag{font-size:.6rem;font-family:'Space Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);border:1px solid rgba(0,200,212,.25);padding:4px 9px;border-radius:2px;}
-.process{padding:110px 48px;background:var(--black);}
+.tag{font-size:.6rem;font-family:'Space Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--cyn);border:1px solid rgba(0,200,212,.25);padding:4px 9px;border-radius:2px;}
+.process{padding:110px 48px;background:var(--blk);}
 .proc-steps{display:grid;grid-template-columns:repeat(5,1fr);margin-top:72px;position:relative;}
-.proc-steps::before{content:'';position:absolute;top:30px;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),var(--magenta),var(--cyan),transparent);opacity:.35;}
+.proc-steps::before{content:'';position:absolute;top:30px;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--cyn),var(--mag),var(--cyn),transparent);opacity:.35;}
 .proc-step{text-align:center;padding:0 12px;}
-.step-c{width:60px;height:60px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:'Space Mono',monospace;font-size:.75rem;font-weight:700;color:var(--muted);background:var(--surface);position:relative;z-index:1;transition:all .3s;}
-.step-c:hover{border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 24px var(--glow);}
-.step-t{font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:700;margin-bottom:10px;color:var(--white);}
-.step-d{font-size:.75rem;color:var(--muted);line-height:1.6;}
+.step-c{width:60px;height:60px;border-radius:50%;border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:'Space Mono',monospace;font-size:.75rem;font-weight:700;color:var(--mut);background:var(--surf);position:relative;z-index:1;transition:all .3s;}
+.step-c:hover{border-color:var(--cyn);color:var(--cyn);box-shadow:0 0 24px var(--glow);}
+.step-t{font-size:.8rem;font-weight:700;margin-bottom:10px;color:var(--wht);}
+.step-d{font-size:.75rem;color:var(--mut);line-height:1.6;}
 .pricing{padding:110px 48px;background:var(--deep);position:relative;overflow:hidden;}
 .pricing::before{content:'GEO';position:absolute;font-family:'Bebas Neue',sans-serif;font-size:40vw;color:rgba(0,200,212,.025);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;white-space:nowrap;}
 .price-head{text-align:center;margin-bottom:72px;}
-.price-head p{color:var(--muted);max-width:440px;margin:0 auto;line-height:1.7;font-size:.875rem;}
+.price-head p{color:var(--mut);max-width:440px;margin:0 auto;line-height:1.7;font-size:.875rem;}
 .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:1060px;margin:0 auto;position:relative;z-index:1;}
-.p-card{background:var(--surface);padding:52px 36px;position:relative;transition:transform .3s;}
+.p-card{background:var(--surf);padding:52px 36px;position:relative;transition:transform .3s;}
 .p-card:hover{transform:translateY(-6px);}
 .p-card.feat{background:linear-gradient(155deg,#0d2022,#091618);border:1px solid rgba(0,200,212,.35);transform:translateY(-14px);}
 .p-card.feat:hover{transform:translateY(-20px);}
-.p-badge{position:absolute;top:0;left:50%;transform:translateX(-50%);background:var(--cyan);color:var(--black);font-family:'Space Mono',monospace;font-size:.55rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:5px 18px;border-radius:0 0 6px 6px;}
-.p-tier{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
-.p-name{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:.05em;color:var(--white);margin-bottom:6px;}
+.p-badge{position:absolute;top:0;left:50%;transform:translateX(-50%);background:var(--cyn);color:var(--blk);font-family:'Space Mono',monospace;font-size:.55rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:5px 18px;border-radius:0 0 6px 6px;}
+.p-tier{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mut);margin-bottom:12px;}
+.p-name{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:.05em;margin-bottom:6px;}
 .p-amt{display:flex;align-items:flex-start;gap:3px;margin-bottom:6px;}
-.p-cur{font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:700;color:var(--cyan);margin-top:8px;}
-.p-num{font-family:'Bebas Neue',sans-serif;font-size:4.5rem;line-height:1;color:var(--white);letter-spacing:-.02em;}
-.p-per{font-size:.75rem;color:var(--muted);align-self:flex-end;margin-bottom:10px;}
-.p-desc{font-size:.8rem;color:var(--muted);line-height:1.6;margin-bottom:36px;padding-bottom:36px;border-bottom:1px solid var(--border);}
+.p-cur{font-size:1.1rem;font-weight:700;color:var(--cyn);margin-top:8px;}
+.p-num{font-family:'Bebas Neue',sans-serif;font-size:4.5rem;line-height:1;letter-spacing:-.02em;}
+.p-per{font-size:.75rem;color:var(--mut);align-self:flex-end;margin-bottom:10px;}
+.p-desc{font-size:.8rem;color:var(--mut);line-height:1.6;margin-bottom:36px;padding-bottom:36px;border-bottom:1px solid var(--bdr);}
 .p-features{list-style:none;margin-bottom:36px;}
-.p-features li{font-size:.8rem;color:var(--muted);padding:9px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;line-height:1.4;}
-.p-features li::before{content:'>';color:var(--cyan);flex-shrink:0;font-weight:700;}
+.p-features li{font-size:.8rem;color:var(--mut);padding:9px 0;border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:10px;line-height:1.4;}
+.p-features li::before{content:'>';color:var(--cyn);flex-shrink:0;font-weight:700;}
 .p-features li.off{opacity:.3;}
-.p-features li.off::before{content:'-';color:var(--muted);}
+.p-features li.off::before{content:'-';color:var(--mut);}
 .p-cta{display:block;text-align:center;font-family:'Space Mono',monospace;font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:15px;border-radius:2px;transition:all .2s;}
-.p-cta.ol{border:1px solid var(--border);color:var(--white);}
-.p-cta.ol:hover{border-color:var(--cyan);color:var(--cyan);}
-.p-cta.sl{background:var(--cyan);color:var(--black);}
-.p-cta.sl:hover{background:var(--green);}
-.proof{padding:100px 48px;background:var(--black);}
+.p-cta.ol{border:1px solid var(--bdr);color:var(--wht);}
+.p-cta.ol:hover{border-color:var(--cyn);color:var(--cyn);}
+.p-cta.sl{background:var(--cyn);color:var(--blk);}
+.p-cta.sl:hover{background:var(--grn);}
+.proof{padding:100px 48px;background:var(--blk);}
 .proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:60px;}
-.pr-card{background:var(--surface);padding:36px;}
-.pr-q{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--cyan);opacity:.35;line-height:1;margin-bottom:16px;}
-.pr-txt{font-size:.875rem;color:var(--white);line-height:1.75;margin-bottom:28px;font-style:italic;}
+.pr-card{background:var(--surf);padding:36px;}
+.pr-q{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--cyn);opacity:.35;line-height:1;margin-bottom:16px;}
+.pr-txt{font-size:.875rem;color:var(--wht);line-height:1.75;margin-bottom:28px;font-style:italic;}
 .pr-auth{display:flex;align-items:center;gap:14px;}
-.pr-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--magenta));display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1rem;color:var(--white);flex-shrink:0;}
-.pr-name{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.8rem;color:var(--white);}
-.pr-biz{font-size:.7rem;color:var(--muted);margin-top:2px;}
+.pr-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--cyn),var(--mag));display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1rem;color:var(--wht);flex-shrink:0;}
+.pr-name{font-weight:700;font-size:.8rem;}
+.pr-biz{font-size:.7rem;color:var(--mut);margin-top:2px;}
 .markets{padding:80px 48px;background:var(--deep);display:flex;align-items:center;gap:72px;flex-wrap:wrap;}
 .mkt-txt{flex:1;min-width:260px;}
-.mkt-txt p{color:var(--muted);line-height:1.7;margin-top:20px;font-size:.875rem;}
+.mkt-txt p{color:var(--mut);line-height:1.7;margin-top:20px;font-size:.875rem;}
 .mkt-tags{display:flex;flex-wrap:wrap;gap:10px;flex:1;min-width:260px;}
-.m-tag{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;padding:10px 16px;border:1px solid var(--border);color:var(--muted);transition:all .2s;border-radius:2px;cursor:default;}
-.m-tag:hover,.m-tag.h{border-color:rgba(0,200,212,.4);color:var(--cyan);}
-.cta-sec{padding:130px 48px;text-align:center;background:var(--black);position:relative;overflow:hidden;}
+.m-tag{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;padding:10px 16px;border:1px solid var(--bdr);color:var(--mut);transition:all .2s;border-radius:2px;cursor:default;}
+.m-tag:hover,.m-tag.h{border-color:rgba(0,200,212,.4);color:var(--cyn);}
+.cta-sec{padding:130px 48px;text-align:center;background:var(--blk);position:relative;overflow:hidden;}
 .cta-sec::before{content:'';position:absolute;bottom:-300px;left:50%;transform:translateX(-50%);width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(0,200,212,.05) 0%,transparent 65%);pointer-events:none;}
 .cta-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,8vw,8rem);line-height:.9;margin-bottom:28px;position:relative;z-index:1;}
-.cta-title .hl{color:var(--cyan);display:block;}
-.cta-sub{color:var(--muted);font-size:.95rem;line-height:1.75;max-width:460px;margin:0 auto 44px;position:relative;z-index:1;}
+.cta-title .hl{color:var(--cyn);display:block;}
+.cta-sub{color:var(--mut);font-size:.95rem;line-height:1.75;max-width:460px;margin:0 auto 44px;position:relative;z-index:1;}
 .cta-acts{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;}
-footer{background:var(--deep);border-top:1px solid var(--border);padding:60px 48px 36px;}
+footer{background:var(--deep);border-top:1px solid var(--bdr);padding:60px 48px 36px;}
 .ft-top{display:flex;align-items:flex-start;justify-content:space-between;gap:48px;margin-bottom:56px;flex-wrap:wrap;}
-.ft-brand .fl{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.12em;color:var(--white);margin-bottom:4px;display:flex;align-items:center;gap:6px;}
-.ft-brand .fl span{color:var(--cyan);}
-.ft-brand .fls{font-family:'Space Mono',monospace;font-size:.38rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:14px;}
-.ft-brand p{font-size:.8rem;color:var(--muted);max-width:240px;line-height:1.6;}
-.ft-col h4{font-family:'Space Mono',monospace;font-size:.58rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--white);margin-bottom:18px;}
+.ft-brand .fl{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.12em;margin-bottom:4px;display:flex;align-items:center;gap:6px;}
+.ft-brand .fl span{color:var(--cyn);}
+.ft-brand .fls{font-family:'Space Mono',monospace;font-size:.38rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mut);display:block;margin-bottom:14px;}
+.ft-brand p{font-size:.8rem;color:var(--mut);max-width:240px;line-height:1.6;}
+.ft-col h4{font-family:'Space Mono',monospace;font-size:.58rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;margin-bottom:18px;}
 .ft-col ul{list-style:none;}
 .ft-col ul li{margin-bottom:10px;}
-.ft-col ul li a{font-size:.8rem;color:var(--muted);text-decoration:none;transition:color .2s;}
-.ft-col ul li a:hover{color:var(--cyan);}
-.ft-bot{display:flex;justify-content:space-between;align-items:center;padding-top:28px;border-top:1px solid var(--border);flex-wrap:wrap;gap:16px;}
-.ft-bot p{font-size:.7rem;color:var(--muted);}
-.ft-bot p span{color:var(--cyan);}
+.ft-col ul li a{font-size:.8rem;color:var(--mut);text-decoration:none;transition:color .2s;}
+.ft-col ul li a:hover{color:var(--cyn);}
+.ft-bot{display:flex;justify-content:space-between;align-items:center;padding-top:28px;border-top:1px solid var(--bdr);flex-wrap:wrap;gap:16px;}
+.ft-bot p{font-size:.7rem;color:var(--mut);}
+.ft-bot span{color:var(--cyn);}
 .ft-socials{display:flex;gap:12px;}
-.ft-socials a{display:flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:7px 14px;border-radius:2px;transition:all .2s;}
-.ft-socials a:hover{border-color:var(--cyan);color:var(--cyan);}
+.ft-socials a{display:flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);text-decoration:none;border:1px solid var(--bdr);padding:7px 14px;border-radius:2px;transition:all .2s;}
+.ft-socials a:hover{border-color:var(--cyn);color:var(--cyn);}
 .ft-socials a svg{width:13px;height:13px;fill:currentColor;}
 .reveal{opacity:0;transform:translateY(36px);transition:opacity .7s ease,transform .7s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
@@ -154,24 +150,21 @@ footer{background:var(--deep);border-top:1px solid var(--border);padding:60px 48
 @media(max-width:900px){
 nav{padding:16px 20px;}.nav-links{display:none;}
 .hero{padding:100px 20px 60px;}.hero-row{flex-direction:column;align-items:flex-start;}
-.services,.process,.pricing,.proof,.cta-sec,footer{padding-left:20px;padding-right:20px;}
+.services,.process,.pricing,.proof,.cta-sec,.markets,footer{padding-left:20px;padding-right:20px;}
 .srv-grid{grid-template-columns:1fr 1fr;}.srv-head{flex-direction:column;}
 .proc-steps{grid-template-columns:1fr;gap:36px;}.proc-steps::before{display:none;}
 .price-grid{grid-template-columns:1fr;}.p-card.feat{transform:none;}
-.proof-grid{grid-template-columns:1fr;}.markets{padding:60px 20px;flex-direction:column;}
+.proof-grid{grid-template-columns:1fr;}.markets{flex-direction:column;}
 .social-bar{padding:16px 20px;}}
 </style>
 </head>
 <body>
 <div class="cur" id="cur"></div>
 <div class="cur-r" id="curR"></div>
-<canvas id="bgc"></canvas>
+<div class="bg-grad"></div>
 <nav>
   <a href="#" class="logo-wrap">
-    <div class="logo-top">
-      <svg width="18" height="14" viewBox="0 0 28 22" fill="none"><polygon points="0,11 28,0 21,11 28,22" fill="#cc2d8f"/><polygon points="0,11 28,0 23,16" fill="#00c8d4"/></svg>
-      GEO<span>DM</span>us
-    </div>
+    <div class="logo-top"><svg width="18" height="14" viewBox="0 0 28 22" fill="none"><polygon points="0,11 28,0 21,11 28,22" fill="#cc2d8f"/><polygon points="0,11 28,0 23,16" fill="#00c8d4"/></svg>GEO<span>DM</span>us</div>
     <div class="logo-sub">Geo Digital Media</div>
   </a>
   <ul class="nav-links">
@@ -184,12 +177,9 @@ nav{padding:16px 20px;}.nav-links{display:none;}
 </nav>
 <section class="hero" id="home">
   <div class="hero-tag">Geo Digital Media &mdash; Global Digital Growth</div>
-  <div class="brand-name">
-    <span class="geo">GEO </span>DIGITAL<br><span class="med">MEDIA</span>
-  </div>
-  <div class="brand-handle">@<span>geodmus</span> &nbsp;&middot;&nbsp; geodm.us</div>
+  <div class="brand-name"><span class="geo">GEO </span>DIGITAL<br><span class="med">MEDIA</span></div>
   <div class="hero-row">
-    <p class="hero-desc"><strong>Geo Digital Media</strong> &mdash; GeoDMus &mdash; builds websites, AI automations, email systems, and social media that turn your digital presence into a <strong>revenue machine.</strong> Anywhere in the world.</p>
+    <p class="hero-desc"><strong>Geo Digital Media</strong> builds websites, AI automations, email systems, and social media that turn your digital presence into a <strong>revenue machine.</strong></p>
     <div class="hero-actions">
       <a href="#pricing" class="btn-g">See Our Packages</a>
       <a href="#process" class="btn-o">How It Works</a>
@@ -201,219 +191,71 @@ nav{padding:16px 20px;}.nav-links{display:none;}
     </div>
   </div>
 </section>
-<div class="ticker"><div class="ticker-inner">
-  <span class="t-item">Geo Digital Media</span><span class="t-dot"> &#9670; </span>
-  <span class="t-item">GeoDMus</span><span class="t-dot"> &#9670; </span>
-  <span class="t-item">Websites</span><span class="t-dot"> &#9670; </span>
-  <span class="t-item">Automations</span><span class="t-dot"> &#9670; </span>
-  <span class="t-item">Email Marketing</span><span class="t-dot"> &#9670; </span>
-  <span class="t-item">Appointment Systems</span><span class="t-dot"> &#9670; </span>
-  <span class="t-item">Social Media</span><span class="t-dot"> &#9670; </span>
-  <span class="t-item">Lead Generation</span><span class="t-dot"> &#9670; </span>
-  <span class="t-item">Geo Digital Media</span><span class="t-dot"> &#9670; </span>
-  <span class="t-item">GeoDMus</span><span class="t-dot"> &#9670; </span>
-  <span class="t-item">Websites</span><span class="t-dot"> &#9670; </span>
-  <span class="t-item">Automations</span><span class="t-dot"> &#9670; </span>
-  <span class="t-item">Email Marketing</span><span class="t-dot"> &#9670; </span>
-  <span class="t-item">Appointment Systems</span><span class="t-dot"> &#9670; </span>
-  <span class="t-item">Social Media</span><span class="t-dot"> &#9670; </span>
-  <span class="t-item">Lead Generation</span><span class="t-dot"> &#9670; </span>
-</div></div>
+<div class="ticker"><div class="ticker-inner"><span class="t-item">Geo Digital Media</span><span class="t-dot"> &#9670; </span><span class="t-item">GeoDMus</span><span class="t-dot"> &#9670; </span><span class="t-item">Websites</span><span class="t-dot"> &#9670; </span><span class="t-item">Automations</span><span class="t-dot"> &#9670; </span><span class="t-item">Email Marketing</span><span class="t-dot"> &#9670; </span><span class="t-item">Appointment Systems</span><span class="t-dot"> &#9670; </span><span class="t-item">Social Media</span><span class="t-dot"> &#9670; </span><span class="t-item">Lead Generation</span><span class="t-dot"> &#9670; </span><span class="t-item">Geo Digital Media</span><span class="t-dot"> &#9670; </span><span class="t-item">GeoDMus</span><span class="t-dot"> &#9670; </span><span class="t-item">Websites</span><span class="t-dot"> &#9670; </span><span class="t-item">Automations</span><span class="t-dot"> &#9670; </span><span class="t-item">Email Marketing</span><span class="t-dot"> &#9670; </span><span class="t-item">Appointment Systems</span><span class="t-dot"> &#9670; </span><span class="t-item">Social Media</span><span class="t-dot"> &#9670; </span><span class="t-item">Lead Generation</span><span class="t-dot"> &#9670; </span></div></div>
 <div class="social-bar">
   <p>Follow Us &mdash;</p>
-  <a href="https://instagram.com/geodm.us" target="_blank" rel="noopener" class="s-btn">
-    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-    @geodm.us
-  </a>
-  <a href="https://x.com/geodmus" target="_blank" rel="noopener" class="s-btn">
-    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-    @geodmus
-  </a>
+  <a href="https://instagram.com/geodm.us" target="_blank" rel="noopener" class="s-btn"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>@geodm.us</a>
+  <a href="https://x.com/geodmus" target="_blank" rel="noopener" class="s-btn"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@geodmus</a>
 </div>
 <section class="services" id="services">
-  <div class="srv-head reveal">
-    <div><div class="s-label">What We Do</div><h2 class="s-title">SERVICES THAT<br>MOVE NEEDLES</h2></div>
-    <p>We don't sell software. We build your complete digital growth engine &mdash; then keep it running and scaling every month.</p>
-  </div>
+  <div class="srv-head reveal"><div><div class="s-label">What We Do</div><h2 class="s-title">SERVICES THAT<br>MOVE NEEDLES</h2></div><p>We don't sell software. We build your complete digital growth engine &mdash; then keep it running every month.</p></div>
   <div class="srv-grid">
-    <div class="srv-card reveal"><span class="srv-icon">&#127760;</span><span class="srv-num">01</span><h3 class="srv-name">Website Design &amp; Dev</h3><p class="srv-desc">Fast, mobile-first, conversion-optimized websites that turn visitors into paying customers. Your 24/7 salesperson.</p><div class="srv-tags"><span class="tag">Custom Design</span><span class="tag">SEO Ready</span><span class="tag">48hr Launch</span></div></div>
-    <div class="srv-card reveal d1"><span class="srv-icon">&#9889;</span><span class="srv-num">02</span><h3 class="srv-name">Appointment Automation</h3><p class="srv-desc">AI-powered booking, confirmation texts, reminders, and follow-ups. No more phone tag. No more no-shows.</p><div class="srv-tags"><span class="tag">AI Booking</span><span class="tag">SMS Alerts</span><span class="tag">CRM Sync</span></div></div>
-    <div class="srv-card reveal d2"><span class="srv-icon">&#128231;</span><span class="srv-num">03</span><h3 class="srv-name">Email Marketing</h3><p class="srv-desc">Targeted campaigns and automated sequences that nurture leads and bring customers back again and again.</p><div class="srv-tags"><span class="tag">Sequences</span><span class="tag">Segmentation</span><span class="tag">A/B Testing</span></div></div>
-    <div class="srv-card reveal d3"><span class="srv-icon">&#128241;</span><span class="srv-num">04</span><h3 class="srv-name">Social Media Management</h3><p class="srv-desc">Consistent strategic content that builds your brand, grows your community, and drives inbound leads.</p><div class="srv-tags"><span class="tag">Content Calendar</span><span class="tag">AI-Assisted</span><span class="tag">Analytics</span></div></div>
+    <div class="srv-card reveal"><span class="srv-icon">&#127760;</span><span class="srv-num">01</span><h3 class="srv-name">Website Design &amp; Dev</h3><p class="srv-desc">Fast, mobile-first, conversion-optimized websites that turn visitors into paying customers.</p><div class="srv-tags"><span class="tag">Custom Design</span><span class="tag">SEO Ready</span><span class="tag">48hr Launch</span></div></div>
+    <div class="srv-card reveal d1"><span class="srv-icon">&#9889;</span><span class="srv-num">02</span><h3 class="srv-name">Appointment Automation</h3><p class="srv-desc">AI-powered booking, SMS reminders, and follow-ups. No more no-shows or phone tag.</p><div class="srv-tags"><span class="tag">AI Booking</span><span class="tag">SMS Alerts</span><span class="tag">CRM Sync</span></div></div>
+    <div class="srv-card reveal d2"><span class="srv-icon">&#128231;</span><span class="srv-num">03</span><h3 class="srv-name">Email Marketing</h3><p class="srv-desc">Targeted campaigns and automated sequences that nurture leads and bring customers back.</p><div class="srv-tags"><span class="tag">Sequences</span><span class="tag">Segmentation</span><span class="tag">A/B Testing</span></div></div>
+    <div class="srv-card reveal d3"><span class="srv-icon">&#128241;</span><span class="srv-num">04</span><h3 class="srv-name">Social Media Management</h3><p class="srv-desc">Consistent strategic content that builds your brand and drives inbound leads daily.</p><div class="srv-tags"><span class="tag">Content Calendar</span><span class="tag">AI-Assisted</span><span class="tag">Analytics</span></div></div>
   </div>
 </section>
 <section class="process" id="process">
-  <div class="reveal" style="text-align:center;max-width:560px;margin:0 auto;">
-    <div class="s-label" style="justify-content:center;">How It Works</div>
-    <h2 class="s-title">ZERO TO REVENUE<br>IN 5 STEPS</h2>
-  </div>
+  <div class="reveal" style="text-align:center;max-width:560px;margin:0 auto;"><div class="s-label" style="justify-content:center;">How It Works</div><h2 class="s-title">ZERO TO REVENUE<br>IN 5 STEPS</h2></div>
   <div class="proc-steps">
-    <div class="proc-step reveal"><div class="step-c">01</div><h4 class="step-t">Discovery Call</h4><p class="step-d">Free 30-min session to understand your business, goals, and biggest gaps.</p></div>
+    <div class="proc-step reveal"><div class="step-c">01</div><h4 class="step-t">Discovery Call</h4><p class="step-d">Free 30-min session to understand your business and goals.</p></div>
     <div class="proc-step reveal d1"><div class="step-c">02</div><h4 class="step-t">Custom Strategy</h4><p class="step-d">A tailored growth plan built specifically for your business.</p></div>
-    <div class="proc-step reveal d2"><div class="step-c">03</div><h4 class="step-t">Build &amp; Launch</h4><p class="step-d">Website and automations live within 48&ndash;72 hours of approval.</p></div>
-    <div class="proc-step reveal d3"><div class="step-c">04</div><h4 class="step-t">Marketing Kicks In</h4><p class="step-d">Email and social content runs on autopilot. Pipeline fills up.</p></div>
+    <div class="proc-step reveal d2"><div class="step-c">03</div><h4 class="step-t">Build &amp; Launch</h4><p class="step-d">Website and automations live within 48&ndash;72 hours.</p></div>
+    <div class="proc-step reveal d3"><div class="step-c">04</div><h4 class="step-t">Marketing Kicks In</h4><p class="step-d">Email and social content runs on autopilot.</p></div>
     <div class="proc-step reveal d4"><div class="step-c">05</div><h4 class="step-t">Scale &amp; Grow</h4><p class="step-d">Monthly reports, strategy calls, and ongoing expansion.</p></div>
   </div>
 </section>
 <section class="pricing" id="pricing">
-  <div class="price-head reveal">
-    <div class="s-label" style="justify-content:center;">Transparent Pricing</div>
-    <h2 class="s-title">SIMPLE.<br>POWERFUL.<br>ALL-INCLUSIVE.</h2>
-    <p>One flat monthly retainer. No hidden fees. Cancel anytime after 3 months.</p>
-  </div>
+  <div class="price-head reveal"><div class="s-label" style="justify-content:center;">Transparent Pricing</div><h2 class="s-title">SIMPLE.<br>POWERFUL.<br>ALL-INCLUSIVE.</h2><p>One flat monthly retainer. No hidden fees. Cancel anytime after 3 months.</p></div>
   <div class="price-grid">
-    <div class="p-card reveal">
-      <div class="p-tier">Tier 01</div><div class="p-name">Launchpad</div>
-      <div class="p-amt"><span class="p-cur">$</span><span class="p-num">799</span><span class="p-per">/mo</span></div>
-      <p class="p-desc">Perfect for new businesses who need to get online fast with core essentials locked in.</p>
-      <ul class="p-features">
-        <li>5-Page Custom Website</li><li>Mobile Optimized + SEO Setup</li><li>Online Booking Integration</li>
-        <li>1 Email Campaign / Month</li><li>Social Media Setup (2 Platforms)</li>
-        <li class="off">Appointment Automation</li><li class="off">Social Media Management</li><li class="off">Monthly Strategy Call</li>
-      </ul>
-      <a href="mailto:hello&#64;geodm.us" class="p-cta ol">Get Started</a>
-    </div>
-    <div class="p-card feat reveal d1">
-      <div class="p-badge">Most Popular</div>
-      <div class="p-tier">Tier 02</div><div class="p-name">Growth Engine</div>
-      <div class="p-amt"><span class="p-cur">$</span><span class="p-num">1,599</span><span class="p-per">/mo</span></div>
-      <p class="p-desc">The full system. Built for businesses ready to dominate their market and turn leads into loyal customers.</p>
-      <ul class="p-features">
-        <li>10-Page Premium Website</li><li>Advanced SEO + Speed Optimization</li>
-        <li>Full Appointment Automation + SMS</li><li>4 Email Campaigns / Month</li>
-        <li>Social Media (3 Platforms, 4x/week)</li><li>Lead Capture Funnels</li>
-        <li>Monthly Analytics Report</li><li>Monthly Strategy Call</li>
-      </ul>
-      <a href="mailto:hello&#64;geodm.us" class="p-cta sl">Get Started</a>
-    </div>
-    <div class="p-card reveal d2">
-      <div class="p-tier">Tier 03</div><div class="p-name">Empire Mode</div>
-      <div class="p-amt"><span class="p-cur">$</span><span class="p-num">2,999</span><span class="p-per">/mo</span></div>
-      <p class="p-desc">For businesses scaling fast across multiple markets who want to completely dominate their niche.</p>
-      <ul class="p-features">
-        <li>Custom Multi-Page Website + Blog</li><li>Full AI Automation Suite</li>
-        <li>Unlimited Email Campaigns</li><li>Daily Social Media (All Platforms)</li>
-        <li>Paid Ad Management (Meta/Google)</li><li>Dedicated Account Manager</li>
-        <li>Weekly Analytics + Strategy Calls</li><li>Priority 24hr Support</li>
-      </ul>
-      <a href="mailto:hello&#64;geodm.us" class="p-cta ol">Let's Talk</a>
-    </div>
+    <div class="p-card reveal"><div class="p-tier">Tier 01</div><div class="p-name">Launchpad</div><div class="p-amt"><span class="p-cur">$</span><span class="p-num">799</span><span class="p-per">/mo</span></div><p class="p-desc">Perfect for new businesses who need to get online fast with the core essentials.</p><ul class="p-features"><li>5-Page Custom Website</li><li>Mobile Optimized + SEO Setup</li><li>Online Booking Integration</li><li>1 Email Campaign / Month</li><li>Social Media Setup (2 Platforms)</li><li class="off">Appointment Automation</li><li class="off">Social Media Management</li><li class="off">Monthly Strategy Call</li></ul><a href="mailto:hello&#64;geodm.us" class="p-cta ol">Get Started</a></div>
+    <div class="p-card feat reveal d1"><div class="p-badge">Most Popular</div><div class="p-tier">Tier 02</div><div class="p-name">Growth Engine</div><div class="p-amt"><span class="p-cur">$</span><span class="p-num">1,599</span><span class="p-per">/mo</span></div><p class="p-desc">The full system for businesses ready to dominate their market.</p><ul class="p-features"><li>10-Page Premium Website</li><li>Advanced SEO + Speed Optimization</li><li>Full Appointment Automation + SMS</li><li>4 Email Campaigns / Month</li><li>Social Media (3 Platforms, 4x/week)</li><li>Lead Capture Funnels</li><li>Monthly Analytics Report</li><li>Monthly Strategy Call</li></ul><a href="mailto:hello&#64;geodm.us" class="p-cta sl">Get Started</a></div>
+    <div class="p-card reveal d2"><div class="p-tier">Tier 03</div><div class="p-name">Empire Mode</div><div class="p-amt"><span class="p-cur">$</span><span class="p-num">2,999</span><span class="p-per">/mo</span></div><p class="p-desc">For businesses scaling fast who want to completely dominate their niche.</p><ul class="p-features"><li>Custom Multi-Page Website + Blog</li><li>Full AI Automation Suite</li><li>Unlimited Email Campaigns</li><li>Daily Social Media (All Platforms)</li><li>Paid Ad Management (Meta/Google)</li><li>Dedicated Account Manager</li><li>Weekly Analytics + Strategy Calls</li><li>Priority 24hr Support</li></ul><a href="mailto:hello&#64;geodm.us" class="p-cta ol">Let's Talk</a></div>
   </div>
-  <div class="reveal" style="text-align:center;margin-top:44px;">
-    <p style="color:var(--muted);font-size:.8rem;">Need something custom? <a href="mailto:hello&#64;geodm.us" style="color:var(--cyan);text-decoration:none;">Let's build a package around your goals &rarr;</a></p>
-  </div>
+  <div class="reveal" style="text-align:center;margin-top:44px;"><p style="color:var(--mut);font-size:.8rem;">Need something custom? <a href="mailto:hello&#64;geodm.us" style="color:var(--cyn);text-decoration:none;">Let's build a package around your goals &rarr;</a></p></div>
 </section>
 <section class="proof" id="testimonials">
   <div class="reveal"><div class="s-label">Social Proof</div><h2 class="s-title">REAL RESULTS.<br>REAL BUSINESSES.</h2></div>
   <div class="proof-grid">
     <div class="pr-card reveal"><div class="pr-q">"</div><p class="pr-txt">Before Geo Digital Media, I was booking everything by phone. Now 80% of my appointments are automated. My front desk can actually focus on clients.</p><div class="pr-auth"><div class="pr-av">TM</div><div><div class="pr-name">Tanya M.</div><div class="pr-biz">Bloom Beauty Studio</div></div></div></div>
     <div class="pr-card reveal d1"><div class="pr-q">"</div><p class="pr-txt">Our old website was costing us business. GeoDMus rebuilt it in 3 days &mdash; within the first month we had 40+ new leads come through. Unreal.</p><div class="pr-auth"><div class="pr-av">DR</div><div><div class="pr-name">DeShawn R.</div><div class="pr-biz">Peak Performance Gym</div></div></div></div>
-    <div class="pr-card reveal d2"><div class="pr-q">"</div><p class="pr-txt">The email campaigns alone brought back 6 old clients in the first month. That more than paid for the entire package. These guys understand business.</p><div class="pr-auth"><div class="pr-av">AL</div><div><div class="pr-name">Angela L.</div><div class="pr-biz">Restore Wellness Clinic</div></div></div></div>
+    <div class="pr-card reveal d2"><div class="pr-q">"</div><p class="pr-txt">The email campaigns brought back 6 old clients in month one. That more than paid for the entire package. These guys understand business.</p><div class="pr-auth"><div class="pr-av">AL</div><div><div class="pr-name">Angela L.</div><div class="pr-biz">Restore Wellness Clinic</div></div></div></div>
   </div>
 </section>
 <section class="markets">
   <div class="mkt-txt reveal"><div class="s-label">Who We Serve</div><h2 class="s-title">YOUR INDUSTRY.<br>OUR EXPERTISE.</h2><p>Service businesses that rely on appointments, repeat customers, and trust &mdash; built to scale anywhere in the world.</p></div>
-  <div class="mkt-tags reveal d1">
-    <span class="m-tag h">Hair Salons</span><span class="m-tag h">Barbershops</span><span class="m-tag h">Med Spas</span>
-    <span class="m-tag h">Gyms &amp; Fitness</span><span class="m-tag h">Dental Clinics</span><span class="m-tag h">Chiropractic</span>
-    <span class="m-tag">Restaurants</span><span class="m-tag">Auto Shops</span><span class="m-tag">Real Estate</span>
-    <span class="m-tag">Law Firms</span><span class="m-tag">Coaches</span><span class="m-tag">Contractors</span>
-    <span class="m-tag">Nail Studios</span><span class="m-tag">Tattoo Shops</span><span class="m-tag">Pet Services</span><span class="m-tag">Tutoring</span>
-  </div>
+  <div class="mkt-tags reveal d1"><span class="m-tag h">Hair Salons</span><span class="m-tag h">Barbershops</span><span class="m-tag h">Med Spas</span><span class="m-tag h">Gyms &amp; Fitness</span><span class="m-tag h">Dental Clinics</span><span class="m-tag h">Chiropractic</span><span class="m-tag">Restaurants</span><span class="m-tag">Auto Shops</span><span class="m-tag">Real Estate</span><span class="m-tag">Law Firms</span><span class="m-tag">Coaches</span><span class="m-tag">Contractors</span><span class="m-tag">Nail Studios</span><span class="m-tag">Tattoo Shops</span><span class="m-tag">Pet Services</span><span class="m-tag">Tutoring</span></div>
 </section>
 <section class="cta-sec" id="contact">
-  <div class="reveal">
-    <div class="s-label" style="justify-content:center;">Ready To Grow?</div>
-    <h2 class="cta-title">STOP LOSING<br><span class="hl">CUSTOMERS ONLINE</span></h2>
-    <p class="cta-sub">Book a free 30-minute strategy call. We'll analyze your digital presence and show you exactly what's leaving money on the table &mdash; no strings attached.</p>
-    <div class="cta-acts">
-      <a href="mailto:hello&#64;geodm.us" class="btn-g">Book Free Strategy Call</a>
-      <a href="mailto:hello&#64;geodm.us" class="btn-o">Email Us Directly</a>
-    </div>
-  </div>
+  <div class="reveal"><div class="s-label" style="justify-content:center;">Ready To Grow?</div><h2 class="cta-title">STOP LOSING<br><span class="hl">CUSTOMERS ONLINE</span></h2><p class="cta-sub">Book a free 30-minute strategy call. We'll show you exactly what's leaving money on the table &mdash; no strings attached.</p><div class="cta-acts"><a href="mailto:hello&#64;geodm.us" class="btn-g">Book Free Strategy Call</a><a href="mailto:hello&#64;geodm.us" class="btn-o">Email Us Directly</a></div></div>
 </section>
 <footer>
   <div class="ft-top">
-    <div class="ft-brand">
-      <div class="fl"><svg width="16" height="13" viewBox="0 0 28 22" fill="none"><polygon points="0,11 28,0 21,11 28,22" fill="#cc2d8f"/><polygon points="0,11 28,0 23,16" fill="#00c8d4"/></svg>GEO<span>DM</span>us</div>
-      <span class="fls">Geo Digital Media</span>
-      <p>Full-service digital growth for businesses ready to scale &mdash; websites, automations, email, and social.</p>
-    </div>
-    <div class="ft-col"><h4>Services</h4><ul><li><a href="#services">Website Design</a></li><li><a href="#services">Appointment Automation</a></li><li><a href="#services">Email Marketing</a></li><li><a href="#services">Social Media Management</a></li></ul></div>
+    <div class="ft-brand"><div class="fl"><svg width="16" height="13" viewBox="0 0 28 22" fill="none"><polygon points="0,11 28,0 21,11 28,22" fill="#cc2d8f"/><polygon points="0,11 28,0 23,16" fill="#00c8d4"/></svg>GEO<span>DM</span>us</div><span class="fls">Geo Digital Media</span><p>Full-service digital growth &mdash; websites, automations, email, and social.</p></div>
+    <div class="ft-col"><h4>Services</h4><ul><li><a href="#services">Website Design</a></li><li><a href="#services">Appointment Automation</a></li><li><a href="#services">Email Marketing</a></li><li><a href="#services">Social Media</a></li></ul></div>
     <div class="ft-col"><h4>Company</h4><ul><li><a href="#process">How It Works</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#testimonials">Case Studies</a></li><li><a href="#contact">Contact</a></li></ul></div>
-    <div class="ft-col"><h4>Connect</h4><ul>
-      <li><a href="mailto:hello&#64;geodm.us">hello&#64;geodm.us</a></li>
-      <li><a href="https://instagram.com/geodm.us" target="_blank" rel="noopener">Instagram: @geodm.us</a></li>
-      <li><a href="https://x.com/geodmus" target="_blank" rel="noopener">X: @geodmus</a></li>
-    </ul></div>
+    <div class="ft-col"><h4>Connect</h4><ul><li><a href="mailto:hello&#64;geodm.us">hello&#64;geodm.us</a></li><li><a href="https://instagram.com/geodm.us" target="_blank" rel="noopener">Instagram: @geodm.us</a></li><li><a href="https://x.com/geodmus" target="_blank" rel="noopener">X: @geodmus</a></li></ul></div>
   </div>
-  <div class="ft-bot">
-    <p>&#169; 2025 <span>Geo Digital Media</span> &middot; GeoDMus &middot; geodm.us</p>
-    <div class="ft-socials">
-      <a href="https://instagram.com/geodm.us" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>Instagram</a>
-      <a href="https://x.com/geodmus" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>X @geodmus</a>
-    </div>
-  </div>
+  <div class="ft-bot"><p>&#169; 2025 <span>Geo Digital Media</span> &middot; GeoDMus &middot; geodm.us</p><div class="ft-socials"><a href="https://instagram.com/geodm.us" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>Instagram</a><a href="https://x.com/geodmus" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>X @geodmus</a></div></div>
 </footer>
 <script>
-(function(){
-var c=document.getElementById('cur'),r=document.getElementById('curR');
-var mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',function(e){
-  mx=e.clientX;my=e.clientY;
-  c.style.left=(mx-5)+'px';c.style.top=(my-5)+'px';
-});
-function ar(){rx+=(mx-rx-16)*.14;ry+=(my-ry-16)*.14;r.style.left=rx+'px';r.style.top=ry+'px';requestAnimationFrame(ar);}
-ar();
-document.querySelectorAll('a,button').forEach(function(el){
-  el.addEventListener('mouseenter',function(){c.style.transform='scale(2.5)';c.style.background='#00d25a';});
-  el.addEventListener('mouseleave',function(){c.style.transform='scale(1)';c.style.background='#00c8d4';});
-});
-var cv=document.getElementById('bgc'),ctx=cv.getContext('2d'),W,H,pts=[];
-function rsz(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;}
-rsz();window.addEventListener('resize',rsz);
-function Pt(){this.reset();}
-Pt.prototype.reset=function(){
-  this.x=Math.random()*W;this.y=Math.random()*H;
-  this.vx=(Math.random()-.5)*.25;this.vy=(Math.random()-.5)*.25;
-  this.r=Math.random()*1.5+.4;
-  var a=Math.random()*.45+.08,roll=Math.random();
-  this.color=roll>.65?'rgba(0,200,212,'+a+')':roll>.45?'rgba(204,45,143,'+(a*.6)+')':'rgba(237,252,255,'+(a*.15)+')';
-};
-Pt.prototype.update=function(){
-  this.x+=this.vx;this.y+=this.vy;
-  if(this.x<0||this.x>W||this.y<0||this.y>H)this.reset();
-};
-Pt.prototype.draw=function(){
-  ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
-  ctx.fillStyle=this.color;ctx.fill();
-};
-for(var i=0;i<90;i++)pts.push(new Pt());
-function frame(){
-  ctx.clearRect(0,0,W,H);
-  for(var i=0;i<pts.length;i++){pts[i].update();pts[i].draw();}
-  for(var i=0;i<pts.length;i++){
-    for(var j=i+1;j<pts.length;j++){
-      var dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);
-      if(d<110){
-        ctx.beginPath();
-        ctx.strokeStyle='rgba(0,200,212,'+(0.04*(1-d/110))+')';
-        ctx.lineWidth=.4;
-        ctx.moveTo(pts[i].x,pts[i].y);
-        ctx.lineTo(pts[j].x,pts[j].y);
-        ctx.stroke();
-      }
-    }
-  }
-  requestAnimationFrame(frame);
-}
-frame();
-var revs=document.querySelectorAll('.reveal');
-var obs=new IntersectionObserver(function(entries){
-  entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});
-},{threshold:.08});
-revs.forEach(function(r){obs.observe(r);});
-})();
+var c=document.getElementById('cur'),r=document.getElementById('curR'),mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;c.style.left=(mx-5)+'px';c.style.top=(my-5)+'px';});
+(function loop(){rx+=(mx-rx-16)*.14;ry+=(my-ry-16)*.14;r.style.left=rx+'px';r.style.top=ry+'px';requestAnimationFrame(loop);})();
+document.querySelectorAll('a,button').forEach(function(el){el.addEventListener('mouseenter',function(){c.style.transform='scale(2.5)';c.style.background='#00d25a';});el.addEventListener('mouseleave',function(){c.style.transform='scale(1)';c.style.background='#00c8d4';});});
+var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('visible');});},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el);});
 </script>
 </body>
 </html>
