@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Ventures | Geo Digital Media — GeoDMus</title>
+<meta name="description" content="Seven ventures. Six industries. One ecosystem. Built by Geo Digital Media."/>
+<link rel="icon" type="image/png" href="gdm.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600;700&family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet"/>
+<style>
+:root{--c:#00c8d4;--m:#cc2d8f;--d:#070c0d;--d2:#0d1517;--d3:#111a1c;--w:#fff;--g:#8a9ba0}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--d);color:var(--w);font-family:'Barlow',sans-serif;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:70px;background:rgba(7,12,13,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,200,212,.1)}
+.logo{text-decoration:none;line-height:1}.logo .wm{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:var(--w);display:block}.logo .sub{font-size:9px;letter-spacing:2px;color:var(--c);text-transform:uppercase}
+.nav-links{display:flex;gap:28px;list-style:none}.nav-links a{color:var(--g);text-decoration:none;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;transition:color .2s}.nav-links a:hover,.nav-links a.on{color:var(--c)}
+.nav-btn{background:var(--m);color:var(--w);padding:10px 20px;border-radius:3px;text-decoration:none;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700}
+
+/* HERO */
+.hero{min-height:56vh;display:flex;align-items:center;padding:130px 40px 80px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 80% 50%,rgba(0,200,212,.07) 0%,transparent 70%),radial-gradient(ellipse 40% 50% at 5% 80%,rgba(204,45,143,.06) 0%,transparent 70%),var(--d)}
+.hero-line{position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,transparent,var(--c) 30%,var(--m) 70%,transparent)}
+.hero-inner{position:relative;max-width:900px}
+.lbl{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--c);margin-bottom:18px;display:flex;align-items:center;gap:10px}.lbl::before{content:'';width:32px;height:2px;background:var(--c)}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,9vw,116px);line-height:.92;letter-spacing:2px;margin-bottom:24px}
+.h1c{color:var(--c)}.h1m{color:var(--m)}
+.hero-sub{font-size:clamp(15px,2vw,19px);font-weight:300;line-height:1.65;color:rgba(255,255,255,.65);max-width:600px;border-left:3px solid var(--m);padding-left:20px}
+
+/* STATS BAR */
+.stats-bar{background:var(--d2);border-top:1px solid rgba(0,200,212,.1);border-bottom:1px solid rgba(0,200,212,.1);padding:32px 40px}
+.stats-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.stat{background:var(--d3);padding:28px 24px;text-align:center}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:56px;line-height:1;color:var(--c)}
+.stat-n.m{color:var(--m)}
+.stat-l{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--g);margin-top:6px}
+
+/* TICKER */
+.ticker-wrap{overflow:hidden;background:rgba(0,200,212,.04);border-bottom:1px solid rgba(0,200,212,.1);padding:13px 0}
+.ticker{display:flex;gap:48px;white-space:nowrap;animation:tick 30s linear infinite}
+.ticker span{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--c);opacity:.6}.ticker .dot{color:var(--m);opacity:1}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ECOSYSTEM LOGIC */
+.eco{padding:80px 40px;background:var(--d2)}
+.inner{max-width:1100px;margin:0 auto}
+.sec-lbl{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--c);margin-bottom:12px;display:flex;align-items:center;gap:10px}.sec-lbl::before{content:'';width:28px;height:2px;background:var(--c)}
+h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,5vw,68px);letter-spacing:2px;line-height:.95;margin-bottom:20px}
+.h2c{color:var(--c)}.h2m{color:var(--m)}
+.eco-desc{font-size:17px;line-height:1.7;color:rgba(255,255,255,.65);max-width:680px;margin-bottom:48px}
+.eco-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.eco-card{background:var(--d3);padding:32px 28px;position:relative;overflow:hidden}
+.eco-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--c)}
+.eco-card.m::before{background:var(--m)}
+.eco-card.g::before{background:linear-gradient(90deg,var(--c),var(--m))}
+.eco-ico{font-size:28px;margin-bottom:14px}
+.eco-card h4{font-family:'Barlow Condensed',sans-serif;font-size:16px;letter-spacing:2px;text-transform:uppercase;color:var(--w);margin-bottom:10px}
+.eco-card p{font-size:13px;line-height:1.6;color:rgba(255,255,255,.55)}
+
+/* VENTURES GRID */
+.ventures{padding:80px 40px}
+.v-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:48px;flex-wrap:wrap;gap:16px}
+.v-header p{font-size:15px;color:rgba(255,255,255,.5);max-width:400px;line-height:1.6}
+
+/* FLAGSHIP */
+.flagship{background:linear-gradient(135deg,rgba(0,200,212,.08),rgba(204,45,143,.06));border:1px solid rgba(0,200,212,.2);border-radius:4px;padding:48px;margin-bottom:2px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;position:relative;overflow:hidden;transition:border-color .3s}
+.flagship:hover{border-color:rgba(0,200,212,.45)}
+.flagship::before{content:'';position:absolute;top:0;left:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--c),var(--m))}
+.flagship-num{font-family:'Bebas Neue',sans-serif;font-size:100px;line-height:1;color:rgba(0,200,212,.08);position:absolute;right:48px;bottom:-10px}
+.v-badge{font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:700;padding:5px 12px;border-radius:2px;display:inline-block;margin-bottom:16px}
+.badge-live{background:var(--c);color:var(--d)}
+.badge-active{background:rgba(0,200,212,.15);border:1px solid rgba(0,200,212,.4);color:var(--c)}
+.badge-building{background:rgba(204,45,143,.15);border:1px solid rgba(204,45,143,.4);color:var(--m)}
+.badge-dev{background:rgba(255,165,0,.1);border:1px solid rgba(255,165,0,.3);color:#ffa500}
+.badge-vision{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.6)}
+.v-num-tag{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--c);margin-bottom:8px}
+.v-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,4vw,56px);letter-spacing:2px;line-height:1;margin-bottom:8px}
+.v-cat{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--g);margin-bottom:16px}
+.v-desc{font-size:15px;line-height:1.7;color:rgba(255,255,255,.65);max-width:560px;margin-bottom:24px}
+.v-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.vtag{background:rgba(0,200,212,.07);border:1px solid rgba(0,200,212,.15);color:var(--c);padding:4px 10px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;border-radius:2px}
+.vtag.m{background:rgba(204,45,143,.07);border-color:rgba(204,45,143,.15);color:var(--m)}
+.v-btn{display:inline-flex;align-items:center;gap:8px;background:var(--m);color:var(--w);padding:12px 24px;text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;border-radius:3px;transition:opacity .2s}
+.v-btn:hover{opacity:.85}
+.v-btn.outline{background:transparent;border:1px solid rgba(0,200,212,.35);color:var(--c)}
+.v-btn.outline:hover{background:rgba(0,200,212,.08)}
+.flagship-right{display:flex;flex-direction:column;align-items:flex-end;gap:12px;flex-shrink:0}
+
+/* VENTURE CARDS GRID */
+.vcards{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:2px}
+.vcard{background:var(--d2);padding:36px 28px;position:relative;overflow:hidden;transition:transform .3s,border-color .3s;border:1px solid transparent}
+.vcard:hover{transform:translateY(-4px);border-color:rgba(0,200,212,.15)}
+.vcard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--c);transform:scaleX(0);transition:transform .3s;transform-origin:left}
+.vcard:hover::after{transform:scaleX(1)}
+.vcard.mv::after{background:var(--m)}
+.vcard-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px}
+.vcard-num{font-family:'Bebas Neue',sans-serif;font-size:48px;line-height:1;color:rgba(0,200,212,.1)}
+.vcard.mv .vcard-num{color:rgba(204,45,143,.1)}
+.vcard-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,3vw,38px);letter-spacing:2px;line-height:1;margin-bottom:6px}
+.vcard-cat{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--g);margin-bottom:14px}
+.vcard-desc{font-size:13px;line-height:1.65;color:rgba(255,255,255,.55);margin-bottom:20px}
+.vcard-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+.vcard-link{font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:var(--c);text-decoration:none;display:flex;align-items:center;gap:6px;transition:gap .2s}
+.vcard-link:hover{gap:10px}
+.vcard.mv .vcard-link{color:var(--m)}
+
+/* VISION BAND */
+.vision-band{background:linear-gradient(135deg,rgba(0,200,212,.05),rgba(204,45,143,.05));border-top:1px solid rgba(0,200,212,.08);border-bottom:1px solid rgba(0,200,212,.08);padding:80px 40px}
+.vb-inner{max-width:900px;margin:0 auto;text-align:center}
+.vb-inner h2{margin-bottom:20px}
+.vb-inner p{font-size:17px;line-height:1.75;color:rgba(255,255,255,.65);margin-bottom:32px}
+.vb-inner .quote{font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,3vw,36px);letter-spacing:2px;color:rgba(255,255,255,.15);margin-bottom:40px;line-height:1.2}
+.vb-inner .quote span{color:var(--c)}
+
+/* CTA */
+.cta-band{background:var(--d2);border-top:1px solid rgba(204,45,143,.1);padding:80px 40px;text-align:center}
+.cta-band h3{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,72px);letter-spacing:2px;margin-bottom:16px}
+.cta-band h3 span{color:var(--c)}
+.cta-band p{font-size:17px;color:rgba(255,255,255,.6);margin-bottom:32px}
+.btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn1{background:var(--m);color:var(--w);padding:16px 36px;text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;border-radius:3px;transition:opacity .2s}.btn1:hover{opacity:.85}
+.btn2{border:1px solid rgba(0,200,212,.4);color:var(--c);padding:16px 36px;text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;border-radius:3px;transition:all .2s}.btn2:hover{background:rgba(0,200,212,.08)}
+
+/* FOOTER */
+footer{background:var(--d2);border-top:1px solid rgba(0,200,212,.1);padding:56px 40px 36px}
+.fg{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.06)}
+.fb .fwm{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:3px}.fb .fsub{font-size:9px;letter-spacing:2px;color:var(--c);text-transform:uppercase;display:block;margin-bottom:12px}.fb p{font-size:13px;color:var(--g);line-height:1.6}
+.fc h5{font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--w);margin-bottom:16px}
+.fc ul{list-style:none}.fc ul li{margin-bottom:8px}.fc ul a{color:var(--g);text-decoration:none;font-size:13px;transition:color .2s}.fc ul a:hover{color:var(--c)}
+.fbtm{max-width:1100px;margin:28px auto 0;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--g)}
+.fbtm a{color:var(--g);text-decoration:none;margin-left:16px}.fbtm a:hover{color:var(--c)}
+
+/* FADE */
+.fu{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}.fu.on{opacity:1;transform:translateY(0)}
+
+/* MOBILE */
+@media(max-width:768px){
+  nav{padding:0 20px}.nav-links{display:none}
+  .hero{padding:100px 20px 56px}
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .eco{padding:60px 20px}.ventures{padding:60px 20px}.vision-band{padding:60px 20px}.cta-band{padding:60px 20px}
+  .eco-grid{grid-template-columns:1fr}
+  .flagship{grid-template-columns:1fr;padding:32px 24px}.flagship-right{align-items:flex-start}.flagship-num{display:none}
+  .vcards{grid-template-columns:1fr}
+  .fg{grid-template-columns:1fr 1fr;gap:28px}.fbtm{flex-direction:column;gap:10px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo"><span class="wm">GEODMus</span><span class="sub">Geo Digital Media</span></a>
+  <ul class="nav-links">
+    <li><a href="services.html">Services</a></li>
+    <li><a href="ventures.html" class="on">Ventures</a></li>
+    <li><a href="index.html#pricing">Pricing</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a href="https://calendly.com/hello-geodm/30min" class="nav-btn" target="_blank">Free Strategy Call</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-line"></div>
+  <div class="hero-inner">
+    <div class="lbl">The Portfolio</div>
+    <h1>SEVEN<br/><span class="h1c">VENTURES.</span><br/>ONE<br/><span class="h1m">ECOSYSTEM.</span></h1>
+    <p class="hero-sub">GeoDMus doesn't just serve clients — we build companies. Every venture below was conceived, designed, and is being built under one roof. Independent businesses. Stronger together.</p>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat fu"><div class="stat-n">7</div><div class="stat-l">Ventures in the ecosystem</div></div>
+    <div class="stat fu"><div class="stat-n">6</div><div class="stat-l">Industries targeted</div></div>
+    <div class="stat fu"><div class="stat-n m">$1M</div><div class="stat-l">Revenue vision — Year 1</div></div>
+    <div class="stat fu"><div class="stat-n">1</div><div class="stat-l">Founder. One mission.</div></div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker-wrap"><div class="ticker">
+  <span>GEO Digital Media</span><span class="dot">◆</span><span>Premier Group</span><span class="dot">◆</span><span>Juice Yoga Body</span><span class="dot">◆</span><span>Creativo</span><span class="dot">◆</span><span>Your Splashy Kicks</span><span class="dot">◆</span><span>Glow Guide</span><span class="dot">◆</span><span>SocialLens</span><span class="dot">◆</span><span>7 Ventures</span><span class="dot">◆</span><span>6 Industries</span><span class="dot">◆</span>
+  <span>GEO Digital Media</span><span class="dot">◆</span><span>Premier Group</span><span class="dot">◆</span><span>Juice Yoga Body</span><span class="dot">◆</span><span>Creativo</span><span class="dot">◆</span><span>Your Splashy Kicks</span><span class="dot">◆</span><span>Glow Guide</span><span class="dot">◆</span><span>SocialLens</span><span class="dot">◆</span><span>7 Ventures</span><span class="dot">◆</span><span>6 Industries</span><span class="dot">◆</span>
+</div></div>
+
+<!-- ECOSYSTEM LOGIC -->
+<section class="eco">
+<div class="inner">
+  <div class="sec-lbl fu">Ecosystem Logic</div>
+  <h2 class="fu">INDEPENDENT. <span class="h2c">STRONGER</span><br/>TOGETHER.</h2>
+  <p class="eco-desc fu">Each venture stands on its own. But together they share infrastructure, audiences, and brand DNA — reducing cost and accelerating growth across the entire portfolio. This is by design.</p>
+  <div class="eco-grid fu">
+    <div class="eco-card">
+      <div class="eco-ico">⚙️</div>
+      <h4>GeoDMus Powers All</h4>
+      <p>Builds and manages digital presence, marketing, and Web3 strategy for every venture in the portfolio. The digital backbone of the entire ecosystem.</p>
+    </div>
+    <div class="eco-card m">
+      <div class="eco-ico">🔁</div>
+      <h4>Shared Audiences</h4>
+      <p>Glow Guide promotes Juice Yoga Body and YSK. Premier Group clients are natural JYB and Glow Guide audiences. Every venture feeds the others.</p>
+    </div>
+    <div class="eco-card g">
+      <div class="eco-ico">🔮</div>
+      <h4>SocialLens as AR Layer</h4>
+      <p>The future AR discovery platform connecting all ventures — surfacing profiles, products, and services in real-world context through Meta Glasses and beyond.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- VENTURES -->
+<section class="ventures">
+<div class="inner">
+  <div class="v-header fu">
+    <div>
+      <div class="sec-lbl">Built by GeoDMus</div>
+      <h2>THE <span class="h2c">PORTFOLIO</span></h2>
+    </div>
+    <p>Seven companies across six industries. Each one built with the same obsession for brand, technology, and community.</p>
+  </div>
+
+  <!-- 01 FLAGSHIP — GDM -->
+  <div class="flagship fu">
+    <div>
+      <div class="v-num-tag">Venture 01</div>
+      <span class="v-badge badge-live">● Active — Flagship</span>
+      <div class="v-name">GEO DIGITAL MEDIA</div>
+      <div class="v-cat">Digital Media · Web · Web3 · AI Automation</div>
+      <p class="v-desc">Full-service digital media company. Web design, brand strategy, AI automation, marketing, and Web3 consulting. The digital backbone and growth engine for the entire ecosystem — and for every client we take on.</p>
+      <div class="v-tags">
+        <span class="vtag">Web Design</span><span class="vtag">AI Automation</span><span class="vtag">Marketing</span><span class="vtag">Web3</span><span class="vtag">Brand Strategy</span><span class="vtag m">Flagship</span>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a href="index.html" class="v-btn">View Site →</a>
+        <a href="services.html" class="v-btn outline">Our Services →</a>
+      </div>
+    </div>
+    <div class="flagship-right">
+      <div class="flagship-num">01</div>
+    </div>
+  </div>
+
+  <!-- VENTURE CARDS -->
+  <div class="vcards">
+
+    <!-- 02 PREMIER GROUP -->
+    <div class="vcard fu">
+      <div class="vcard-top">
+        <div class="vcard-num">02</div>
+        <span class="v-badge badge-active">● Active / Building</span>
+      </div>
+      <div class="vcard-name">PREMIER GROUP</div>
+      <div class="vcard-cat">Tax · Credit · Real Estate</div>
+      <p class="vcard-desc">Family-focused financial services company. Tax prep, credit building, and real estate advisory — accessible, expert-led guidance for everyday families building toward financial freedom.</p>
+      <div class="vcard-tags">
+        <span class="vtag">Tax Preparation</span><span class="vtag">Credit Building</span><span class="vtag">Real Estate</span><span class="vtag">Financial Advisory</span>
+      </div>
+      <a href="premier-group.html" class="vcard-link">View Venture →</a>
+    </div>
+
+    <!-- 03 JUICE YOGA BODY -->
+    <div class="vcard mv fu">
+      <div class="vcard-top">
+        <div class="vcard-num">03</div>
+        <span class="v-badge badge-building">● Building</span>
+      </div>
+      <div class="vcard-name">JUICE YOGA BODY</div>
+      <div class="vcard-cat">Nutrition · Movement · Recovery</div>
+      <p class="vcard-desc">Three-pillar wellness brand — all-natural signature lemonade made with Hawaiian volcanic water, honey & agave; yoga classes & content; and massage & assisted stretch services.</p>
+      <div class="vcard-tags">
+        <span class="vtag m">Wellness</span><span class="vtag m">Nutrition</span><span class="vtag m">Yoga</span><span class="vtag m">Recovery</span>
+      </div>
+      <a href="juice-yoga-body.html" class="vcard-link">View Venture →</a>
+    </div>
+
+    <!-- 04 CREATIVO -->
+    <div class="vcard fu">
+      <div class="vcard-top">
+        <div class="vcard-num">04</div>
+        <span class="v-badge badge-dev">● Building / Coming Soon</span>
+      </div>
+      <div class="vcard-name">CREATIVO</div>
+      <div class="vcard-cat">Events · Production · Community</div>
+      <p class="vcard-desc">Marketplace connecting local creative pros — photographers, videographers, drone operators — with clients for weddings, graduations, events, and land development projects.</p>
+      <div class="vcard-tags">
+        <span class="vtag">Marketplace</span><span class="vtag">Photography</span><span class="vtag">Video Production</span><span class="vtag">Events</span>
+      </div>
+      <a href="creativo.html" class="vcard-link">View Venture →</a>
+    </div>
+
+    <!-- 05 YOUR SPLASHY KICKS -->
+    <div class="vcard mv fu">
+      <div class="vcard-top">
+        <div class="vcard-num">05</div>
+        <span class="v-badge badge-building">● Building / In Development</span>
+      </div>
+      <div class="vcard-name">YOUR SPLASHY KICKS</div>
+      <div class="vcard-cat">Sneaker Marketplace · YSK</div>
+      <p class="vcard-desc">Community-first platform for buying and selling new and pre-owned sneakers. Culturally embedded, mobile-first, built for collectors and resellers alike. Targeting the $6B+ sneaker resale market.</p>
+      <div class="vcard-tags">
+        <span class="vtag m">Sneakers</span><span class="vtag m">Marketplace</span><span class="vtag m">Mobile-First</span><span class="vtag m">Resale</span>
+      </div>
+      <a href="your-splashy-kicks.html" class="vcard-link">View Venture →</a>
+    </div>
+
+    <!-- 06 GLOW GUIDE -->
+    <div class="vcard fu">
+      <div class="vcard-top">
+        <div class="vcard-num">06</div>
+        <span class="v-badge badge-active">● Live / In Development</span>
+      </div>
+      <div class="vcard-name">GLOW GUIDE</div>
+      <div class="vcard-cat">Beauty · Influencer Marketing</div>
+      <p class="vcard-desc">Matching platform connecting nano and micro beauty influencers with brand sponsors. Performance-driven, authentic, and built for the creator economy shift. A GitHub repo already lives.</p>
+      <div class="vcard-tags">
+        <span class="vtag">Beauty</span><span class="vtag">Influencer Marketing</span><span class="vtag">Creator Economy</span><span class="vtag">Matching Platform</span>
+      </div>
+      <a href="glow-guide.html" class="vcard-link">View Venture →</a>
+    </div>
+
+    <!-- 07 SOCIALLENS -->
+    <div class="vcard mv fu">
+      <div class="vcard-top">
+        <div class="vcard-num">07</div>
+        <span class="v-badge badge-vision">◈ Vision / Coming Soon</span>
+      </div>
+      <div class="vcard-name">SOCIALLENS</div>
+      <div class="vcard-cat">AR · Meta Glasses · Social Identity</div>
+      <p class="vcard-desc">Meta glasses app layering living social identity onto real-world people — community-contributed profiles, AI biometric recognition, user-controlled narratives, and future integrations with FICO, municipalities, and lifestyle brands. The potential social layer of the physical world.</p>
+      <div class="vcard-tags">
+        <span class="vtag m">Augmented Reality</span><span class="vtag m">Meta Glasses</span><span class="vtag m">AI Recognition</span><span class="vtag m">Social Layer</span>
+      </div>
+      <a href="sociallens.html" class="vcard-link">View Vision →</a>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- VISION BAND -->
+<section class="vision-band">
+  <div class="vb-inner fu">
+    <div class="sec-lbl" style="justify-content:center;margin-bottom:16px">The Mission</div>
+    <h2 style="text-align:center;margin-bottom:20px">BUILDING <span class="h2c">GENERATIONAL</span><br/>WEALTH.</h2>
+    <div class="quote">"Seven businesses. One mission — <span>create real opportunity</span>, serve communities, and build lasting wealth for every person these ventures touch."</div>
+    <p>Each venture targets a large, growing market. The portfolio is positioned at the intersection of community trust, cultural authenticity, and emerging technology. A founder who understands both the digital frontier — Web3, AR, distributed networks — and the human fundamentals — family finance, wellness, creative community.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:32px">
+      <a href="about.html" class="btn1">Meet the Founder</a>
+      <a href="https://calendly.com/hello-geodm/30min" class="btn2" target="_blank">Partner With Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <h3>READY TO BE <span>PART OF IT?</span></h3>
+  <p>Whether you're a potential client, investor, partner, or collaborator — let's talk about where you fit in the ecosystem.</p>
+  <div class="btns">
+    <a href="https://calendly.com/hello-geodm/30min" class="btn1" target="_blank">Book Free Strategy Call</a>
+    <a href="/cdn-cgi/l/email-protection#f098959c9c9fb097959f949dde8583" class="btn2">Email Us Directly</a>
+  </div>
+  <p style="margin-top:16px;font-size:13px;color:rgba(255,255,255,.3)">¿Prefieres hablar en español? Escríbenos — <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f9919c959596b99e9c969d94d78c8a">[email&#160;protected]</a></p>
+</section>
+
+<footer>
+  <div class="fg">
+    <div class="fb"><div class="fwm">GEODMus</div><span class="fsub">Geo Digital Media</span><p>Your digital growth partner — from local businesses to full venture ecosystems.</p></div>
+    <div class="fc"><h5>Ventures</h5><ul>
+      <li><a href="premier-group.html">Premier Group</a></li>
+      <li><a href="juice-yoga-body.html">Juice Yoga Body</a></li>
+      <li><a href="creativo.html">Creativo</a></li>
+      <li><a href="your-splashy-kicks.html">Your Splashy Kicks</a></li>
+      <li><a href="glow-guide.html">Glow Guide</a></li>
+      <li><a href="sociallens.html">SocialLens</a></li>
+    </ul></div>
+    <div class="fc"><h5>Company</h5><ul>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="index.html#pricing">Pricing</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul></div>
+    <div class="fc"><h5>Connect</h5><ul>
+      <li><a href="/cdn-cgi/l/email-protection#f69e939a9a99b6919399929bd88385"><span class="__cf_email__" data-cfemail="bed6dbd2d2d1fed9dbd1dad390cbcd">[email&#160;protected]</span></a></li>
+      <li><a href="tel:7732361831">773.236.1831</a></li>
+      <li><a href="https://instagram.com/geodm.us" target="_blank">@geodm.us</a></li>
+      <li><a href="https://x.com/geodmus" target="_blank">@geodmus</a></li>
+    </ul></div>
+  </div>
+  <div class="fbtm">
+    <span>© 2026 Geo Digital Media · GeoDMus · geodm.us · All rights reserved.</span>
+    <div><a href="https://instagram.com/geodm.us" target="_blank">Instagram</a><a href="https://x.com/geodmus" target="_blank">X / Twitter</a></div>
+  </div>
+</footer>
+<script>
+const fo=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on')})},{threshold:.08});
+document.querySelectorAll('.fu').forEach(el=>fo.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>SocialLens | AR · Social Identity · The Future</title>
+<meta name="description" content="Open-source AR social context layer — the potential social layer of the physical world. Built on protocols, not platforms."/>
+<link rel="icon" type="image/png" href="gdm.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600;700&family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet"/>
+<style>
+:root{--c:#00c8d4;--m:#cc2d8f;--a:#7c3aed;--a2:#a78bfa;--d:#04080a;--d2:#080e10;--d3:#0d1517;--w:#fff;--g:#8a9ba0}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--d);color:var(--w);font-family:'Barlow',sans-serif;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:70px;background:rgba(4,8,10,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(167,139,250,.1)}
+.logo{text-decoration:none;line-height:1}.logo .wm{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:var(--w);display:block}.logo .sub{font-size:9px;letter-spacing:2px;color:var(--c);text-transform:uppercase}
+.nav-links{display:flex;gap:28px;list-style:none}.nav-links a{color:var(--g);text-decoration:none;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;transition:color .2s}.nav-links a:hover{color:var(--a2)}
+.nav-btn{background:var(--a);color:var(--w);padding:10px 20px;border-radius:3px;text-decoration:none;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700}
+.hero{min-height:100vh;display:flex;align-items:center;padding:130px 40px 80px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 70% at 80% 50%,rgba(124,58,237,.12) 0%,transparent 65%),radial-gradient(ellipse 50% 50% at 20% 80%,rgba(0,200,212,.07) 0%,transparent 65%),radial-gradient(ellipse 30% 30% at 50% 20%,rgba(204,45,143,.06) 0%,transparent 65%),var(--d)}
+.hero-line{position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,transparent,var(--a2) 30%,var(--c) 60%,var(--m) 90%,transparent)}
+.back{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--g);text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:color .2s;margin-bottom:20px}.back:hover{color:var(--a2)}
+.hero-inner{position:relative;max-width:900px}
+.v-back-tag{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--a2);margin-bottom:12px}
+.badge{font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:700;padding:5px 12px;border-radius:2px;display:inline-block;margin-bottom:20px;background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.25);color:var(--a2)}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(64px,11vw,136px);line-height:.88;letter-spacing:2px;margin-bottom:24px}
+.cat{font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--g);margin-bottom:20px}
+.hero-desc{font-size:clamp(16px,2vw,21px);font-weight:300;line-height:1.65;color:rgba(255,255,255,.65);max-width:640px;border-left:3px solid var(--a2);padding-left:20px;margin-bottom:32px}
+.hero-insight{background:rgba(167,139,250,.07);border:1px solid rgba(167,139,250,.18);border-left:4px solid var(--a2);padding:24px 28px;border-radius:4px;max-width:680px}
+.hero-insight p{font-size:16px;line-height:1.7;color:rgba(255,255,255,.75)}.hero-insight strong{color:var(--w)}.hero-insight .ha{color:var(--a2)}
+.inner{max-width:1100px;margin:0 auto}
+.section{padding:72px 40px}.section.alt{background:var(--d2)}
+.sec-lbl{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--a2);margin-bottom:12px;display:flex;align-items:center;gap:10px}.sec-lbl::before{content:'';width:28px;height:2px;background:var(--a2)}
+h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,5vw,64px);letter-spacing:2px;line-height:.95;margin-bottom:16px}
+.ha{color:var(--a2)}.hc{color:var(--c)}.hm{color:var(--m)}
+.sec-desc{font-size:17px;line-height:1.7;color:rgba(255,255,255,.65);max-width:700px;margin-bottom:40px}
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:32px}
+.scard{background:var(--d3);padding:28px 24px;position:relative}
+.scard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--a2)}
+.scard.c::before{background:var(--c)}.scard.m::before{background:var(--m)}.scard.g::before{background:linear-gradient(90deg,var(--a2),var(--c))}
+.sico{font-size:28px;margin-bottom:14px}
+.scard h4{font-family:'Barlow Condensed',sans-serif;font-size:16px;letter-spacing:2px;text-transform:uppercase;color:var(--w);margin-bottom:10px}
+.scard p{font-size:13px;line-height:1.6;color:rgba(255,255,255,.55)}
+.stack-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin:32px 0}
+.stack-card{background:var(--d3);padding:24px 28px;border-left:3px solid var(--a2)}
+.stack-card.c{border-color:var(--c)}.stack-card.m{border-color:var(--m)}
+.stack-card h5{font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--a2);margin-bottom:8px}
+.stack-card.c h5{color:var(--c)}.stack-card.m h5{color:var(--m)}
+.stack-card p{font-size:13px;line-height:1.6;color:rgba(255,255,255,.55)}
+.vision-quote{background:linear-gradient(135deg,rgba(124,58,237,.1),rgba(0,200,212,.06));border:1px solid rgba(167,139,250,.15);padding:48px;border-radius:4px;text-align:center;margin:32px 0}
+.vision-quote blockquote{font-family:'Bebas Neue',sans-serif;font-size:clamp(24px,3.5vw,44px);letter-spacing:2px;line-height:1.2;color:rgba(255,255,255,.9);margin-bottom:16px}
+.vision-quote blockquote span{color:var(--a2)}
+.vision-quote cite{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--g)}
+.hardware-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:32px 0}
+.hw-card{background:var(--d3);padding:24px;border-bottom:2px solid transparent;transition:border-color .3s}
+.hw-card:hover{border-bottom-color:var(--a2)}
+.hw-name{font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--a2);margin-bottom:8px}
+.hw-status{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--g);margin-bottom:10px}
+.hw-card p{font-size:13px;line-height:1.6;color:rgba(255,255,255,.5)}
+.cta-band{background:var(--d2);border-top:1px solid rgba(167,139,250,.1);padding:80px 40px;text-align:center;position:relative;overflow:hidden}
+.cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(124,58,237,.08) 0%,transparent 70%)}
+.cta-inner{position:relative}
+.cta-band h3{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,72px);letter-spacing:2px;margin-bottom:14px}
+.cta-band p{font-size:17px;color:rgba(255,255,255,.6);margin-bottom:28px;max-width:600px;margin-left:auto;margin-right:auto}
+.btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn1{background:var(--a);color:var(--w);padding:14px 32px;text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;border-radius:3px}
+.btn2{border:1px solid rgba(167,139,250,.4);color:var(--a2);padding:14px 32px;text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;border-radius:3px}
+footer{background:var(--d2);border-top:1px solid rgba(167,139,250,.1);padding:40px;text-align:center}
+footer p{font-size:13px;color:var(--g)}.footer-links{display:flex;gap:24px;justify-content:center;margin-top:12px}.footer-links a{color:var(--g);text-decoration:none;font-size:12px;letter-spacing:1px;text-transform:uppercase;transition:color .2s}.footer-links a:hover{color:var(--a2)}
+.fu{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}.fu.on{opacity:1;transform:translateY(0)}
+@media(max-width:768px){nav{padding:0 20px}.nav-links{display:none}.hero{padding:100px 20px 60px;min-height:auto}.section{padding:56px 20px}.sgrid,.stack-grid,.hardware-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="logo"><span class="wm">GEODMus</span><span class="sub">Geo Digital Media</span></a>
+  <ul class="nav-links"><li><a href="ventures.html">← Ventures</a></li><li><a href="services.html">Services</a></li><li><a href="about.html">About</a></li></ul>
+  <a href="/cdn-cgi/l/email-protection#325a575e5e5d7255575d565f1c47410d414750585751460f615d515b535e7e575c41121f127753405e4b127b5c465740574146" class="nav-btn">Get Early Access</a>
+</nav>
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-line"></div>
+  <div class="hero-inner">
+    <a href="ventures.html" class="back">← Back to Ventures</a>
+    <div class="v-back-tag">Venture 07 · The Long Play · Concept Stage</div>
+    <span class="badge">◈ Vision / Coming Soon</span>
+    <div class="cat">AR · Meta Glasses · Social Identity · Open Source</div>
+    <h1>SOCIAL<br/>LENS</h1>
+    <p class="hero-desc">An open-source protocol and application layer that lets users — through any AR glasses or phone camera — see opt-in community context about the places and moments around them. Tags, reviews, reputation signals, and social history — anchored to the real world, owned by users, controlled by no one.</p>
+    <div class="hero-insight">
+      <p><strong>The Strategic Insight:</strong> <span class="ha">Facebook tried to own the social graph and locked it up. Twitter tried to own public conversation and closed it off.</span> Every centralized platform is one boardroom decision away from shutdown. SocialLens is built on protocols, not platforms. <strong>Protocols do not go offline.</strong></p>
+    </div>
+  </div>
+</section>
+<section class="section alt">
+<div class="inner">
+  <div class="sec-lbl fu">The Vision</div>
+  <h2 class="fu">THE SOCIAL LAYER OF<br/>THE <span class="ha">PHYSICAL WORLD.</span></h2>
+  <p class="sec-desc fu">Put on your glasses, walk into the world, and see the social layer your communities have built on top of it. A glow around the coffee shop your community loves. A tag from a Creativo artist on the mural they painted. A check-in from a JYB member at the lemonade pop-up two blocks away.</p>
+  <div class="sgrid fu">
+    <div class="scard"><div class="sico">📍</div><h4>Geolocation Anchoring</h4><p>Community tags, reviews, and social context anchored to real-world locations — not to faces. No biometric collection. Full BIPA/GDPR compliance by architecture.</p></div>
+    <div class="scard c"><div class="sico">🪪</div><h4>User-Controlled Identity</h4><p>Every user holds a W3C Decentralized Identifier (DID). Fully anonymous to fully public — users choose exactly what their identity reveals. No corporation holds their data.</p></div>
+    <div class="scard m"><div class="sico">🏛️</div><h4>DAO Governance</h4><p>Wyoming DAO LLC. Community-governed. No founder can be forced to shut it down. Like Bitcoin — no CEO, no single point of failure. Governance token $SL distributed to contributors.</p></div>
+  </div>
+</div>
+</section>
+<section class="section">
+<div class="inner">
+  <div class="sec-lbl fu">Open Source Foundation</div>
+  <h2 class="fu">BUILT ON <span class="hc">PROTOCOLS.</span><br/>NOT PLATFORMS.</h2>
+  <p class="sec-desc fu">SocialLens doesn't start from zero. It stands on the best open-source infrastructure already built — AT Protocol, W3C DIDs, IPFS, Lens Protocol, and the emerging AR hardware ecosystem.</p>
+  <div class="stack-grid fu">
+    <div class="stack-card"><h5>AT Protocol (Bluesky)</h5><p>Decentralized social protocol. MIT/Apache 2.0 licensed. SocialLens inherits the Bluesky social graph — millions of users without building from scratch. Protocols do not go offline.</p></div>
+    <div class="stack-card c"><h5>W3C DIDs</h5><p>W3C standard for self-sovereign identity. Your DID is yours forever — portable, revocable, private by default. If SocialLens disappears tomorrow, user identity survives.</p></div>
+    <div class="stack-card m"><h5>IPFS + Ceramic</h5><p>Content-addressed storage. Files identified by hash, not server location. Cannot be taken down, censored, or modified. No SocialLens server — no single point of legal attack.</p></div>
+    <div class="stack-card"><h5>Lens Protocol + DSNP</h5><p>On-chain community tagging. When a user tags a location, that tag is a Lens publication — owned by the tagger, stored on-chain, composable with any app in the ecosystem.</p></div>
+  </div>
+  <div class="hardware-grid fu">
+    <div class="hw-card"><div class="hw-name">Meta Ray-Ban Gen 2</div><div class="hw-status">SDK Preview — Dec 2025</div><p>Millions of units already in market. Meta Wearables Device Access Toolkit: camera + audio via iOS/Android SDK.</p></div>
+    <div class="hw-card"><div class="hw-name">Brilliant Labs Frame</div><div class="hw-status">Available Now — $349</div><p>Fully open source AR glasses. MicroPython SDK on GitHub. Any Frame owner can install SocialLens immediately.</p></div>
+    <div class="hw-card"><div class="hw-name">Mentra Live</div><div class="hw-status">Open Source — $299</div><p>Open AR glasses with an app store. SocialLens publishes a MiniApp — instant distribution to all Mentra owners.</p></div>
+    <div class="hw-card"><div class="hw-name">Android XR</div><div class="hw-status">Coming 2026</div><p>Standard Android app deploys automatically to Android XR glasses when Samsung/Google ship.</p></div>
+    <div class="hw-card"><div class="hw-name">WebXR / Browser</div><div class="hw-status">Available Now</div><p>Any phone or laptop with a camera. No hardware required to experience SocialLens. The zero-friction onramp.</p></div>
+    <div class="hw-card"><div class="hw-name">OpenGlass DIY</div><div class="hw-status">~$20</div><p>ESP32-based open hardware. Any maker can build their own SocialLens-compatible glasses for $20. Developer seeding strategy.</p></div>
+  </div>
+</div>
+</section>
+<section class="section alt">
+<div class="inner">
+  <div class="vision-quote fu">
+    <blockquote>"The protocol cannot die.<br/><span>The app is how we make money.</span>"</blockquote>
+    <cite>Giovanni Salazar · Founder, SocialLens & Geo Digital Media</cite>
+  </div>
+  <div class="sec-lbl fu" style="margin-top:48px">Ecosystem Connection</div>
+  <h2 class="fu">THE AR LAYER THAT<br/><span class="ha">CONNECTS EVERYTHING.</span></h2>
+  <p class="sec-desc fu">SocialLens isn't just a venture — it's the long-play platform that surfaces all seven ventures in the physical world. Every GeoDMus ecosystem brand becomes discoverable through the lens.</p>
+  <div class="sgrid fu">
+    <div class="scard g"><div class="sico">🍋</div><h4>JYB Integration</h4><p>A check-in from a JYB member at the lemonade pop-up two blocks away. Wellness venues tagged and rated by the community in real-time.</p></div>
+    <div class="scard"><div class="sico">👟</div><h4>YSK Integration</h4><p>The sneaker store that the YSK community rates highly — visible through the lens as you walk past. Culture discovery in real space.</p></div>
+    <div class="scard m"><div class="sico">✨</div><h4>Glow Guide Integration</h4><p>Beauty brand locations, creator meetups, and sponsored events surfaced through the lens for the Glow Guide community in real-time.</p></div>
+  </div>
+</div>
+</section>
+<div class="cta-band">
+  <div class="cta-bg"></div>
+  <div class="cta-inner">
+    <h3>THE FUTURE IS <span style="color:var(--a2)">VISIBLE.</span></h3>
+    <p>SocialLens is in concept stage. If you're a developer, investor, or visionary who wants to be part of building the social layer of the physical world — reach out.</p>
+    <div class="btns">
+      <a href="/cdn-cgi/l/email-protection#92faf7fefefdd2f5f7fdf6ffbce7e1ade1e7f0f8f7f1e6afc1fdf1fbf3fedef7fce1b2bfb2d7f3e0feebb2dbfce6f7e0f7e1e6" class="btn1">Express Interest</a>
+      <a href="about.html" class="btn2">Meet the Founder</a>
+    </div>
+    <p style="margin-top:16px;font-size:12px;color:rgba(255,255,255,.25)">sociallens.app · Built by Geo Digital Media · Chicago</p>
+  </div>
+</div>
+<footer><p>© 2026 SocialLens · A Geo Digital Media Venture · geodm.us</p><div class="footer-links"><a href="ventures.html">All Ventures</a><a href="index.html">GeoDMus</a><a href="https://instagram.com/geodm.us" target="_blank">Instagram</a></div></footer>
+</body>
+</html>

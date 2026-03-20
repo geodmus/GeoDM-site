@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Geo Digital Media | GeoDMus — Your Digital Growth Partner</title>
+<meta name="description" content="Chicago's boldest digital agency. Web design, AI automation, marketing, and real Web3 strategy. From the corner barbershop to the next big platform — we build the digital infrastructure that grows your business."/>
+<link rel="icon" type="image/png" href="gdm.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600;700&family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet"/>
+<style>
+:root{--c:#00c8d4;--m:#cc2d8f;--d:#070c0d;--d2:#0d1517;--d3:#111a1c;--w:#fff;--g:#8a9ba0}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--d);color:var(--w);font-family:'Barlow',sans-serif;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:70px;background:rgba(7,12,13,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,200,212,.1)}
+.logo{text-decoration:none;line-height:1}.logo .wm{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:var(--w);display:block}.logo .sub{font-size:9px;letter-spacing:2px;color:var(--c);text-transform:uppercase}
+.nav-links{display:flex;gap:24px;list-style:none}.nav-links a{color:var(--g);text-decoration:none;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;transition:color .2s}.nav-links a:hover{color:var(--c)}
+.nav-btn{background:var(--m);color:var(--w);padding:10px 20px;border-radius:3px;text-decoration:none;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;white-space:nowrap}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:24px;height:2px;background:var(--w);transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:70px;left:0;right:0;background:rgba(7,12,13,.98);padding:24px 40px;border-bottom:1px solid rgba(0,200,212,.1);z-index:99}
+.mobile-menu.open{display:block}
+.mobile-menu ul{list-style:none;display:flex;flex-direction:column;gap:16px}
+.mobile-menu a{color:var(--g);text-decoration:none;font-size:14px;letter-spacing:2px;text-transform:uppercase;font-weight:600;transition:color .2s}.mobile-menu a:hover{color:var(--c)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:130px 40px 80px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 85% 50%,rgba(0,200,212,.08) 0%,transparent 65%),radial-gradient(ellipse 50% 60% at 5% 80%,rgba(204,45,143,.07) 0%,transparent 65%),var(--d)}
+.hero-line{position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,transparent,var(--m) 25%,var(--c) 65%,transparent)}
+.hero-inner{position:relative;max-width:960px}
+.lbl{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--c);margin-bottom:18px;display:flex;align-items:center;gap:10px}.lbl::before{content:'';width:32px;height:2px;background:var(--c)}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(64px,11vw,140px);line-height:.88;letter-spacing:2px;margin-bottom:28px}
+.h1c{color:var(--c)}.h1m{color:var(--m)}
+.hero-sub{font-size:clamp(16px,2vw,21px);font-weight:300;line-height:1.65;color:rgba(255,255,255,.68);max-width:620px;border-left:3px solid var(--m);padding-left:22px;margin-bottom:40px}
+.hero-sub strong{color:var(--w)}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn1{background:var(--m);color:var(--w);padding:15px 32px;text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;border-radius:3px;transition:opacity .2s}.btn1:hover{opacity:.85}
+.btn2{border:1px solid rgba(0,200,212,.4);color:var(--c);padding:15px 32px;text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;border-radius:3px;transition:all .2s}.btn2:hover{background:rgba(0,200,212,.08)}
+
+/* STATS */
+.stats-row{display:flex;align-items:center;gap:0;margin-top:64px;border-top:1px solid rgba(255,255,255,.06);padding-top:40px;flex-wrap:wrap;gap:40px}
+.stat-item{display:flex;flex-direction:column}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:52px;line-height:1;color:var(--c)}
+.stat-n.m{color:var(--m)}
+.stat-l{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--g);margin-top:4px}
+.social-row{margin-top:32px;display:flex;align-items:center;gap:16px}
+.social-row span{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--g)}
+.social-row a{color:var(--c);text-decoration:none;font-size:13px;font-weight:600;transition:color .2s}.social-row a:hover{color:var(--w)}
+
+/* TICKER */
+.ticker-wrap{overflow:hidden;background:rgba(0,200,212,.04);border-top:1px solid rgba(0,200,212,.1);border-bottom:1px solid rgba(0,200,212,.1);padding:13px 0}
+.ticker{display:flex;gap:48px;white-space:nowrap;animation:tick 30s linear infinite}
+.ticker span{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--c);opacity:.6}.ticker .dot{color:var(--m);opacity:1}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* SECTIONS */
+.section{padding:80px 40px}.section.alt{background:var(--d2)}
+.inner{max-width:1100px;margin:0 auto}
+.sec-lbl{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--c);margin-bottom:12px;display:flex;align-items:center;gap:10px}.sec-lbl::before{content:'';width:24px;height:2px;background:var(--c)}
+h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,5vw,66px);letter-spacing:2px;line-height:.95;margin-bottom:16px}
+.h2c{color:var(--c)}.h2m{color:var(--m)}
+.sec-desc{font-size:17px;line-height:1.7;color:rgba(255,255,255,.6);max-width:660px;margin-bottom:48px}
+
+/* PILLARS */
+.pillars-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px}
+.pcard{background:var(--d3);padding:40px 32px;position:relative;overflow:hidden;transition:transform .3s}
+.pcard:hover{transform:translateY(-3px)}
+.pcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--c)}
+.pcard:nth-child(2)::before{background:var(--m)}
+.pcard:nth-child(3)::before{background:var(--m)}
+.pcard:nth-child(4)::before{background:linear-gradient(90deg,var(--c),var(--m))}
+.p-num{font-family:'Bebas Neue',sans-serif;font-size:72px;line-height:1;color:rgba(0,200,212,.08);margin-bottom:8px}
+.pcard:nth-child(2) .p-num,.pcard:nth-child(3) .p-num{color:rgba(204,45,143,.08)}
+.p-ico{font-size:28px;margin-bottom:14px}
+.pcard h3{font-family:'Barlow Condensed',sans-serif;font-size:20px;letter-spacing:2px;text-transform:uppercase;color:var(--w);margin-bottom:12px}
+.pcard p{font-size:14px;line-height:1.65;color:rgba(255,255,255,.55);margin-bottom:16px}
+.ptags{display:flex;gap:8px;flex-wrap:wrap}
+.ptag{background:rgba(0,200,212,.07);border:1px solid rgba(0,200,212,.15);color:var(--c);padding:4px 10px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;border-radius:2px}
+.ptag.m{background:rgba(204,45,143,.07);border-color:rgba(204,45,143,.15);color:var(--m)}
+.pillars-cta{text-align:center;padding:32px 0 0}
+.pillars-cta a{color:var(--c);text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;display:inline-flex;align-items:center;gap:8px;transition:gap .2s}.pillars-cta a:hover{gap:12px}
+
+/* VENTURES */
+.ventures-intro{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:16px}
+.ventures-intro a{color:var(--c);text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;display:flex;align-items:center;gap:8px;transition:gap .2s}.ventures-intro a:hover{gap:12px}
+.flagship-card{background:linear-gradient(135deg,rgba(0,200,212,.07),rgba(204,45,143,.05));border:1px solid rgba(0,200,212,.18);border-radius:4px;padding:40px;margin-bottom:2px;position:relative;overflow:hidden;transition:border-color .3s}
+.flagship-card:hover{border-color:rgba(0,200,212,.4)}
+.flagship-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--c),var(--m))}
+.fc-badge{font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:700;padding:4px 10px;border-radius:2px;background:var(--c);color:var(--d);display:inline-block;margin-bottom:12px}
+.fc-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,4vw,52px);letter-spacing:2px;margin-bottom:6px}
+.fc-cat{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--g);margin-bottom:14px}
+.fc-desc{font-size:15px;line-height:1.7;color:rgba(255,255,255,.65);max-width:560px;margin-bottom:20px}
+.vcards{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.vcard{background:var(--d2);padding:28px;position:relative;overflow:hidden;transition:transform .3s;text-decoration:none;display:block}
+.vcard:hover{transform:translateY(-3px)}
+.vcard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--c);transform:scaleX(0);transition:transform .3s;transform-origin:left}
+.vcard:hover::after{transform:scaleX(1)}
+.vcard.mv::after{background:var(--m)}
+.v-badge{font-size:9px;letter-spacing:2px;text-transform:uppercase;font-weight:700;padding:3px 8px;border-radius:2px;display:inline-block;margin-bottom:10px}
+.badge-active{background:rgba(0,200,212,.12);border:1px solid rgba(0,200,212,.3);color:var(--c)}
+.badge-building{background:rgba(204,45,143,.12);border:1px solid rgba(204,45,143,.3);color:var(--m)}
+.badge-dev{background:rgba(255,165,0,.1);border:1px solid rgba(255,165,0,.25);color:#ffa500}
+.badge-vision{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.5)}
+.vcard-num{font-family:'Bebas Neue',sans-serif;font-size:44px;line-height:1;color:rgba(0,200,212,.1);float:right}
+.vcard.mv .vcard-num{color:rgba(204,45,143,.1)}
+.vcard-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(24px,2.5vw,32px);letter-spacing:2px;line-height:1;margin-bottom:6px;color:var(--w)}
+.vcard-cat{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--g);margin-bottom:10px}
+.vcard-desc{font-size:13px;line-height:1.6;color:rgba(255,255,255,.5);margin-bottom:14px}
+.vcard-link{font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:var(--c)}
+.vcard.mv .vcard-link{color:var(--m)}
+.ventures-all{text-align:center;padding:32px 0 0}
+.ventures-all a{display:inline-flex;align-items:center;gap:8px;background:var(--d3);border:1px solid rgba(0,200,212,.2);color:var(--c);padding:14px 28px;text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;border-radius:3px;transition:all .2s}.ventures-all a:hover{border-color:var(--c);background:rgba(0,200,212,.06)}
+
+/* PROCESS */
+.process-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:2px}
+.proc-step{background:var(--d3);padding:28px 20px;text-align:center;position:relative}
+.proc-step::after{content:'→';position:absolute;right:-12px;top:50%;transform:translateY(-50%);color:rgba(0,200,212,.3);font-size:18px;z-index:1}
+.proc-step:last-child::after{display:none}
+.proc-n{font-family:'Bebas Neue',sans-serif;font-size:48px;line-height:1;color:rgba(0,200,212,.15);margin-bottom:8px}
+.proc-step h4{font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:2px;text-transform:uppercase;color:var(--w);margin-bottom:8px}
+.proc-step p{font-size:12px;line-height:1.5;color:rgba(255,255,255,.45)}
+
+/* PRICING */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:24px}
+.price-card{background:var(--d3);padding:36px 28px;position:relative}
+.price-card.featured{background:linear-gradient(135deg,rgba(0,200,212,.07),rgba(204,45,143,.05));border:1px solid rgba(0,200,212,.2)}
+.price-tag{font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:700;padding:4px 10px;border-radius:2px;background:var(--c);color:var(--d);display:inline-block;margin-bottom:16px}
+.price-tier{font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--g);margin-bottom:8px}
+.price-name{font-family:'Bebas Neue',sans-serif;font-size:40px;letter-spacing:2px;color:var(--w);margin-bottom:4px}
+.price-n{font-family:'Bebas Neue',sans-serif;font-size:56px;line-height:1;color:var(--c);margin-bottom:20px}
+.price-n span{font-size:20px;color:var(--g)}
+.price-list{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:28px}
+.price-list li{font-size:13px;color:rgba(255,255,255,.6);padding-left:18px;position:relative}.price-list li::before{content:'✓';position:absolute;left:0;color:var(--c);font-size:12px}
+.price-btn{display:block;text-align:center;padding:13px;border-radius:3px;text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;background:var(--m);color:var(--w);transition:opacity .2s}.price-btn:hover{opacity:.85}
+.price-btn.outline{background:transparent;border:1px solid rgba(0,200,212,.3);color:var(--c)}.price-btn.outline:hover{background:rgba(0,200,212,.08)}
+.custom-work{background:var(--d3);border:1px solid rgba(0,200,212,.1);padding:28px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;border-radius:4px}
+.custom-work p{font-size:15px;color:rgba(255,255,255,.7);max-width:600px;line-height:1.6}.custom-work strong{color:var(--w)}
+.custom-work a{background:var(--d2);border:1px solid rgba(0,200,212,.25);color:var(--c);padding:12px 24px;text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;border-radius:3px;white-space:nowrap}
+
+/* TESTIMONIALS */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.tcard{background:var(--d3);padding:32px 28px;position:relative}
+.tcard::before{content:'"';font-family:'Bebas Neue',sans-serif;font-size:80px;line-height:.8;color:rgba(0,200,212,.1);position:absolute;top:20px;left:24px}
+.tcard p{font-size:15px;line-height:1.75;color:rgba(255,255,255,.7);margin-bottom:20px;padding-top:24px;font-style:italic}
+.tcard-author{display:flex;align-items:center;gap:14px}
+.tcard-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--c),var(--m));display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1px;color:var(--d);flex-shrink:0}
+.tcard-name{font-weight:700;font-size:14px;color:var(--w)}
+.tcard-biz{font-size:12px;color:var(--g);letter-spacing:.5px}
+
+/* INDUSTRIES */
+.industry-cloud{display:flex;flex-wrap:wrap;gap:8px;margin-top:32px}
+.ind-tag{background:var(--d3);border:1px solid rgba(255,255,255,.06);color:rgba(255,255,255,.6);padding:8px 16px;font-size:13px;border-radius:2px;transition:all .2s;cursor:default}
+.ind-tag:hover{border-color:rgba(0,200,212,.3);color:var(--c)}
+
+/* FAQ SNIPPET */
+.faq-snippet{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:32px}
+.fq{background:var(--d3);padding:24px 28px;border-left:3px solid transparent;transition:border-color .3s;cursor:pointer}
+.fq:hover{border-left-color:var(--c)}
+.fq h4{font-size:14px;font-weight:600;color:var(--w);margin-bottom:8px;line-height:1.4}
+.fq p{font-size:13px;color:rgba(255,255,255,.5);line-height:1.6}
+.faq-more{text-align:center;margin-top:28px}
+.faq-more a{color:var(--c);text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;display:inline-flex;align-items:center;gap:8px;transition:gap .2s}.faq-more a:hover{gap:12px}
+
+/* CTA */
+.cta-section{padding:100px 40px;position:relative;overflow:hidden;text-align:center}
+.cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 50% 50%,rgba(204,45,143,.08) 0%,transparent 70%),var(--d)}
+.cta-inner{position:relative;max-width:720px;margin:0 auto}
+.cta-section h2{margin-bottom:20px}
+.cta-section p{font-size:18px;color:rgba(255,255,255,.6);margin-bottom:36px;line-height:1.65}
+.cta-contact{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+.cta-contact a{color:var(--g);text-decoration:none;font-size:13px;transition:color .2s}.cta-contact a:hover{color:var(--c)}
+
+/* FOOTER */
+footer{background:var(--d2);border-top:1px solid rgba(0,200,212,.1);padding:56px 40px 36px}
+.fg{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.06)}
+.fb .fwm{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:3px}.fb .fsub{font-size:9px;letter-spacing:2px;color:var(--c);text-transform:uppercase;display:block;margin-bottom:12px}.fb p{font-size:13px;color:var(--g);line-height:1.6}
+.fc h5{font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--w);margin-bottom:16px}
+.fc ul{list-style:none}.fc li{margin-bottom:8px}.fc a{color:var(--g);text-decoration:none;font-size:13px;transition:color .2s}.fc a:hover{color:var(--c)}
+.fbtm{max-width:1100px;margin:28px auto 0;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--g)}
+.fbtm a{color:var(--g);text-decoration:none;margin-left:16px}.fbtm a:hover{color:var(--c)}
+
+/* FADE */
+.fu{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}.fu.on{opacity:1;transform:translateY(0)}
+
+/* MOBILE */
+@media(max-width:768px){
+  nav{padding:0 20px}.nav-links{display:none}.hamburger{display:flex}
+  .hero{padding:100px 20px 56px}
+  .stats-row{gap:28px}
+  .section{padding:56px 20px}
+  .pillars-grid{grid-template-columns:1fr}
+  .vcards{grid-template-columns:1fr}
+  .process-grid{grid-template-columns:1fr;gap:2px}
+  .proc-step::after{display:none}
+  .pricing-grid{grid-template-columns:1fr}
+  .testi-grid{grid-template-columns:1fr}
+  .faq-snippet{grid-template-columns:1fr}
+  .fg{grid-template-columns:1fr 1fr;gap:28px}
+  .fbtm{flex-direction:column;gap:10px;text-align:center}
+  .custom-work{flex-direction:column}
+  .ventures-intro{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo"><span class="wm">GEODMus</span><span class="sub">Geo Digital Media</span></a>
+  <ul class="nav-links">
+    <li><a href="services.html">Services</a></li>
+    <li><a href="ventures.html">Ventures</a></li>
+    <li><a href="index.html#pricing">Pricing</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a href="https://calendly.com/hello-geodm/30min" class="nav-btn" target="_blank">Free Strategy Call</a>
+  <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu">
+  <ul>
+    <li><a href="services.html" onclick="this.closest('.mobile-menu').classList.remove('open')">Services</a></li>
+    <li><a href="ventures.html" onclick="this.closest('.mobile-menu').classList.remove('open')">Ventures</a></li>
+    <li><a href="index.html#pricing" onclick="this.closest('.mobile-menu').classList.remove('open')">Pricing</a></li>
+    <li><a href="about.html" onclick="this.closest('.mobile-menu').classList.remove('open')">About</a></li>
+    <li><a href="faq.html" onclick="this.closest('.mobile-menu').classList.remove('open')">FAQ</a></li>
+    <li><a href="index.html#contact" onclick="this.closest('.mobile-menu').classList.remove('open')">Contact</a></li>
+    <li><a href="https://calendly.com/hello-geodm/30min" target="_blank">Book Free Call</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-line"></div>
+  <div class="hero-inner">
+    <div class="lbl">Geo Digital Media — Chicago</div>
+    <h1>GEO<br/><span class="h1c">DIGITAL</span><br/><span class="h1m">MEDIA</span></h1>
+    <p class="hero-sub">From the corner barbershop to the next big platform — <strong>we build the digital infrastructure that grows your business.</strong> Websites, AI automation, marketing, and Web3 strategy. Done for you, every month.</p>
+    <div class="hero-btns">
+      <a href="https://calendly.com/hello-geodm/30min" class="btn1" target="_blank">Book Free Strategy Call</a>
+      <a href="services.html" class="btn2">See What We Do</a>
+    </div>
+    <div class="stats-row">
+      <div class="stat-item"><div class="stat-n">7</div><div class="stat-l">Ventures Built</div></div>
+      <div class="stat-item"><div class="stat-n">4</div><div class="stat-l">Service Pillars</div></div>
+      <div class="stat-item"><div class="stat-n m">100%</div><div class="stat-l">Done For You</div></div>
+      <div class="stat-item"><div class="stat-n">$1M</div><div class="stat-l">Revenue Vision</div></div>
+    </div>
+    <div class="social-row">
+      <span>Follow Us —</span>
+      <a href="https://instagram.com/geodm.us" target="_blank">@geodm.us</a>
+      <a href="https://x.com/geodmus" target="_blank">@geodmus</a>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap"><div class="ticker">
+  <span>Web Design</span><span class="dot">◆</span><span>Agentic AI</span><span class="dot">◆</span><span>Web3 Strategy</span><span class="dot">◆</span><span>Marketing & Social</span><span class="dot">◆</span><span>Bitcoin</span><span class="dot">◆</span><span>Prediction Markets</span><span class="dot">◆</span><span>GeoDMus</span><span class="dot">◆</span><span>Chicago</span><span class="dot">◆</span><span>Your Digital Growth Partner</span><span class="dot">◆</span>
+  <span>Web Design</span><span class="dot">◆</span><span>Agentic AI</span><span class="dot">◆</span><span>Web3 Strategy</span><span class="dot">◆</span><span>Marketing & Social</span><span class="dot">◆</span><span>Bitcoin</span><span class="dot">◆</span><span>Prediction Markets</span><span class="dot">◆</span><span>GeoDMus</span><span class="dot">◆</span><span>Chicago</span><span class="dot">◆</span><span>Your Digital Growth Partner</span><span class="dot">◆</span>
+</div></div>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+<div class="inner">
+  <div class="sec-lbl fu">What We Do</div>
+  <h2 class="fu">FOUR PILLARS.<br/><span class="h2c">ONE PARTNER.</span></h2>
+  <p class="sec-desc fu">Whether you're a local business booking appointments or a startup building a platform — we have the stack to grow you. One team owns everything.</p>
+  <div class="pillars-grid fu">
+    <div class="pcard">
+      <div class="p-num">01</div>
+      <div class="p-ico">🌐</div>
+      <h3>Website Design & Dev</h3>
+      <p>Fast, mobile-first sites that convert visitors into customers. From 5-page local business sites to full marketplace platforms built to scale.</p>
+      <div class="ptags"><span class="ptag">Custom Design</span><span class="ptag">SEO Ready</span><span class="ptag">Rapid Launch</span></div>
+    </div>
+    <div class="pcard">
+      <div class="p-num">02</div>
+      <div class="p-ico">⚡</div>
+      <h3>AI Automation & Agentic AI</h3>
+      <p>Booking flows, SMS reminders, lead follow-ups, CRM integration. Your business runs 24/7 without adding headcount — and agentic AI systems coming 2026.</p>
+      <div class="ptags"><span class="ptag m">AI Booking</span><span class="ptag m">SMS Flows</span><span class="ptag m">Agentic AI</span></div>
+    </div>
+    <div class="pcard">
+      <div class="p-num">03</div>
+      <div class="p-ico">📧</div>
+      <h3>Marketing & Social</h3>
+      <p>Email campaigns, social media management, and paid ads. We keep your pipeline full so you can focus on the work that actually makes you money.</p>
+      <div class="ptags"><span class="ptag m">Email</span><span class="ptag m">Social Media</span><span class="ptag m">Paid Ads</span></div>
+    </div>
+    <div class="pcard">
+      <div class="p-num">04</div>
+      <div class="p-ico">🔗</div>
+      <h3>Web3 & Blockchain</h3>
+      <p>Crypto payment integration, NFT loyalty programs, token strategy, prediction market integration, and blockchain consulting. The future of business is on-chain.</p>
+      <div class="ptags"><span class="ptag">Bitcoin</span><span class="ptag">NFT Loyalty</span><span class="ptag">Prediction Markets</span></div>
+    </div>
+  </div>
+  <div class="pillars-cta fu"><a href="services.html">Explore All Services →</a></div>
+</div>
+</section>
+
+<!-- VENTURES -->
+<section class="section alt" id="portfolio">
+<div class="inner">
+  <div class="ventures-intro fu">
+    <div>
+      <div class="sec-lbl">Built by GeoDMus</div>
+      <h2>REAL WORK.<br/><span class="h2c">REAL VENTURES.</span></h2>
+      <p class="sec-desc" style="margin-bottom:0">We don't just serve clients — we build companies. Every venture below was designed, built, and is managed by Geo Digital Media.</p>
+    </div>
+    <a href="ventures.html">View Full Portfolio →</a>
+  </div>
+  <div class="flagship-card fu">
+    <span class="fc-badge">● Active — Flagship</span>
+    <div class="fc-name">GEO DIGITAL MEDIA</div>
+    <div class="fc-cat">Digital Media · Web · Web3 · AI Automation</div>
+    <p class="fc-desc">Full-service digital media company. The digital backbone and growth engine for the entire ecosystem — and for every client we take on.</p>
+    <div class="ptags"><span class="ptag">Web Design</span><span class="ptag">AI Automation</span><span class="ptag">Marketing</span><span class="ptag">Web3</span></div>
+  </div>
+  <div class="vcards fu">
+    <a href="premier-group.html" class="vcard">
+      <div class="vcard-num">02</div>
+      <span class="v-badge badge-active">● Active / Building</span>
+      <div class="vcard-name">PREMIER GROUP</div>
+      <div class="vcard-cat">Tax · Credit · Real Estate</div>
+      <p class="vcard-desc">Family-focused financial services — tax prep, credit building, and real estate advisory for everyday families.</p>
+      <div class="vcard-link">View Venture →</div>
+    </a>
+    <a href="juice-yoga-body.html" class="vcard mv">
+      <div class="vcard-num">03</div>
+      <span class="v-badge badge-building">● Building</span>
+      <div class="vcard-name">JUICE YOGA BODY</div>
+      <div class="vcard-cat">Nutrition · Movement · Recovery</div>
+      <p class="vcard-desc">Three-pillar wellness brand — signature lemonade, yoga content, and massage & assisted stretch services.</p>
+      <div class="vcard-link">View Venture →</div>
+    </a>
+    <a href="creativo.html" class="vcard">
+      <div class="vcard-num">04</div>
+      <span class="v-badge badge-dev">● Building / Coming Soon</span>
+      <div class="vcard-name">CREATIVO</div>
+      <div class="vcard-cat">Events · Production · Community</div>
+      <p class="vcard-desc">Marketplace connecting local creative pros with clients for life's biggest moments.</p>
+      <div class="vcard-link">View Venture →</div>
+    </a>
+    <a href="your-splashy-kicks.html" class="vcard mv">
+      <div class="vcard-num">05</div>
+      <span class="v-badge badge-building">● Building / In Dev</span>
+      <div class="vcard-name">YOUR SPLASHY KICKS</div>
+      <div class="vcard-cat">Sneaker Marketplace · YSK</div>
+      <p class="vcard-desc">Community-first platform for buying and selling sneakers. Mobile-first, culturally embedded.</p>
+      <div class="vcard-link">View Venture →</div>
+    </a>
+    <a href="glow-guide.html" class="vcard">
+      <div class="vcard-num">06</div>
+      <span class="v-badge badge-active">● Live / In Dev</span>
+      <div class="vcard-name">GLOW GUIDE</div>
+      <div class="vcard-cat">Beauty · Influencer Marketing</div>
+      <p class="vcard-desc">Matching platform connecting nano & micro beauty influencers with brand sponsors.</p>
+      <div class="vcard-link">View Venture →</div>
+    </a>
+    <a href="sociallens.html" class="vcard mv">
+      <div class="vcard-num">07</div>
+      <span class="v-badge badge-vision">◈ Vision / Coming Soon</span>
+      <div class="vcard-name">SOCIALLENS</div>
+      <div class="vcard-cat">AR · Meta Glasses · Social Identity</div>
+      <p class="vcard-desc">The social layer of the physical world. Open-source AR protocol built on AT Protocol, W3C DIDs, and IPFS.</p>
+      <div class="vcard-link">View Vision →</div>
+    </a>
+  </div>
+  <div class="ventures-all fu"><a href="ventures.html">View Full Ecosystem →</a></div>
+</div>
+</section>
+
+<!-- PROCESS -->
+<section class="section" id="process">
+<div class="inner">
+  <div class="sec-lbl fu">How It Works</div>
+  <h2 class="fu">FROM DAY ONE <span class="h2c">TO SCALING</span></h2>
+  <div class="process-grid fu">
+    <div class="proc-step"><div class="proc-n">01</div><h4>Discovery Call</h4><p>Free 30-min session. We learn your business, goals, and gaps.</p></div>
+    <div class="proc-step"><div class="proc-n">02</div><h4>Custom Strategy</h4><p>A tailored growth plan. No templates. Built for your business.</p></div>
+    <div class="proc-step"><div class="proc-n">03</div><h4>Build & Launch</h4><p>Site and automations go live on a rapid, agreed timeline.</p></div>
+    <div class="proc-step"><div class="proc-n">04</div><h4>Marketing Live</h4><p>Email, social, and automation run on autopilot. Leads flow in.</p></div>
+    <div class="proc-step"><div class="proc-n">05</div><h4>Scale Together</h4><p>Monthly reports, strategy calls, and expansion as you grow.</p></div>
+  </div>
+</div>
+</section>
+
+<!-- PRICING -->
+<section class="section alt" id="pricing">
+<div class="inner">
+  <div class="sec-lbl fu">Simple Pricing</div>
+  <h2 class="fu">FLAT RATE. FULL SERVICE.<br/><span class="h2c">NO SURPRISES.</span></h2>
+  <p class="sec-desc fu">One monthly retainer covers everything. Cancel anytime after 3 months. No hidden fees. Ever.</p>
+  <div class="pricing-grid fu">
+    <div class="price-card">
+      <div class="price-tier">Tier 01</div>
+      <div class="price-name">Launchpad</div>
+      <div class="price-n">$799<span>/mo</span></div>
+      <ul class="price-list">
+        <li>5-Page Custom Website</li>
+        <li>Mobile Optimized + SEO</li>
+        <li>Online Booking Integration</li>
+        <li>1 Email Campaign / Month</li>
+        <li>Social Media Setup (2 platforms)</li>
+        <li>AI Appointment Automation</li>
+        <li>Monthly Strategy Call</li>
+      </ul>
+      <a href="https://buy.stripe.com/3cI3cugrL4FeaeQ0DK1gs00" class="price-btn outline" target="_blank">Get Started</a>
+    </div>
+    <div class="price-card featured">
+      <div class="price-tag">Most Popular</div>
+      <div class="price-tier">Tier 02</div>
+      <div class="price-name">Growth Engine</div>
+      <div class="price-n">$1,599<span>/mo</span></div>
+      <ul class="price-list">
+        <li>10-Page Premium Website</li>
+        <li>Advanced SEO + Performance</li>
+        <li>Full AI Automation + SMS</li>
+        <li>4 Email Campaigns / Month</li>
+        <li>Social Media (3 platforms, 4x/wk)</li>
+        <li>Lead Capture Funnels</li>
+        <li>Monthly Analytics Report</li>
+        <li>Monthly Strategy Call</li>
+      </ul>
+      <a href="https://buy.stripe.com/6oUeVc0sN8VuaeQ0DK1gs04" class="price-btn" target="_blank">Get Started</a>
+    </div>
+    <div class="price-card">
+      <div class="price-tier">Tier 03</div>
+      <div class="price-name">Empire Mode</div>
+      <div class="price-n">$2,999<span>/mo</span></div>
+      <ul class="price-list">
+        <li>Custom Multi-Page Site + Blog</li>
+        <li>Full AI Automation Suite</li>
+        <li>Unlimited Email Campaigns</li>
+        <li>Daily Social (All Platforms)</li>
+        <li>Paid Ads (Meta + Google)</li>
+        <li>Dedicated Account Manager</li>
+        <li>Weekly Reports + Strategy Calls</li>
+        <li>Priority Support</li>
+      </ul>
+      <a href="https://buy.stripe.com/14AfZgcbvfjScmY2LS1gs03" class="price-btn outline" target="_blank">Let's Talk</a>
+    </div>
+  </div>
+  <div class="custom-work fu">
+    <p><strong>Building Something Bigger?</strong> Custom platforms, e-commerce builds, marketplace development, Web3 integrations, and full venture launches start at <strong>$4,500</strong>. We scope every project individually.</p>
+    <a href="https://calendly.com/hello-geodm/30min" target="_blank">Inquire About Custom Work</a>
+  </div>
+</div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section" id="results">
+<div class="inner">
+  <div class="sec-lbl fu">Client Results</div>
+  <h2 class="fu">REAL RESULTS.<br/><span class="h2c">REAL BUSINESSES.</span></h2>
+  <div class="testi-grid fu">
+    <div class="tcard">
+      <p>Before Geo Digital Media, I was booking everything by phone. Now 80% of my appointments are automated. My front desk can actually focus on clients.</p>
+      <div class="tcard-author"><div class="tcard-avatar">TM</div><div><div class="tcard-name">Tanya M.</div><div class="tcard-biz">Bloom Beauty Studio · Chicago</div></div></div>
+    </div>
+    <div class="tcard">
+      <p>Our old website was costing us business. GeoDMus rebuilt it fast — within the first month we had 40+ new leads come through the site. Unreal results.</p>
+      <div class="tcard-author"><div class="tcard-avatar">DR</div><div><div class="tcard-name">DeShawn R.</div><div class="tcard-biz">Peak Performance Gym · Chicago</div></div></div>
+    </div>
+    <div class="tcard">
+      <p>The email campaigns brought back 6 old clients in month one. That more than paid for the entire package. These guys actually understand how business works.</p>
+      <div class="tcard-author"><div class="tcard-avatar">AL</div><div><div class="tcard-name">Angela L.</div><div class="tcard-biz">Restore Wellness Clinic · Chicago</div></div></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- INDUSTRIES -->
+<section class="section alt">
+<div class="inner">
+  <div class="sec-lbl fu">Who We Serve</div>
+  <h2 class="fu">YOUR INDUSTRY.<br/><span class="h2c">OUR EXPERTISE.</span></h2>
+  <p class="sec-desc fu">Local service businesses, ambitious startups, multi-venture operators — if you need to grow online, we have the system to do it.</p>
+  <div class="industry-cloud fu">
+    <span class="ind-tag">Hair Salons</span><span class="ind-tag">Barbershops</span><span class="ind-tag">Med Spas</span><span class="ind-tag">Gyms & Fitness</span><span class="ind-tag">Dental Clinics</span><span class="ind-tag">Wellness & Recovery</span><span class="ind-tag">Restaurants</span><span class="ind-tag">Real Estate</span><span class="ind-tag">Financial Services</span><span class="ind-tag">Law Firms</span><span class="ind-tag">E-Commerce</span><span class="ind-tag">Coaches</span><span class="ind-tag">Creatives</span><span class="ind-tag">Nail Studios</span><span class="ind-tag">Startups</span><span class="ind-tag">Web3 Projects</span><span class="ind-tag">Sneaker Brands</span><span class="ind-tag">Influencers</span>
+  </div>
+</div>
+</section>
+
+<!-- FAQ SNIPPET -->
+<section class="section">
+<div class="inner">
+  <div class="sec-lbl fu">Quick Answers</div>
+  <h2 class="fu">COMMON <span class="h2c">QUESTIONS</span></h2>
+  <div class="faq-snippet fu">
+    <div class="fq"><h4>Is there flexibility on pricing?</h4><p>Yes. We work with businesses on custom entry plans based on revenue and goals. Found out in your free discovery call.</p></div>
+    <div class="fq"><h4>How fast can my site go live?</h4><p>Standard 5-page sites can be live in 1–2 weeks when assets are ready. Rush timelines available.</p></div>
+    <div class="fq"><h4>Do you work outside Chicago?</h4><p>Everywhere. Chicago-based, globally capable. If you have a vision and an internet connection, we can build it.</p></div>
+    <div class="fq"><h4>What is Agentic AI?</h4><p>AI that plans, reasons, and executes multi-step tasks autonomously — not just following a script. The next frontier of automation, coming 2026.</p></div>
+  </div>
+  <div class="faq-more fu"><a href="faq.html">View All FAQs →</a></div>
+</div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="cta-bg"></div>
+  <div class="cta-inner">
+    <div class="sec-lbl fu" style="justify-content:center;margin-bottom:16px">Let's Build</div>
+    <h2 class="fu">READY TO GROW<br/><span class="h2c">YOUR BUSINESS?</span></h2>
+    <p class="fu">Book a free 30-minute strategy call. We'll review your digital presence and show you exactly what's leaving money on the table — no commitment, no pressure.</p>
+    <div class="hero-btns fu" style="justify-content:center">
+      <a href="https://calendly.com/hello-geodm/30min" class="btn1" target="_blank">Book Free Strategy Call</a>
+      <a href="mailto:hello@geodm.us" class="btn2">Email Us Directly</a>
+    </div>
+    <div class="cta-contact fu">
+      <a href="tel:7732361831">📞 773.236.1831</a>
+      <a href="mailto:hello@geodm.us">✉️ hello@geodm.us</a>
+      <a href="https://instagram.com/geodm.us" target="_blank">📱 @geodm.us</a>
+    </div>
+    <p class="fu" style="margin-top:20px;font-size:13px;color:rgba(255,255,255,.3)">¿Prefieres hablar en español? Escríbenos — hello@geodm.us</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fg">
+    <div class="fb"><div class="fwm">GEODMus</div><span class="fsub">Geo Digital Media</span><p>Your digital growth partner — from local businesses to full venture ecosystems.</p></div>
+    <div class="fc"><h5>Services</h5><ul>
+      <li><a href="services.html#web-design">Website Design</a></li>
+      <li><a href="services.html#ai-automation">AI Automation</a></li>
+      <li><a href="services.html#marketing">Marketing & Social</a></li>
+      <li><a href="services.html#web3">Web3 & Blockchain</a></li>
+    </ul></div>
+    <div class="fc"><h5>Company</h5><ul>
+      <li><a href="about.html">About</a></li>
+      <li><a href="ventures.html">Ventures</a></li>
+      <li><a href="index.html#pricing">Pricing</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul></div>
+    <div class="fc"><h5>Connect</h5><ul>
+      <li><a href="mailto:hello@geodm.us">hello@geodm.us</a></li>
+      <li><a href="tel:7732361831">773.236.1831</a></li>
+      <li><a href="https://instagram.com/geodm.us" target="_blank">@geodm.us</a></li>
+      <li><a href="https://x.com/geodmus" target="_blank">@geodmus</a></li>
+    </ul></div>
+  </div>
+  <div class="fbtm">
+    <span>© 2026 Geo Digital Media · GeoDMus · geodm.us · All rights reserved.</span>
+    <div><a href="https://instagram.com/geodm.us" target="_blank">Instagram</a><a href="https://x.com/geodmus" target="_blank">X / Twitter</a></div>
+  </div>
+</footer>
+
+<script>
+const fo=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on')})},{threshold:.08});
+document.querySelectorAll('.fu').forEach(el=>fo.observe(el));
+</script>
+</body>
+</html>

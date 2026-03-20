@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Premier Group | Tax · Credit · Real Estate</title>
+<meta name="description" content="Family-focused financial services — tax prep, credit building, and real estate advisory for everyday families building toward financial freedom."/>
+<link rel="icon" type="image/png" href="gdm.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600;700&family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet"/>
+<style>
+:root{--c:#00c8d4;--m:#cc2d8f;--a:#1a6b4a;--a2:#2a9e6e;--d:#070c0d;--d2:#0d1517;--d3:#111a1c;--w:#fff;--g:#8a9ba0}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--d);color:var(--w);font-family:'Barlow',sans-serif;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:70px;background:rgba(7,12,13,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,200,212,.1)}
+.logo{text-decoration:none;line-height:1}.logo .wm{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:var(--w);display:block}.logo .sub{font-size:9px;letter-spacing:2px;color:var(--c);text-transform:uppercase}
+.nav-links{display:flex;gap:28px;list-style:none}.nav-links a{color:var(--g);text-decoration:none;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;transition:color .2s}.nav-links a:hover{color:var(--c)}
+.nav-btn{background:var(--m);color:var(--w);padding:10px 20px;border-radius:3px;text-decoration:none;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700}
+.hero{min-height:60vh;display:flex;align-items:center;padding:130px 40px 80px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 80% 40%,rgba(26,107,74,.12) 0%,transparent 70%),radial-gradient(ellipse 40% 50% at 5% 80%,rgba(0,200,212,.06) 0%,transparent 70%),var(--d)}
+.hero-line{position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,transparent,var(--a2) 40%,var(--c) 80%,transparent)}
+.back{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--g);text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:color .2s;margin-bottom:20px}.back:hover{color:var(--c)}
+.hero-inner{position:relative;max-width:860px}
+.v-back-tag{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--a2);margin-bottom:12px}
+.badge{font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:700;padding:5px 12px;border-radius:2px;display:inline-block;margin-bottom:20px;background:rgba(42,158,110,.15);border:1px solid rgba(42,158,110,.4);color:var(--a2)}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,9vw,110px);line-height:.92;letter-spacing:2px;margin-bottom:20px;color:var(--w)}
+.cat{font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--g);margin-bottom:20px}
+.hero-desc{font-size:clamp(16px,2vw,20px);font-weight:300;line-height:1.65;color:rgba(255,255,255,.65);max-width:580px;border-left:3px solid var(--a2);padding-left:20px}
+.inner{max-width:1100px;margin:0 auto}
+.section{padding:72px 40px}
+.section.alt{background:var(--d2)}
+.sec-lbl{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--a2);margin-bottom:12px;display:flex;align-items:center;gap:10px}.sec-lbl::before{content:'';width:28px;height:2px;background:var(--a2)}
+h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,5vw,64px);letter-spacing:2px;line-height:.95;margin-bottom:16px}
+.ha{color:var(--a2)}.hc{color:var(--c)}
+.sec-desc{font-size:17px;line-height:1.7;color:rgba(255,255,255,.65);max-width:660px;margin-bottom:40px}
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:32px}
+.scard{background:var(--d3);padding:28px 24px;position:relative}
+.scard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--a2)}
+.scard.c::before{background:var(--c)}.scard.g::before{background:linear-gradient(90deg,var(--a2),var(--c))}
+.sico{font-size:28px;margin-bottom:14px}
+.scard h4{font-family:'Barlow Condensed',sans-serif;font-size:16px;letter-spacing:2px;text-transform:uppercase;color:var(--w);margin-bottom:10px}
+.scard p{font-size:13px;line-height:1.6;color:rgba(255,255,255,.55)}
+.pricing-row{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:32px}
+.price-card{background:var(--d3);padding:28px 24px;text-align:center}
+.price-n{font-family:'Bebas Neue',sans-serif;font-size:42px;line-height:1;color:var(--a2);margin-bottom:6px}
+.price-l{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--g)}
+.market-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:32px}
+.mcard{background:var(--d3);padding:24px;text-align:center}
+.mcard .mn{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--a2);line-height:1;margin-bottom:6px}
+.mcard .ml{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--g)}
+.mcard .md{font-size:12px;color:rgba(255,255,255,.45);margin-top:6px}
+.advantage{background:linear-gradient(135deg,rgba(26,107,74,.08),rgba(0,200,212,.05));border:1px solid rgba(42,158,110,.15);border-left:4px solid var(--a2);padding:32px;border-radius:4px;margin-top:32px}
+.advantage p{font-size:16px;line-height:1.75;color:rgba(255,255,255,.75)}.advantage strong{color:var(--w)}.advantage .ha{color:var(--a2)}
+.cta-band{background:var(--d2);border-top:1px solid rgba(42,158,110,.1);padding:72px 40px;text-align:center}
+.cta-band h3{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,68px);letter-spacing:2px;margin-bottom:14px}
+.cta-band p{font-size:17px;color:rgba(255,255,255,.6);margin-bottom:28px}
+.btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn1{background:var(--a2);color:var(--w);padding:14px 32px;text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;border-radius:3px}
+.btn2{border:1px solid rgba(0,200,212,.4);color:var(--c);padding:14px 32px;text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;border-radius:3px}
+footer{background:var(--d2);border-top:1px solid rgba(0,200,212,.1);padding:40px;text-align:center}
+footer p{font-size:13px;color:var(--g)}.footer-links{display:flex;gap:24px;justify-content:center;margin-top:12px}.footer-links a{color:var(--g);text-decoration:none;font-size:12px;letter-spacing:1px;text-transform:uppercase;transition:color .2s}.footer-links a:hover{color:var(--c)}
+.fu{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}.fu.on{opacity:1;transform:translateY(0)}
+@media(max-width:768px){nav{padding:0 20px}.nav-links{display:none}.hero{padding:100px 20px 56px}.section{padding:56px 20px}.sgrid,.pricing-row,.market-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="logo"><span class="wm">GEODMus</span><span class="sub">Geo Digital Media</span></a>
+  <ul class="nav-links"><li><a href="ventures.html">← Ventures</a></li><li><a href="services.html">Services</a></li><li><a href="about.html">About</a></li><li><a href="faq.html">FAQ</a></li></ul>
+  <a href="https://calendly.com/hello-geodm/30min" class="nav-btn" target="_blank">Free Strategy Call</a>
+</nav>
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-line"></div>
+  <div class="hero-inner">
+    <a href="ventures.html" class="back">← Back to Ventures</a>
+    <div class="v-back-tag">Venture 02 · Built by GeoDMus</div>
+    <span class="badge">● Active / Building</span>
+    <div class="cat">Tax · Credit · Real Estate</div>
+    <h1>PREMIER<br/>GROUP</h1>
+    <p class="hero-desc">Empowering everyday families to build real wealth through accessible, expert-led financial guidance. Tax prep, credit building, and real estate advisory — without corporate jargon or hidden fees.</p>
+  </div>
+</section>
+<section class="section alt">
+<div class="inner">
+  <div class="sec-lbl fu">What We Offer</div>
+  <h2 class="fu">THREE PILLARS OF <span class="ha">FINANCIAL FREEDOM</span></h2>
+  <div class="sgrid fu">
+    <div class="scard"><div class="sico">🧾</div><h4>Premier Tax</h4><p>Individual and small business tax preparation. Year-round planning consultations, amendment support, and audit guidance. From $150 per return.</p></div>
+    <div class="scard c"><div class="sico">📈</div><h4>Credit Building</h4><p>Credit analysis, repair programs, dispute letter service, and credit building roadmaps. Monthly retainer programs from $99/month.</p></div>
+    <div class="scard g"><div class="sico">🏡</div><h4>Real Estate Advisory</h4><p>Buyer consultations, financial readiness for homeownership, and referral partnerships with local agents. Built for families ready to take the next step.</p></div>
+  </div>
+  <div class="pricing-row fu">
+    <div class="price-card"><div class="price-n">$150</div><div class="price-l">Individual Tax Return</div></div>
+    <div class="price-card"><div class="price-n">$99</div><div class="price-l">Credit Program / Month</div></div>
+    <div class="price-card"><div class="price-n">$299</div><div class="price-l">Homeownership Readiness</div></div>
+  </div>
+</div>
+</section>
+<section class="section">
+<div class="inner">
+  <div class="sec-lbl fu">Market Opportunity</div>
+  <h2 class="fu">A MASSIVE <span class="hc">UNDERSERVED</span> MARKET</h2>
+  <p class="sec-desc fu">The families who need real financial expertise the most are the ones most underserved by big firms and faceless apps. Premier Group fills that gap — trusted, bilingual, community-first.</p>
+  <div class="market-grid fu">
+    <div class="mcard"><div class="mn">$11B</div><div class="ml">Tax Preparation Market</div><div class="md">U.S. annual market size</div></div>
+    <div class="mcard"><div class="mn">$4B</div><div class="ml">Credit Repair Industry</div><div class="md">Growing annually</div></div>
+    <div class="mcard"><div class="mn">$5T</div><div class="ml">Real Estate Market</div><div class="md">U.S. residential market</div></div>
+  </div>
+  <div class="advantage fu">
+    <p><strong>The Premier Group advantage:</strong> <span class="ha">Community-first, bilingual service</span> for Spanish-speaking families underserved by most firms. Powered by GeoDMus digital infrastructure from day one — professional website, booking automation, and email marketing. Every tax client is a potential GeoDMus referral. <strong>Every family served is a family empowered.</strong></p>
+  </div>
+</div>
+</section>
+<div class="cta-band">
+  <h3>READY TO TAKE <span style="color:var(--a2)">CONTROL</span> OF YOUR FINANCES?</h3>
+  <p>Tax prep, credit building, or homeownership planning — Premier Group is here. Book a free consultation.</p>
+  <div class="btns"><a href="https://calendly.com/hello-geodm/30min" class="btn1" target="_blank">Book Free Consultation</a><a href="/cdn-cgi/l/email-protection#afc7cac3c3c0efc8cac0cbc281dadc" class="btn2">Email Us</a></div>
+  <p style="margin-top:16px;font-size:13px;color:rgba(255,255,255,.3)">¿Prefieres hablar en español? Escríbenos — <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="543c3138383b1433313b30397a2127">[email&#160;protected]</a></p>
+</div>
+<footer><p>© 2026 Premier Group · A Geo Digital Media Venture · geodm.us</p><div class="footer-links"><a href="ventures.html">All Ventures</a><a href="index.html">GeoDMus</a><a href="https://instagram.com/geodm.us" target="_blank">Instagram</a></div></footer>
+</body>
+</html>

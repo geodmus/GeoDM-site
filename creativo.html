@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Creativo | Events · Production · Community</title>
+<meta name="description" content="Marketplace connecting local creative pros with clients for life's most meaningful moments."/>
+<link rel="icon" type="image/png" href="gdm.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600;700&family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet"/>
+<style>
+:root{--c:#00c8d4;--m:#cc2d8f;--a:#9b5de5;--a2:#b87dff;--d:#070c0d;--d2:#0d1517;--d3:#111a1c;--w:#fff;--g:#8a9ba0}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--d);color:var(--w);font-family:'Barlow',sans-serif;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:70px;background:rgba(7,12,13,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,200,212,.1)}
+.logo{text-decoration:none;line-height:1}.logo .wm{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:var(--w);display:block}.logo .sub{font-size:9px;letter-spacing:2px;color:var(--c);text-transform:uppercase}
+.nav-links{display:flex;gap:28px;list-style:none}.nav-links a{color:var(--g);text-decoration:none;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;transition:color .2s}.nav-links a:hover{color:var(--c)}
+.nav-btn{background:var(--m);color:var(--w);padding:10px 20px;border-radius:3px;text-decoration:none;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700}
+.hero{min-height:60vh;display:flex;align-items:center;padding:130px 40px 80px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 80% 40%,rgba(155,93,229,.1) 0%,transparent 70%),radial-gradient(ellipse 40% 50% at 5% 80%,rgba(0,200,212,.06) 0%,transparent 70%),var(--d)}
+.hero-line{position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,transparent,var(--a2) 40%,var(--c) 80%,transparent)}
+.back{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--g);text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:color .2s;margin-bottom:20px}.back:hover{color:var(--c)}
+.hero-inner{position:relative;max-width:860px}
+.v-back-tag{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--a2);margin-bottom:12px}
+.badge{font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:700;padding:5px 12px;border-radius:2px;display:inline-block;margin-bottom:20px;background:rgba(184,125,255,.1);border:1px solid rgba(184,125,255,.3);color:var(--a2)}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(64px,10vw,130px);line-height:.92;letter-spacing:2px;margin-bottom:20px}
+.cat{font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--g);margin-bottom:20px}
+.hero-desc{font-size:clamp(16px,2vw,20px);font-weight:300;line-height:1.65;color:rgba(255,255,255,.65);max-width:580px;border-left:3px solid var(--a2);padding-left:20px}
+.inner{max-width:1100px;margin:0 auto}
+.section{padding:72px 40px}.section.alt{background:var(--d2)}
+.sec-lbl{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--a2);margin-bottom:12px;display:flex;align-items:center;gap:10px}.sec-lbl::before{content:'';width:28px;height:2px;background:var(--a2)}
+h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,5vw,64px);letter-spacing:2px;line-height:.95;margin-bottom:16px}.ha{color:var(--a2)}.hm{color:var(--m)}
+.sec-desc{font-size:17px;line-height:1.7;color:rgba(255,255,255,.65);max-width:660px;margin-bottom:40px}
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:32px}
+.scard{background:var(--d3);padding:28px 24px;position:relative}
+.scard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--a2)}
+.scard.m::before{background:var(--m)}.scard.c::before{background:var(--c)}
+.sico{font-size:28px;margin-bottom:14px}
+.scard h4{font-family:'Barlow Condensed',sans-serif;font-size:16px;letter-spacing:2px;text-transform:uppercase;color:var(--w);margin-bottom:10px}
+.scard p{font-size:13px;line-height:1.6;color:rgba(255,255,255,.55)}
+.who-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:32px 0}
+.who-card{background:var(--d3);padding:32px}
+.who-card h4{font-family:'Barlow Condensed',sans-serif;font-size:18px;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+.who-card:nth-child(1) h4{color:var(--a2)}.who-card:nth-child(2) h4{color:var(--c)}
+.who-card ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.who-card ul li{font-size:14px;color:rgba(255,255,255,.6);padding-left:16px;position:relative}.who-card ul li::before{content:'→';position:absolute;left:0;color:var(--a2);font-size:12px}
+.who-card:nth-child(2) ul li::before{color:var(--c)}
+.cs-band{background:linear-gradient(135deg,rgba(155,93,229,.08),rgba(0,200,212,.05));border:1px solid rgba(184,125,255,.15);padding:40px;border-radius:4px;text-align:center;margin-top:32px}
+.cs-band h3{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,4vw,52px);letter-spacing:2px;margin-bottom:12px}.cs-band h3 span{color:var(--a2)}
+.cs-band p{font-size:16px;color:rgba(255,255,255,.6);margin-bottom:24px}
+.btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn1{background:var(--a2);color:var(--d);padding:14px 32px;text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;border-radius:3px}
+.btn2{border:1px solid rgba(0,200,212,.4);color:var(--c);padding:14px 32px;text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;border-radius:3px}
+footer{background:var(--d2);border-top:1px solid rgba(0,200,212,.1);padding:40px;text-align:center}
+footer p{font-size:13px;color:var(--g)}.footer-links{display:flex;gap:24px;justify-content:center;margin-top:12px}.footer-links a{color:var(--g);text-decoration:none;font-size:12px;letter-spacing:1px;text-transform:uppercase;transition:color .2s}.footer-links a:hover{color:var(--c)}
+.fu{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}.fu.on{opacity:1;transform:translateY(0)}
+@media(max-width:768px){nav{padding:0 20px}.nav-links{display:none}.hero{padding:100px 20px 56px}.section{padding:56px 20px}.sgrid,.who-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="logo"><span class="wm">GEODMus</span><span class="sub">Geo Digital Media</span></a>
+  <ul class="nav-links"><li><a href="ventures.html">← Ventures</a></li><li><a href="services.html">Services</a></li><li><a href="about.html">About</a></li></ul>
+  <a href="https://calendly.com/hello-geodm/30min" class="nav-btn" target="_blank">Free Strategy Call</a>
+</nav>
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-line"></div>
+  <div class="hero-inner">
+    <a href="ventures.html" class="back">← Back to Ventures</a>
+    <div class="v-back-tag">Venture 04 · Built by GeoDMus</div>
+    <span class="badge">● Building / Coming Soon</span>
+    <div class="cat">Events · Production · Community</div>
+    <h1>CREATIVO</h1>
+    <p class="hero-desc">Local talent. Every occasion. Marketplace connecting local creative professionals with clients for life's most meaningful moments — weddings, quinceañeras, graduations, corporate events, and beyond.</p>
+  </div>
+</section>
+<section class="section alt">
+<div class="inner">
+  <div class="sec-lbl fu">The Platform</div>
+  <h2 class="fu">EVERY EVENT DESERVES<br/>A <span class="ha">GREAT STORY.</span></h2>
+  <p class="sec-desc fu">Creativo finds the people who tell it. A trusted, curated marketplace where the fragmented local creative market finally has a home.</p>
+  <div class="sgrid fu">
+    <div class="scard"><div class="sico">📸</div><h4>Photography</h4><p>Wedding, event, graduation, quinceañera, and milestone photographers. Curated, vetted, and ready to book.</p></div>
+    <div class="scard m"><div class="sico">🎬</div><h4>Videography</h4><p>Cinematographers and videographers for events, corporate productions, and brand content. Every moment captured.</p></div>
+    <div class="scard c"><div class="sico">🚁</div><h4>Drone Operations</h4><p>Aerial footage and land documentation for events, real estate, and development projects. Premium tier service.</p></div>
+  </div>
+  <div class="who-grid fu">
+    <div class="who-card">
+      <h4>Who Lists on Creativo</h4>
+      <ul>
+        <li>Wedding & event photographers</li>
+        <li>Videographers & cinematographers</li>
+        <li>Drone operators — aerial & land documentation</li>
+        <li>Event producers & coordinators</li>
+        <li>Corporate event production teams</li>
+        <li>Graduation & quinceañera photographers</li>
+      </ul>
+    </div>
+    <div class="who-card">
+      <h4>Who Books on Creativo</h4>
+      <ul>
+        <li>Families planning weddings, quinceañeras, graduations</li>
+        <li>Real estate developers needing aerial documentation</li>
+        <li>Corporate clients planning events & conferences</li>
+        <li>Small businesses needing photo & video content</li>
+        <li>Land developers needing drone surveys</li>
+        <li>Anyone who needs to tell a visual story</li>
+      </ul>
+    </div>
+  </div>
+  <div class="cs-band fu">
+    <h3>CREATIVO IS <span>COMING SOON</span></h3>
+    <p>Platform is in development. Domain secured at creativo.community. Get on the early access list.</p>
+    <div class="btns"><a href="/cdn-cgi/l/email-protection#a0c8c5cccccfe0c7c5cfc4cd8ed5d39fd3d5c2cac5c3d49de3d2c5c1d4c9d6cf80e5c1d2ccd980e1c3c3c5d3d3" class="btn1">Join Early Access</a><a href="ventures.html" class="btn2">View All Ventures</a></div>
+  </div>
+</div>
+</section>
+<footer><p>© 2026 Creativo · A Geo Digital Media Venture · geodm.us</p><div class="footer-links"><a href="ventures.html">All Ventures</a><a href="index.html">GeoDMus</a><a href="https://instagram.com/geodm.us" target="_blank">Instagram</a></div></footer>
+</body>
+</html>

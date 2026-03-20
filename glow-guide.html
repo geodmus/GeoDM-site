@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Glow Guide | Beauty · Influencer Marketing</title>
+<meta name="description" content="Matching platform connecting nano and micro beauty influencers with brand sponsors. Performance-driven, creator-first."/>
+<link rel="icon" type="image/png" href="gdm.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600;700&family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet"/>
+<style>
+:root{--c:#00c8d4;--m:#cc2d8f;--a:#ff6b9d;--a2:#ff8fb3;--d:#070c0d;--d2:#0d1517;--d3:#111a1c;--w:#fff;--g:#8a9ba0}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--d);color:var(--w);font-family:'Barlow',sans-serif;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:70px;background:rgba(7,12,13,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,200,212,.1)}
+.logo{text-decoration:none;line-height:1}.logo .wm{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:var(--w);display:block}.logo .sub{font-size:9px;letter-spacing:2px;color:var(--c);text-transform:uppercase}
+.nav-links{display:flex;gap:28px;list-style:none}.nav-links a{color:var(--g);text-decoration:none;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;transition:color .2s}.nav-links a:hover{color:var(--c)}
+.nav-btn{background:var(--m);color:var(--w);padding:10px 20px;border-radius:3px;text-decoration:none;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700}
+.hero{min-height:60vh;display:flex;align-items:center;padding:130px 40px 80px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 80% 40%,rgba(255,107,157,.1) 0%,transparent 70%),radial-gradient(ellipse 40% 50% at 5% 80%,rgba(204,45,143,.08) 0%,transparent 70%),var(--d)}
+.hero-line{position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,transparent,var(--a2) 40%,var(--m) 80%,transparent)}
+.back{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--g);text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:color .2s;margin-bottom:20px}.back:hover{color:var(--c)}
+.hero-inner{position:relative;max-width:860px}
+.v-back-tag{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--a2);margin-bottom:12px}
+.badge{font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:700;padding:5px 12px;border-radius:2px;display:inline-block;margin-bottom:20px;background:rgba(255,107,157,.1);border:1px solid rgba(255,107,157,.3);color:var(--a2)}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(64px,10vw,130px);line-height:.92;letter-spacing:2px;margin-bottom:20px}
+.cat{font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--g);margin-bottom:20px}
+.hero-desc{font-size:clamp(16px,2vw,20px);font-weight:300;line-height:1.65;color:rgba(255,255,255,.65);max-width:580px;border-left:3px solid var(--a2);padding-left:20px}
+.inner{max-width:1100px;margin:0 auto}
+.section{padding:72px 40px}.section.alt{background:var(--d2)}
+.sec-lbl{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--a2);margin-bottom:12px;display:flex;align-items:center;gap:10px}.sec-lbl::before{content:'';width:28px;height:2px;background:var(--a2)}
+h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,5vw,64px);letter-spacing:2px;line-height:.95;margin-bottom:16px}.ha{color:var(--a2)}.hm{color:var(--m)}
+.sec-desc{font-size:17px;line-height:1.7;color:rgba(255,255,255,.65);max-width:660px;margin-bottom:40px}
+.match-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:center;margin:32px 0}
+.match-side{background:var(--d3);padding:36px 28px}
+.match-side h4{font-family:'Barlow Condensed',sans-serif;font-size:18px;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+.match-side:nth-child(1) h4{color:var(--a2)}.match-side:nth-child(3) h4{color:var(--m)}
+.match-side ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.match-side ul li{font-size:14px;color:rgba(255,255,255,.6);padding-left:16px;position:relative}.match-side ul li::before{content:'✓';position:absolute;left:0;color:var(--a2);font-size:12px}
+.match-side:nth-child(3) ul li::before{color:var(--m)}
+.match-arrow{padding:0 24px;text-align:center}
+.match-arrow .arr{font-family:'Bebas Neue',sans-serif;font-size:48px;color:rgba(255,143,179,.2);line-height:1}
+.match-arrow p{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--g);margin-top:8px}
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:32px}
+.scard{background:var(--d3);padding:28px 24px;position:relative}
+.scard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--a2)}
+.scard.m::before{background:var(--m)}.scard.c::before{background:var(--c)}
+.sico{font-size:28px;margin-bottom:14px}
+.scard h4{font-family:'Barlow Condensed',sans-serif;font-size:16px;letter-spacing:2px;text-transform:uppercase;color:var(--w);margin-bottom:10px}
+.scard p{font-size:13px;line-height:1.6;color:rgba(255,255,255,.55)}
+.cta-band{background:var(--d2);border-top:1px solid rgba(255,107,157,.1);padding:72px 40px;text-align:center}
+.cta-band h3{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,68px);letter-spacing:2px;margin-bottom:14px}
+.cta-band p{font-size:17px;color:rgba(255,255,255,.6);margin-bottom:28px}
+.btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn1{background:var(--a2);color:var(--d);padding:14px 32px;text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;border-radius:3px}
+.btn2{border:1px solid rgba(0,200,212,.4);color:var(--c);padding:14px 32px;text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;border-radius:3px}
+footer{background:var(--d2);border-top:1px solid rgba(0,200,212,.1);padding:40px;text-align:center}
+footer p{font-size:13px;color:var(--g)}.footer-links{display:flex;gap:24px;justify-content:center;margin-top:12px}.footer-links a{color:var(--g);text-decoration:none;font-size:12px;letter-spacing:1px;text-transform:uppercase;transition:color .2s}.footer-links a:hover{color:var(--c)}
+.fu{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}.fu.on{opacity:1;transform:translateY(0)}
+@media(max-width:768px){nav{padding:0 20px}.nav-links{display:none}.hero{padding:100px 20px 56px}.section{padding:56px 20px}.sgrid{grid-template-columns:1fr}.match-grid{grid-template-columns:1fr;gap:2px}.match-arrow{padding:16px 0}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="logo"><span class="wm">GEODMus</span><span class="sub">Geo Digital Media</span></a>
+  <ul class="nav-links"><li><a href="ventures.html">← Ventures</a></li><li><a href="services.html">Services</a></li><li><a href="about.html">About</a></li></ul>
+  <a href="https://calendly.com/hello-geodm/30min" class="nav-btn" target="_blank">Free Strategy Call</a>
+</nav>
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-line"></div>
+  <div class="hero-inner">
+    <a href="ventures.html" class="back">← Back to Ventures</a>
+    <div class="v-back-tag">Venture 06 · Built by GeoDMus</div>
+    <span class="badge">● Live / In Development</span>
+    <div class="cat">Beauty · Influencer Marketing</div>
+    <h1>GLOW<br/>GUIDE</h1>
+    <p class="hero-desc">Where beauty brands meet their perfect creator match. Connecting nano and micro beauty influencers with brand sponsors — performance-driven, authentic, and built for the creator economy shift.</p>
+  </div>
+</section>
+<section class="section alt">
+<div class="inner">
+  <div class="sec-lbl fu">The Match</div>
+  <h2 class="fu">THE RIGHT CREATOR.<br/><span class="ha">THE RIGHT BRAND.</span></h2>
+  <p class="sec-desc fu">Nano and micro influencers drive higher engagement than mega accounts — and cost a fraction of the price. Glow Guide makes that connection effortless for both sides.</p>
+  <div class="match-grid fu">
+    <div class="match-side">
+      <h4>For Creators</h4>
+      <ul>
+        <li>Nano influencers (1K–10K followers)</li>
+        <li>Micro influencers (10K–100K followers)</li>
+        <li>Beauty, skincare & wellness content creators</li>
+        <li>Get matched with paid brand deals</li>
+        <li>Performance-tracked campaigns</li>
+        <li>Build a real income from your audience</li>
+      </ul>
+    </div>
+    <div class="match-arrow">
+      <div class="arr">⟷</div>
+      <p>Glow Guide<br/>Match</p>
+    </div>
+    <div class="match-side">
+      <h4>For Brands</h4>
+      <ul>
+        <li>Beauty, skincare & wellness brands</li>
+        <li>Access to vetted micro creator network</li>
+        <li>Higher engagement than mega influencers</li>
+        <li>Performance-tracked ROI on every campaign</li>
+        <li>Authentic content that converts</li>
+        <li>Scale campaigns without scaling cost</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</section>
+<section class="section">
+<div class="inner">
+  <div class="sec-lbl fu">Platform Features</div>
+  <h2 class="fu">BUILT FOR THE <span class="hm">CREATOR ECONOMY</span></h2>
+  <div class="sgrid fu">
+    <div class="scard"><div class="sico">🤝</div><h4>Smart Matching</h4><p>Algorithm-driven matching based on audience demographics, engagement rate, content style, and brand fit. No more cold outreach.</p></div>
+    <div class="scard m"><div class="sico">📊</div><h4>Performance Tracking</h4><p>Real-time campaign analytics — reach, engagement, conversions, and ROI tracked for every brand deal. Data-driven, always.</p></div>
+    <div class="scard c"><div class="sico">💳</div><h4>Secure Payments</h4><p>Built-in payment processing for brand deals. Creators get paid on time, every time. Brands get verified deliverables before releasing funds.</p></div>
+  </div>
+</div>
+</section>
+<div class="cta-band">
+  <h3>YOUR <span style="color:var(--a2)">GLOW</span> DESERVES A DEAL.</h3>
+  <p>Glow Guide is live and in development. Join the creator waitlist or inquire about brand partnerships.</p>
+  <div class="btns"><a href="/cdn-cgi/l/email-protection#dab2bfb6b6b59abdbfb5beb7f4afa9e5a9afb8b0bfb9aee79db6b5adfa9dafb3bebffaf7fa99a8bfbbaeb5a8fa8dbbb3aeb6b3a9ae" class="btn1">Join as Creator</a><a href="/cdn-cgi/l/email-protection#2048454c4c4f6047454f444d0e55531f5355424a4543541d674c4f57006755494445000d006252414e4400704152544e455253484950" class="btn2">Brand Partnership</a></div>
+</div>
+<footer><p>© 2026 Glow Guide · A Geo Digital Media Venture · geodm.us</p><div class="footer-links"><a href="ventures.html">All Ventures</a><a href="index.html">GeoDMus</a><a href="https://instagram.com/geodm.us" target="_blank">Instagram</a></div></footer>
+</body>
+</html>

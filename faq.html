@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>FAQ | Geo Digital Media — GeoDMus</title>
+<meta name="description" content="No fluff. Just real answers about pricing, timelines, contracts, Web3, and working with GeoDMus."/>
+<link rel="icon" type="image/png" href="gdm.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600;700&family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet"/>
+<style>
+:root{--c:#00c8d4;--m:#cc2d8f;--d:#070c0d;--d2:#0d1517;--d3:#111a1c;--w:#fff;--g:#8a9ba0}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--d);color:var(--w);font-family:'Barlow',sans-serif;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:70px;background:rgba(7,12,13,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,200,212,.1)}
+.logo{text-decoration:none;line-height:1}.logo .wm{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:var(--w);display:block}.logo .sub{font-size:9px;letter-spacing:2px;color:var(--c);text-transform:uppercase}
+.nav-links{display:flex;gap:28px;list-style:none}.nav-links a{color:var(--g);text-decoration:none;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;transition:color .2s}.nav-links a:hover,.nav-links a.on{color:var(--c)}
+.nav-btn{background:var(--m);color:var(--w);padding:10px 20px;border-radius:3px;text-decoration:none;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700}
+.hero{min-height:48vh;display:flex;align-items:center;padding:130px 40px 72px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 50% 70% at 90% 40%,rgba(0,200,212,.07) 0%,transparent 70%),radial-gradient(ellipse 40% 50% at 5% 80%,rgba(204,45,143,.05) 0%,transparent 70%),var(--d)}
+.hero-line{position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,transparent,var(--c) 40%,var(--m) 80%,transparent)}
+.hero-inner{position:relative;max-width:800px}
+.lbl{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--c);margin-bottom:18px;display:flex;align-items:center;gap:10px}.lbl::before{content:'';width:32px;height:2px;background:var(--c)}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,9vw,108px);line-height:.92;letter-spacing:2px;margin-bottom:24px}
+.h1c{color:var(--c)}
+.hero-sub{font-size:clamp(15px,2vw,19px);font-weight:300;line-height:1.65;color:rgba(255,255,255,.65);max-width:560px;border-left:3px solid var(--m);padding-left:20px}
+.ticker-wrap{overflow:hidden;background:rgba(0,200,212,.04);border-top:1px solid rgba(0,200,212,.1);border-bottom:1px solid rgba(0,200,212,.1);padding:13px 0}
+.ticker{display:flex;gap:48px;white-space:nowrap;animation:tick 28s linear infinite}
+.ticker span{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--c);opacity:.6}.ticker .dot{color:var(--m);opacity:1}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.faq-body{max-width:1100px;margin:0 auto;padding:72px 40px 100px;display:grid;grid-template-columns:240px 1fr;gap:56px;align-items:start}
+.sidebar{position:sticky;top:90px}
+.sb-title{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--g);margin-bottom:16px}
+.sb-nav{list-style:none;display:flex;flex-direction:column;gap:3px}
+.sb-nav a{display:block;padding:9px 14px;color:var(--g);text-decoration:none;font-size:13px;border-left:2px solid transparent;transition:all .2s;border-radius:0 3px 3px 0}
+.sb-nav a:hover,.sb-nav a.on{color:var(--c);border-left-color:var(--c);background:rgba(0,200,212,.06)}
+.sb-cta{margin-top:32px;background:var(--d3);border:1px solid rgba(0,200,212,.15);border-radius:4px;padding:24px}
+.sb-cta p{font-size:13px;color:rgba(255,255,255,.55);line-height:1.6;margin-bottom:14px}
+.sb-cta a{display:block;background:var(--m);color:var(--w);text-align:center;padding:11px;border-radius:3px;text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700}
+.faq-content{display:flex;flex-direction:column;gap:56px}
+.faq-cat{scroll-margin-top:90px}
+.cat-hd{display:flex;align-items:center;gap:14px;margin-bottom:28px;padding-bottom:18px;border-bottom:1px solid rgba(0,200,212,.08)}
+.cat-ico{width:44px;height:44px;background:rgba(0,200,212,.07);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.cat-title{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:2px;color:var(--w)}
+.cat-title span{color:var(--c)}
+.acc{display:flex;flex-direction:column;gap:2px}
+.acc-item{background:var(--d2);border-left:3px solid transparent;transition:border-color .3s}
+.acc-item.open{border-left-color:var(--c)}
+.acc-item:nth-child(even).open{border-left-color:var(--m)}
+.acc-btn{width:100%;background:none;border:none;cursor:pointer;padding:22px 24px;display:flex;justify-content:space-between;align-items:center;gap:14px;text-align:left}
+.acc-q{font-size:15px;font-weight:600;color:var(--w);line-height:1.4;font-family:'Barlow',sans-serif}
+.acc-ico{width:26px;height:26px;border-radius:50%;border:1px solid rgba(0,200,212,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--c);font-size:18px;transition:all .3s}
+.acc-item.open .acc-ico{background:var(--c);color:var(--d);border-color:var(--c);transform:rotate(45deg)}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease;padding:0 24px}
+.acc-item.open .acc-body{max-height:500px;padding:0 24px 24px}
+.acc-body p{font-size:14px;line-height:1.8;color:rgba(255,255,255,.65);margin-bottom:10px}
+.acc-body p:last-child{margin-bottom:0}
+.acc-body strong{color:var(--w)}.acc-body .c{color:var(--c)}.acc-body .m{color:var(--m)}
+.acc-body ul{margin:10px 0 10px 18px;display:flex;flex-direction:column;gap:6px}
+.acc-body ul li{font-size:14px;color:rgba(255,255,255,.65);line-height:1.6}
+.hl{background:rgba(0,200,212,.06);border:1px solid rgba(0,200,212,.15);border-radius:4px;padding:14px 18px;margin-top:14px}
+.hl p{color:var(--c);font-size:13px;margin:0}
+.cta-band{background:var(--d2);border-top:1px solid rgba(204,45,143,.1);padding:80px 40px;text-align:center}
+.cta-band h3{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,6vw,76px);letter-spacing:2px;margin-bottom:16px}
+.cta-band h3 span{color:var(--c)}
+.cta-band p{font-size:17px;color:rgba(255,255,255,.6);margin-bottom:32px}
+.btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn1{background:var(--m);color:var(--w);padding:15px 32px;text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;border-radius:3px}
+.btn2{border:1px solid rgba(0,200,212,.4);color:var(--c);padding:15px 32px;text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;border-radius:3px}
+footer{background:var(--d2);border-top:1px solid rgba(0,200,212,.1);padding:56px 40px 36px}
+.fg{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.06)}
+.fb .fwm{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:3px}.fb .fsub{font-size:9px;letter-spacing:2px;color:var(--c);text-transform:uppercase;display:block;margin-bottom:12px}.fb p{font-size:13px;color:var(--g);line-height:1.6}
+.fc h5{font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--w);margin-bottom:16px}
+.fc ul{list-style:none}.fc li{margin-bottom:8px}.fc a{color:var(--g);text-decoration:none;font-size:13px;transition:color .2s}.fc a:hover{color:var(--c)}
+.fbtm{max-width:1100px;margin:28px auto 0;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--g)}
+.fbtm a{color:var(--g);text-decoration:none;margin-left:16px}.fbtm a:hover{color:var(--c)}
+@media(max-width:768px){nav{padding:0 20px}.nav-links{display:none}.hero{padding:100px 20px 56px}.faq-body{grid-template-columns:1fr;padding:48px 20px 72px;gap:40px}.sidebar{position:static}.sb-nav{flex-direction:row;flex-wrap:wrap}.sb-nav a{border-left:none;border-bottom:2px solid transparent;padding:7px 12px;font-size:12px}.sb-nav a:hover,.sb-nav a.on{border-left:none;border-bottom-color:var(--c)}.fg{grid-template-columns:1fr 1fr;gap:28px}.fbtm{flex-direction:column;gap:10px;text-align:center}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="logo"><span class="wm">GEODMus</span><span class="sub">Geo Digital Media</span></a>
+  <ul class="nav-links">
+    <li><a href="services.html">Services</a></li>
+    <li><a href="ventures.html">Ventures</a></li>
+    <li><a href="index.html#pricing">Pricing</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="faq.html" class="on">FAQ</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a href="https://calendly.com/hello-geodm/30min" class="nav-btn" target="_blank">Free Strategy Call</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-line"></div>
+  <div class="hero-inner">
+    <div class="lbl">Frequently Asked Questions</div>
+    <h1>NO FLUFF.<br/>JUST <span class="h1c">REAL</span><br/>ANSWERS.</h1>
+    <p class="hero-sub">We get asked the same questions a lot. Here they all are — straight, honest, no runaround. If you don't find what you're looking for, call or book a free strategy call.</p>
+  </div>
+</section>
+
+<div class="ticker-wrap"><div class="ticker">
+  <span>Pricing</span><span class="dot">◆</span><span>Timelines</span><span class="dot">◆</span><span>Contracts</span><span class="dot">◆</span><span>Payment Plans</span><span class="dot">◆</span><span>Web3</span><span class="dot">◆</span><span>Agentic AI</span><span class="dot">◆</span><span>GeoDMus</span><span class="dot">◆</span>
+  <span>Pricing</span><span class="dot">◆</span><span>Timelines</span><span class="dot">◆</span><span>Contracts</span><span class="dot">◆</span><span>Payment Plans</span><span class="dot">◆</span><span>Web3</span><span class="dot">◆</span><span>Agentic AI</span><span class="dot">◆</span><span>GeoDMus</span><span class="dot">◆</span>
+</div></div>
+
+<div class="faq-body">
+  <aside class="sidebar">
+    <div class="sb-title">Jump to section</div>
+    <ul class="sb-nav">
+      <li><a href="#pricing" class="on">💰 Pricing & Plans</a></li>
+      <li><a href="#payment">📆 Payment & Contracts</a></li>
+      <li><a href="#process">⚙️ Process & Timelines</a></li>
+      <li><a href="#services">🛠 Services</a></li>
+      <li><a href="#results">📈 Results</a></li>
+      <li><a href="#working">🤝 Working Together</a></li>
+    </ul>
+    <div class="sb-cta"><p>Still have questions? Let's talk live — free, no pressure.</p><a href="https://calendly.com/hello-geodm/30min" target="_blank">Book a Free Call</a></div>
+  </aside>
+
+  <div class="faq-content">
+
+    <div class="faq-cat" id="pricing">
+      <div class="cat-hd"><div class="cat-ico">💰</div><div class="cat-title">Pricing <span>&</span> Plans</div></div>
+      <div class="acc">
+        <div class="acc-item open">
+          <button class="acc-btn"><span class="acc-q">Your prices seem high. Is there any flexibility?</span><span class="acc-ico">+</span></button>
+          <div class="acc-body"><p>Every business situation is different. A barbershop doesn't have the same budget as a corporate brand. During your free discovery call we learn about your business revenue and what you can realistically invest. <span class="c">If our standard packages are out of reach, we work with you on a custom discounted plan.</span></p><p>As results come in and revenue grows, you upgrade to a full package. We grow together.</p><div class="hl"><p>💡 Custom pricing is determined in your discovery call — not online. Book yours free.</p></div></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn"><span class="acc-q">What do your standard packages include?</span><span class="acc-ico">+</span></button>
+          <div class="acc-body"><p>Three flat-rate monthly retainers — no hidden fees:</p><ul><li><strong>Launchpad $799/mo</strong> — 5-page site, SEO, booking, 1 email campaign, social setup, AI automation, strategy call</li><li><strong>Growth Engine $1,599/mo</strong> — 10-page site, advanced SEO, full AI + SMS, 4 email campaigns, 3 platforms 4x/week, lead funnels, analytics</li><li><strong>Empire Mode $2,999/mo</strong> — custom site, unlimited email, daily social all platforms, paid ads, dedicated account manager, weekly reports</li></ul><p>Custom platforms start at $4,500, scoped individually.</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn"><span class="acc-q">Do you offer payment plans?</span><span class="acc-ico">+</span></button>
+          <div class="acc-body"><p><strong>Yes.</strong> We believe every business deserves access to professional digital services. For qualifying businesses we can structure a custom entry plan — a lower monthly rate while you're getting started, transitioning to a standard package once results come in.</p><p>What we ask in return: <span class="m">commitment.</span> If we're discounting our rate to help you grow, we need you to show up and hold your end of the agreement.</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn"><span class="acc-q">Are there any hidden fees?</span><span class="acc-ico">+</span></button>
+          <div class="acc-body"><p><strong>No hidden fees. Ever.</strong> What you agree to is what you pay. Third-party tools like domains or ad spend are always disclosed upfront. You own your accounts and assets at all times.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-cat" id="payment">
+      <div class="cat-hd"><div class="cat-ico">📆</div><div class="cat-title">Payment <span>&</span> Contracts</div></div>
+      <div class="acc">
+        <div class="acc-item">
+          <button class="acc-btn"><span class="acc-q">What is your contract commitment?</span><span class="acc-ico">+</span></button>
+          <div class="acc-body"><p><strong>3-month minimum</strong> on all packages including discounted plans. Real digital results take time — a website needs to index, an email list needs to warm up. Three months is the minimum window to see meaningful movement.</p><p>After 3 months, cancel anytime with 30 days notice. <span class="c">We want clients who stay because of results — not because they're locked in.</span></p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn"><span class="acc-q">What payment methods do you accept?</span><span class="acc-ico">+</span></button>
+          <div class="acc-body"><ul><li><strong>Credit & debit cards</strong> — via Stripe</li><li><strong>ACH bank transfer</strong> — via Stripe</li><li><strong>Cryptocurrency</strong> — Bitcoin, USDC, and major coins via Coinbase Commerce and Strike</li></ul><p>Monthly retainers are billed automatically on your start date. No chasing invoices.</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn"><span class="acc-q">Can I upgrade or downgrade my package?</span><span class="acc-ico">+</span></button>
+          <div class="acc-body"><p><strong>Absolutely.</strong> Most clients start on Launchpad and grow into Growth Engine as results improve. Upgrades happen at any billing cycle. Downgrades handled case-by-case after the 3-month commitment period.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-cat" id="process">
+      <div class="cat-hd"><div class="cat-ico">⚙️</div><div class="cat-title">Process <span>&</span> Timelines</div></div>
+      <div class="acc">
+        <div class="acc-item">
+          <button class="acc-btn"><span class="acc-q">How long does it take to get my website live?</span><span class="acc-ico">+</span></button>
+          <div class="acc-body"><p><strong>Standard 5-page sites can be live within 1–2 weeks</strong> when content and assets are ready. Larger builds and custom platforms take 4–8 weeks depending on complexity. Rush timelines are available at an additional rate.</p><p>The biggest factor: <strong>your responsiveness.</strong> The faster you get us content, feedback, and approvals — the faster we ship.</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn"><span class="acc-q">What does onboarding look like?</span><span class="acc-ico">+</span></button>
+          <div class="acc-body"><ul><li><strong>Step 1 — Discovery Call (Free, 30 min):</strong> We learn your business, goals, and gaps</li><li><strong>Step 2 — Custom Strategy:</strong> Tailored growth plan built for your business</li><li><strong>Step 3 — Agreement & Kickoff:</strong> We collect your assets and get to work</li><li><strong>Step 4 — Build & Launch:</strong> Site and automations go live on the agreed timeline</li><li><strong>Step 5 — Marketing Live:</strong> Email, social, and automation run. Leads flow in</li></ul></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn"><span class="acc-q">Do I need to provide content or do you handle that?</span><span class="acc-ico">+</span></button>
+          <div class="acc-body"><p>We handle as much as possible — <strong>website copy, social content, graphics, and email campaigns</strong> are all included. What helps us move faster: any existing brand assets and basic business info. Don't have a logo yet? <span class="c">We build that too.</span></p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-cat" id="services">
+      <div class="cat-hd"><div class="cat-ico">🛠</div><div class="cat-title">Our <span>Services</span></div></div>
+      <div class="acc">
+        <div class="acc-item">
+          <button class="acc-btn"><span class="acc-q">Do you only work with businesses in Chicago?</span><span class="acc-ico">+</span></button>
+          <div class="acc-body"><p><strong>Not at all.</strong> GeoDMus works with businesses everywhere — Chicago, Los Angeles, across the US, and internationally. With the technology available today there is no border we can't cross. <span class="c">If you have an internet connection and a vision, we can help you grow.</span></p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn"><span class="acc-q">What is Web3 and do I actually need it?</span><span class="acc-ico">+</span></button>
+          <div class="acc-body"><p>Web3 is the next evolution of the internet — built on blockchain. In practical terms: <strong>accepting crypto payments, NFT loyalty programs, token-based memberships, and on-chain business infrastructure.</strong></p><p>Do you need it right now? Not necessarily. But the businesses that understand and adopt it early will have a massive advantage. <span class="c">We're one of the only agencies in Chicago actively building real Web3 solutions</span> — with a founder who's been on-chain since before 2015.</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn"><span class="acc-q">Do you offer services in Spanish?</span><span class="acc-ico">+</span></button>
+          <div class="acc-body"><p><strong>Sí. Absolutamente.</strong> Our founder is fully bilingual — born in Los Angeles, raised between Chicago and Sahuayo, Mexico. We serve Spanish-speaking business owners with the same quality and care as any other client. <span class="c">Write to us in Spanish at hello@geodm.us — we'll respond in kind.</span></p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn"><span class="acc-q">What is Agentic AI and how does it differ from regular automation?</span><span class="acc-ico">+</span></button>
+          <div class="acc-body"><p>Regular automation executes a pre-defined sequence of steps. <strong>Agentic AI operates with true agency</strong> — it plans, reasons, and executes multi-step tasks autonomously without human intervention at each step.</p><p>Think of it this way: automation follows a recipe. <span class="c">Agentic AI figures out the recipe itself, adapts when ingredients are missing, and orders more without being asked.</span> This is the frontier of what we're building toward in our AI pillar — coming 2026.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-cat" id="results">
+      <div class="cat-hd"><div class="cat-ico">📈</div><div class="cat-title">Results <span>&</span> Expectations</div></div>
+      <div class="acc">
+        <div class="acc-item">
+          <button class="acc-btn"><span class="acc-q">How soon will I see results?</span><span class="acc-ico">+</span></button>
+          <div class="acc-body"><ul><li><strong>Week 1–2:</strong> Website live, automations running, social profiles active</li><li><strong>Month 1:</strong> First leads from organic content, automated follow-ups firing, email list building</li><li><strong>Month 2–3:</strong> Measurable traffic growth, consistent inbound inquiries, automation saving real hours</li><li><strong>Month 3+:</strong> Compounding growth — SEO building, audience growing, pipeline filling</li></ul><p><span class="m">We don't promise overnight miracles. We promise consistent, strategic work that compounds over time.</span></p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn"><span class="acc-q">Can you guarantee results?</span><span class="acc-ico">+</span></button>
+          <div class="acc-body"><p>Any agency that guarantees specific numbers is lying to you. <strong>We guarantee our effort, our strategy, and our execution.</strong> We track everything, report transparently, and adjust based on real data. <span class="c">If something isn't working, we find out why and we fix it.</span></p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-cat" id="working">
+      <div class="cat-hd"><div class="cat-ico">🤝</div><div class="cat-title">Working <span>Together</span></div></div>
+      <div class="acc">
+        <div class="acc-item">
+          <button class="acc-btn"><span class="acc-q">How do we communicate once we're working together?</span><span class="acc-ico">+</span></button>
+          <div class="acc-body"><p>Primary communication via <strong>email and scheduled strategy calls.</strong> You'll always know what's being worked on. Empire Mode clients get a dedicated account manager and weekly calls. All other packages include monthly strategy calls plus email support with 24-hour response during business days.</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn"><span class="acc-q">Do I own my website and content?</span><span class="acc-ico">+</span></button>
+          <div class="acc-body"><p><strong>Yes. 100%. Always.</strong> Your domain, website files, social accounts, email list — all yours. We never hold your digital assets hostage. If you ever move on, we hand over everything cleanly and professionally. <span class="c">That's the way it should be.</span></p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn"><span class="acc-q">How do I get started?</span><span class="acc-ico">+</span></button>
+          <div class="acc-body"><p>Simple. <strong>Book a free 30-minute strategy call</strong> at calendly.com/hello-geodm/30min. No forms, no pitch decks. We review your digital presence, identify the gaps, and tell you exactly what we'd do. You decide if you want to move forward.</p><div class="hl"><p>📞 Prefer to call or text? Reach us at <strong>773.236.1831</strong> or hello@geodm.us</p></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<section class="cta-band">
+  <h3>STILL HAVE <span>QUESTIONS?</span></h3>
+  <p>Let's talk live. Free 30-minute strategy call — we'll answer everything and show you exactly what GeoDMus can do.</p>
+  <div class="btns"><a href="https://calendly.com/hello-geodm/30min" class="btn1" target="_blank">Book Free Strategy Call</a><a href="mailto:hello@geodm.us" class="btn2">Email Us</a></div>
+  <p style="margin-top:16px;font-size:13px;color:rgba(255,255,255,.3)">¿Prefieres hablar en español? Escríbenos — hello@geodm.us</p>
+</section>
+
+<footer>
+  <div class="fg">
+    <div class="fb"><div class="fwm">GEODMus</div><span class="fsub">Geo Digital Media</span><p>Your digital growth partner — from local businesses to full venture ecosystems.</p></div>
+    <div class="fc"><h5>Services</h5><ul><li><a href="services.html#web-design">Website Design</a></li><li><a href="services.html#ai-automation">AI Automation</a></li><li><a href="services.html#marketing">Marketing & Social</a></li><li><a href="services.html#web3">Web3 & Blockchain</a></li></ul></div>
+    <div class="fc"><h5>Company</h5><ul><li><a href="about.html">About</a></li><li><a href="ventures.html">Ventures</a></li><li><a href="index.html#pricing">Pricing</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+    <div class="fc"><h5>Connect</h5><ul><li><a href="mailto:hello@geodm.us">hello@geodm.us</a></li><li><a href="tel:7732361831">773.236.1831</a></li><li><a href="https://instagram.com/geodm.us" target="_blank">@geodm.us</a></li><li><a href="https://x.com/geodmus" target="_blank">@geodmus</a></li></ul></div>
+  </div>
+  <div class="fbtm">
+    <span>© 2026 Geo Digital Media · GeoDMus · geodm.us · All rights reserved.</span>
+    <div><a href="https://instagram.com/geodm.us" target="_blank">Instagram</a><a href="https://x.com/geodmus" target="_blank">X / Twitter</a></div>
+  </div>
+</footer>
+<script>
+document.querySelectorAll('.acc-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const item=btn.closest('.acc-item');
+    const isOpen=item.classList.contains('open');
+    btn.closest('.acc').querySelectorAll('.acc-item').forEach(i=>i.classList.remove('open'));
+    if(!isOpen)item.classList.add('open');
+  });
+});
+const cats=document.querySelectorAll('.faq-cat');
+const sbLinks=document.querySelectorAll('.sb-nav a');
+const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){sbLinks.forEach(a=>a.classList.remove('on'));const l=document.querySelector(`.sb-nav a[href="#${x.target.id}"]`);if(l)l.classList.add('on')}})},{threshold:.4});
+cats.forEach(c=>io.observe(c));
+</script>
+</body>
+</html>
