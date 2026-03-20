@@ -55,7 +55,7 @@ h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,5vw,64px);letter-spa
 .btn2{border:1px solid rgba(0,200,212,.4);color:var(--c);padding:14px 32px;text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;border-radius:3px}
 footer{background:var(--d2);border-top:1px solid rgba(0,200,212,.1);padding:40px;text-align:center}
 footer p{font-size:13px;color:var(--g)}.footer-links{display:flex;gap:24px;justify-content:center;margin-top:12px}.footer-links a{color:var(--g);text-decoration:none;font-size:12px;letter-spacing:1px;text-transform:uppercase;transition:color .2s}.footer-links a:hover{color:var(--c)}
-.fu{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}.fu.on{opacity:1;transform:translateY(0)}
+.fu{opacity:1;transform:none}
 @media(max-width:768px){nav{padding:0 20px}.nav-links{display:none}.hero{padding:100px 20px 56px}.section{padding:56px 20px}.sgrid{grid-template-columns:1fr}.match-grid{grid-template-columns:1fr;gap:2px}.match-arrow{padding:16px 0}}
 </style>
 </head>
@@ -129,5 +129,9 @@ footer p{font-size:13px;color:var(--g)}.footer-links{display:flex;gap:24px;justi
   <div class="btns"><a href="/cdn-cgi/l/email-protection#dab2bfb6b6b59abdbfb5beb7f4afa9e5a9afb8b0bfb9aee79db6b5adfa9dafb3bebffaf7fa99a8bfbbaeb5a8fa8dbbb3aeb6b3a9ae" class="btn1">Join as Creator</a><a href="/cdn-cgi/l/email-protection#2048454c4c4f6047454f444d0e55531f5355424a4543541d674c4f57006755494445000d006252414e4400704152544e455253484950" class="btn2">Brand Partnership</a></div>
 </div>
 <footer><p>© 2026 Glow Guide · A Geo Digital Media Venture · geodm.us</p><div class="footer-links"><a href="ventures.html">All Ventures</a><a href="index.html">GeoDMus</a><a href="https://instagram.com/geodm.us" target="_blank">Instagram</a></div></footer>
+<script>
+const fo=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on')})},{threshold:.08});
+document.querySelectorAll('.fu').forEach(el=>fo.observe(el));
+</script>
 </body>
 </html>

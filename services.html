@@ -90,7 +90,7 @@ footer{background:var(--d2);border-top:1px solid rgba(0,200,212,.1);padding:56px
 .fc ul{list-style:none}.fc ul li{margin-bottom:8px}.fc ul a{color:var(--g);text-decoration:none;font-size:13px;transition:color .2s}.fc ul a:hover{color:var(--c)}
 .fbtm{max-width:1100px;margin:28px auto 0;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--g)}
 .fbtm a{color:var(--g);text-decoration:none;margin-left:16px}.fbtm a:hover{color:var(--c)}
-.fu{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}.fu.on{opacity:1;transform:translateY(0)}
+.fu{opacity:1;transform:none}.fu.on{opacity:1;transform:none}
 @media(max-width:768px){
   nav{padding:0 20px}.nav-links{display:none}
   .hero{padding:100px 20px 56px}.pillar{padding:60px 20px}.pill-nav{padding:0 20px}
@@ -318,5 +318,9 @@ footer{background:var(--d2);border-top:1px solid rgba(0,200,212,.1);padding:56px
     <div><a href="https://instagram.com/geodm.us" target="_blank">Instagram</a><a href="https://x.com/geodmus" target="_blank">X / Twitter</a></div>
   </div>
 </footer>
+<script>
+const fo=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on')})},{threshold:.08});
+document.querySelectorAll('.fu').forEach(el=>fo.observe(el));
+</script>
 </body>
 </html>

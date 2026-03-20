@@ -58,7 +58,7 @@ h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,5vw,64px);letter-spa
 .btn2{border:1px solid rgba(0,200,212,.4);color:var(--c);padding:14px 32px;text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;border-radius:3px}
 footer{background:var(--d2);border-top:1px solid rgba(0,200,212,.1);padding:40px;text-align:center}
 footer p{font-size:13px;color:var(--g)}.footer-links{display:flex;gap:24px;justify-content:center;margin-top:12px}.footer-links a{color:var(--g);text-decoration:none;font-size:12px;letter-spacing:1px;text-transform:uppercase;transition:color .2s}.footer-links a:hover{color:var(--c)}
-.fu{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}.fu.on{opacity:1;transform:translateY(0)}
+.fu{opacity:1;transform:none}
 @media(max-width:768px){nav{padding:0 20px}.nav-links{display:none}.hero{padding:100px 20px 56px}.section{padding:56px 20px}.sgrid,.pricing-row,.market-grid{grid-template-columns:1fr}}
 </style>
 </head>
@@ -118,5 +118,9 @@ footer p{font-size:13px;color:var(--g)}.footer-links{display:flex;gap:24px;justi
   <p style="margin-top:16px;font-size:13px;color:rgba(255,255,255,.3)">¿Prefieres hablar en español? Escríbenos — <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="543c3138383b1433313b30397a2127">[email&#160;protected]</a></p>
 </div>
 <footer><p>© 2026 Premier Group · A Geo Digital Media Venture · geodm.us</p><div class="footer-links"><a href="ventures.html">All Ventures</a><a href="index.html">GeoDMus</a><a href="https://instagram.com/geodm.us" target="_blank">Instagram</a></div></footer>
+<script>
+const fo=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on')})},{threshold:.08});
+document.querySelectorAll('.fu').forEach(el=>fo.observe(el));
+</script>
 </body>
 </html>
