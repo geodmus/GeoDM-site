@@ -74,7 +74,7 @@ footer p{font-size:13px;color:var(--g)}.footer-links{display:flex;gap:24px;justi
 <nav>
   <a href="index.html" class="logo"><span class="wm">GEODMus</span><span class="sub">Geo Digital Media</span></a>
   <ul class="nav-links"><li><a href="ventures.html">← Ventures</a></li><li><a href="services.html">Services</a></li><li><a href="about.html">About</a></li></ul>
-  <a href="/cdn-cgi/l/email-protection#325a575e5e5d7255575d565f1c47410d414750585751460f615d515b535e7e575c41121f127753405e4b127b5c465740574146" class="nav-btn">Get Early Access</a>
+  <a href="#" data-em="1">Get Early Access</a>
 </nav>
 <section class="hero">
   <div class="hero-bg"></div>
@@ -146,7 +146,7 @@ footer p{font-size:13px;color:var(--g)}.footer-links{display:flex;gap:24px;justi
     <h3>THE FUTURE IS <span style="color:var(--a2)">VISIBLE.</span></h3>
     <p>SocialLens is in concept stage. If you're a developer, investor, or visionary who wants to be part of building the social layer of the physical world — reach out.</p>
     <div class="btns">
-      <a href="/cdn-cgi/l/email-protection#92faf7fefefdd2f5f7fdf6ffbce7e1ade1e7f0f8f7f1e6afc1fdf1fbf3fedef7fce1b2bfb2d7f3e0feebb2dbfce6f7e0f7e1e6" class="btn1">Express Interest</a>
+      <a href="#" data-em="1">Express Interest</a>
       <a href="about.html" class="btn2">Meet the Founder</a>
     </div>
     <p style="margin-top:16px;font-size:12px;color:rgba(255,255,255,.25)">sociallens.app · Built by Geo Digital Media · Chicago</p>
@@ -157,5 +157,15 @@ footer p{font-size:13px;color:var(--g)}.footer-links{display:flex;gap:24px;justi
 const fo=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on')})},{threshold:.08});
 document.querySelectorAll('.fu').forEach(el=>fo.observe(el));
 </script>
+<script>
+(function(){
+  var e=['hello','geodm.us'].join('@');
+  document.querySelectorAll('[data-em]').forEach(function(a){
+    a.setAttribute('href','mailto:'+e);
+    if(a.getAttribute('data-show')==='1')a.textContent=e;
+  });
+})();
+</script>
+<script>(function(){var u="hello",d="geodm"+".us",e=u+"@"+d;document.querySelectorAll("[data-em]").forEach(function(a){a.href="mailto:"+e;if(a.dataset.show)a.textContent=e;});})();</script>
 </body>
 </html>

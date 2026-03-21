@@ -114,13 +114,23 @@ footer p{font-size:13px;color:var(--g)}.footer-links{display:flex;gap:24px;justi
 <div class="cta-band">
   <h3>READY TO TAKE <span style="color:var(--a2)">CONTROL</span> OF YOUR FINANCES?</h3>
   <p>Tax prep, credit building, or homeownership planning — Premier Group is here. Book a free consultation.</p>
-  <div class="btns"><a href="https://calendly.com/hello-geodm/30min" class="btn1" target="_blank">Book Free Consultation</a><a href="/cdn-cgi/l/email-protection#afc7cac3c3c0efc8cac0cbc281dadc" class="btn2">Email Us</a></div>
-  <p style="margin-top:16px;font-size:13px;color:rgba(255,255,255,.3)">¿Prefieres hablar en español? Escríbenos — <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="543c3138383b1433313b30397a2127">[email&#160;protected]</a></p>
+  <div class="btns"><a href="https://calendly.com/hello-geodm/30min" class="btn1" target="_blank">Book Free Consultation</a><a href="#" data-em="1">Email Us</a></div>
+  <p style="margin-top:16px;font-size:13px;color:rgba(255,255,255,.3)">¿Prefieres hablar en español? Escríbenos — <a href="#" data-em="1">[email&#160;protected]</a></p>
 </div>
 <footer><p>© 2026 Premier Group · A Geo Digital Media Venture · geodm.us</p><div class="footer-links"><a href="ventures.html">All Ventures</a><a href="index.html">GeoDMus</a><a href="https://instagram.com/geodm.us" target="_blank">Instagram</a></div></footer>
 <script>
 const fo=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on')})},{threshold:.08});
 document.querySelectorAll('.fu').forEach(el=>fo.observe(el));
 </script>
+<script>
+(function(){
+  var e=['hello','geodm.us'].join('@');
+  document.querySelectorAll('[data-em]').forEach(function(a){
+    a.setAttribute('href','mailto:'+e);
+    if(a.getAttribute('data-show')==='1')a.textContent=e;
+  });
+})();
+</script>
+<script>(function(){var u="hello",d="geodm"+".us",e=u+"@"+d;document.querySelectorAll("[data-em]").forEach(function(a){a.href="mailto:"+e;if(a.dataset.show)a.textContent=e;});})();</script>
 </body>
 </html>

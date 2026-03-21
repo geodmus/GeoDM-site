@@ -126,12 +126,22 @@ footer p{font-size:13px;color:var(--g)}.footer-links{display:flex;gap:24px;justi
 <div class="cta-band">
   <h3>YOUR <span style="color:var(--a2)">GLOW</span> DESERVES A DEAL.</h3>
   <p>Glow Guide is live and in development. Join the creator waitlist or inquire about brand partnerships.</p>
-  <div class="btns"><a href="/cdn-cgi/l/email-protection#dab2bfb6b6b59abdbfb5beb7f4afa9e5a9afb8b0bfb9aee79db6b5adfa9dafb3bebffaf7fa99a8bfbbaeb5a8fa8dbbb3aeb6b3a9ae" class="btn1">Join as Creator</a><a href="/cdn-cgi/l/email-protection#2048454c4c4f6047454f444d0e55531f5355424a4543541d674c4f57006755494445000d006252414e4400704152544e455253484950" class="btn2">Brand Partnership</a></div>
+  <div class="btns"><a href="#" data-em="1">Join as Creator</a><a href="#" data-em="1">Brand Partnership</a></div>
 </div>
 <footer><p>© 2026 Glow Guide · A Geo Digital Media Venture · geodm.us</p><div class="footer-links"><a href="ventures.html">All Ventures</a><a href="index.html">GeoDMus</a><a href="https://instagram.com/geodm.us" target="_blank">Instagram</a></div></footer>
 <script>
 const fo=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on')})},{threshold:.08});
 document.querySelectorAll('.fu').forEach(el=>fo.observe(el));
 </script>
+<script>
+(function(){
+  var e=['hello','geodm.us'].join('@');
+  document.querySelectorAll('[data-em]').forEach(function(a){
+    a.setAttribute('href','mailto:'+e);
+    if(a.getAttribute('data-show')==='1')a.textContent=e;
+  });
+})();
+</script>
+<script>(function(){var u="hello",d="geodm"+".us",e=u+"@"+d;document.querySelectorAll("[data-em]").forEach(function(a){a.href="mailto:"+e;if(a.dataset.show)a.textContent=e;});})();</script>
 </body>
 </html>

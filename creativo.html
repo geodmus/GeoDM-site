@@ -111,7 +111,7 @@ footer p{font-size:13px;color:var(--g)}.footer-links{display:flex;gap:24px;justi
   <div class="cs-band fu">
     <h3>CREATIVO IS <span>COMING SOON</span></h3>
     <p>Platform is in development. Domain secured at creativo.community. Get on the early access list.</p>
-    <div class="btns"><a href="/cdn-cgi/l/email-protection#a0c8c5cccccfe0c7c5cfc4cd8ed5d39fd3d5c2cac5c3d49de3d2c5c1d4c9d6cf80e5c1d2ccd980e1c3c3c5d3d3" class="btn1">Join Early Access</a><a href="ventures.html" class="btn2">View All Ventures</a></div>
+    <div class="btns"><a href="#" data-em="1">Join Early Access</a><a href="ventures.html" class="btn2">View All Ventures</a></div>
   </div>
 </div>
 </section>
@@ -120,5 +120,15 @@ footer p{font-size:13px;color:var(--g)}.footer-links{display:flex;gap:24px;justi
 const fo=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on')})},{threshold:.08});
 document.querySelectorAll('.fu').forEach(el=>fo.observe(el));
 </script>
+<script>
+(function(){
+  var e=['hello','geodm.us'].join('@');
+  document.querySelectorAll('[data-em]').forEach(function(a){
+    a.setAttribute('href','mailto:'+e);
+    if(a.getAttribute('data-show')==='1')a.textContent=e;
+  });
+})();
+</script>
+<script>(function(){var u="hello",d="geodm"+".us",e=u+"@"+d;document.querySelectorAll("[data-em]").forEach(function(a){a.href="mailto:"+e;if(a.dataset.show)a.textContent=e;});})();</script>
 </body>
 </html>
