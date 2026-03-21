@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Pay with Crypto | Geo Digital Media — GeoDMus</title>
+<meta name="description" content="Pay for GeoDMus services with Bitcoin, Ethereum, or Solana. Secure, instant, borderless."/>
+<link rel="icon" type="image/png" href="gdm.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600;700&family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet"/>
+<style>
+:root{--c:#00c8d4;--m:#cc2d8f;--d:#070c0d;--d2:#0d1517;--d3:#111a1c;--w:#fff;--g:#8a9ba0;--btc:#f7931a;--eth:#627eea;--sol:#9945ff}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--d);color:var(--w);font-family:'Barlow',sans-serif;overflow-x:hidden;min-height:100vh}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:70px;background:rgba(7,12,13,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,200,212,.1)}
+.logo{text-decoration:none;line-height:1}.logo .wm{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:var(--w);display:block}.logo .sub{font-size:9px;letter-spacing:2px;color:var(--c);text-transform:uppercase}
+.nav-back{color:var(--g);text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:600;display:flex;align-items:center;gap:8px;transition:color .2s}.nav-back:hover{color:var(--c)}
+
+/* MAIN */
+.main{padding:100px 20px 60px;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center}
+
+/* STEP CONTAINER */
+.step{display:none;width:100%;max-width:600px;animation:fadeIn .4s ease}
+.step.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* STEP 1 - PACKAGE SELECT */
+.step-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--c);margin-bottom:12px;display:flex;align-items:center;gap:10px}.step-label::before{content:'';width:24px;height:2px;background:var(--c)}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(42px,8vw,80px);line-height:.92;letter-spacing:2px;margin-bottom:8px}
+.h1c{color:var(--c)}.h1m{color:var(--m)}
+.step-sub{font-size:16px;color:rgba(255,255,255,.6);margin-bottom:36px;line-height:1.6}
+
+.pkg-grid{display:grid;grid-template-columns:1fr;gap:2px;margin-bottom:24px}
+.pkg-card{background:var(--d3);padding:20px 24px;cursor:pointer;border:2px solid transparent;transition:all .2s;display:flex;justify-content:space-between;align-items:center;border-radius:3px}
+.pkg-card:hover{border-color:rgba(0,200,212,.3);background:rgba(0,200,212,.04)}
+.pkg-card.selected{border-color:var(--c);background:rgba(0,200,212,.07)}
+.pkg-left h4{font-family:'Barlow Condensed',sans-serif;font-size:18px;letter-spacing:2px;text-transform:uppercase;color:var(--w);margin-bottom:4px}
+.pkg-left p{font-size:13px;color:rgba(255,255,255,.5)}
+.pkg-price{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--c);letter-spacing:1px}
+.pkg-card.selected .pkg-price{color:var(--c)}
+
+.custom-amount{margin-bottom:24px}
+.custom-amount label{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--g);display:block;margin-bottom:8px}
+.custom-amount input{width:100%;background:var(--d3);border:1px solid rgba(0,200,212,.2);color:var(--w);padding:14px 18px;font-size:16px;font-family:'Barlow',sans-serif;border-radius:3px;outline:none;transition:border-color .2s}
+.custom-amount input:focus{border-color:var(--c)}
+.custom-amount input::placeholder{color:rgba(255,255,255,.25)}
+
+/* STEP 2 - CHAIN SELECT */
+.chain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:32px}
+.chain-card{background:var(--d3);padding:24px 16px;cursor:pointer;border:2px solid transparent;transition:all .2s;text-align:center;border-radius:3px}
+.chain-card:hover{border-color:rgba(255,255,255,.15)}
+.chain-card.selected-btc{border-color:var(--btc);background:rgba(247,147,26,.07)}
+.chain-card.selected-eth{border-color:var(--eth);background:rgba(98,126,234,.07)}
+.chain-card.selected-sol{border-color:var(--sol);background:rgba(153,69,255,.07)}
+.chain-sym{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:2px;margin-bottom:6px}
+.chain-card[data-chain="btc"] .chain-sym{color:var(--btc)}
+.chain-card[data-chain="eth"] .chain-sym{color:var(--eth)}
+.chain-card[data-chain="sol"] .chain-sym{color:var(--sol)}
+.chain-name{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--g);margin-bottom:4px}
+.chain-tokens{font-size:11px;color:rgba(255,255,255,.35)}
+
+.price-preview{background:var(--d2);border:1px solid rgba(0,200,212,.15);border-radius:4px;padding:20px 24px;margin-bottom:24px}
+.price-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.price-row:last-child{margin-bottom:0;padding-top:8px;border-top:1px solid rgba(255,255,255,.06)}
+.price-label{font-size:13px;color:rgba(255,255,255,.5)}
+.price-val{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px}
+.price-val.btc{color:var(--btc)}.price-val.eth{color:var(--eth)}.price-val.sol{color:var(--sol)}
+.price-usd{color:var(--c)}
+.loading-price{font-size:13px;color:var(--g);animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+
+/* STEP 3 - PAYMENT */
+.payment-box{background:var(--d2);border-radius:6px;overflow:hidden;margin-bottom:24px}
+.payment-header{padding:20px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.06)}
+.payment-header h3{font-family:'Barlow Condensed',sans-serif;font-size:16px;letter-spacing:2px;text-transform:uppercase;color:var(--w)}
+.payment-amount{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:1px}
+
+.qr-section{padding:28px;text-align:center;background:var(--d3)}
+.qr-wrap{display:inline-block;background:#fff;padding:12px;border-radius:4px;margin-bottom:16px}
+.qr-wrap img{display:block;width:160px;height:160px}
+.qr-loading{width:160px;height:160px;background:var(--d2);display:flex;align-items:center;justify-content:center;border-radius:4px;margin:0 auto 16px}
+.qr-loading p{font-size:12px;color:var(--g);animation:pulse 1.5s infinite}
+
+.address-section{padding:20px 24px}
+.addr-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--g);margin-bottom:8px}
+.addr-box{background:var(--d3);border:1px solid rgba(0,200,212,.15);border-radius:3px;padding:12px 16px;display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.addr-text{font-size:11px;color:var(--c);word-break:break-all;flex:1;font-family:monospace;line-height:1.5}
+.copy-btn{background:rgba(0,200,212,.1);border:1px solid rgba(0,200,212,.3);color:var(--c);padding:8px 14px;border-radius:2px;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .2s;flex-shrink:0}
+.copy-btn:hover{background:rgba(0,200,212,.2)}
+.copy-btn.copied{background:rgba(0,200,212,.2);color:var(--w)}
+
+.amount-box{background:var(--d3);border:1px solid rgba(0,200,212,.1);border-radius:3px;padding:12px 16px;display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.amount-text{font-family:'Bebas Neue',sans-serif;font-size:20px;flex:1;letter-spacing:1px}
+
+/* STATUS CHECKER */
+.status-section{padding:20px 24px;border-top:1px solid rgba(255,255,255,.06)}
+.status-bar{display:flex;align-items:center;gap:12px}
+.status-dot{width:10px;height:10px;border-radius:50%;background:var(--g);flex-shrink:0;animation:none}
+.status-dot.waiting{background:var(--g);animation:pulse 2s infinite}
+.status-dot.pending{background:var(--btc);animation:pulse 1s infinite}
+.status-dot.confirmed{background:#00ff88;animation:none}
+.status-text{font-size:14px;color:rgba(255,255,255,.65)}
+.status-text strong{color:var(--w)}
+.check-btn{margin-left:auto;background:none;border:1px solid rgba(0,200,212,.25);color:var(--c);padding:6px 14px;border-radius:2px;font-size:10px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .2s;font-family:'Barlow',sans-serif;font-weight:600}
+.check-btn:hover{background:rgba(0,200,212,.08)}
+
+.warning-box{background:rgba(247,147,26,.07);border:1px solid rgba(247,147,26,.2);border-radius:3px;padding:12px 16px;margin:0 24px 20px;display:flex;gap:10px;align-items:flex-start}
+.warning-box p{font-size:12px;color:rgba(255,255,255,.6);line-height:1.5}
+.warning-ico{font-size:16px;flex-shrink:0}
+
+/* STEP 4 - SUCCESS */
+.success-screen{text-align:center;padding:20px 0}
+.success-glow{width:120px;height:120px;border-radius:50%;background:linear-gradient(135deg,var(--c),var(--m));display:flex;align-items:center;justify-content:center;margin:0 auto 28px;font-size:48px;animation:glow 2s ease-in-out infinite;position:relative}
+.success-glow::before{content:'';position:absolute;inset:-4px;border-radius:50%;background:linear-gradient(135deg,var(--c),var(--m));opacity:.3;animation:glow 2s ease-in-out infinite reverse;z-index:-1}
+@keyframes glow{0%,100%{box-shadow:0 0 20px rgba(0,200,212,.4),0 0 60px rgba(204,45,143,.2)}50%{box-shadow:0 0 40px rgba(0,200,212,.7),0 0 100px rgba(204,45,143,.4)}}
+.success-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,8vw,72px);letter-spacing:2px;line-height:.95;margin-bottom:16px}
+.success-title .gc{color:var(--c)}.success-title .gm{color:var(--m)}
+.success-msg{font-size:17px;color:rgba(255,255,255,.75);line-height:1.75;margin-bottom:12px;max-width:500px;margin-left:auto;margin-right:auto}
+.success-detail{font-size:14px;color:rgba(255,255,255,.45);margin-bottom:36px;line-height:1.6}
+.success-detail strong{color:var(--c)}
+.tx-box{background:var(--d3);border:1px solid rgba(0,200,212,.15);border-radius:4px;padding:16px 20px;margin-bottom:32px;text-align:left}
+.tx-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--g);margin-bottom:6px}
+.tx-hash{font-size:11px;color:var(--c);word-break:break-all;font-family:monospace;line-height:1.5}
+.success-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:36px}
+.sa-btn{display:flex;flex-direction:column;align-items:center;gap:6px;padding:20px 16px;border-radius:4px;text-decoration:none;transition:all .2s;cursor:pointer;border:none;font-family:'Barlow',sans-serif}
+.sa-btn.primary{background:var(--m);color:var(--w)}.sa-btn.primary:hover{opacity:.88}
+.sa-btn.secondary{background:var(--d3);border:1px solid rgba(0,200,212,.25);color:var(--c)}.sa-btn.secondary:hover{border-color:var(--c);background:rgba(0,200,212,.06)}
+.sa-ico{font-size:24px}
+.sa-title{font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:2px;text-transform:uppercase}
+.sa-sub{font-size:11px;opacity:.65}
+
+/* CONTACT FORM */
+.form-section{background:var(--d2);border:1px solid rgba(0,200,212,.12);border-radius:6px;padding:28px;margin-top:8px;display:none}
+.form-section.show{display:block;animation:fadeIn .4s ease}
+.form-section h3{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;margin-bottom:6px}
+.form-section h3 span{color:var(--c)}
+.form-section p{font-size:14px;color:rgba(255,255,255,.55);margin-bottom:24px;line-height:1.6}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.form-full{margin-bottom:14px}
+.form-group label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--g);display:block;margin-bottom:6px}
+.form-group input,.form-group textarea,.form-group select{width:100%;background:var(--d3);border:1px solid rgba(0,200,212,.15);color:var(--w);padding:12px 16px;font-size:14px;font-family:'Barlow',sans-serif;border-radius:3px;outline:none;transition:border-color .2s}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--c)}
+.form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,.2)}
+.form-group textarea{resize:vertical;min-height:100px}
+.form-group select option{background:var(--d3)}
+.form-submit{width:100%;background:var(--m);color:var(--w);padding:15px;border:none;border-radius:3px;font-family:'Barlow Condensed',sans-serif;font-size:16px;letter-spacing:3px;text-transform:uppercase;font-weight:700;cursor:pointer;transition:opacity .2s;margin-top:8px}
+.form-submit:hover{opacity:.88}
+.form-success{text-align:center;padding:20px;display:none}
+.form-success p{font-size:15px;color:rgba(255,255,255,.7);line-height:1.7}
+.form-success strong{color:var(--c)}
+
+/* BUTTONS */
+.btn-primary{background:var(--m);color:var(--w);padding:15px 32px;border:none;border-radius:3px;font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:3px;text-transform:uppercase;font-weight:700;cursor:pointer;width:100%;transition:opacity .2s;margin-top:8px}
+.btn-primary:hover{opacity:.88}
+.btn-primary:disabled{opacity:.4;cursor:not-allowed}
+.btn-back{background:none;border:1px solid rgba(255,255,255,.1);color:var(--g);padding:10px 20px;border-radius:3px;font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;margin-bottom:24px;font-family:'Barlow',sans-serif;transition:all .2s}
+.btn-back:hover{border-color:rgba(0,200,212,.3);color:var(--c)}
+
+/* PROGRESS */
+.progress{display:flex;align-items:center;gap:8px;margin-bottom:36px;justify-content:center}
+.prog-step{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;border:2px solid rgba(255,255,255,.1);color:rgba(255,255,255,.3);transition:all .3s}
+.prog-step.done{background:var(--c);border-color:var(--c);color:var(--d)}
+.prog-step.active{border-color:var(--c);color:var(--c)}
+.prog-line{flex:1;height:2px;background:rgba(255,255,255,.08);max-width:60px}
+.prog-line.done{background:var(--c)}
+
+/* ERROR */
+.error-msg{background:rgba(204,45,143,.08);border:1px solid rgba(204,45,143,.25);border-radius:3px;padding:12px 16px;margin-bottom:16px;font-size:13px;color:rgba(255,255,255,.7);display:none}
+.error-msg.show{display:block}
+
+@media(max-width:600px){
+  nav{padding:0 20px}
+  .main{padding:90px 16px 40px}
+  .chain-grid{grid-template-columns:1fr}
+  .success-actions{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo"><span class="wm">GEODMus</span><span class="sub">Geo Digital Media</span></a>
+  <a href="pricing.html" class="nav-back">← Back to Pricing</a>
+</nav>
+
+<main class="main">
+
+  <!-- PROGRESS BAR -->
+  <div class="progress" id="progress">
+    <div class="prog-step active" id="ps1">1</div>
+    <div class="prog-line" id="pl1"></div>
+    <div class="prog-step" id="ps2">2</div>
+    <div class="prog-line" id="pl2"></div>
+    <div class="prog-step" id="ps3">3</div>
+    <div class="prog-line" id="pl3"></div>
+    <div class="prog-step" id="ps4">✓</div>
+  </div>
+
+  <!-- STEP 1: CHOOSE PACKAGE -->
+  <div class="step active" id="step1">
+    <div class="step-label">Step 1 of 3</div>
+    <h1>CHOOSE YOUR <span class="h1c">PLAN</span></h1>
+    <p class="step-sub">Select the package that fits your business or enter a custom amount.</p>
+
+    <div class="pkg-grid">
+      <div class="pkg-card" data-amount="799" onclick="selectPackage(this, 799)">
+        <div class="pkg-left"><h4>Launchpad</h4><p>First month payment</p></div>
+        <div class="pkg-price">$799</div>
+      </div>
+      <div class="pkg-card" data-amount="1599" onclick="selectPackage(this, 1599)">
+        <div class="pkg-left"><h4>Growth Engine</h4><p>First month payment</p></div>
+        <div class="pkg-price">$1,599</div>
+      </div>
+      <div class="pkg-card" data-amount="2999" onclick="selectPackage(this, 2999)">
+        <div class="pkg-left"><h4>Empire Mode</h4><p>First month payment</p></div>
+        <div class="pkg-price">$2,999</div>
+      </div>
+      <div class="pkg-card" data-amount="4500" onclick="selectPackage(this, 4500)">
+        <div class="pkg-left"><h4>Custom Platform</h4><p>Starting price</p></div>
+        <div class="pkg-price">$4,500</div>
+      </div>
+      <div class="pkg-card" data-amount="custom" onclick="selectPackage(this, 'custom')">
+        <div class="pkg-left"><h4>Custom Amount</h4><p>Flexible plan or one-time project</p></div>
+        <div class="pkg-price" style="color:var(--m)">YOU SET IT</div>
+      </div>
+    </div>
+
+    <div class="custom-amount" id="customInput" style="display:none">
+      <label>Enter Amount (USD)</label>
+      <input type="number" id="customAmt" placeholder="e.g. 500" min="100" oninput="updateCustomAmount()"/>
+    </div>
+
+    <div class="error-msg" id="err1">Please select a package or enter a custom amount.</div>
+    <button class="btn-primary" onclick="goStep2()">Continue → Choose Crypto</button>
+  </div>
+
+  <!-- STEP 2: CHOOSE CHAIN -->
+  <div class="step" id="step2">
+    <button class="btn-back" onclick="goStep(1)">← Back</button>
+    <div class="step-label">Step 2 of 3</div>
+    <h1>PAY WITH <span class="h1m">CRYPTO</span></h1>
+    <p class="step-sub">Choose your preferred cryptocurrency. Real-time conversion from USD.</p>
+
+    <div class="chain-grid">
+      <div class="chain-card" data-chain="btc" onclick="selectChain(this,'btc')">
+        <div class="chain-sym">₿</div>
+        <div class="chain-name">Bitcoin</div>
+        <div class="chain-tokens">BTC — Lightning ⚡</div>
+      </div>
+      <div class="chain-card" data-chain="eth" onclick="selectChain(this,'eth')">
+        <div class="chain-sym">Ξ</div>
+        <div class="chain-name">Ethereum</div>
+        <div class="chain-tokens">ETH · USDC · USDT</div>
+      </div>
+      <div class="chain-card" data-chain="sol" onclick="selectChain(this,'sol')">
+        <div class="chain-sym">◎</div>
+        <div class="chain-name">Solana</div>
+        <div class="chain-tokens">SOL · USDC on SOL</div>
+      </div>
+    </div>
+
+    <div class="price-preview" id="pricePreview" style="display:none">
+      <div class="price-row">
+        <span class="price-label">USD Amount</span>
+        <span class="price-val price-usd" id="previewUSD">$0</span>
+      </div>
+      <div class="price-row">
+        <span class="price-label">You Pay</span>
+        <span class="price-val" id="previewCrypto"><span class="loading-price">Fetching live price...</span></span>
+      </div>
+      <div class="price-row">
+        <span class="price-label" style="font-size:11px;color:rgba(255,255,255,.3)">Live rate · Updates every 60s</span>
+        <span style="font-size:11px;color:rgba(255,255,255,.3)" id="lastUpdated"></span>
+      </div>
+    </div>
+
+    <div class="error-msg" id="err2">Please select a cryptocurrency.</div>
+    <button class="btn-primary" onclick="goStep3()">Continue → Make Payment</button>
+  </div>
+
+  <!-- STEP 3: PAYMENT -->
+  <div class="step" id="step3">
+    <button class="btn-back" onclick="goStep(2)">← Back</button>
+    <div class="step-label">Step 3 of 3 — Send Payment</div>
+    <h1>SEND YOUR <span class="h1c">PAYMENT</span></h1>
+    <p class="step-sub">Send the exact amount to the address below. Your payment is being monitored in real-time.</p>
+
+    <div class="payment-box">
+      <div class="payment-header">
+        <h3 id="payChainLabel">Bitcoin Payment</h3>
+        <span class="payment-amount" id="payAmountLabel">$0</span>
+      </div>
+      <div class="qr-section">
+        <div id="qrWrap">
+          <div class="qr-loading"><p>Generating QR...</p></div>
+        </div>
+        <p style="font-size:12px;color:rgba(255,255,255,.4)">Scan with your crypto wallet app</p>
+      </div>
+      <div class="address-section">
+        <div class="addr-label">Send <span id="addrCoinLabel">BTC</span> to this address</div>
+        <div class="addr-box">
+          <span class="addr-text" id="payAddress">Loading...</span>
+          <button class="copy-btn" id="copyAddrBtn" onclick="copyAddress()">Copy</button>
+        </div>
+        <div class="addr-label">Exact amount to send</div>
+        <div class="amount-box">
+          <span class="amount-text" id="payCryptoAmt" style="color:var(--c)">...</span>
+          <button class="copy-btn" onclick="copyAmount()">Copy</button>
+        </div>
+      </div>
+      <div class="warning-box">
+        <span class="warning-ico">⚠️</span>
+        <p>Send <strong>only the exact amount</strong> shown above to this address. Send <strong>only <span id="warnCoin">BTC</span></strong> to this address. Sending the wrong coin or amount may result in permanent loss of funds.</p>
+      </div>
+      <div class="status-section">
+        <div class="status-bar">
+          <div class="status-dot waiting" id="statusDot"></div>
+          <span class="status-text" id="statusText">Waiting for payment...</span>
+          <button class="check-btn" onclick="checkPayment()">Check Status</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4: SUCCESS -->
+  <div class="step" id="step4">
+    <div class="success-screen">
+      <div class="success-glow">🚀</div>
+      <h1 class="success-title">YOU'RE<br/><span class="gc">IN THE</span><br/><span class="gm">ECOSYSTEM.</span></h1>
+      <p class="success-msg">Payment confirmed. Welcome to Geo Digital Media. You just made one of the smartest decisions your business will ever make.</p>
+      <p class="success-detail">Our team has been notified. Expect an email from <strong><a href="#" data-em="1">[email&#160;protected]</a></strong> within 24 hours to kick off your onboarding. Get ready — things are about to change.</p>
+      <div class="tx-box" id="txBox" style="display:none">
+        <div class="tx-label">Transaction Confirmed</div>
+        <div class="tx-hash" id="txHash"></div>
+      </div>
+      <div class="success-actions">
+        <a href="https://calendly.com/hello-geodm/30min" target="_blank" class="sa-btn primary">
+          <span class="sa-ico">📅</span>
+          <span class="sa-title">Book Strategy Call</span>
+          <span class="sa-sub">Lock in your kickoff call now</span>
+        </a>
+        <button class="sa-btn secondary" onclick="toggleForm()">
+          <span class="sa-ico">📋</span>
+          <span class="sa-title">Tell Us About Your Business</span>
+          <span class="sa-sub">2-min form — helps us prepare</span>
+        </button>
+      </div>
+
+      <!-- NETLIFY CONTACT FORM -->
+      <div class="form-section" id="contactForm">
+        <h3>TELL US YOUR <span>VISION</span></h3>
+        <p>The more you share now, the more prepared we are on your strategy call. Takes about 2 minutes.</p>
+        <form name="geodmus-client-intake" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="handleFormSubmit(event)">
+          <input type="hidden" name="form-name" value="geodmus-client-intake"/>
+          <input type="hidden" name="bot-field" style="display:none"/>
+          <div class="form-grid">
+            <div class="form-group"><label>Your Name</label><input type="text" name="name" placeholder="Giovanni Salazar" required/></div>
+            <div class="form-group"><label>Business Name</label><input type="text" name="business" placeholder="Your Business LLC" required/></div>
+          </div>
+          <div class="form-grid">
+            <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="you@yourbusiness.com" required/></div>
+            <div class="form-group"><label>Phone</label><input type="tel" name="phone" placeholder="773-000-0000"/></div>
+          </div>
+          <div class="form-full">
+            <div class="form-group"><label>Package Selected</label>
+              <select name="package">
+                <option>Launchpad — $799/mo</option>
+                <option>Growth Engine — $1,599/mo</option>
+                <option>Empire Mode — $2,999/mo</option>
+                <option>Custom Platform — $4,500+</option>
+                <option>Custom Amount</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-full">
+            <div class="form-group"><label>What does your business do?</label><input type="text" name="business_desc" placeholder="e.g. Hair salon in Chicago serving clients since 2018" required/></div>
+          </div>
+          <div class="form-full">
+            <div class="form-group"><label>What's your #1 goal right now?</label><textarea name="goal" placeholder="e.g. Get more clients, automate bookings, build my website, launch my brand online..."></textarea></div>
+          </div>
+          <div class="form-full">
+            <div class="form-group"><label>Anything else we should know?</label><textarea name="notes" placeholder="Tell us anything — industry, challenges, timeline, vision..."></textarea></div>
+          </div>
+          <button type="submit" class="form-submit">Submit — Let's Get Started 🚀</button>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <p style="font-size:32px;margin-bottom:16px">🎉</p>
+          <p><strong>Got it. We're ready for you.</strong><br/>Check your email — a confirmation is on its way to you from <a href="#" data-em="1">[email&#160;protected]</a>. See you on the strategy call.</p>
+        </div>
+      </div>
+
+      <p style="font-size:13px;color:rgba(255,255,255,.3);margin-top:24px">Questions? Call or text us at <a href="tel:7732361831" style="color:var(--c);text-decoration:none">773.236.1831</a></p>
+    </div>
+  </div>
+
+</main>
+
+<script>
+// ═══════════════════════════════
+// WALLET ADDRESSES
+// ═══════════════════════════════
+const WALLETS = {
+  btc: 'bc1q5590fdvjhfuzexajefs830wwxdg5eamxpf9p4k',
+  eth: '0x60a5D149CCD42C70C92C3bC644cE13c09D6508DC',
+  sol: '2EX5EYJ9GiXn254Xp6KVvuG2hwW7uVCHttw9ssEKiypB'
+};
+
+// CryptAPI tickers
+const TICKERS = { btc: 'btc', eth: 'eth', sol: 'sol' };
+
+// Chain display names
+const CHAIN_NAMES = { btc: 'Bitcoin', eth: 'Ethereum', sol: 'Solana' };
+const CHAIN_COINS = { btc: 'BTC', eth: 'ETH', sol: 'SOL' };
+
+// ═══════════════════════════════
+// STATE
+// ═══════════════════════════════
+let selectedAmount = 0;
+let selectedChain = null;
+let cryptoAmount = 0;
+let paymentAddress = null;
+let callbackUrl = null;
+let checkInterval = null;
+let priceRefreshInterval = null;
+
+// ═══════════════════════════════
+// STEP NAVIGATION
+// ═══════════════════════════════
+function goStep(n) {
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  document.getElementById('step' + n).classList.add('active');
+  updateProgress(n);
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function updateProgress(n) {
+  for (let i = 1; i <= 4; i++) {
+    const ps = document.getElementById('ps' + i);
+    if (i < n) { ps.className = 'prog-step done'; ps.textContent = '✓'; }
+    else if (i === n) { ps.className = 'prog-step active'; ps.textContent = i < 4 ? i : '✓'; }
+    else { ps.className = 'prog-step'; ps.textContent = i < 4 ? i : '✓'; }
+    if (i < 4) {
+      const pl = document.getElementById('pl' + i);
+      pl.className = i < n ? 'prog-line done' : 'prog-line';
+    }
+  }
+}
+
+// ═══════════════════════════════
+// STEP 1: PACKAGE
+// ═══════════════════════════════
+function selectPackage(el, amount) {
+  document.querySelectorAll('.pkg-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  const customInput = document.getElementById('customInput');
+  if (amount === 'custom') {
+    customInput.style.display = 'block';
+    selectedAmount = 0;
+  } else {
+    customInput.style.display = 'none';
+    selectedAmount = amount;
+  }
+  document.getElementById('err1').classList.remove('show');
+}
+
+function updateCustomAmount() {
+  const val = parseFloat(document.getElementById('customAmt').value);
+  selectedAmount = isNaN(val) ? 0 : val;
+}
+
+function goStep2() {
+  if (!selectedAmount || selectedAmount < 100) {
+    document.getElementById('err1').classList.add('show');
+    document.getElementById('err1').textContent = selectedAmount > 0 && selectedAmount < 100
+      ? 'Minimum payment is $100.' : 'Please select a package or enter a valid amount.';
+    return;
+  }
+  document.getElementById('previewUSD').textContent = '$' + selectedAmount.toLocaleString();
+  goStep(2);
+}
+
+// ═══════════════════════════════
+// STEP 2: CHAIN + PRICE
+// ═══════════════════════════════
+function selectChain(el, chain) {
+  document.querySelectorAll('.chain-card').forEach(c => {
+    c.className = 'chain-card';
+  });
+  el.classList.add('selected-' + chain);
+  selectedChain = chain;
+  document.getElementById('pricePreview').style.display = 'block';
+  document.getElementById('err2').classList.remove('show');
+  fetchPrice(chain);
+}
+
+async function fetchPrice(chain) {
+  const previewEl = document.getElementById('previewCrypto');
+  previewEl.innerHTML = '<span class="loading-price">Fetching live price...</span>';
+  try {
+    const ticker = TICKERS[chain];
+    const res = await fetch(`https://api.cryptapi.io/${ticker}/convert/?value=${selectedAmount}&from=USD`);
+    const data = await res.json();
+    if (data.value_coin) {
+      cryptoAmount = data.value_coin;
+      const coin = CHAIN_COINS[chain];
+      previewEl.className = 'price-val ' + chain;
+      previewEl.textContent = `${cryptoAmount} ${coin}`;
+      document.getElementById('lastUpdated').textContent = 'Updated ' + new Date().toLocaleTimeString();
+    } else {
+      previewEl.textContent = 'Price unavailable';
+    }
+  } catch(e) {
+    previewEl.textContent = 'Price unavailable — check connection';
+  }
+}
+
+async function goStep3() {
+  if (!selectedChain) {
+    document.getElementById('err2').classList.add('show');
+    return;
+  }
+  if (!cryptoAmount) {
+    await fetchPrice(selectedChain);
+    if (!cryptoAmount) {
+      document.getElementById('err2').textContent = 'Could not fetch live price. Please check your connection.';
+      document.getElementById('err2').classList.add('show');
+      return;
+    }
+  }
+  setupPaymentScreen();
+  goStep(3);
+  createPaymentAddress();
+}
+
+// ═══════════════════════════════
+// STEP 3: PAYMENT
+// ═══════════════════════════════
+function setupPaymentScreen() {
+  const coin = CHAIN_COINS[selectedChain];
+  const name = CHAIN_NAMES[selectedChain];
+  document.getElementById('payChainLabel').textContent = name + ' Payment';
+  document.getElementById('payAmountLabel').textContent = '$' + selectedAmount.toLocaleString();
+  document.getElementById('addrCoinLabel').textContent = coin;
+  document.getElementById('warnCoin').textContent = coin;
+  document.getElementById('payCryptoAmt').style.color = `var(--${selectedChain})`;
+  document.getElementById('payCryptoAmt').textContent = cryptoAmount + ' ' + coin;
+  // Show wallet address immediately while CryptAPI loads
+  document.getElementById('payAddress').textContent = WALLETS[selectedChain];
+  generateQR(WALLETS[selectedChain]);
+}
+
+async function createPaymentAddress() {
+  try {
+    const ticker = TICKERS[selectedChain];
+    const wallet = WALLETS[selectedChain];
+    // Use CryptAPI to create a monitored payment address
+    const orderId = 'gdm_' + Date.now();
+    callbackUrl = `https://geodm.us/webhook?order_id=${orderId}&chain=${selectedChain}&amount=${selectedAmount}`;
+    const encodedCallback = encodeURIComponent(callbackUrl);
+    const params = new URLSearchParams({
+      callback: encodedCallback,
+      address: wallet,
+      pending: 1,
+      convert: 1,
+      json: 1
+    });
+    const res = await fetch(`https://api.cryptapi.io/${ticker}/create/?${params}`);
+    const data = await res.json();
+    if (data.address_in) {
+      paymentAddress = data.address_in;
+      document.getElementById('payAddress').textContent = paymentAddress;
+      generateQR(paymentAddress);
+      // Start auto-check every 30 seconds
+      checkInterval = setInterval(checkPayment, 30000);
+    }
+  } catch(e) {
+    // Fallback to direct wallet address - payment still works
+    paymentAddress = WALLETS[selectedChain];
+    console.log('Using direct wallet address');
+  }
+}
+
+function generateQR(address) {
+  const qrWrap = document.getElementById('qrWrap');
+  const coin = CHAIN_COINS[selectedChain];
+  const qrUrl = `https://api.cryptapi.io/${TICKERS[selectedChain]}/qrcode/?address=${address}&value=${cryptoAmount}&size=200`;
+  const img = document.createElement('img');
+  img.onload = () => {
+    const wrap = document.createElement('div');
+    wrap.className = 'qr-wrap';
+    wrap.appendChild(img);
+    qrWrap.innerHTML = '';
+    qrWrap.appendChild(wrap);
+  };
+  img.onerror = () => {
+    // Fallback QR using Google Charts API
+    const googleQR = `https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=${encodeURIComponent(address)}&choe=UTF-8`;
+    const wrap = document.createElement('div');
+    wrap.className = 'qr-wrap';
+    const fallbackImg = document.createElement('img');
+    fallbackImg.src = googleQR;
+    fallbackImg.width = 160;
+    fallbackImg.height = 160;
+    wrap.appendChild(fallbackImg);
+    qrWrap.innerHTML = '';
+    qrWrap.appendChild(wrap);
+  };
+  img.src = qrUrl;
+  img.width = 160;
+  img.height = 160;
+  img.alt = 'Payment QR Code';
+}
+
+function copyAddress() {
+  const addr = document.getElementById('payAddress').textContent;
+  navigator.clipboard.writeText(addr).then(() => {
+    const btn = document.getElementById('copyAddrBtn');
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function copyAmount() {
+  const amt = document.getElementById('payCryptoAmt').textContent;
+  navigator.clipboard.writeText(amt.split(' ')[0]).then(() => {
+    const btns = document.querySelectorAll('.amount-box .copy-btn');
+    btns.forEach(b => { b.textContent = 'Copied!'; b.classList.add('copied'); });
+    setTimeout(() => btns.forEach(b => { b.textContent = 'Copy'; b.classList.remove('copied'); }), 2000);
+  });
+}
+
+async function checkPayment() {
+  if (!callbackUrl) return;
+  const dot = document.getElementById('statusDot');
+  const text = document.getElementById('statusText');
+  try {
+    dot.className = 'status-dot pending';
+    text.textContent = 'Checking payment status...';
+    const ticker = TICKERS[selectedChain];
+    const encodedCallback = encodeURIComponent(callbackUrl);
+    const res = await fetch(`https://api.cryptapi.io/${ticker}/logs/?callback=${encodedCallback}`);
+    const data = await res.json();
+    if (data.callbacks && data.callbacks.length > 0) {
+      const cb = data.callbacks[0];
+      if (cb.result === 'done' || cb.result === 'sent') {
+        // CONFIRMED!
+        clearInterval(checkInterval);
+        const txid = cb.txid_in || '';
+        showSuccess(txid);
+      } else {
+        dot.className = 'status-dot pending';
+        text.innerHTML = '<strong>Payment detected!</strong> Waiting for blockchain confirmation...';
+      }
+    } else {
+      dot.className = 'status-dot waiting';
+      text.textContent = 'Waiting for payment... (' + new Date().toLocaleTimeString() + ')';
+    }
+  } catch(e) {
+    dot.className = 'status-dot waiting';
+    text.textContent = 'Checking... if you\'ve sent payment, it may take a few minutes to appear.';
+  }
+}
+
+// ═══════════════════════════════
+// STEP 4: SUCCESS
+// ═══════════════════════════════
+function showSuccess(txid) {
+  if (txid) {
+    document.getElementById('txBox').style.display = 'block';
+    document.getElementById('txHash').textContent = txid;
+  }
+  // Pre-select the right package in the form
+  const pkg = document.querySelector('.pkg-card.selected');
+  if (pkg) {
+    const pkgName = pkg.querySelector('h4').textContent;
+    const sel = document.querySelector('select[name="package"]');
+    if (sel) {
+      for (let opt of sel.options) {
+        if (opt.text.includes(pkgName)) { opt.selected = true; break; }
+      }
+    }
+  }
+  goStep(4);
+  document.getElementById('progress').style.display = 'none';
+}
+
+function toggleForm() {
+  const form = document.getElementById('contactForm');
+  if (form.classList.contains('show')) {
+    form.classList.remove('show');
+  } else {
+    form.classList.add('show');
+    form.scrollIntoView({behavior: 'smooth', block: 'start'});
+  }
+}
+
+function handleFormSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  const data = new FormData(form);
+  fetch('/', { method: 'POST', });
+}
+</script>
+<script>(function(){var u="hello",d="geodm"+".us",e=u+"@"+d;document.querySelectorAll("[data-em]").forEach(function(a){a.href="mailto:"+e;if(a.dataset.show)a.textContent=e;});})();</script>
+</body>
+</html>

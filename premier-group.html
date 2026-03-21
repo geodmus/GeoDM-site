@@ -60,14 +60,33 @@ footer{background:var(--d2);border-top:1px solid rgba(0,200,212,.1);padding:40px
 footer p{font-size:13px;color:var(--g)}.footer-links{display:flex;gap:24px;justify-content:center;margin-top:12px}.footer-links a{color:var(--g);text-decoration:none;font-size:12px;letter-spacing:1px;text-transform:uppercase;transition:color .2s}.footer-links a:hover{color:var(--c)}
 .fu{opacity:1;transform:none}
 @media(max-width:768px){nav{padding:0 20px}.nav-links{display:none}.hero{padding:100px 20px 56px}.section{padding:56px 20px}.sgrid,.pricing-row,.market-grid{grid-template-columns:1fr}}
+
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:24px;height:2px;background:var(--w);transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:70px;left:0;right:0;background:rgba(7,12,13,.98);padding:24px 40px;border-bottom:1px solid rgba(0,200,212,.1);z-index:99}
+.mobile-menu.open{display:block}
+.mobile-menu ul{list-style:none;display:flex;flex-direction:column;gap:16px}
+.mobile-menu a{color:var(--g);text-decoration:none;font-size:14px;letter-spacing:2px;text-transform:uppercase;font-weight:600;transition:color .2s}.mobile-menu a:hover{color:var(--c)}
+@media(max-width:768px){.nav-links{display:none!important}.hamburger{display:flex}}
 </style>
 </head>
 <body>
 <nav>
   <a href="index.html" class="logo"><span class="wm">GEODMus</span><span class="sub">Geo Digital Media</span></a>
-  <ul class="nav-links"><li><a href="ventures.html">← Ventures</a></li><li><a href="services.html">Services</a></li><li><a href="about.html">About</a></li><li><a href="faq.html">FAQ</a></li></ul>
+  <ul class="nav-links"><li><a href="ventures.html">← Ventures</a></li><li><a href="services.html">Services</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="about.html">About</a></li><li><a href="faq.html">FAQ</a></li></ul>
   <a href="https://calendly.com/hello-geodm/30min" class="nav-btn" target="_blank">Free Strategy Call</a>
+<button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')"><span></span><span></span><span></span></button>
 </nav>
+<div class="mobile-menu">
+  <ul>
+    <li><a href="ventures.html" onclick="this.closest('.mobile-menu').classList.remove('open')">← All Ventures</a></li>
+    <li><a href="services.html" onclick="this.closest('.mobile-menu').classList.remove('open')">Services</a></li>
+    <li><a href="about.html" onclick="this.closest('.mobile-menu').classList.remove('open')">About</a></li>
+    <li><a href="pricing.html" onclick="this.closest('.mobile-menu').classList.remove('open')">Pricing</a></li>
+    <li><a href="faq.html" onclick="this.closest('.mobile-menu').classList.remove('open')">FAQ</a></li>
+    <li><a href="https://calendly.com/hello-geodm/30min" target="_blank">Book Free Call</a></li>
+  </ul>
+</div>
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-line"></div>
@@ -115,7 +134,7 @@ footer p{font-size:13px;color:var(--g)}.footer-links{display:flex;gap:24px;justi
   <h3>READY TO TAKE <span style="color:var(--a2)">CONTROL</span> OF YOUR FINANCES?</h3>
   <p>Tax prep, credit building, or homeownership planning — Premier Group is here. Book a free consultation.</p>
   <div class="btns"><a href="https://calendly.com/hello-geodm/30min" class="btn1" target="_blank">Book Free Consultation</a><a href="#" data-em="1">Email Us</a></div>
-  <p style="margin-top:16px;font-size:13px;color:rgba(255,255,255,.3)">¿Prefieres hablar en español? Escríbenos — <a href="#" data-em="1">[email&#160;protected]</a></p>
+  <p style="margin-top:16px;font-size:13px;color:rgba(255,255,255,.3)">¿Prefieres hablar en español? Escríbenos — hello&#64;geodm&#46;us</p>
 </div>
 <footer><p>© 2026 Premier Group · A Geo Digital Media Venture · geodm.us</p><div class="footer-links"><a href="ventures.html">All Ventures</a><a href="index.html">GeoDMus</a><a href="https://instagram.com/geodm.us" target="_blank">Instagram</a></div></footer>
 <script>
