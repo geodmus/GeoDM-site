@@ -1,658 +1,792 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GeoDMus Content Studio</title>
-
 <style>
-:root{--c:#00c8d4;--m:#cc2d8f;--d:#070c0d;--d2:#0d1517;--w:#fff;--g:rgba(255,255,255,0.4);--y:#f5c842;--o:#f7931a;--gr:#00c853}
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{height:100%;overflow:hidden;background:var(--d);color:var(--w);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;touch-action:manipulation}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #070c0d; color: #fff; font-family: Arial, sans-serif; }
 
 /* NAV */
-#nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(7,12,13,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,200,212,0.15);padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:8px}
-#nav h1{font-family:Impact,'Arial Narrow',Arial,sans-serif;font-size:16px;letter-spacing:3px;background:linear-gradient(90deg,var(--c),var(--m));-webkit-background-clip:text;-webkit-text-fill-color:transparent;white-space:nowrap}
-.tabs{display:flex;gap:3px;flex:1;justify-content:flex-end}
-.tab{padding:7px 11px;border:none;border-radius:5px;font-family:'Arial Narrow',Arial,sans-serif;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;cursor:pointer;transition:all .2s;white-space:nowrap}
-.tab.on{background:linear-gradient(135deg,var(--c),var(--m));color:var(--d)}
-.tab:not(.on){background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.5)}
+.nav { background: #0d1517; border-bottom: 1px solid #00c8d4; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 99; flex-wrap: wrap; gap: 8px; }
+.nav-title { font-size: 18px; font-weight: 900; letter-spacing: 3px; }
+.nav-title span { color: #00c8d4; }
+.nav-tabs { display: flex; gap: 4px; }
+.nav-tab { padding: 7px 12px; border: none; border-radius: 5px; font-size: 11px; font-weight: 700; cursor: pointer; letter-spacing: 1px; }
+.nav-tab.active { background: linear-gradient(135deg, #00c8d4, #cc2d8f); color: #070c0d; }
+.nav-tab:not(.active) { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.5); }
 
-/* MAIN LAYOUT */
-#main{position:fixed;top:52px;bottom:0;left:0;right:0;display:flex;overflow:hidden}
+/* LAYOUT */
+.layout { display: flex; height: calc(100vh - 52px); overflow: hidden; }
 
 /* SIDEBAR */
-#sidebar{width:200px;flex-shrink:0;overflow-y:auto;background:var(--d2);border-right:1px solid rgba(255,255,255,0.06);padding:10px 8px}
-#sidebar::-webkit-scrollbar{width:3px}
-#sidebar::-webkit-scrollbar-thumb{background:rgba(0,200,212,0.3);border-radius:2px}
-.s-label{font-size:8px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.3);padding:8px 4px 4px;display:block}
-.s-btn{width:100%;background:none;border:none;padding:7px 8px;text-align:left;cursor:pointer;border-radius:4px;margin-bottom:2px;transition:all .15s;border:1px solid transparent;display:flex;align-items:center;gap:7px}
-.s-btn:hover{background:rgba(255,255,255,0.04)}
-.s-btn.on{background:rgba(0,200,212,0.1);border-color:rgba(0,200,212,0.3)}
-.s-num{font-family:'Courier New',Courier,monospace;font-size:8px;color:rgba(255,255,255,0.25);width:16px;flex-shrink:0}
-.s-lbl{font-size:10px;color:rgba(255,255,255,0.6);font-weight:700;line-height:1.2}
-.s-btn.on .s-lbl{color:var(--c)}
-.s-done{margin-left:auto;font-size:9px}
-.s-type{font-size:9px;padding:1px 5px;border-radius:3px;font-weight:700;flex-shrink:0}
-.s-type.meme{background:rgba(204,45,143,0.15);color:var(--m)}
-.s-type.info{background:rgba(0,200,212,0.12);color:var(--c)}
-.s-type.reel{background:rgba(245,200,66,0.12);color:var(--y)}
-.s-type.hot{background:rgba(247,147,26,0.12);color:var(--o)}
+.sidebar { width: 190px; flex-shrink: 0; background: #0d1517; border-right: 1px solid rgba(255,255,255,0.07); overflow-y: auto; padding: 8px; }
+.sidebar-label { font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.3); padding: 8px 4px 5px; display: block; }
+.side-btn { width: 100%; background: none; border: 1px solid transparent; padding: 7px 8px; text-align: left; cursor: pointer; border-radius: 4px; margin-bottom: 2px; display: flex; align-items: center; gap: 6px; }
+.side-btn:hover { background: rgba(255,255,255,0.04); }
+.side-btn.active { background: rgba(0,200,212,0.1); border-color: rgba(0,200,212,0.3); }
+.side-btn .num { font-size: 9px; color: rgba(255,255,255,0.3); font-family: monospace; width: 14px; flex-shrink: 0; }
+.side-btn .lbl { font-size: 10px; color: rgba(255,255,255,0.6); font-weight: 700; line-height: 1.2; }
+.side-btn.active .lbl { color: #00c8d4; }
+.side-btn .ico { font-size: 10px; margin-left: auto; flex-shrink: 0; }
+.done-badge { color: #00c853; font-size: 10px; margin-left: auto; }
 
-/* CONTENT AREA */
-#content{flex:1;overflow-y:auto;display:flex;flex-direction:column;align-items:center;padding:16px 12px 100px}
-#content::-webkit-scrollbar{width:3px}
-#content::-webkit-scrollbar-thumb{background:rgba(0,200,212,0.2);border-radius:2px}
+/* MAIN */
+.main { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
 
-/* CARD WRAPPER - FULL SIZE */
-#card-wrap{width:100%;max-width:440px;position:relative}
-.card-label{font-size:8px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:8px;display:flex;align-items:center;gap:6px}
-.card-label::before{content:'';width:12px;height:2px;background:var(--c)}
+/* CARD */
+.card-wrap { width: 100%; max-width: 420px; }
+.card-label { font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 8px; }
 
 /* MEME CARD */
-.meme-card{width:100%;aspect-ratio:1;background:var(--d);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:5%}
-.m-glow1{position:absolute;width:55%;height:55%;border-radius:50%;background:radial-gradient(circle,rgba(0,200,212,0.12),transparent 70%);top:-10%;right:-10%;pointer-events:none}
-.m-glow2{position:absolute;width:40%;height:40%;border-radius:50%;background:radial-gradient(circle,rgba(204,45,143,0.1),transparent 70%);bottom:-8%;left:-6%;pointer-events:none}
-.m-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,200,212,0.022) 1px,transparent 1px),linear-gradient(90deg,rgba(0,200,212,0.022) 1px,transparent 1px);background-size:40px 40px;pointer-events:none}
-.m-accent{position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--c),var(--m))}
-.m-tag{position:relative;z-index:2;font-family:'Arial Narrow',Arial,sans-serif;font-size:clamp(8px,1.8vw,11px);letter-spacing:3px;text-transform:uppercase;color:var(--c);font-weight:700;display:flex;align-items:center;gap:8px}
-.m-tag::before{content:'';width:14px;height:2px;background:var(--c);flex-shrink:0}
-.m-body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center;padding:4% 0}
-.m-setup{font-size:clamp(11px,2.5vw,15px);color:rgba(255,255,255,0.45);line-height:1.5;margin-bottom:4%;font-style:italic}
-.m-punch{font-family:Impact,'Arial Narrow',Arial,sans-serif;font-size:clamp(32px,8vw,52px);line-height:.92;letter-spacing:1px}
-.m-foot{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center}
-.m-handle{font-family:'Courier New',Courier,monospace;font-size:clamp(7px,1.5vw,10px);color:rgba(255,255,255,0.2)}
-.m-brand{font-family:Impact,'Arial Narrow',Arial,sans-serif;font-size:clamp(10px,2.2vw,15px);letter-spacing:3px;background:linear-gradient(90deg,var(--c),var(--m));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.meme-card { width: 100%; aspect-ratio: 1; background: #070c0d; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; padding: 6%; border-radius: 6px; }
+.meme-accent { position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, #00c8d4, #cc2d8f); }
+.meme-glow { position: absolute; width: 50%; height: 50%; border-radius: 50%; background: radial-gradient(circle, rgba(0,200,212,0.1), transparent 70%); top: -10%; right: -10%; pointer-events: none; }
+.meme-tag { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: #00c8d4; font-weight: 700; position: relative; z-index: 2; }
+.meme-body { position: relative; z-index: 2; flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 5% 0; }
+.meme-setup { font-size: 12px; color: rgba(255,255,255,0.45); font-style: italic; line-height: 1.5; margin-bottom: 5%; }
+.meme-punch { font-size: clamp(28px, 7vw, 44px); font-weight: 900; line-height: 0.95; text-transform: uppercase; }
+.meme-foot { position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: center; }
+.meme-handle { font-size: 9px; color: rgba(255,255,255,0.2); font-family: monospace; }
+.meme-brand { font-size: 12px; font-weight: 900; letter-spacing: 3px; background: linear-gradient(90deg, #00c8d4, #cc2d8f); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.cc { color: #00c8d4; }
+.cm { color: #cc2d8f; }
+.cy { color: #f5c842; }
 
 /* INFO CARD */
-.info-card{width:100%;aspect-ratio:1;background:var(--d);position:relative;overflow:hidden;display:flex;flex-direction:column;padding:5% 5% 3%}
-.i-accent{position:absolute;left:0;top:0;bottom:0;width:4px}
-.i-glow{position:absolute;width:45%;height:45%;border-radius:50%;background:radial-gradient(circle,rgba(0,200,212,0.07),transparent 70%);top:-10%;right:-10%;pointer-events:none}
-.i-cat{font-family:'Arial Narrow',Arial,sans-serif;font-size:clamp(8px,1.8vw,11px);letter-spacing:3px;text-transform:uppercase;font-weight:700;margin-bottom:2%}
-.i-title{font-family:Impact,'Arial Narrow',Arial,sans-serif;font-size:clamp(18px,4.5vw,30px);color:var(--w);line-height:.98;margin-bottom:1.5%}
-.i-sub{font-size:clamp(8px,1.8vw,11px);color:rgba(255,255,255,0.35);line-height:1.4;margin-bottom:3%}
-.i-chart{flex:1;display:flex;flex-direction:column;justify-content:center;gap:2%}
-.bar-row{display:flex;align-items:center;gap:6px}
-.bar-lbl{font-size:clamp(8px,1.8vw,11px);color:rgba(255,255,255,0.55);width:38%;flex-shrink:0;line-height:1.2;font-weight:600}
-.bar-track{flex:1;height:clamp(14px,3.5vw,22px);background:rgba(255,255,255,0.05);border-radius:3px;overflow:hidden}
-.bar-fill{height:100%;border-radius:2px;display:flex;align-items:center;justify-content:flex-end;padding-right:6px;transition:width .6s ease}
-.bar-pct{font-size:clamp(7px,1.6vw,10px);font-weight:700;color:var(--w);font-family:'Courier New',Courier,monospace}
-.i-foot{display:flex;justify-content:space-between;align-items:center;margin-top:3%;padding-top:3%;border-top:1px solid rgba(255,255,255,0.06)}
-.i-src{font-size:clamp(6px,1.3vw,8px);color:rgba(255,255,255,0.18)}
-.i-brand{font-family:Impact,'Arial Narrow',Arial,sans-serif;font-size:clamp(10px,2.2vw,14px);letter-spacing:3px;background:linear-gradient(90deg,var(--c),var(--m));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.info-card { width: 100%; aspect-ratio: 1; background: #070c0d; position: relative; overflow: hidden; display: flex; flex-direction: column; padding: 5%; border-radius: 6px; }
+.info-accent { position: absolute; left: 0; top: 0; bottom: 0; width: 4px; }
+.info-cat { font-size: 8px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; margin-bottom: 3px; }
+.info-title { font-size: clamp(16px, 4vw, 24px); font-weight: 900; color: #fff; line-height: 1; margin-bottom: 3px; text-transform: uppercase; }
+.info-sub { font-size: 9px; color: rgba(255,255,255,0.35); margin-bottom: 10px; }
+.bars { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 5px; }
+.bar-row { display: flex; align-items: center; gap: 6px; }
+.bar-lbl { font-size: 9px; color: rgba(255,255,255,0.55); width: 36%; flex-shrink: 0; font-weight: 600; }
+.bar-track { flex: 1; height: 18px; background: rgba(255,255,255,0.05); border-radius: 3px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 2px; display: flex; align-items: center; justify-content: flex-end; padding-right: 5px; }
+.bar-fill span { font-size: 8px; font-weight: 700; color: #fff; font-family: monospace; }
+.info-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; padding-top: 7px; border-top: 1px solid rgba(255,255,255,0.05); }
+.info-src { font-size: 7px; color: rgba(255,255,255,0.18); }
+.info-brand { font-size: 11px; font-weight: 900; letter-spacing: 3px; background: linear-gradient(90deg, #00c8d4, #cc2d8f); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
 /* REEL CARD */
-.reel-card{width:56%;aspect-ratio:9/16;background:var(--d);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:6% 5%}
-.r-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(0,200,212,0.09),transparent 60%),radial-gradient(ellipse 60% 40% at 80% 100%,rgba(204,45,143,0.09),transparent 60%),var(--d);pointer-events:none}
-.r-scan{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,200,212,0.012) 3px,rgba(0,200,212,0.012) 4px);pointer-events:none}
-.r-side{position:absolute;right:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--c),var(--m))}
-.r-ep{font-family:'Courier New',Courier,monospace;font-size:clamp(7px,1.5vw,9px);color:var(--c);letter-spacing:2px;margin-bottom:5%;display:flex;align-items:center;gap:5px;position:relative;z-index:2}
-.r-dot{width:5px;height:5px;border-radius:50%;background:var(--c);animation:blink 1.5s infinite;flex-shrink:0}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
-.r-ser{font-family:'Arial Narrow',Arial,sans-serif;font-size:clamp(7px,1.5vw,9px);letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:4%;position:relative;z-index:2}
-.r-hook{font-family:Impact,'Arial Narrow',Arial,sans-serif;font-size:clamp(24px,7vw,44px);line-height:.91;position:relative;z-index:2;margin-bottom:5%}
-.r-sub{font-size:clamp(9px,2vw,12px);color:rgba(255,255,255,0.42);line-height:1.45;position:relative;z-index:2}
-.r-mid{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;flex:1}
-.r-emi{font-size:clamp(36px,10vw,60px);filter:drop-shadow(0 0 16px rgba(0,200,212,0.3))}
-.r-badge{position:absolute;right:0;top:0;background:linear-gradient(135deg,var(--c),var(--m));color:var(--d);padding:3px 8px;border-radius:2px;font-family:'Arial Narrow',Arial,sans-serif;font-size:clamp(7px,1.5vw,9px);letter-spacing:1.5px;text-transform:uppercase;font-weight:700}
-.r-cta{background:linear-gradient(135deg,var(--c),var(--m));color:var(--d);padding:5% 4%;border-radius:3px;font-family:'Arial Narrow',Arial,sans-serif;font-size:clamp(9px,2vw,12px);letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;margin-bottom:4%;position:relative;z-index:2}
-.r-foot{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2}
-.r-handle{font-family:'Courier New',Courier,monospace;font-size:clamp(6px,1.3vw,8px);color:rgba(255,255,255,0.2)}
-.r-brand{font-family:Impact,'Arial Narrow',Arial,sans-serif;font-size:clamp(9px,2vw,12px);letter-spacing:3px;background:linear-gradient(90deg,var(--c),var(--m));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.reel-wrap { display: flex; justify-content: center; }
+.reel-card { width: 55%; aspect-ratio: 9/16; background: #070c0d; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; padding: 6% 5%; border-radius: 6px; }
+.reel-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0,200,212,0.08), transparent 60%); pointer-events: none; }
+.reel-side { position: absolute; right: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, #00c8d4, #cc2d8f); }
+.reel-ep { font-size: 7px; color: #00c8d4; letter-spacing: 2px; margin-bottom: 6px; font-family: monospace; position: relative; z-index: 2; display: flex; align-items: center; gap: 4px; }
+.reel-dot { width: 5px; height: 5px; border-radius: 50%; background: #00c8d4; animation: blink 1.5s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+.reel-ser { font-size: 7px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 5px; position: relative; z-index: 2; }
+.reel-hook { font-size: clamp(22px, 6vw, 36px); font-weight: 900; line-height: 0.93; text-transform: uppercase; position: relative; z-index: 2; margin-bottom: 6px; }
+.reel-sub { font-size: 10px; color: rgba(255,255,255,0.4); line-height: 1.4; position: relative; z-index: 2; }
+.reel-mid { display: flex; align-items: center; justify-content: center; flex: 1; position: relative; z-index: 2; }
+.reel-emi { font-size: clamp(40px, 10vw, 56px); }
+.reel-badge { position: absolute; right: 0; top: 0; background: linear-gradient(135deg, #00c8d4, #cc2d8f); color: #070c0d; padding: 3px 7px; border-radius: 2px; font-size: 7px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+.reel-cta { background: linear-gradient(135deg, #00c8d4, #cc2d8f); color: #070c0d; padding: 6% 4%; border-radius: 3px; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; text-align: center; margin-bottom: 5px; position: relative; z-index: 2; }
+.reel-foot { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 2; }
+.reel-handle { font-size: 7px; color: rgba(255,255,255,0.2); font-family: monospace; }
+.reel-brand { font-size: 9px; font-weight: 900; letter-spacing: 3px; background: linear-gradient(90deg, #00c8d4, #cc2d8f); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-/* HOT TAKE CARD */
-.hot-card{width:100%;aspect-ratio:1;background:#000;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:8%}
-.hot-lines{position:relative;z-index:2}
-.hot-line{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:900;font-size:clamp(16px,4.2vw,26px);color:var(--w);line-height:1.2;margin-bottom:1.5%}
-.hot-line.hl-c{color:var(--c)}
-.hot-line.hl-m{color:var(--m)}
-.hot-line.hl-y{color:var(--y)}
-.hot-line.hl-dim{color:rgba(255,255,255,0.45);font-weight:700}
-.hot-divider{width:40px;height:2px;background:linear-gradient(90deg,var(--c),var(--m));margin:4% 0}
-.hot-tag{font-family:'Arial Narrow',Arial,sans-serif;font-size:clamp(9px,2vw,12px);letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.3);position:relative;z-index:2}
-.hot-brand{position:absolute;bottom:5%;right:5%;font-family:Impact,'Arial Narrow',Arial,sans-serif;font-size:clamp(11px,2.5vw,16px);letter-spacing:3px;background:linear-gradient(90deg,var(--c),var(--m));-webkit-background-clip:text;-webkit-text-fill-color:transparent;z-index:2}
-.hot-accent{position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--c),var(--m))}
+/* HOT CARD */
+.hot-card { width: 100%; aspect-ratio: 1; background: #000; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; padding: 8%; border-radius: 6px; }
+.hot-accent { position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: linear-gradient(180deg, #00c8d4, #cc2d8f); }
+.hot-line { font-size: clamp(16px, 4vw, 24px); font-weight: 900; line-height: 1.2; margin-bottom: 2%; color: #fff; }
+.hot-divider { width: 40px; height: 2px; background: linear-gradient(90deg, #00c8d4, #cc2d8f); margin: 4% 0; }
+.hot-tag { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+.hot-brand { position: absolute; bottom: 5%; right: 5%; font-size: 11px; font-weight: 900; letter-spacing: 3px; background: linear-gradient(90deg, #00c8d4, #cc2d8f); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-/* CAPTION AREA */
-#cap-area{width:100%;max-width:440px;margin-top:14px}
-.cap-box{background:var(--d2);border:1px solid rgba(0,200,212,0.1);border-radius:8px;padding:14px}
-.cap-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.cap-title{font-family:'Arial Narrow',Arial,sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--m)}
-.cap-chars{font-size:9px;color:rgba(255,255,255,0.3);font-family:'Courier New',Courier,monospace}
-#cap-text{width:100%;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.07);color:var(--w);padding:10px 12px;font-size:12px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;border-radius:5px;outline:none;resize:vertical;line-height:1.65;min-height:120px}
-.cap-btns{display:flex;gap:8px;margin-top:10px}
-.cbtn{flex:1;padding:11px;border:none;border-radius:5px;font-family:'Arial Narrow',Arial,sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;cursor:pointer;transition:all .2s}
-.cbtn.primary{background:linear-gradient(135deg,var(--c),var(--m));color:var(--d)}
-.cbtn.secondary{background:none;border:1px solid rgba(0,200,212,0.3);color:var(--c)}
-.cbtn.done{background:var(--gr);color:var(--d)}
+/* EMPTY STATE */
+.empty { width: 100%; max-width: 420px; height: 280px; background: #0d1517; border: 1px dashed rgba(0,200,212,0.2); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; cursor: pointer; }
+.empty-icon { font-size: 36px; }
+.empty-text { font-size: 12px; color: rgba(255,255,255,0.35); text-align: center; line-height: 1.6; }
+
+/* CAPTION */
+.caption-wrap { width: 100%; max-width: 420px; background: #0d1517; border: 1px solid rgba(0,200,212,0.1); border-radius: 8px; padding: 14px; }
+.cap-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.cap-title { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #cc2d8f; font-weight: 700; }
+.cap-chars { font-size: 9px; color: rgba(255,255,255,0.3); font-family: monospace; }
+.cap-textarea { width: 100%; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.07); color: #fff; padding: 10px 12px; font-size: 12px; font-family: Arial, sans-serif; border-radius: 5px; outline: none; resize: vertical; line-height: 1.65; min-height: 130px; }
+.cap-btns { display: flex; gap: 8px; margin-top: 10px; }
+.cap-btn { flex: 1; padding: 11px; border: none; border-radius: 5px; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; }
+.cap-btn.primary { background: linear-gradient(135deg, #00c8d4, #cc2d8f); color: #070c0d; }
+.cap-btn.secondary { background: none; border: 1px solid rgba(0,200,212,0.3); color: #00c8d4; }
+.cap-btn.copied { background: #00c853; color: #070c0d; }
 
 /* PLATFORM TAGS */
-.ptags{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
-.ptag{padding:3px 9px;border-radius:8px;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700}
-.ptag.ig{background:rgba(204,45,143,0.1);border:1px solid rgba(204,45,143,0.2);color:var(--m)}
-.ptag.x{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.45)}
+.ptags { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+.ptag { padding: 3px 9px; border-radius: 8px; font-size: 8px; letter-spacing: 1px; text-transform: uppercase; font-weight: 700; }
+.ptag-ig { background: rgba(204,45,143,0.1); border: 1px solid rgba(204,45,143,0.2); color: #cc2d8f; }
+.ptag-x { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.45); }
 
-/* PROGRESS BAR */
-#prog-bar{position:fixed;bottom:0;left:0;right:0;background:var(--d2);border-top:1px solid rgba(255,255,255,0.06);padding:10px 14px;display:flex;align-items:center;gap:10px;z-index:100}
-.prog-track{flex:1;height:5px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden}
-.prog-fill{height:100%;background:linear-gradient(90deg,var(--c),var(--m));border-radius:3px;transition:width .4s}
-#prog-text{font-size:10px;color:rgba(255,255,255,0.4);font-family:'Courier New',Courier,monospace;white-space:nowrap}
+/* PROGRESS */
+.prog-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #0d1517; border-top: 1px solid rgba(255,255,255,0.06); padding: 8px 16px; display: flex; align-items: center; gap: 10px; z-index: 99; }
+.prog-track { flex: 1; height: 5px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; }
+.prog-fill { height: 100%; background: linear-gradient(90deg, #00c8d4, #cc2d8f); border-radius: 3px; transition: width 0.4s; }
+.prog-text { font-size: 10px; color: rgba(255,255,255,0.4); font-family: monospace; white-space: nowrap; }
+
+/* MARK DONE BUTTON */
+.mark-btn { display: flex; gap: 7px; width: 100%; max-width: 420px; }
+.mark-btn button { flex: 1; padding: 9px; border-radius: 5px; font-size: 10px; font-weight: 700; cursor: pointer; letter-spacing: 1px; }
+.btn-back { background: none; border: 1px solid rgba(0,200,212,0.25); color: #00c8d4; }
+.btn-post { border: none; color: #070c0d; }
+
+
+/* CHART TYPE SWITCHER */
+.chart-switcher { display: flex; gap: 4px; margin-bottom: 10px; }
+.chart-sw-btn { padding: 5px 12px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.45); font-size: 10px; font-weight: 700; border-radius: 4px; cursor: pointer; letter-spacing: 1px; }
+.chart-sw-btn.active { background: rgba(0,200,212,0.12); border-color: #00c8d4; color: #00c8d4; }
+
+/* PIE CHART */
+.pie-wrap { display: flex; align-items: center; justify-content: center; gap: 16px; height: 100%; }
+.pie-legend { display: flex; flex-direction: column; gap: 7px; }
+.pie-item { display: flex; align-items: center; gap: 6px; }
+.pie-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+.pie-text { font-size: 11px; color: rgba(255,255,255,0.6); }
+.pie-text strong { color: #fff; font-size: 13px; }
+
+/* STAT HERO */
+.stat-wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; text-align: center; gap: 8px; }
+.stat-num { font-size: clamp(72px, 18vw, 100px); font-weight: 900; line-height: 0.85; background: linear-gradient(135deg, #00c8d4, #cc2d8f); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.stat-label { font-size: clamp(13px, 3vw, 16px); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #fff; max-width: 260px; line-height: 1.3; }
+.stat-desc { font-size: 11px; color: rgba(255,255,255,0.4); max-width: 270px; line-height: 1.6; }
+.stat-pill { background: rgba(0,200,83,0.1); border: 1px solid rgba(0,200,83,0.2); border-radius: 16px; padding: 4px 12px; margin-top: 4px; }
+.stat-pill span { font-size: 10px; font-weight: 700; color: #00c853; }
 
 /* TOAST */
-#toast{position:fixed;top:60px;left:50%;transform:translateX(-50%) translateY(-20px);background:linear-gradient(135deg,var(--c),var(--m));color:var(--d);padding:9px 18px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:1px;z-index:999;opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap}
-#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast { position: fixed; top: 65px; left: 50%; transform: translateX(-50%) translateY(-10px); background: linear-gradient(135deg, #00c8d4, #cc2d8f); color: #070c0d; padding: 9px 20px; border-radius: 20px; font-size: 11px; font-weight: 700; z-index: 999; opacity: 0; transition: all 0.3s; pointer-events: none; white-space: nowrap; }
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-/* COLORS */
-.cc{color:var(--c)}.cm{color:var(--m)}.cy{color:var(--y)}.co{color:var(--o)}
-
-/* MOBILE */
-@media(max-width:600px){
-  #sidebar{width:160px}
-  .tab{padding:6px 8px;font-size:9px}
-}
-@media(max-width:480px){
-  #sidebar{display:none}
-  #content{padding:12px 10px 100px}
-}
+@media (max-width: 480px) { .sidebar { display: none; } }
 </style>
 </head>
 <body>
 
-<div id="toast"></div>
+<div class="toast" id="toast"></div>
 
 <!-- NAV -->
-<div id="nav">
-  <h1>GDM STUDIO</h1>
-  <div class="tabs">
-    <button class="tab on" data-tab="cal">📅 Cal</button>
-    <button class="tab" data-tab="meme">😂 Meme</button>
-    <button class="tab" data-tab="info">📊 Data</button>
-    <button class="tab" data-tab="reel">🎬 Reel</button>
-    <button class="tab" data-tab="hot">🔥 Hot</button>
+<div class="nav" id="topnav">
+  <div class="nav-title">GDM <span>STUDIO</span></div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" data-tab="cal">📅 Cal</button>
+    <button class="nav-tab" data-tab="meme">😂 Meme</button>
+    <button class="nav-tab" data-tab="info">📊 Data</button>
+    <button class="nav-tab" data-tab="reel">🎬 Reel</button>
+    <button class="nav-tab" data-tab="hot">🔥 Hot</button>
   </div>
 </div>
 
-<!-- MAIN -->
-<div id="main">
-  <!-- SIDEBAR -->
-  <div id="sidebar"></div>
-
-  <!-- CONTENT -->
-  <div id="content">
-    <div id="card-wrap">
-      <div class="card-label" id="card-label">Select a post from sidebar</div>
-      <div id="card-display"></div>
-    </div>
-    <div id="cap-area">
-      <div class="cap-box">
-        <div class="cap-head">
-          <div class="cap-title">Caption Editor</div>
-          <div class="cap-chars" id="char-count">0 chars</div>
+<!-- LAYOUT -->
+<div class="layout">
+  <div class="sidebar" id="sidebar"></div>
+  <div class="main" id="main" style="padding-bottom: 60px;">
+    <div class="card-wrap">
+      <div class="card-label" id="card-label">Select a post from the sidebar</div>
+      <div id="card-display">
+        <div class="empty" id="empty-state">
+          <div class="empty-icon">📅</div>
+          <div class="empty-text">Tap any day in the sidebar<br>to load your post</div>
         </div>
-        <textarea id="cap-text" placeholder="Select a post to load its caption..." oninput="updateChars()"></textarea>
-        <div class="cap-btns">
-          <button class="cbtn primary" id="copy-btn" onclick="copyCaption()">📋 Copy Caption</button>
-          <button class="cbtn secondary" onclick="openMetricool()">Open Metricool →</button>
-        </div>
-        <div class="ptags" id="ptags"></div>
       </div>
+    </div>
+    <div id="action-row" style="display:none" class="mark-btn">
+      <button class="btn-back" id="btn-back">← Calendar</button>
+      <button class="btn-post" id="btn-post">Mark as Posted</button>
+    </div>
+    <div class="caption-wrap" id="cap-wrap">
+      <div class="cap-head">
+        <div class="cap-title">Caption Editor</div>
+        <div class="cap-chars" id="cap-chars">0 chars</div>
+      </div>
+      <textarea class="cap-textarea" id="cap-text" placeholder="Select a post to load its caption..."></textarea>
+      <div class="cap-btns">
+        <button class="cap-btn primary" id="btn-copy">📋 Copy Caption</button>
+        <button class="cap-btn secondary" id="btn-metricool">Open Metricool →</button>
+      </div>
+      <div class="ptags" id="ptags"></div>
     </div>
   </div>
 </div>
 
 <!-- PROGRESS -->
-<div id="prog-bar">
+<div class="prog-bar">
   <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
-  <div id="prog-text">0/30 posted</div>
+  <div class="prog-text" id="prog-text">0/30 posted</div>
 </div>
 
 <script>
-// ═══════════════════════════════════════════════
-// DATA
-// ═══════════════════════════════════════════════
+var C = "#00c8d4", M = "#cc2d8f", Y = "#f5c842", O = "#f7931a", G = "#00c853";
 
-const MEMES = [
-  {tag:"Agency Life",setup:'When the client says "make it pop" but has no logo, no budget, and no plan...',punch:[{t:"BUT THEY NEED IT",c:""},{t:"LIVE BY",c:"cc"},{t:"FRIDAY.",c:"cm"}]},
-  {tag:"Client Chronicles",setup:"Client: 'Make it look like Apple's site.' Also the client:",punch:[{t:"BUDGET: $200.",c:"cm"},{t:"SIR, APPLE",c:""},{t:"SPENT $1 BILLION.",c:"cc"}]},
-  {tag:"Entrepreneur Energy",setup:"My friends on the couch at 11pm watching Netflix.",punch:[{t:"ME AT 2AM:",c:""},{t:"BUILDING AN EMPIRE",c:"cc"},{t:"FROM AN IPAD.",c:"cm"}]},
-  {tag:"AI Hot Takes 🤖",setup:'"AI is going to take everyone\'s jobs."',punch:[{t:"AI DIDN'T TAKE",c:""},{t:"YOUR JOB.",c:"cc"},{t:"YOUR EXCUSES DID.",c:"cm"}]},
-  {tag:"Web3 Truths",setup:'Normie in 2021: "Crypto is a scam." Same person in 2027:',punch:[{t:'"HOW DO I BUY',c:""},{t:"BITCOIN?",c:"cc"},{t:'"',c:"cm"}]},
-  {tag:"Chicago Business 🏙",setup:"Chicago biz owners still paying $400/mo for a 2009 website:",punch:[{t:'"IT STILL',c:""},{t:"TECHNICALLY",c:"cc"},{t:'LOADS."',c:"cm"}]},
-  {tag:"Nihilist Mode 🐧",setup:"Me after the 14th cold call rejection of the day:",punch:[{t:"NEW SPIRIT",c:""},{t:"ANIMAL",c:"cc"},{t:"UNLOCKED.",c:"cm"}]},
-  {tag:"Unbothered 🦫",setup:"Me sitting calm while competitors panic about AI and the algorithm:",punch:[{t:"CHAOS?",c:""},{t:"I SEE",c:"cc"},{t:"OPPORTUNITY.",c:"cm"}]},
-  {tag:"2026 Realness 💀",setup:"Digital marketer brain — three tabs, two deadlines, one cold coffee:",punch:[{t:"THIS IS FINE.",c:"cc"},{t:"I'M FINE.",c:"cm"}]},
-  {tag:"Airball Client 🏀",setup:'Me: "We do AI, Web3, digital marketing." Client response:',punch:[{t:'"COOL. CAN YOU',c:""},{t:"FIX MY PRINTER?",c:"cm"},{t:'"',c:"cc"}]},
+var MEMES = [
+  {tag:"Agency Life", setup:'When the client says "make it pop" but has no logo, no budget, and no plan...', lines:[{t:"BUT THEY NEED IT",c:C},{t:"LIVE BY FRIDAY.",c:M}]},
+  {tag:"Client Chronicles", setup:"Client: 'Make it look like Apple.' Their budget:", lines:[{t:"BUDGET: $200.",c:M},{t:"SIR, APPLE SPENT $1B.",c:C}]},
+  {tag:"Entrepreneur Energy", setup:"My friends on the couch at 11pm watching Netflix.", lines:[{t:"ME AT 2AM: BUILDING",c:C},{t:"AN EMPIRE FROM AN IPAD.",c:M}]},
+  {tag:"AI Hot Takes", setup:'"AI is going to take everyone\'s jobs."', lines:[{t:"AI DIDN'T TAKE YOUR JOB.",c:C},{t:"YOUR EXCUSES DID.",c:M}]},
+  {tag:"Web3 Truths", setup:'Normie in 2021: "Crypto is a scam." Same person in 2027:', lines:[{t:'"HOW DO I BUY BITCOIN?"',c:C}]},
+  {tag:"Chicago Business", setup:"Chicago biz owners paying $400/mo for a 2009 website:", lines:[{t:'"IT STILL TECHNICALLY',c:C},{t:'LOADS."',c:M}]},
+  {tag:"Nihilist Mode", setup:"Me after the 14th cold call rejection of the day:", lines:[{t:"NEW SPIRIT ANIMAL",c:C},{t:"UNLOCKED. 🐧",c:M}]},
+  {tag:"Unbothered", setup:"Me sitting calm while competitors panic about the algorithm:", lines:[{t:"CHAOS?",c:C},{t:"I SEE OPPORTUNITY.",c:M}]},
+  {tag:"2026 Realness", setup:"Digital marketer brain — three tabs, two deadlines, one cold coffee:", lines:[{t:"THIS IS FINE.",c:C},{t:"I'M FINE.",c:M}]},
+  {tag:"Airball Client", setup:'Me: "We do AI, Web3, digital marketing." Client:', lines:[{t:'"COOL. CAN YOU FIX',c:M},{t:'MY PRINTER?"',c:C}]},
+  {tag:"Agency Life 2", setup:"Every project kickoff ever.", lines:[{t:'"KEEP IT SIMPLE."',c:C},{t:"(3 MONTHS LATER)",c:M}]},
+  {tag:"Hustle Reality", setup:"People who work 9-5 asking how I find time to build 7 companies:", lines:[{t:"I DON'T FIND TIME.",c:C},{t:"I MAKE IT.",c:M}]},
+  {tag:"Web3 Season", setup:"Your competitor still processing payments from 2015:", lines:[{t:"WE ACCEPT",c:C},{t:"BITCOIN, ETH, SOL.",c:M}]},
+  {tag:"Client Red Flag", setup:"Client during discovery call: 'I have a really clear vision.'", lines:[{t:"CLIENT 3 WEEKS LATER:",c:M},{t:'"CAN WE START OVER?"',c:C}]},
+  {tag:"AI Reality Check", setup:"People who think AI will do everything for them:", lines:[{t:"GARBAGE IN.",c:M},{t:"GARBAGE OUT.",c:C}]},
+  {tag:"Chicago Grind", setup:"Everyone sleeping on Chicago as a tech city:", lines:[{t:"WE'RE BUILDING",c:C},{t:"EMPIRES OVER HERE.",c:M}]},
+  {tag:"Founder Mode", setup:"Normal person brain vs founder brain at 2am:", lines:[{t:"NORMAL: SLEEPING.",c:M},{t:"ME: DEPLOYING.",c:C}]},
+  {tag:"Budget Talk", setup:"Client: 'What's your cheapest option?' Us:", lines:[{t:"$799/MO.",c:C},{t:"FULL STACK. DONE FOR YOU.",c:M}]},
+  {tag:"Algorithm Truth", setup:"Everyone complaining the algorithm is broken:", lines:[{t:"THE ALGORITHM",c:C},{t:"REWARDS SHOWING UP.",c:M}]},
+  {tag:"Season 1", setup:"Day 1 of building GeoDMus. No clients. No team. No office.", lines:[{t:"JUST AN IPAD",c:C},{t:"AND A PAPER AIRPLANE.",c:M}]},
 ];
 
-const INFOS = [
-  {cat:"Artificial Intelligence",title:"AI Tools SMBs Use in 2026",src:"HubSpot 2026",cyan:true,bars:[{l:"Content Creation",p:74,c:"rgba(0,200,212,1)"},{l:"Customer Service AI",p:58,c:"rgba(204,45,143,1)"},{l:"Email Automation",p:45,c:"rgba(247,147,26,1)"},{l:"Social Media Mgmt",p:38,c:"rgba(245,200,66,1)"},{l:"Workflow Automation",p:31,c:"rgba(0,200,83,1)"}]},
-  {cat:"Small Business Pain",title:"Why Customers Leave Your Site",src:"Google Think 2026",cyan:false,bars:[{l:"Loads too slow",p:82,c:"rgba(204,45,143,1)"},{l:"Not mobile friendly",p:73,c:"rgba(0,200,212,1)"},{l:"Looks outdated",p:61,c:"rgba(247,147,26,1)"},{l:"No online booking",p:48,c:"rgba(245,200,66,1)"},{l:"Hard to find contact",p:44,c:"rgba(0,200,83,1)"}]},
-  {cat:"Social Media 2026",title:"Reels Dominate Organic Reach",src:"Later · Social Insider 2026",cyan:true,bars:[{l:"Reels",p:28,c:"rgba(0,200,212,1)"},{l:"Carousels",p:18,c:"rgba(204,45,143,1)"},{l:"Stories",p:12,c:"rgba(247,147,26,1)"},{l:"Static Photos",p:8,c:"rgba(245,200,66,1)"},{l:"Text Posts",p:4,c:"rgba(0,200,83,1)"}]},
-  {cat:"Email Marketing",title:"Email = $42 ROI Per $1 Spent",src:"Litmus · Statista 2026",cyan:false,bars:[{l:"Email Marketing",p:92,c:"rgba(0,200,212,1)"},{l:"SEO / Content",p:68,c:"rgba(204,45,143,1)"},{l:"Social Ads",p:54,c:"rgba(245,200,66,1)"},{l:"Paid Search",p:44,c:"rgba(247,147,26,1)"},{l:"Display Ads",p:22,c:"rgba(0,200,83,1)"}]},
-  {cat:"Web3 & Crypto",title:"Crypto Adoption by Industry",src:"Chainalysis 2026",cyan:true,bars:[{l:"E-Commerce",p:62,c:"rgba(0,200,212,1)"},{l:"Digital Services",p:54,c:"rgba(204,45,143,1)"},{l:"Hospitality",p:31,c:"rgba(247,147,26,1)"},{l:"Professional Svcs",p:28,c:"rgba(245,200,66,1)"},{l:"Local Small Biz",p:14,c:"rgba(0,200,83,1)"}]},
-  {cat:"Video Marketing",title:"91% of Businesses Use Video",src:"DemandSage · Wyzowl 2026",cyan:true,bars:[{l:"Short-form Reels",p:87,c:"rgba(0,200,212,1)"},{l:"Long-form YouTube",p:64,c:"rgba(204,45,143,1)"},{l:"Live Video",p:48,c:"rgba(247,147,26,1)"},{l:"Animated",p:35,c:"rgba(245,200,66,1)"},{l:"Webinars",p:29,c:"rgba(0,200,83,1)"}]},
-  {cat:"Mobile Marketing",title:"Mobile = 78% of All Web Traffic",src:"Statista 2026",cyan:false,bars:[{l:"Mobile",p:78,c:"rgba(0,200,212,1)"},{l:"Desktop",p:18,c:"rgba(204,45,143,1)"},{l:"Tablet",p:4,c:"rgba(0,200,83,1)"}]},
-  {cat:"Content ROI",title:"Content Gets 6x More ROI Than Paid",src:"HubSpot 2026",cyan:false,bars:[{l:"Organic SEO/Blog",p:84,c:"rgba(0,200,212,1)"},{l:"Email Campaigns",p:76,c:"rgba(204,45,143,1)"},{l:"Social Organic",p:58,c:"rgba(245,200,66,1)"},{l:"Paid Social",p:44,c:"rgba(247,147,26,1)"},{l:"PPC/Display",p:32,c:"rgba(0,200,83,1)"}]},
-  {cat:"Digital Ad Spend",title:"Digital Ads Hit $800B in 2026",src:"Wordstream 2026",cyan:true,bars:[{l:"Search Ads",p:74,c:"rgba(0,200,212,1)"},{l:"Social Ads",p:58,c:"rgba(204,45,143,1)"},{l:"Video Ads",p:42,c:"rgba(247,147,26,1)"},{l:"Display",p:24,c:"rgba(245,200,66,1)"},{l:"Programmatic",p:18,c:"rgba(0,200,83,1)"}]},
-  {cat:"SEO & Search",title:"92% of Marketers Invest in SEO",src:"HubSpot 2026",cyan:true,bars:[{l:"Google Organic",p:91,c:"rgba(0,200,212,1)"},{l:"Local SEO/Maps",p:74,c:"rgba(204,45,143,1)"},{l:"Voice Search",p:48,c:"rgba(247,147,26,1)"},{l:"AI Search",p:38,c:"rgba(245,200,66,1)"},{l:"Video SEO",p:29,c:"rgba(0,200,83,1)"}]},
+var INFOS = [
+  {cat:"Artificial Intelligence", title:"AI Tools SMBs Use in 2026", src:"HubSpot 2026", color:C, bars:[{l:"Content Creation",p:74,c:C},{l:"Customer Service AI",p:58,c:M},{l:"Email Automation",p:45,c:O},{l:"Social Media Mgmt",p:38,c:Y},{l:"Workflow Automation",p:31,c:G}]},
+  {cat:"Small Business Pain", title:"Why Customers Leave Your Site", src:"Google Think 2026", color:M, bars:[{l:"Loads too slow",p:82,c:M},{l:"Not mobile friendly",p:73,c:C},{l:"Looks outdated",p:61,c:O},{l:"No online booking",p:48,c:Y},{l:"Hard to find contact",p:44,c:G}]},
+  {cat:"Social Media 2026", title:"Reels Dominate Organic Reach", src:"Later 2026", color:C, bars:[{l:"Reels",p:28,c:C},{l:"Carousels",p:18,c:M},{l:"Stories",p:12,c:O},{l:"Static Photos",p:8,c:Y},{l:"Text Posts",p:4,c:G}]},
+  {cat:"Email Marketing", title:"Email = $42 ROI Per $1 Spent", src:"Litmus 2026", color:M, bars:[{l:"Email Marketing",p:92,c:C},{l:"SEO / Content",p:68,c:M},{l:"Social Ads",p:54,c:Y},{l:"Paid Search",p:44,c:O},{l:"Display Ads",p:22,c:G}]},
+  {cat:"Web3 & Crypto", title:"Crypto Adoption by Industry", src:"Chainalysis 2026", color:C, bars:[{l:"E-Commerce",p:62,c:C},{l:"Digital Services",p:54,c:M},{l:"Hospitality",p:31,c:O},{l:"Professional Svcs",p:28,c:Y},{l:"Local Small Biz",p:14,c:G}]},
+  {cat:"Video Marketing", title:"91% of Businesses Use Video", src:"DemandSage 2026", color:C, bars:[{l:"Short-form Reels",p:87,c:C},{l:"Long-form YouTube",p:64,c:M},{l:"Live Video",p:48,c:O},{l:"Animated",p:35,c:Y},{l:"Webinars",p:29,c:G}]},
+  {cat:"Mobile Marketing", title:"Mobile = 78% of Web Traffic", src:"Statista 2026", color:M, bars:[{l:"Mobile",p:78,c:C},{l:"Desktop",p:18,c:M},{l:"Tablet",p:4,c:G}]},
+  {cat:"Content ROI", title:"Content Gets 6x More ROI Than Paid", src:"HubSpot 2026", color:C, bars:[{l:"Organic SEO/Blog",p:84,c:C},{l:"Email Campaigns",p:76,c:M},{l:"Social Organic",p:58,c:Y},{l:"Paid Social",p:44,c:O},{l:"PPC/Display",p:32,c:G}]},
+  {cat:"Digital Ad Spend", title:"Digital Ads Hit $800B in 2026", src:"Wordstream 2026", color:M, bars:[{l:"Search Ads",p:74,c:C},{l:"Social Ads",p:58,c:M},{l:"Video Ads",p:42,c:O},{l:"Display",p:24,c:Y},{l:"Programmatic",p:18,c:G}]},
+  {cat:"SEO & Search", title:"92% of Marketers Invest in SEO", src:"HubSpot 2026", color:C, bars:[{l:"Google Organic",p:91,c:C},{l:"Local SEO",p:74,c:M},{l:"Voice Search",p:48,c:O},{l:"AI Search",p:38,c:Y},{l:"Video SEO",p:29,c:G}]},
+  {cat:"Influencer Marketing", title:"Influencer ROI = $6.50 Per $1", src:"DemandSage 2026", color:M, bars:[{l:"Micro-influencers",p:89,c:C},{l:"Nano-influencers",p:74,c:M},{l:"Mid-tier",p:52,c:O},{l:"Macro",p:38,c:Y},{l:"Celebrity",p:21,c:G}]},
+  {cat:"Local Business", title:"Local Search Converts at 28%", src:"Google 2026", color:C, bars:[{l:"Google Maps",p:76,c:C},{l:"Google Search",p:68,c:M},{l:"Yelp/Reviews",p:44,c:O},{l:"Social Discovery",p:32,c:Y},{l:"Direct Traffic",p:18,c:G}]},
+  {cat:"AI Adoption", title:"94% Will Use AI for Content in 2026", src:"HubSpot 2026", color:M, bars:[{l:"AI Writing Tools",p:78,c:C},{l:"AI Image Gen",p:64,c:M},{l:"AI Video",p:48,c:O},{l:"AI Automation",p:42,c:Y},{l:"AI Analytics",p:35,c:G}]},
+  {cat:"E-Commerce", title:"Social Commerce Hits 17% of Sales", src:"Statista 2026", color:C, bars:[{l:"Instagram Shop",p:42,c:C},{l:"TikTok Shop",p:38,c:M},{l:"Facebook Shop",p:28,c:O},{l:"Pinterest",p:18,c:Y},{l:"X Commerce",p:8,c:G}]},
+  {cat:"Chicago Business", title:"Chicago Digital Gap Opportunity", src:"GeoDMus Research 2026", color:M, bars:[{l:"No website",p:38,c:M},{l:"Outdated site",p:34,c:C},{l:"No social presence",p:28,c:O},{l:"No automation",p:22,c:Y},{l:"No crypto accept.",p:86,c:G}]},
 ];
 
-const REELS = [
-  {ep:"EP. 01",ser:"Cold Calling Diaries",hook:[{t:"I CALLED 50",c:""},{t:"BUSINESSES.",c:"cc"},{t:"HERE'S WHAT",c:""},{t:"HAPPENED.",c:"cm"}],sub:"Watch me embarrass myself — and maybe land a client",emi:"📞",bdg:"RAW & UNCUT",cta:"Watch Until the End 👀"},
-  {ep:"WEEK 3",ser:"Building GeoDMus Live",hook:[{t:"BUILT A",c:""},{t:"7-COMPANY",c:"cc"},{t:"ECOSYSTEM FROM",c:""},{t:"MY IPAD.",c:"cm"}],sub:"No office. No team. No excuses. Just execution.",emi:"🚀",bdg:"NO BS",cta:"This is how it starts 🔥"},
-  {ep:"CLIENT WIN",ser:"GeoDMus Results",hook:[{t:"FIRST",c:""},{t:"CLIENT",c:"cc"},{t:"SIGNED.",c:""},{t:"HOW I DID IT.",c:"cm"}],sub:"Cold DM to signed contract. Full breakdown.",emi:"🎯",bdg:"REAL RESULTS",cta:"Drop a 🔥 for the story"},
-  {ep:"60 SECONDS",ser:"Digital Growth Tips",hook:[{t:"3 TOOLS",c:"cc"},{t:"EVERY BIZ NEEDS",c:""},{t:"RIGHT NOW.",c:"cm"}],sub:"Set all 3 up in under 2 hours",emi:"⚡",bdg:"SAVE THIS",cta:"Save this post 📌"},
-  {ep:"HOT TAKE",ser:"On-Chain Business",hook:[{t:"YOUR BUSINESS",c:""},{t:"NEEDS",c:"cc"},{t:"BITCOIN.",c:"cm"}],sub:"Not investment advice. But also... kind of.",emi:"₿",bdg:"UNPOPULAR",cta:"Disagree? Let's talk 👇"},
-  {ep:"BLOOPER REEL",ser:"Real Entrepreneur Fails",hook:[{t:"HUNG UP ON",c:""},{t:"14 TIMES",c:"cc"},{t:"TODAY.",c:"cm"}],sub:"Day 12 of cold calling. Send help. 😭",emi:"😭",bdg:"TOO REAL",cta:"Follow for the glow-up 😤"},
-  {ep:"THE SETUP",ser:"Building on Zero Budget",hook:[{t:"MY ENTIRE",c:""},{t:"OFFICE IS",c:"cc"},{t:"AN IPAD.",c:"cm"}],sub:"The most digital agency setup you've ever seen.",emi:"📱",bdg:"REAL SETUP",cta:"Comment your setup 👇"},
-  {ep:"DATA DROP",ser:"GeoDMus Numbers",hook:[{t:"$42 BACK FOR",c:"cc"},{t:"EVERY $1",c:""},{t:"SPENT.",c:"cm"}],sub:"Email marketing ROI nobody talks about enough",emi:"📊",bdg:"SHOCKING",cta:"Share this 🤯"},
-  {ep:"DM SECRETS",ser:"Cold Outreach",hook:[{t:"THE DM",c:""},{t:"THAT GOT ME",c:"cc"},{t:"A CLIENT.",c:"cm"}],sub:"7 words. One message. Here's exactly what I sent.",emi:"💬",bdg:"COPY THIS",cta:'Comment "DM" for the template 👇'},
-  {ep:"CITY GRIND",ser:"Chicago Entrepreneur",hook:[{t:"CHICAGO",c:""},{t:"SMALL BIZ IS",c:"cc"},{t:"SLEEPING.",c:"cm"}],sub:"The city is wide open. We're moving now.",emi:"🏙",bdg:"CHICAGO BUILT",cta:"🔥 if you build in Chicago"},
+var REELS = [
+  {ep:"EP. 01", ser:"Cold Calling Diaries", hook:[{t:"I CALLED 50",c:""},{t:"BUSINESSES.",c:C},{t:"HERE'S WHAT",c:""},{t:"HAPPENED.",c:M}], sub:"Watch me embarrass myself — and maybe land a client", emi:"📞", bdg:"RAW & UNCUT", cta:"Watch Until the End 👀"},
+  {ep:"WEEK 3", ser:"Building GeoDMus Live", hook:[{t:"BUILT A",c:""},{t:"7-COMPANY",c:C},{t:"ECOSYSTEM",c:""},{t:"FROM MY IPAD.",c:M}], sub:"No office. No team. No excuses.", emi:"🚀", bdg:"NO BS", cta:"This is how it starts 🔥"},
+  {ep:"CLIENT WIN", ser:"GeoDMus Results", hook:[{t:"FIRST",c:""},{t:"CLIENT",c:C},{t:"SIGNED.",c:""},{t:"HOW I DID IT.",c:M}], sub:"Cold DM to signed contract. Full breakdown.", emi:"🎯", bdg:"REAL RESULTS", cta:"Drop a 🔥 for the story"},
+  {ep:"60 SECONDS", ser:"Digital Growth Tips", hook:[{t:"3 TOOLS",c:C},{t:"EVERY BIZ NEEDS",c:""},{t:"RIGHT NOW.",c:M}], sub:"Set all 3 up in under 2 hours", emi:"⚡", bdg:"SAVE THIS", cta:"Save this post 📌"},
+  {ep:"HOT TAKE", ser:"On-Chain Business", hook:[{t:"YOUR BUSINESS",c:""},{t:"NEEDS",c:C},{t:"BITCOIN.",c:M}], sub:"Not investment advice. But also... kind of.", emi:"₿", bdg:"UNPOPULAR", cta:"Disagree? Let's talk 👇"},
+  {ep:"BLOOPER", ser:"Real Entrepreneur Fails", hook:[{t:"HUNG UP ON",c:""},{t:"14 TIMES",c:C},{t:"TODAY.",c:M}], sub:"Day 12 of cold calling. Send help.", emi:"😭", bdg:"TOO REAL", cta:"Follow for the glow-up 😤"},
+  {ep:"THE SETUP", ser:"Building on Zero Budget", hook:[{t:"MY ENTIRE",c:""},{t:"OFFICE IS",c:C},{t:"AN IPAD.",c:M}], sub:"The most digital agency setup you've ever seen.", emi:"📱", bdg:"REAL SETUP", cta:"Comment your setup 👇"},
+  {ep:"DATA DROP", ser:"GeoDMus Numbers", hook:[{t:"$42 BACK FOR",c:C},{t:"EVERY $1",c:""},{t:"SPENT.",c:M}], sub:"Email marketing ROI nobody talks about enough", emi:"📊", bdg:"SHOCKING", cta:"Share this 🤯"},
+  {ep:"DM SECRETS", ser:"Cold Outreach", hook:[{t:"THE DM THAT",c:""},{t:"GOT ME",c:C},{t:"A CLIENT.",c:M}], sub:"7 words. One message. Here's what I sent.", emi:"💬", bdg:"COPY THIS", cta:'Comment "DM" for the template 👇'},
+  {ep:"CITY GRIND", ser:"Chicago Entrepreneur", hook:[{t:"CHICAGO",c:""},{t:"SMALL BIZ IS",c:C},{t:"SLEEPING.",c:M}], sub:"The city is wide open. We're moving now.", emi:"🏙", bdg:"CHICAGO BUILT", cta:"🔥 if you build in Chicago"},
+  {ep:"EP. 02", ser:"Cold Calling Diaries", hook:[{t:"REJECTION #15",c:M},{t:"TAUGHT ME",c:""},{t:"MORE THAN",c:""},{t:"ANY COURSE.",c:C}], sub:"The real lessons are in the nos.", emi:"📞", bdg:"REAL TALK", cta:"Drop a 💪 if you keep going"},
+  {ep:"BREAKDOWN", ser:"Revenue Report", hook:[{t:"HOW WE MAKE",c:""},{t:"MONEY WITH",c:C},{t:"7 VENTURES.",c:M}], sub:"Full transparency. Season 1 numbers.", emi:"💰", bdg:"TRANSPARENT", cta:"Comment 'REVENUE' for breakdown"},
+  {ep:"QUICK HIT", ser:"Web3 Education", hook:[{t:"CRYPTO",c:C},{t:"PAYMENTS IN",c:""},{t:"10 MINUTES.",c:M}], sub:"Set it up before your competitor does.", emi:"₿", bdg:"TUTORIAL", cta:"Save this 📌"},
+  {ep:"STORY TIME", ser:"GeoDMus Origin", hook:[{t:"WHY I BUILT",c:""},{t:"GEODMUS",c:C},{t:"FROM AN IPAD.",c:M}], sub:"Chicago. 2am. A paper airplane logo.", emi:"✈️", bdg:"ORIGIN STORY", cta:"Follow the journey 🚀"},
+  {ep:"TOOL REVIEW", ser:"Agency Stack", hook:[{t:"THE EXACT",c:""},{t:"TOOLS I USE",c:C},{t:"EVERY DAY.",c:M}], sub:"$150/mo total. Full agency output.", emi:"🛠️", bdg:"FULL STACK", cta:"Comment 'STACK' for the list"},
 ];
 
-const HOTS = [
-  {lines:[{t:'"AI WILL NOT',c:""},{t:"REPLACE ME."",c:""},{t:"CHICAGO BUSINESS OWNER:",c:"cc"},{t:"2 + 11 - 1 = ???",c:"cm"}],tag:"Self-Aware · Agency Life"},
-  {lines:[{t:"POV: YOU TOLD",c:""},{t:"THE CLIENT",c:""},{t:"THE SITE GOES LIVE",c:"cc"},{t:"FRIDAY.",c:"cm"}],tag:"POV · Agency Life"},
-  {lines:[{t:"BREAKING:",c:"cc"},{t:"PLUMBERS + ELECTRICIANS",c:""},{t:"ARE NOW THE MOST",c:""},{t:"FUTURE-PROOF JOBS.",c:"cy"}],tag:"Breaking · AI Era"},
-  {lines:[{t:"AI WON'T REPLACE",c:""},{t:"CHICAGO SMALL BUSINESS.",c:"cc"},{t:"IT WILL LET THEM",c:""},{t:"BEAT CORPORATE.",c:"cm"}],tag:"GeoDMus · AI Truth"},
-  {lines:[{t:"THIS USED TO TAKE",c:""},{t:"A $50K MARKETING TEAM.",c:"cm"},{t:"NOW IT'S",c:""},{t:"$799/MO.",c:"cc"}],tag:"GeoDMus Launchpad"},
-  {lines:[{t:"2 HOURS BEFORE",c:""},{t:"THE CLIENT CALL.",c:"cm"},{t:"ME + AI:",c:"cc"},{t:"READY.",c:""}],tag:"That's the difference. · GeoDMus"},
-  {lines:[{t:"MARKETER WITH 20 YEARS",c:""},{t:"EXPERIENCE WATCHING",c:""},{t:"A KID WITH AN IPAD",c:"cc"},{t:"OUTPERFORM THEM.",c:"cm"}],tag:"Season 1. Chicago."},
-  {lines:[{t:'"YOUR BUSINESS',c:""},{t:"DOESN'T NEED",c:""},{t:'A WEBSITE."',c:"cm"},{t:"IT'S SO OVER.",c:"cc"}],tag:"Said in 2005. Said today. · GeoDMus"},
-  {lines:[{t:"CHICAGO OWNERS",c:""},{t:"WATCHING AI REPLACE",c:""},{t:"EVERYONE WHO SAID",c:""},{t:'"WE DON'T NEED DIGITAL."',c:"cm"}],tag:"The window is still open. · GeoDMus"},
-  {lines:[{t:"COMPANIES PAYING",c:""},{t:"$10K/MONTH",c:"cc"},{t:"FOR AI AGENTS.",c:""},{t:"WE BUILD YOURS",c:""},{t:"FOR $1,599/MO.",c:"cm"}],tag:"GeoDMus Growth Engine"},
-  {lines:[{t:"POV: YOUR COMPETITOR",c:""},{t:"JUST LAUNCHED",c:""},{t:"A NEW WEBSITE.",c:"cc"},{t:"YOURS IS FROM 2009.",c:"cm"}],tag:"We fix this. · geodm.us"},
-  {lines:[{t:"BREAKING:",c:"cc"},{t:"A SOLO DEV BUILT",c:""},{t:"WHAT USED TO NEED",c:""},{t:"A TEAM OF 50.",c:"cm"}],tag:"GeoDMus · AI Build"},
-  {lines:[{t:"AI IS GETTING",c:""},{t:"OUT OF CONTROL.",c:"cm"},{t:"GOOD.",c:"cc"},{t:"WE'RE READY.",c:""}],tag:"GeoDMus · AI Automation · Chicago"},
-  {lines:[{t:"YOUR MARKETING:",c:""},{t:"$10,000/MO.",c:"cm"},{t:"GEODMUS:",c:""},{t:"$799/MO.",c:"cc"},{t:"FULL STACK.",c:""}],tag:"GeoDMus Launchpad"},
-  {lines:[{t:"AI CAN TRACK YOUR",c:""},{t:"LOCATION FROM A PHOTO.",c:"cc"},{t:"IMAGINE WHAT IT DOES",c:""},{t:"FOR YOUR MARKETING.",c:"cm"}],tag:"GeoDMus AI Tools"},
-  {lines:[{t:"THE STRANGEST PART ABOUT AI",c:""},{t:"ISN'T WHAT IT CAN DO.",c:"cc"},{t:"IT'S WHAT YOUR COMPETITORS",c:""},{t:"AREN'T DOING WITH IT.",c:"cm"}],tag:"GeoDMus · AI Strategy"},
-  {lines:[{t:"YOUR COMPETITOR'S",c:""},{t:"RESPONSE TO AI:",c:"cm"},{t:'"WE'LL DO IT LATER."',c:""},{t:"LATER BECAME NEVER.",c:"cc"}],tag:"GeoDMus · Market Opportunity"},
-  {lines:[{t:"FROM THE IPAD",c:""},{t:"TO THE WORLD.",c:"cc"},{t:"7 VENTURES.",c:"cm"},{t:"1 FOUNDER.",c:""},{t:"SEASON 1 IS LIVE.",c:"cc"}],tag:"Chicago · Building In Public"},
-  {lines:[{t:"ONE PERSON.",c:""},{t:"ONE IPAD.",c:"cc"},{t:"7 COMPANIES.",c:"cm"},{t:"NO OFFICE.",c:""},{t:"NO EXCUSES.",c:"cc"}],tag:"GeoDMus · Season 1 · Chicago"},
-  {lines:[{t:"GEODMUS IS OFFICIALLY",c:""},{t:"STEPPING INTO",c:"cc"},{t:"ENTERPRISE TERRITORY.",c:"cm"},{t:"AND IT ACTUALLY",c:""},{t:"LOOKS SERIOUS.",c:"cc"}],tag:"Empire Mode · $2,999/mo"},
-  {lines:[{t:"THIS USED TO TAKE",c:""},{t:"HUGE TEAMS + MILLIONS.",c:"cm"},{t:"NOW IT'S A FEW PROMPTS",c:""},{t:"AND $799/MO.",c:"cc"}],tag:"GeoDMus Launchpad"},
-  {lines:[{t:"THE SAME PEOPLE WHO SAID",c:""},{t:'"YOU DON'T NEED',c:"cm"},{t:'A WEBSITE"',c:"cm"},{t:"NOW HAVE NO CUSTOMERS.",c:"cc"}],tag:"Don't be them. · geodm.us"},
-  {lines:[{t:"YOUR WEBSITE",c:""},{t:"BEFORE GEODMUS:",c:"cm"},{t:"VS AFTER GEODMUS:",c:"cc"}],tag:"Night and day. DM 'REBUILD'"},
-  {lines:[{t:"AI IS DECIPHERING",c:""},{t:"2,000 YEAR OLD TEXTS.",c:"cc"},{t:"YOUR BUSINESS CAN'T",c:""},{t:"FIGURE OUT WHY",c:""},{t:"NOBODY VISITS YOUR SITE.",c:"cm"}],tag:"Free audit. DM 'WEBSITE'"},
-  {lines:[{t:"AI WON'T REPLACE",c:""},{t:"CHICAGO BUSINESS.",c:"cc"},{t:"IT WILL LET SMALL BIZ",c:""},{t:"CREATE BETTER",c:""},{t:"THAN CORPORATE.",c:"cm"}],tag:"GeoDMus · The Play"},
-  {lines:[{t:"COMPANIES HIRE AI AGENTS",c:""},{t:"AT $10K/MONTH.",c:"cm"},{t:"GEODMUS BUILDS YOUR",c:""},{t:"ENTIRE DIGITAL TEAM",c:""},{t:"FOR $1,599/MO.",c:"cc"}],tag:"GeoDMus Growth Engine"},
-  {lines:[{t:"FULL MARKETING TEAM:",c:""},{t:"$800K/YEAR.",c:"cm"},{t:"GEODMUS:",c:""},{t:"$9,600/YEAR.",c:"cc"},{t:"FULL STACK. BTW.",c:""}],tag:"GeoDMus · Empire Mode"},
-  {lines:[{t:'"DIGITAL MARKETING',c:""},{t:"IS TOO EXPENSIVE",c:""},{t:'FOR SMALL BIZ."',c:"cm"},{t:"GeoDMus:",c:"cc"},{t:"HOLD MY IPAD.",c:""}],tag:"Starting at $799/mo"},
-  {lines:[{t:"BUSINESSES WITH",c:""},{t:"NO DIGITAL PRESENCE",c:"cm"},{t:"WATCHING COMPETITORS",c:""},{t:"TAKE ALL THEIR CLIENTS.",c:"cc"}],tag:"Don't watch. Act. · GeoDMus"},
-  {lines:[{t:"POV: METRICOOL IS DOWN",c:""},{t:"AND YOU HAVE TO POST",c:""},{t:"MANUALLY.",c:"cm"}],tag:"That's why we build systems."},
+var HOTS = [
+  {lines:[{t:'"AI WILL NOT REPLACE ME."',c:""},{t:"CHICAGO BUSINESS OWNER",c:C},{t:"DOING MANUAL DATA ENTRY",c:""},{t:"FOR THE 4TH HOUR.",c:M}], tag:"Self-Aware · Agency Life"},
+  {lines:[{t:"POV: YOU TOLD THE CLIENT",c:""},{t:"THE SITE GOES LIVE FRIDAY.",c:M}], tag:"POV · Agency Life"},
+  {lines:[{t:"AI WON'T REPLACE",c:""},{t:"CHICAGO SMALL BUSINESS.",c:C},{t:"IT WILL LET THEM",c:""},{t:"BEAT CORPORATE.",c:M}], tag:"GeoDMus · AI Truth"},
+  {lines:[{t:"THIS USED TO TAKE",c:""},{t:"A $50K MARKETING TEAM.",c:M},{t:"NOW IT'S $799/MO.",c:C}], tag:"GeoDMus Launchpad"},
+  {lines:[{t:"2 HOURS BEFORE THE CLIENT CALL.",c:M},{t:"ME + AI: READY.",c:C}], tag:"That's the difference. · GeoDMus"},
+  {lines:[{t:"COMPANIES PAYING",c:""},{t:"$10K/MONTH FOR AI AGENTS.",c:M},{t:"WE BUILD YOURS FOR $1,599.",c:C}], tag:"GeoDMus Growth Engine"},
+  {lines:[{t:"POV: YOUR COMPETITOR",c:""},{t:"JUST LAUNCHED A NEW SITE.",c:C},{t:"YOURS IS FROM 2009.",c:M}], tag:"We fix this. · geodm.us"},
+  {lines:[{t:"AI IS GETTING",c:""},{t:"OUT OF CONTROL.",c:M},{t:"GOOD. WE'RE READY.",c:C}], tag:"GeoDMus · Chicago"},
+  {lines:[{t:"YOUR MARKETING: $10,000/MO.",c:M},{t:"GEODMUS: $799/MO.",c:C},{t:"FULL STACK.",c:""}], tag:"GeoDMus Launchpad"},
+  {lines:[{t:"THE STRANGEST PART ABOUT AI",c:""},{t:"ISN'T WHAT IT CAN DO.",c:C},{t:"IT'S WHAT YOUR COMPETITORS",c:""},{t:"AREN'T DOING WITH IT.",c:M}], tag:"GeoDMus · AI Strategy"},
+  {lines:[{t:"FROM THE IPAD TO THE WORLD.",c:C},{t:"7 VENTURES. 1 FOUNDER.",c:""},{t:"SEASON 1 IS LIVE.",c:M}], tag:"Chicago · Building In Public"},
+  {lines:[{t:"ONE PERSON. ONE IPAD.",c:C},{t:"7 COMPANIES. NO OFFICE.",c:M},{t:"NO EXCUSES.",c:""}], tag:"GeoDMus · Season 1"},
+  {lines:[{t:"THE SAME PEOPLE WHO SAID",c:""},{t:'"YOU DON\'T NEED A WEBSITE"',c:M},{t:"NOW HAVE NO CUSTOMERS.",c:C}], tag:"Don't be them. · geodm.us"},
+  {lines:[{t:"CONTENT MARKETING",c:""},{t:"DELIVERS 6X MORE ROI",c:C},{t:"THAN PAID ADS.",c:M},{t:"READ THAT AGAIN.",c:""}], tag:"GeoDMus · Content Truth"},
+  {lines:[{t:'"DIGITAL MARKETING IS',c:""},{t:'TOO EXPENSIVE."',c:M},{t:"GeoDMus: HOLD MY IPAD.",c:C}], tag:"Starting at $799/mo"},
+  {lines:[{t:"PLUMBERS AND ELECTRICIANS",c:""},{t:"WATCHING AI REPLACE",c:C},{t:"EVERYONE WHO WENT TO COLLEGE.",c:M}], tag:"AI Era · Hot Take"},
+  {lines:[{t:"POSTING CONSISTENTLY",c:""},{t:"FOR 90 DAYS",c:C},{t:"BEATS GOING VIRAL ONCE.",c:M}], tag:"Content Truth · GeoDMus"},
+  {lines:[{t:"BUSINESSES WITH",c:""},{t:"NO DIGITAL PRESENCE",c:M},{t:"WATCHING AI-POWERED COMPETITORS",c:""},{t:"TAKE ALL THEIR CLIENTS.",c:C}], tag:"Don't watch. Act. · GeoDMus"},
+  {lines:[{t:"AI CAN TRACK YOUR LOCATION",c:C},{t:"FROM A SINGLE PHOTO.",c:""},{t:"IMAGINE WHAT IT DOES",c:""},{t:"FOR YOUR MARKETING.",c:M}], tag:"GeoDMus AI Tools"},
+  {lines:[{t:"YOUR COMPETITOR'S RESPONSE TO AI:",c:M},{t:'"WE\'LL DO IT LATER."',c:""},{t:"LATER BECAME NEVER.",c:C}], tag:"GeoDMus · Market Opportunity"},
+  {lines:[{t:"THIS USED TO TAKE HUGE TEAMS",c:""},{t:"AND MILLIONS IN BUDGET.",c:M},{t:"NOW IT'S A FEW PROMPTS",c:""},{t:"AND $799/MO.",c:C}], tag:"GeoDMus Launchpad"},
+  {lines:[{t:"GEODMUS IS OFFICIALLY",c:""},{t:"STEPPING INTO",c:C},{t:"ENTERPRISE TERRITORY.",c:M}], tag:"Empire Mode · $2,999/mo"},
+  {lines:[{t:"FULL MARKETING TEAM: $800K/YEAR.",c:M},{t:"GEODMUS: $9,600/YEAR.",c:C},{t:"FULL STACK. BTW.",c:""}], tag:"GeoDMus · Empire Mode"},
+  {lines:[{t:"AI WON'T REPLACE CHICAGO BIZ.",c:C},{t:"IT WILL LET SMALL BIZ",c:""},{t:"CREATE BETTER THAN CORPORATE.",c:M}], tag:"GeoDMus · The Play"},
+  {lines:[{t:"BREAKING:",c:C},{t:"A SOLO DEV JUST BUILT",c:""},{t:"WHAT USED TO NEED A TEAM OF 50.",c:M}], tag:"GeoDMus · AI Build"},
+  {lines:[{t:"BITCOIN HIT $0.01 IN 2009.",c:M},{t:"PEOPLE LAUGHED.",c:""},{t:"SAME PEOPLE IN 2024:",c:""},{t:'"I KNEW IT ALL ALONG."',c:C}], tag:"Web3 · History"},
+  {lines:[{t:'"YOUR BUSINESS',c:""},{t:"DOESN'T NEED A WEBSITE.",c:M},{t:"IT'S SO OVER.",c:C},{t:"FOR THAT EXCUSE.",c:""}], tag:"Said in 2005. Said today."},
+  {lines:[{t:"CHICAGO SMALL BIZ IS",c:""},{t:"WIDE OPEN RIGHT NOW.",c:C},{t:"EVERY UNDIGITIZED BUSINESS",c:""},{t:"IS A POTENTIAL CLIENT.",c:M}], tag:"GeoDMus · Season 1 · Chicago"},
+  {lines:[{t:"THE BEST TIME TO BUILD",c:""},{t:"YOUR DIGITAL PRESENCE",c:C},{t:"WAS 5 YEARS AGO.",c:M},{t:"SECOND BEST TIME: NOW.",c:""}], tag:"GeoDMus · Action"},
+  {lines:[{t:"NOBODY TALKS ABOUT",c:""},{t:"THE 14 REJECTIONS",c:M},{t:"BEFORE THE FIRST YES.",c:C},{t:"WE DO. SEASON 1. CHICAGO.",c:""}], tag:"Building In Public · GeoDMus"},
 ];
 
-
-const CAPS = {
-  meme:[
-    'Every client\'s favorite sentence. 😅\n\nYou know the call. "I just need something simple." Three revisions and a full rebrand later...\n\n💬 Drop a 😂 if you\'ve been here. DM us "BUILD"\n\n#AgencyLife #Chicago #GeoDMus #DigitalMarketing #WebDesign',
-    '$200 budget. Apple website vision. Classic combo. 😂\n\nApple spent a billion on that clean. We have flexible pricing starting at $799/mo.\n\n💸 Link in bio.\n\n#WebDesign #SmallBusiness #GeoDMus #Chicago',
-    '2am is when the real ones build. 🔥\n\nGeoDMus was built at 2am from an iPad and a paper airplane logo. Season 1 is live.\n\n🚀 DM "SEASON1" and let\'s build together.\n\n#Entrepreneur #BuildingInPublic #Chicago #GeoDMus #Hustle',
-    'AI isn\'t taking your job. It\'s taking your excuses. 🤖\n\n"No time to post" — AI writes captions.\n"Can\'t afford a receptionist" — AI handles bookings.\n\n⚡ DM "AUTOMATE" and we\'ll show you.\n\n#AI #Automation #SmallBusiness #GeoDMus #AgenticAI',
-    'Bitcoin was a scam until it wasn\'t. 👀\n\nBeen on-chain since before 2015. We help businesses accept crypto before competitors do.\n\n₿ DM us "CRYPTO" — setup takes less than an hour.\n\n#Bitcoin #Web3 #GeoDMus #OnChain #Chicago',
-    'Chicago small businesses are sitting on untapped digital potential. 🏙\n\nYour competitor two blocks away? No website. No automation. No social presence.\n\n📍 DM us "CHICAGO" if you\'re ready to grow.\n\n#Chicago #SmallBusiness #GeoDMus #ChicagoBusiness',
-    'The Nihilist Penguin energy is REAL in founder mode. 🐧\n\nCold call 15 rejected. Coffee cold.\n\nDrop a 🐧 if you\'re walking into the void and building anyway.\n\n#BuildingInPublic #Entrepreneur #GeoDMus #Founder #Chicago',
-    'Unbothered. Building an empire. 🦫\n\nEveryone panicking about the algorithm and the economy.\n\nMe: I see every disruption as a door.\n\n🦫 Drop "CAPYBARA" if you\'re building unbothered.\n\n#Entrepreneur #GeoDMus #Mindset #Chicago #BuildingInPublic',
-    'Three tabs. Two deadlines. One cold coffee. This is fine. 💀\n\nSystems make the chaos stop. That\'s what we do.\n\n💬 DM "SYSTEMS" and we\'ll show you automation.\n\n#SmallBusiness #Entrepreneur #GeoDMus #Automation #Chicago',
-    'Told them we do AI, Web3, and digital marketing. They asked to fix the printer. 🏀\n\nEvery founder knows this moment. And yet — we still helped. Because that\'s Chicago.\n\n😂 Drop your wildest client request in the comments.\n\n#AgencyLife #GeoDMus #Chicago #DigitalMarketing',
+var CAPS = {
+  meme: [
+    'Every client\'s favorite sentence. 😅\n\nYou know the call. "I just need something simple." Three revisions later...\n\nChicago business owner tired of explaining your vision? We get it.\n\n💬 Drop a 😂 if you\'ve been here. DM us "BUILD"\n\n#AgencyLife #Chicago #GeoDMus #DigitalMarketing #WebDesign',
+    '$200 budget. Apple website vision. Classic combo. 😂\n\nApple spent a billion on that clean. We have flexible pricing.\n\n💸 Link in bio. Starting at $799/mo.\n\n#WebDesign #SmallBusiness #GeoDMus #Chicago',
+    '2am is when the real ones build. 🔥\n\nGeoDMus was built at 2am from an iPad and a paper airplane logo.\n\n🚀 DM "SEASON1" and let\'s build together.\n\n#Entrepreneur #BuildingInPublic #Chicago #GeoDMus #Hustle',
+    'AI isn\'t taking your job. It\'s taking your excuses. 🤖\n\n"No time to post" — AI writes captions.\n"Can\'t afford staff" — AI handles bookings.\n\n⚡ DM "AUTOMATE" and we\'ll show you.\n\n#AI #Automation #SmallBusiness #GeoDMus',
+    'Bitcoin was a scam until it wasn\'t. 👀\n\nBeen on-chain since before 2015.\n\n₿ DM us "CRYPTO" — setup takes less than an hour.\n\n#Bitcoin #Web3 #GeoDMus #OnChain #Chicago',
+    'Chicago small businesses sitting on untapped potential. 🏙\n\nYour competitor two blocks away? No website. No automation. No social.\n\n📍 DM "CHICAGO" if you\'re ready to grow.\n\n#Chicago #SmallBusiness #GeoDMus',
+    'The Nihilist Penguin energy is REAL in founder mode. 🐧\n\nDrop a 🐧 if you\'re walking into the void and building anyway.\n\n#BuildingInPublic #Entrepreneur #GeoDMus #Chicago',
+    'Unbothered. Building an empire. 🦫\n\nMe: I see every disruption as a door.\n\n🦫 Drop "CAPYBARA" if you\'re building unbothered.\n\n#Entrepreneur #GeoDMus #Mindset #Chicago',
+    'Three tabs. Two deadlines. One cold coffee. This is fine. 💀\n\nSystems make the chaos stop. That\'s what we do.\n\n💬 DM "SYSTEMS" and we\'ll show you automation.\n\n#SmallBusiness #GeoDMus #Automation',
+    'Told them we do AI, Web3, digital marketing. They asked to fix the printer. 🏀\n\n😂 Drop your wildest client request in the comments.\n\n#AgencyLife #GeoDMus #Chicago #DigitalMarketing',
+    'Every project starts with "keep it simple." Ends with a full rebrand. 😅\n\n💬 Drop a 😂 if you know this feeling.\n\n#AgencyLife #GeoDMus #Chicago #WebDesign',
+    'You don\'t find time to build. You make it.\n\n2am. iPad. No excuses.\n\n🔥 Drop a 💪 if you\'re making time.\n\n#Entrepreneur #GeoDMus #Chicago #BuildingInPublic',
+    'Your competitor is still processing payments from 2015.\n\nWe accept Bitcoin, ETH, and SOL.\n\n₿ DM "CRYPTO" to get set up today.\n\n#Web3 #Bitcoin #GeoDMus #Chicago',
+    '"I have a really clear vision" — famous last words before the fourth pivot. 😂\n\n💬 Drop your best client story in the comments.\n\n#AgencyLife #GeoDMus #Chicago',
+    'AI is a tool. Not a magic wand.\n\nGarbage in = garbage out.\n\nWe help you use it right.\n\n⚡ DM "AI" to see what\'s possible.\n\n#AI #GeoDMus #Chicago #SmallBusiness',
+    'Chicago is sleeping on itself as a tech city.\n\nWe\'re building empires over here.\n\n🏙 Drop "CHICAGO" if you\'re building in the city.\n\n#Chicago #Entrepreneur #GeoDMus',
+    'Normal brain: sleeping. Founder brain: deploying.\n\n2am hits different when you\'re building something real.\n\n🔥 Follow the build.\n\n#BuildingInPublic #GeoDMus #Entrepreneur #Chicago',
+    'You asked what\'s our cheapest option.\n\n$799/mo. Full stack. Done for you every month.\n\n💸 Link in bio. geodm.us/pricing\n\n#GeoDMus #Chicago #SmallBusiness #DigitalMarketing',
+    'The algorithm rewards showing up. Not being perfect.\n\n90 days of consistent content beats one viral moment every time.\n\n📌 Follow for daily content tips.\n\n#ContentMarketing #GeoDMus #Instagram',
+    'Day 1. No clients. No team. No office.\n\nJust an iPad and a paper airplane logo.\n\nSeason 1 is live. Chicago.\n\n🚀 Follow the build.\n\n#BuildingInPublic #GeoDMus #Chicago #Season1',
   ],
-  info:[
-    '94% of marketers plan to use AI for content in 2026. The race is on. 🤖\n\nBusinesses that figure out AI automation first will have an advantage that compounds for years.\n\n📌 Save this. DM us "AI" to see what automation looks like for YOUR business.\n\n#AI #SmallBusiness #Chicago #Automation #GeoDMus #AgenticAI',
-    '82% of customers leave a slow website immediately. No second chances. 📉\n\nYou have 3 seconds. Slow site = lost revenue every single day.\n\n💻 DM us "WEBSITE" — we audit your site for free.\n\n#WebDesign #SmallBusiness #Chicago #GeoDMus #MobileFirst',
-    'Reels get 3.5x more reach than static posts. The algorithm is screaming at you. 📱\n\nInstagram is handing out free reach to anyone willing to press record.\n\n🎬 Follow for weekly content tips.\n\n#Instagram #Reels #SocialMedia #GeoDMus #Chicago',
-    'Email marketing returns $42 for every $1 spent. Still the GOAT. 📧\n\nSocial algorithms change. Email lists are yours forever.\n\n📧 DM us "EMAIL" to see what automated sequences look like.\n\n#EmailMarketing #SmallBusiness #GeoDMus #Chicago #ROI',
-    'Only 14% of local businesses accept crypto. That gap is YOUR competitive advantage. ₿\n\nYour competitor doesn\'t take Bitcoin. You can.\n\n₿ DM us "CRYPTO" to get on-chain.\n\n#Bitcoin #Crypto #Web3 #Chicago #SmallBusiness #GeoDMus',
-    '91% of businesses use video marketing in 2026. The ones who don\'t are invisible. 🎬\n\nYou don\'t need a crew. You need a phone and a plan.\n\n🎥 Follow for the simplest video strategy for local businesses.\n\n#VideoMarketing #Reels #GeoDMus #Chicago',
-    '78% of all web traffic comes from mobile. Is your site ready? 📲\n\nMobile-first isn\'t a trend. It\'s the baseline.\n\n📱 DM us "MOBILE" and we\'ll check your site right now.\n\n#Mobile #WebDesign #SmallBusiness #Chicago #GeoDMus',
-    'Content marketing delivers 6x more ROI than paid advertising. Read that again. ✍️\n\nPaid ads stop when you stop paying. Content never does.\n\n📝 DM us "CONTENT" to see what a content system looks like.\n\n#ContentMarketing #SEO #SmallBusiness #Chicago #GeoDMus',
-    'Digital ad spend hits $800B globally in 2026. Local businesses get the crumbs. Unless... 💰\n\nOrganic content + email automation = where small businesses win.\n\n🎯 DM us "ORGANIC" and we\'ll show you the strategy.\n\n#DigitalMarketing #SmallBusiness #Chicago #GeoDMus',
-    '92% of marketers invest in SEO in 2026. Google is still the front door. 🔍\n\nWhen someone in Chicago searches for your service, do they find you or your competitor?\n\n🔍 DM us "SEO" for a free local ranking check.\n\n#SEO #LocalSEO #Chicago #SmallBusiness #GeoDMus',
+  info: [
+    '94% of marketers plan to use AI for content in 2026.\n\nThe businesses that adopt AI automation first will have an advantage that compounds for years.\n\n📌 Save this. DM "AI" to see what automation looks like for YOUR business.\n\n#AI #SmallBusiness #Chicago #GeoDMus',
+    '82% of customers leave a slow website immediately.\n\nYou have 3 seconds. Slow site = lost revenue every day.\n\n💻 DM "WEBSITE" for a free audit.\n\n#WebDesign #SmallBusiness #Chicago #GeoDMus',
+    'Reels get 3.5x more reach than static posts. 📱\n\nInstagram is handing out free reach to anyone willing to press record.\n\n🎬 Follow for weekly content tips.\n\n#Instagram #Reels #GeoDMus #Chicago',
+    'Email marketing returns $42 for every $1 spent. Still the GOAT. 📧\n\nSocial algorithms change. Email lists are yours forever.\n\n📧 DM "EMAIL" to see automated sequences.\n\n#EmailMarketing #GeoDMus #Chicago #ROI',
+    'Only 14% of local businesses accept crypto. That gap is YOUR advantage. ₿\n\nYour competitor doesn\'t take Bitcoin. You can.\n\n₿ DM "CRYPTO" to get on-chain.\n\n#Bitcoin #Crypto #Web3 #Chicago #GeoDMus',
+    '91% of businesses use video marketing in 2026. The ones who don\'t are invisible. 🎬\n\nYou don\'t need a crew. You need a phone and a plan.\n\n🎥 Follow for the simplest video strategy.\n\n#VideoMarketing #Reels #GeoDMus #Chicago',
+    '78% of all web traffic comes from mobile. Is your site ready? 📲\n\nMobile-first isn\'t a trend. It\'s the baseline.\n\n📱 DM "MOBILE" and we\'ll check your site.\n\n#Mobile #WebDesign #GeoDMus #Chicago',
+    'Content marketing delivers 6x more ROI than paid advertising. ✍️\n\nPaid ads stop when you stop paying. Content never does.\n\n📝 DM "CONTENT" to see a content system.\n\n#ContentMarketing #SEO #GeoDMus #Chicago',
+    'Digital ad spend hits $800B globally in 2026. 💰\n\nOrganic content + email automation = where small businesses win.\n\n🎯 DM "ORGANIC" and we\'ll show you the strategy.\n\n#DigitalMarketing #SmallBusiness #GeoDMus',
+    '92% of marketers invest in SEO in 2026. Google is still the front door. 🔍\n\nLocal SEO is one of the highest-ROI investments a small business can make.\n\n🔍 DM "SEO" for a free local ranking check.\n\n#SEO #LocalSEO #Chicago #GeoDMus',
+    'Micro-influencers deliver 89% better ROI than celebrities. 🎯\n\nYou don\'t need a celebrity. You need the right voice in the right niche.\n\n📌 DM "INFLUENCER" to see what this looks like.\n\n#InfluencerMarketing #GeoDMus #Chicago',
+    '76% of local searches lead to a store visit within 24 hours. 📍\n\nIf you\'re not showing up in local search, you\'re invisible to buyers ready to spend.\n\n🔍 DM "LOCAL" and we\'ll check your rankings.\n\n#LocalSEO #Chicago #SmallBusiness #GeoDMus',
+    '94% of businesses will use AI for content in 2026. 🤖\n\nThe ones who figure it out first will have an unfair advantage.\n\n⚡ DM "AI" to see what\'s possible.\n\n#AI #GeoDMus #Chicago #SmallBusiness',
+    'Instagram Shopping is the #1 social commerce platform at 42% of sales. 📱\n\nYour products should be discoverable where people already scroll.\n\n📌 DM "SOCIAL" to see what this looks like.\n\n#Instagram #SocialCommerce #GeoDMus #Chicago',
+    '86% of Chicago businesses have no digital infrastructure. 🏙\n\nThat\'s not a problem. That\'s a market.\n\nGeoDMus Season 1 starts here.\n\n💬 DM "CHICAGO" to talk about your opportunity.\n\n#Chicago #SmallBusiness #GeoDMus #DigitalMarketing',
   ],
-  reel:[
-    'I cold called 50 Chicago businesses. This is what happened. 📞\n\nRejected 14 times. Hung up on 8. Ghosted once. But kept going.\n\n🔥 Follow for Ep. 2. Drop a 💪 if you\'re building too.\n\n#BuildingInPublic #Chicago #ColdCalling #GeoDMus #Entrepreneur',
-    'Built a 7-company ecosystem from my iPad. No joke. 📱\n\niPad, Wi-Fi, and refusal to wait for perfect conditions.\n\n🚀 Comment "ECOSYSTEM" for the full breakdown.\n\n#BuildingInPublic #Entrepreneur #GeoDMus #Chicago',
-    'First client signed. Here\'s the exact DM that did it. 🎯\n\nCold DM to signed contract in 72 hours. No ads. No referral.\n\n💬 Drop "DM SCRIPT" in comments for the template.\n\n#Sales #Entrepreneur #GeoDMus #Chicago #ColdDM',
-    '3 tools every Chicago business needs set up TODAY. ⚡\n\n1. Automated booking (Calendly + Zapier)\n2. Instagram DM automation (ManyChat)\n3. Branded email follow-ups\n\n📌 Comment "AUTOMATE" for the full guide.\n\n#SmallBusiness #Chicago #Automation #GeoDMus',
-    'Your business needs Bitcoin. Hear me out. ₿\n\nBusinesses accepting crypto today will have a compounding advantage over the next 5 years.\n\n₿ Comment "BTC" and I\'ll show you setup in under an hour.\n\n#Bitcoin #Web3 #Chicago #GeoDMus',
-    'Got hung up on 14 times today. Season 1 is REAL. 😭\n\nNobody told me building a business would involve this many dial tones. But I\'m still here.\n\nDrop a 🐧 if you feel this.\n\n#BuildingInPublic #Entrepreneur #GeoDMus #ColdCalling',
-    'My entire office fits in my hands. 📱\n\niPad. Wi-Fi. Refusal to quit. 7 ventures running from this setup.\n\n📱 Comment "SETUP" for the full gear list.\n\n#RemoteWork #Entrepreneur #GeoDMus #BuildingInPublic #iPad',
-    'Email marketing pays $42 for every $1 spent. 📊\n\nMost small businesses aren\'t doing email marketing. The ones that are? Quietly printing money.\n\n📧 Comment "EMAIL" for the free setup guide.\n\n#EmailMarketing #SmallBusiness #GeoDMus #Chicago',
-    'The DM that got me my first client. Copy it. 💬\n\n7 words. Specific compliment. Clear value. No pitch.\n\n💬 Comment "DM" for the template. It\'s free.\n\n#ColdDM #Sales #Entrepreneur #GeoDMus #Chicago',
-    'Chicago small business is wide open right now. 🏙\n\nFull of businesses with no website, no automation, no social presence. Every one is a potential client.\n\n🏙 Drop "CHICAGO" if you\'re building in the city.\n\n#Chicago #SmallBusiness #GeoDMus #Entrepreneur',
+  reel: [
+    'I cold called 50 Chicago businesses. This is what happened. 📞\n\nRejected 14 times. Hung up on 8. Ghosted once. But kept going.\n\n🔥 Follow for Ep. 2. Drop a 💪 if you\'re building too.\n\n#BuildingInPublic #Chicago #ColdCalling #GeoDMus',
+    'Built a 7-company ecosystem from my iPad. No joke. 📱\n\niPad, Wi-Fi, and refusal to wait for perfect conditions.\n\n🚀 Comment "ECOSYSTEM" for the breakdown.\n\n#BuildingInPublic #Entrepreneur #GeoDMus #Chicago',
+    'First client signed. Here\'s the exact DM that did it. 🎯\n\nCold DM to signed contract in 72 hours.\n\n💬 Drop "DM SCRIPT" for the template.\n\n#Sales #Entrepreneur #GeoDMus #Chicago',
+    '3 tools every Chicago business needs TODAY. ⚡\n\n1. Automated booking (Calendly + Zapier)\n2. Instagram DM automation (ManyChat)\n3. Branded email follow-ups\n\n📌 Comment "AUTOMATE" for the guide.\n\n#SmallBusiness #Chicago #Automation #GeoDMus',
+    'Your business needs Bitcoin. Hear me out. ₿\n\nBusinesses accepting crypto today will have a compounding advantage.\n\n₿ Comment "BTC" and I\'ll show you setup in under an hour.\n\n#Bitcoin #Web3 #Chicago #GeoDMus',
+    'Got hung up on 14 times today. Season 1 is REAL. 😭\n\nNobody told me building a business would involve this many dial tones.\n\nDrop a 🐧 if you feel this.\n\n#BuildingInPublic #GeoDMus #ColdCalling',
+    'My entire office fits in my hands. 📱\n\niPad. Wi-Fi. Refusal to quit. 7 ventures running.\n\n📱 Comment "SETUP" for the gear list.\n\n#RemoteWork #Entrepreneur #GeoDMus #BuildingInPublic',
+    'Email marketing pays $42 for every $1 spent. 📊\n\nMost small businesses aren\'t doing it. The ones that are? Quietly printing money.\n\n📧 Comment "EMAIL" for the free setup guide.\n\n#EmailMarketing #GeoDMus #Chicago',
+    'The DM that got me my first client. Copy it. 💬\n\n7 words. Specific compliment. Clear value. No pitch.\n\n💬 Comment "DM" for the template.\n\n#ColdDM #Sales #GeoDMus #Chicago',
+    'Chicago small business is wide open right now. 🏙\n\nFull of businesses with no website, no automation, no social.\n\n🏙 Drop "CHICAGO" if you\'re building in the city.\n\n#Chicago #SmallBusiness #GeoDMus',
+    'Rejection #15 taught me more than any course. 📞\n\nThe real lessons are in the nos. Season 1 of GeoDMus.\n\n💪 Drop a 💪 if you keep going after the no.\n\n#BuildingInPublic #GeoDMus #ColdCalling #Chicago',
+    'Full transparency — how GeoDMus makes money with 7 ventures. 💰\n\nBreaking it all down. Season 1 numbers.\n\n💬 Comment "REVENUE" for the full breakdown.\n\n#BuildingInPublic #GeoDMus #Entrepreneur',
+    'Set up crypto payments for your business in 10 minutes. ₿\n\nBefore your competitor does.\n\n📌 Save this. Comment "CRYPTO" for the step-by-step.\n\n#Bitcoin #Web3 #GeoDMus #Chicago',
+    'Why I built GeoDMus from an iPad. ✈️\n\nChicago. 2am. A paper airplane logo. No clients. No team.\n\nThis is Season 1.\n\n🚀 Follow the journey.\n\n#BuildingInPublic #GeoDMus #Chicago #Entrepreneur',
+    'My entire agency runs on $150/mo of tools. 🛠️\n\nFull output. Zero bloat.\n\n💬 Comment "STACK" for the complete list.\n\n#AgencyLife #GeoDMus #Entrepreneur #Chicago',
   ],
-  hot:[
-    '"AI will not replace me." — Every business that did not adapt.\n\nThe ones laughing at AI automation in 2024 are the ones panicking in 2026.\n\n💬 Drop a 😂 if you have heard this. DM us "AI" to see what automation looks like.\n\n#AI #SmallBusiness #GeoDMus #Chicago #Automation',
-    'POV: You told the client the site goes live Friday.\n\nAgency life hits different at 11pm Thursday. But with the right stack? Friday is easy.\n\n💬 Drop a 😅 if you have been here. Follow for the build.\n\n#AgencyLife #GeoDMus #Chicago #WebDesign #BuildingInPublic',
-    'Plumbers and electricians are watching AI replace everyone who went to college.\n\nThe lesson for small business: be irreplaceable AND use AI. We help with the second part.\n\n💬 What is your take? Drop it in comments.\n\n#AI #FutureOfWork #GeoDMus #Chicago #SmallBusiness',
-    'AI will not replace Chicago small business.\n\nIt will let them beat corporate. The playing field just got leveled. Who picks up the tools first?\n\n⚡ DM us "AI" to see what is possible for your business.\n\n#AI #Chicago #SmallBusiness #GeoDMus #Automation',
-    'This used to take a $50K marketing team.\n\nNow it is $799/mo. GeoDMus Launchpad: Website + AI Automation + Social Marketing. Done for you every month.\n\n💸 Link in bio. DM "LAUNCHPAD" to get started.\n\n#GeoDMus #Chicago #SmallBusiness #DigitalMarketing #AI',
-    '2 hours before the client call. Me + AI: already built the deck, the automation, and the follow-up sequence.\n\nThat is the GeoDMus difference.\n\n🔥 DM "BUILD" and let us get to work.\n\n#GeoDMus #AI #Chicago #Entrepreneur #Automation',
-    'A marketer with 20 years experience watching a kid with an iPad outperform them.\n\nThat kid is GeoDMus. Season 1. Chicago.\n\nExperience is great. Tools are better. Both is unbeatable.\n\n🚀 Follow the build.\n\n#BuildingInPublic #GeoDMus #Chicago #AI #Entrepreneur',
-    '"Your business does not need a website."\n\nSaid in 2005. Said in 2015. Said today.\n\nEvery time someone says it, they fall further behind. Do not be them.\n\nDM us "WEBSITE" for a free audit.\n\n#WebDesign #SmallBusiness #GeoDMus #Chicago #DigitalMarketing',
-    'Chicago business owners watching AI replace everyone who said we do not need digital.\n\nThe window is still open. Barely.\n\n📍 DM "CHICAGO" and let us talk about taking your slice.\n\n#Chicago #SmallBusiness #GeoDMus #AI #DigitalMarketing',
-    'Companies are paying $10K/month for AI agents.\n\nWe build you one for $1,599/mo. GeoDMus Growth Engine: Full AI automation stack.\n\n⚡ DM "GROWTH" to see what is included.\n\n#AI #Automation #GeoDMus #Chicago #SmallBusiness',
-    'POV: Your competitor just launched a new website. Yours is from 2009.\n\nEvery day this stays true you are losing customers to them.\n\n💻 DM "REBUILD" and we can have yours live in 30 days.\n\n#WebDesign #Chicago #SmallBusiness #GeoDMus #DigitalMarketing',
-    'BREAKING: A solo developer just built what used to need a team of 50.\n\nThis is the world we operate in. And we do it for our clients every day.\n\n🚀 DM "BUILD" to start.\n\n#AI #GeoDMus #Chicago #DigitalMarketing #Automation',
-    'AI is getting out of control.\n\nGood. We are ready. Every new AI tool is a new weapon in our arsenal for Chicago businesses.\n\n⚡ DM "AI" to see what is in our stack right now.\n\n#AI #GeoDMus #Chicago #Automation #SmallBusiness',
-    'Your marketing used to cost $10,000/month.\n\nGeoDMus: $799/month. Full stack. Website + AI automation + social content + crypto payments + Web3.\n\nDone for you. Every month.\n\n💸 Link in bio.\n\n#GeoDMus #Chicago #SmallBusiness #DigitalMarketing #AI',
-    'AI can track your exact location from a single social media photo in 2 seconds.\n\nImagine what the right AI tools can do for your marketing targeting.\n\n📌 DM "AI" to see what is possible.\n\n#AI #Marketing #GeoDMus #Chicago #Automation',
-    'The strangest part about AI is not what it can do.\n\nIt is what your competitors are NOT doing with it. Every day they wait is a day you can pull ahead.\n\n⚡ DM "START" and let us talk strategy.\n\n#AI #GeoDMus #Chicago #SmallBusiness #Strategy',
-    'Your competitor response to AI adoption: "We will do it later."\n\nLater became never. That is your opening.\n\nGeoDMus helps Chicago businesses move first.\n\n🚀 DM "FIRST" and let us build your advantage.\n\n#GeoDMus #Chicago #SmallBusiness #AI #DigitalMarketing',
-    'From the iPad to the world.\n\n7 ventures. 1 founder. Season 1 is live. GeoDMus is the digital backbone. Premier Group, Juice Yoga Body, Creativo, Your Splashy Kicks, Glow Guide, SocialLens are the ecosystem.\n\n🔥 Follow the build.\n\n#BuildingInPublic #GeoDMus #Chicago #Entrepreneur #Season1',
-    'One person. One iPad. 7 companies. No office. No excuses.\n\nBuilding the GeoDMus ecosystem from Chicago in 2026. Season 1 is the hardest. And the most important.\n\n💪 Drop a 🔥 if you are building too.\n\n#BuildingInPublic #Entrepreneur #GeoDMus #Chicago #Season1',
-    'GeoDMus is officially stepping into enterprise territory.\n\nEmpire Mode: Full digital ecosystem, AI automation, Web3 integration, dedicated team support. $2,999/mo.\n\n🚀 DM "EMPIRE" to learn more.\n\n#GeoDMus #Chicago #Enterprise #AI #DigitalMarketing',
-    'This used to take huge teams and millions in budget.\n\nNow it is a few prompts and $799/mo. The cost of building a digital presence dropped to almost nothing. The cost of NOT having one has never been higher.\n\n💻 Link in bio.\n\n#GeoDMus #Chicago #SmallBusiness #AI #DigitalMarketing',
-    'The same people who said you do not need a website now have no customers.\n\nDo not be them. GeoDMus builds the digital infrastructure that grows your business.\n\n🚀 DM "START" to get moving.\n\n#GeoDMus #Chicago #WebDesign #SmallBusiness #DigitalMarketing',
-    'Your website before GeoDMus vs your website after GeoDMus.\n\nNight and day. Fast. Mobile-first. AI-powered. Crypto-ready.\n\nDM "REBUILD" and let us show you what is possible.\n\n💻 Link in bio.\n\n#WebDesign #GeoDMus #Chicago #SmallBusiness #AI',
-    'AI is deciphering 2,000-year-old Greek manuscripts.\n\nYour business cannot figure out why nobody visits your site.\n\nWe fix that. Free audit. DM "WEBSITE" and we will check it right now.\n\n🔍 geodm.us\n\n#WebDesign #GeoDMus #Chicago #SmallBusiness #AI',
-    'AI will not replace Chicago business.\n\nIt will let small businesses create better content, automation, and customer experiences than corporate. That is the play. We help you run it.\n\n⚡ DM "START" to begin.\n\n#AI #Chicago #SmallBusiness #GeoDMus #DigitalMarketing',
-    'Companies are hiring AI agents at $10K/month.\n\nGeoDMus builds your business an entire AI-powered digital team for $1,599/mo. Same results. A fraction of the cost.\n\n⚡ DM "GROWTH" to see what is included.\n\n#AI #Automation #GeoDMus #Chicago #SmallBusiness',
-    'A full marketing team costs $800K/year.\n\nGeoDMus costs $9,600/year. Full stack: website, automation, social content, Web3, AI tools. Done for you. Every month. BTW.\n\n💸 geodm.us/pricing\n\n#GeoDMus #Chicago #SmallBusiness #DigitalMarketing #AI',
-    '"Digital marketing is too expensive for small business."\n\nGeoDMus: Hold my iPad. Starting at $799/mo. Launchpad, Growth Engine, Empire Mode. There is a tier for every stage.\n\n💸 geodm.us/pricing\n\n#GeoDMus #Chicago #SmallBusiness #DigitalMarketing #AI',
-    'Businesses with no digital presence are watching AI-powered competitors take all their clients.\n\nDo not watch. Act. DM us "START" and we will show you what is possible in 30 days.\n\n🚀 geodm.us\n\n#GeoDMus #Chicago #SmallBusiness #AI #DigitalMarketing',
-    'POV: Metricool is down and you have to post manually.\n\nContent life is real. That is why we build automated systems so one tool going down does not stop your whole operation.\n\n⚡ DM "SYSTEMS" to see what automation looks like.\n\n#GeoDMus #ContentMarketing #Chicago #Automation #SmallBusiness',
-  ],
+  hot: [
+    '"AI will not replace me."\n\nEvery business that did not adapt in time.\n\n💬 DM "AI" to see what automation looks like for YOUR business.\n\n#AI #SmallBusiness #GeoDMus #Chicago',
+    'POV: You told the client the site goes live Friday.\n\nAgency life hits different at 11pm Thursday.\n\n💬 Drop a 😅 if you have been here.\n\n#AgencyLife #GeoDMus #Chicago',
+    'AI won\'t replace Chicago small business.\n\nIt will let them beat corporate. The playing field just got leveled.\n\n⚡ DM "AI" to see what\'s possible.\n\n#AI #Chicago #SmallBusiness #GeoDMus',
+    'This used to take a $50K marketing team.\n\nNow it\'s $799/mo. Full stack. Done for you.\n\n💸 Link in bio. DM "LAUNCHPAD"\n\n#GeoDMus #Chicago #SmallBusiness #DigitalMarketing',
+    '2 hours before the client call.\n\nMe + AI: already built the deck, the automation, and the follow-up.\n\nThat is the GeoDMus difference.\n\n🔥 DM "BUILD" and let\'s get to work.\n\n#GeoDMus #AI #Chicago',
+    'Companies are paying $10K/month for AI agents.\n\nWe build yours for $1,599/mo.\n\n⚡ DM "GROWTH" to see what is included.\n\n#AI #Automation #GeoDMus #Chicago',
+    'POV: Your competitor just launched a new website.\n\nYours is from 2009.\n\n💻 DM "REBUILD" and we can have yours live in 30 days.\n\n#WebDesign #Chicago #GeoDMus',
+    'AI is getting out of control.\n\nGood. We are ready.\n\n⚡ DM "AI" to see what is in our stack right now.\n\n#AI #GeoDMus #Chicago',
+    'Your marketing: $10,000/mo. GeoDMus: $799/mo. Full stack.\n\nDone for you. Every month.\n\n💸 Link in bio.\n\n#GeoDMus #Chicago #SmallBusiness',
+    'The strangest part about AI is not what it can do.\n\nIt is what your competitors are NOT doing with it.\n\n⚡ DM "START" and let us talk strategy.\n\n#AI #GeoDMus #Chicago',
+    'From the iPad to the world.\n\n7 ventures. 1 founder. Season 1 is live.\n\n🔥 Follow the build.\n\n#BuildingInPublic #GeoDMus #Chicago #Season1',
+    'One person. One iPad. 7 companies. No office. No excuses.\n\n💪 Drop a 🔥 if you are building too.\n\n#BuildingInPublic #GeoDMus #Chicago',
+    'The same people who said you do not need a website now have no customers.\n\nDo not be them.\n\n🚀 DM "START"\n\n#GeoDMus #Chicago #WebDesign',
+    'Content marketing delivers 6x more ROI than paid advertising.\n\nPaid ads stop when you stop paying. Content never does.\n\n📝 DM "CONTENT"\n\n#ContentMarketing #GeoDMus #Chicago',
+    '"Digital marketing is too expensive for small business."\n\nGeoDMus: Hold my iPad. Starting at $799/mo.\n\n💸 geodm.us/pricing\n\n#GeoDMus #Chicago #SmallBusiness',
+    'Plumbers and electricians watching AI replace everyone who went to college.\n\nThe lesson: be irreplaceable AND use AI. We help with the second part.\n\n💬 Comment your thoughts.\n\n#AI #FutureOfWork #GeoDMus',
+    'Posting consistently for 90 days beats going viral once.\n\nAlgorithms reward showing up. Not being perfect.\n\n📌 Follow for daily content.\n\n#ContentMarketing #GeoDMus #Instagram',
+    'Businesses with no digital presence watching competitors take all their clients.\n\nDo not watch. Act.\n\n🚀 DM "START"\n\n#GeoDMus #Chicago #SmallBusiness',
+    'AI can track your location from a single photo.\n\nImagine what the right AI tools do for your marketing.\n\n📌 DM "AI"\n\n#AI #Marketing #GeoDMus',
+    'Your competitor\'s response to AI: "We will do it later."\n\nLater became never. That is your opening.\n\n🚀 DM "FIRST"\n\n#GeoDMus #Chicago #AI',
+    'This used to take huge teams and millions.\n\nNow it is $799/mo. The cost of NOT having it has never been higher.\n\n💻 Link in bio.\n\n#GeoDMus #Chicago #SmallBusiness',
+    'GeoDMus is officially stepping into enterprise territory.\n\nEmpire Mode. $2,999/mo.\n\n🚀 DM "EMPIRE"\n\n#GeoDMus #Chicago #Enterprise',
+    'Full marketing team: $800K/year. GeoDMus: $9,600/year. Full stack. BTW.\n\n💸 geodm.us/pricing\n\n#GeoDMus #Chicago #SmallBusiness',
+    'AI won\'t replace Chicago business.\n\nIt will let small biz create better than corporate. That is the play.\n\n⚡ DM "START"\n\n#AI #Chicago #GeoDMus',
+    'BREAKING: A solo dev just built what used to need a team of 50.\n\nThis is the world we operate in.\n\n🚀 DM "BUILD"\n\n#AI #GeoDMus #Chicago',
+    'Bitcoin hit $0.01 in 2009. People laughed.\n\nSame people in 2024: "I knew it all along."\n\n₿ DM "CRYPTO"\n\n#Bitcoin #Web3 #GeoDMus',
+    '"Your business does not need a website." Said in 2005. Said today.\n\nEvery time someone says it they fall further behind.\n\nDo not be them.\n\n#WebDesign #GeoDMus #Chicago',
+    'Chicago small biz is wide open right now.\n\nEvery undigitized business is a potential client. Season 1.\n\n🏙 Drop "CHICAGO"\n\n#Chicago #GeoDMus',
+    'The best time to build your digital presence was 5 years ago.\n\nSecond best time: right now.\n\n🚀 DM "START"\n\n#GeoDMus #Chicago',
+    'Nobody talks about the 14 rejections before the first yes.\n\nWe do. Season 1. Chicago.\n\n💪 Drop a 💪\n\n#BuildingInPublic #GeoDMus #Chicago',
+  ]
 };
 
-const CAL = [
-  {day:1,type:"info",idx:0,pl:["IG","X"],time:"9:00 AM"},
-  {day:2,type:"meme",idx:0,pl:["IG","X"],time:"12:00 PM"},
-  {day:3,type:"reel",idx:0,pl:["IG"],time:"9:00 AM"},
-  {day:4,type:"hot",idx:0,pl:["IG","X"],time:"11:00 AM"},
-  {day:5,type:"meme",idx:2,pl:["IG","X"],time:"12:00 PM"},
-  {day:6,type:"reel",idx:1,pl:["IG"],time:"10:00 AM"},
-  {day:7,type:"info",idx:1,pl:["IG","X"],time:"9:00 AM"},
-  {day:8,type:"hot",idx:3,pl:["IG","X"],time:"11:00 AM"},
-  {day:9,type:"meme",idx:3,pl:["IG","X"],time:"12:00 PM"},
-  {day:10,type:"reel",idx:3,pl:["IG"],time:"9:00 AM"},
-  {day:11,type:"info",idx:2,pl:["IG","X"],time:"9:00 AM"},
-  {day:12,type:"meme",idx:1,pl:["IG","X"],time:"12:00 PM"},
-  {day:13,type:"reel",idx:5,pl:["IG"],time:"10:00 AM"},
-  {day:14,type:"hot",idx:4,pl:["IG","X"],time:"11:00 AM"},
-  {day:15,type:"info",idx:3,pl:["IG","X"],time:"9:00 AM"},
-  {day:16,type:"meme",idx:4,pl:["IG","X"],time:"12:00 PM"},
-  {day:17,type:"reel",idx:4,pl:["IG"],time:"9:00 AM"},
-  {day:18,type:"hot",idx:5,pl:["IG","X"],time:"11:00 AM"},
-  {day:19,type:"info",idx:4,pl:["IG","X"],time:"9:00 AM"},
-  {day:20,type:"meme",idx:5,pl:["IG","X"],time:"11:00 AM"},
-  {day:21,type:"reel",idx:6,pl:["IG"],time:"10:00 AM"},
-  {day:22,type:"hot",idx:6,pl:["IG","X"],time:"11:00 AM"},
-  {day:23,type:"info",idx:5,pl:["IG","X"],time:"9:00 AM"},
-  {day:24,type:"meme",idx:6,pl:["IG","X"],time:"12:00 PM"},
-  {day:25,type:"reel",idx:7,pl:["IG"],time:"9:00 AM"},
-  {day:26,type:"hot",idx:7,pl:["IG","X"],time:"11:00 AM"},
-  {day:27,type:"info",idx:6,pl:["IG","X"],time:"9:00 AM"},
-  {day:28,type:"meme",idx:8,pl:["IG","X"],time:"12:00 PM"},
-  {day:29,type:"reel",idx:9,pl:["IG"],time:"9:00 AM"},
-  {day:30,type:"hot",idx:9,pl:["IG","X"],time:"11:00 AM"},
+var CAL = [
+  {day:1,type:"info",idx:0,pl:["IG","X"],time:"9:00 AM",label:"AI Adoption Stats"},
+  {day:2,type:"meme",idx:0,pl:["IG","X"],time:"12:00 PM",label:"Agency Life Meme"},
+  {day:3,type:"reel",idx:0,pl:["IG"],time:"9:00 AM",label:"Cold Calling Ep.1"},
+  {day:4,type:"hot",idx:0,pl:["IG","X"],time:"11:00 AM",label:"AI Hot Take"},
+  {day:5,type:"meme",idx:2,pl:["IG","X"],time:"12:00 PM",label:"Entrepreneur 2AM"},
+  {day:6,type:"reel",idx:1,pl:["IG"],time:"10:00 AM",label:"Building GeoDMus Live"},
+  {day:7,type:"info",idx:1,pl:["IG","X"],time:"9:00 AM",label:"Why Sites Lose Customers"},
+  {day:8,type:"hot",idx:3,pl:["IG","X"],time:"11:00 AM",label:"$799 Hot Take"},
+  {day:9,type:"meme",idx:3,pl:["IG","X"],time:"12:00 PM",label:"AI Hot Take Meme"},
+  {day:10,type:"reel",idx:3,pl:["IG"],time:"9:00 AM",label:"3 Tools Quick Hit"},
+  {day:11,type:"info",idx:2,pl:["IG","X"],time:"9:00 AM",label:"Reels vs Photos"},
+  {day:12,type:"meme",idx:1,pl:["IG","X"],time:"12:00 PM",label:"Client Budget Meme"},
+  {day:13,type:"reel",idx:5,pl:["IG"],time:"10:00 AM",label:"Real Fails Reel"},
+  {day:14,type:"hot",idx:9,pl:["IG","X"],time:"11:00 AM",label:"AI Strategy Take"},
+  {day:15,type:"info",idx:3,pl:["IG","X"],time:"9:00 AM",label:"Email ROI $42"},
+  {day:16,type:"meme",idx:4,pl:["IG","X"],time:"12:00 PM",label:"Web3 Truth Meme"},
+  {day:17,type:"reel",idx:4,pl:["IG"],time:"9:00 AM",label:"Bitcoin Hot Take"},
+  {day:18,type:"hot",idx:10,pl:["IG","X"],time:"11:00 AM",label:"7 Ventures Take"},
+  {day:19,type:"info",idx:4,pl:["IG","X"],time:"9:00 AM",label:"Crypto Adoption"},
+  {day:20,type:"meme",idx:5,pl:["IG","X"],time:"11:00 AM",label:"Chicago Biz Meme"},
+  {day:21,type:"reel",idx:6,pl:["IG"],time:"10:00 AM",label:"iPad Office Setup"},
+  {day:22,type:"hot",idx:16,pl:["IG","X"],time:"11:00 AM",label:"90 Days Take"},
+  {day:23,type:"info",idx:5,pl:["IG","X"],time:"9:00 AM",label:"Video Marketing 91%"},
+  {day:24,type:"meme",idx:7,pl:["IG","X"],time:"12:00 PM",label:"Unbothered Meme"},
+  {day:25,type:"reel",idx:7,pl:["IG"],time:"9:00 AM",label:"Email ROI Data Drop"},
+  {day:26,type:"hot",idx:20,pl:["IG","X"],time:"11:00 AM",label:"$799 Full Stack"},
+  {day:27,type:"info",idx:6,pl:["IG","X"],time:"9:00 AM",label:"Mobile Traffic 78%"},
+  {day:28,type:"meme",idx:8,pl:["IG","X"],time:"12:00 PM",label:"Burnout Meme"},
+  {day:29,type:"reel",idx:9,pl:["IG"],time:"9:00 AM",label:"Chicago Grind"},
+  {day:30,type:"hot",idx:28,pl:["IG","X"],time:"11:00 AM",label:"Best Time Is Now"},
 ];
 
-// ═══════════════════════════════════════════════
 // STATE
-// ═══════════════════════════════════════════════
-let curTab = 'cal';
-let curSel = null;
-let done = JSON.parse(localStorage.getItem('gdm-done')||'{}');
+var curTab = "cal";
+var curChartType = "bar";
+var curSel = null;
+var doneMap = {};
+try { doneMap = JSON.parse(localStorage.getItem("gdm-done") || "{}"); } catch(e) {}
 
-function saveDone(){localStorage.setItem('gdm-done',JSON.stringify(done));}
+function saveDone() { try { localStorage.setItem("gdm-done", JSON.stringify(doneMap)); } catch(e) {} }
 
-// ═══════════════════════════════════════════════
-// RENDER
-// ═══════════════════════════════════════════════
-
-function switchTab(tab){
-  curTab = tab;
-  buildSidebar();
-  if(tab!=='cal') showFirst(tab);
-  else clearCard();
+// HELPERS
+function getData(type, idx) {
+  if (type === "meme") return MEMES[idx];
+  if (type === "info") return INFOS[idx];
+  if (type === "reel") return REELS[idx];
+  return HOTS[idx];
+}
+function getCap(type, idx) {
+  var arr = CAPS[type];
+  return arr && arr[idx] ? arr[idx] : "#GeoDMus #Chicago #DigitalMarketing";
+}
+function typeEmoji(t) { return {meme:"😂",info:"📊",reel:"🎬",hot:"🔥"}[t] || ""; }
+function getLabel(type, idx) {
+  var d = getData(type, idx);
+  if (!d) return "";
+  if (type === "meme") return d.tag;
+  if (type === "info") return d.cat;
+  if (type === "reel") return d.ser;
+  return d.tag || (d.lines[0] ? d.lines[0].t.slice(0,20) : "");
 }
 
-function typeLabel(type){
-  return {meme:'😂',info:'📊',reel:'🎬',hot:'🔥'}[type]||'';
-}
-
-function typeClass(type){return type;}
-
-function buildSidebar(){
-  const sb = document.getElementById('sidebar');
-  if(curTab==='cal'){
-    let out = '<span class="s-label">30-Day Calendar</span>';
-    CAL.forEach(function(e){
-      const lbl = getLabel(e.type,e.idx);
-      const isDone = done[e.day];
-      const on = (curSel&&curSel.day===e.day)?' on':'';
-      out += '<button class="s-btn'+on+'" data-action="cal" data-day="'+e.day+'">'
-           + '<span class="s-num">'+e.day+'</span>'
-           + '<span class="s-lbl">'+lbl.slice(0,18)+'</span>'
-           + '<span class="s-type '+typeClass(e.type)+'">'+typeLabel(e.type)+'</span>'
-           + (isDone?'<span class="s-done">✅</span>':'')
-           + '</button>';
-    });
-    sb.innerHTML = out;
-  } else {
-    const items = getList(curTab);
-    let out = '<span class="s-label">'+typeLabel(curTab)+' '+curTab.charAt(0).toUpperCase()+curTab.slice(1)+'s ('+items.length+')</span>';
-    items.forEach(function(d,i){
-      const lbl = getLabel(curTab,i);
-      const on = (curSel&&curSel.type===curTab&&curSel.idx===i)?' on':'';
-      out += '<button class="s-btn'+on+'" data-action="item" data-type="'+curTab+'" data-idx="'+i+'">'
-           + '<span class="s-num">'+(i+1)+'</span>'
-           + '<span class="s-lbl">'+lbl.slice(0,20)+'</span>'
-           + '</button>';
-    });
-    sb.innerHTML = out;
+// RENDER CARDS
+function renderMeme(d) {
+  var punches = "";
+  for (var i = 0; i < d.lines.length; i++) {
+    punches += '<div style="color:' + d.lines[i].c + '">' + d.lines[i].t + '</div>';
   }
-  // Delegated listener
-  sb.onclick = function(ev){
-    var btn = ev.target.closest('[data-action]');
-    if(!btn) return;
-    if(btn.dataset.action==='cal') selectCal(parseInt(btn.dataset.day));
-    else if(btn.dataset.action==='item') selectItem(btn.dataset.type, parseInt(btn.dataset.idx));
-  };
-  updateProgress();
+  return '<div class="meme-card">'
+    + '<div class="meme-accent"></div>'
+    + '<div class="meme-glow"></div>'
+    + '<div class="meme-tag">' + d.tag + '</div>'
+    + '<div class="meme-body">'
+    + '<div class="meme-setup">' + d.setup + '</div>'
+    + '<div class="meme-punch">' + punches + '</div>'
+    + '</div>'
+    + '<div class="meme-foot">'
+    + '<div class="meme-handle">@geodm.us</div>'
+    + '<div class="meme-brand">GEODMus</div>'
+    + '</div></div>';
 }
 
-function getList(type){
-  return {meme:MEMES,info:INFOS,reel:REELS,hot:HOTS}[type]||[];
+
+function renderPie(d) {
+  var total = 0;
+  for (var i = 0; i < d.bars.length; i++) total += d.bars[i].p;
+  var angle = -90;
+  var r = 65, cx = 75, cy = 75;
+  var paths = "", legend = "";
+  var bars = d.bars.slice(0, 5);
+  for (var i = 0; i < bars.length; i++) {
+    var b = bars[i];
+    var pct = b.p / total;
+    var sweep = pct * 360;
+    var x1 = cx + r * Math.cos(angle * Math.PI / 180);
+    var y1 = cy + r * Math.sin(angle * Math.PI / 180);
+    angle += sweep;
+    var x2 = cx + r * Math.cos(angle * Math.PI / 180);
+    var y2 = cy + r * Math.sin(angle * Math.PI / 180);
+    var lg = sweep > 180 ? 1 : 0;
+    paths += '<path d="M'+cx+','+cy+' L'+x1.toFixed(1)+','+y1.toFixed(1)+' A'+r+','+r+' 0 '+lg+',1 '+x2.toFixed(1)+','+y2.toFixed(1)+' Z" fill="'+b.c+'"/>';
+    legend += '<div class="pie-item"><div class="pie-dot" style="background:'+b.c+'"></div><div class="pie-text"><strong>'+b.p+'%</strong> '+b.l+'</div></div>';
+  }
+  return '<div class="pie-wrap">'
+    + '<svg width="150" height="150" viewBox="0 0 150 150">'
+    + paths
+    + '<circle cx="'+cx+'" cy="'+cy+'" r="28" fill="#070c0d"/>'
+    + '<text x="'+cx+'" y="'+(cy-3)+'" text-anchor="middle" font-size="15" fill="'+d.color+'" font-weight="700">'+bars[0].p+'%</text>'
+    + '<text x="'+cx+'" y="'+(cy+10)+'" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.4)">'+bars[0].l.split(' ')[0].toUpperCase()+'</text>'
+    + '</svg>'
+    + '<div class="pie-legend">'+legend+'</div>'
+    + '</div>';
 }
 
-function getData(type,idx){
-  return getList(type)[idx];
+function renderStat(d) {
+  return '<div class="stat-wrap">'
+    + '<div class="stat-num">'+d.bars[0].p+'%</div>'
+    + '<div class="stat-label">'+d.bars[0].l+'</div>'
+    + '<div class="stat-desc">'+d.sub+'</div>'
+    + '<div class="stat-pill"><span>↑ Source: '+d.src+'</span></div>'
+    + '</div>';
 }
 
-function getLabel(type,idx){
-  const d = getData(type,idx);
-  if(!d) return '';
-  if(type==='meme') return d.tag;
-  if(type==='info') return d.title;
-  if(type==='reel') return d.ser;
-  if(type==='hot') return d.tag||d.lines[0].t.slice(0,20);
-  return '';
+function renderInfo(d) {
+  var chartHtml = "";
+  if (curChartType === "bar") {
+    var bars = "";
+    for (var i = 0; i < d.bars.length; i++) {
+      var b = d.bars[i];
+      bars += '<div class="bar-row">'
+        + '<div class="bar-lbl">' + b.l + '</div>'
+        + '<div class="bar-track"><div class="bar-fill" style="width:' + b.p + '%;background:' + b.c + '"><span>' + b.p + '%</span></div></div>'
+        + '</div>';
+    }
+    chartHtml = '<div class="bars">' + bars + '</div>';
+  } else if (curChartType === "pie") {
+    chartHtml = renderPie(d);
+  } else {
+    chartHtml = renderStat(d);
+  }
+  var sw = '<div class="chart-switcher">'
+    + '<button class="chart-sw-btn' + (curChartType==="bar"?" active":"") + '" data-chart="bar">📊 Bar</button>'
+    + '<button class="chart-sw-btn' + (curChartType==="pie"?" active":"") + '" data-chart="pie">🥧 Pie</button>'
+    + '<button class="chart-sw-btn' + (curChartType==="stat"?" active":"") + '" data-chart="stat">💥 Stat</button>'
+    + '</div>';
+  return '<div class="info-card">'
+    + '<div class="info-accent" style="background:' + d.color + '"></div>'
+    + '<div class="info-cat" style="color:' + d.color + '">' + d.cat + '</div>'
+    + '<div class="info-title">' + d.title + '</div>'
+    + sw
+    + chartHtml
+    + '<div class="info-foot"><div class="info-src">Source: ' + d.src + '</div><div class="info-brand">GEODMus</div></div>'
+    + '</div>';
 }
 
-function selectCal(day){
-  const e = CAL.find(c=>c.day===day);
-  curSel = {day,type:e.type,idx:e.idx,pl:e.pl,time:e.time};
-  renderCard(e.type,e.idx);
-  loadCap(e.type,e.idx);
-  setPtags(e.pl);
-  document.getElementById('card-label').textContent = `Day ${day} — ${getLabel(e.type,e.idx)} · ${e.time}`;
+function renderReel(d) {
+  var hook = "";
+  for (var i = 0; i < d.hook.length; i++) {
+    hook += '<div style="color:' + (d.hook[i].c || "#fff") + '">' + d.hook[i].t + '</div>';
+  }
+  return '<div class="reel-wrap"><div class="reel-card">'
+    + '<div class="reel-bg"></div>'
+    + '<div class="reel-side"></div>'
+    + '<div>'
+    + '<div class="reel-ep"><div class="reel-dot"></div>' + d.ep + '</div>'
+    + '<div class="reel-ser">' + d.ser + '</div>'
+    + '<div class="reel-hook">' + hook + '</div>'
+    + '<div class="reel-sub">' + d.sub + '</div>'
+    + '</div>'
+    + '<div class="reel-mid"><div class="reel-emi">' + d.emi + '</div><div class="reel-badge">' + d.bdg + '</div></div>'
+    + '<div><div class="reel-cta">' + d.cta + '</div>'
+    + '<div class="reel-foot"><div class="reel-handle">@geodm.us</div><div class="reel-brand">GEODMus</div></div>'
+    + '</div></div></div>';
+}
+
+function renderHot(d) {
+  var lines = "";
+  for (var i = 0; i < d.lines.length; i++) {
+    lines += '<div class="hot-line" style="color:' + (d.lines[i].c || "#fff") + '">' + d.lines[i].t + '</div>';
+  }
+  return '<div class="hot-card">'
+    + '<div class="hot-accent"></div>'
+    + lines
+    + '<div class="hot-divider"></div>'
+    + '<div class="hot-tag">' + d.tag + '</div>'
+    + '<div class="hot-brand">GEODMus</div>'
+    + '</div>';
+}
+
+function showCard(type, idx) {
+  if (type !== "info") curChartType = "bar";
+  var d = getData(type, idx);
+  var html = "";
+  if (type === "meme") html = renderMeme(d);
+  else if (type === "info") html = renderInfo(d);
+  else if (type === "reel") html = renderReel(d);
+  else html = renderHot(d);
+  document.getElementById("card-display").innerHTML = html;
+}
+
+function showCaption(type, idx, pl) {
+  var cap = getCap(type, idx);
+  var ta = document.getElementById("cap-text");
+  ta.value = cap;
+  document.getElementById("cap-chars").textContent = cap.length + " chars";
+  var ptags = "";
+  if (pl) {
+    for (var i = 0; i < pl.length; i++) {
+      if (pl[i] === "IG") ptags += '<span class="ptag ptag-ig">📸 Instagram</span>';
+      if (pl[i] === "X") ptags += '<span class="ptag ptag-x">🐦 X / Twitter</span>';
+    }
+  }
+  document.getElementById("ptags").innerHTML = ptags;
+}
+
+function selectDay(day) {
+  var entry = null;
+  for (var i = 0; i < CAL.length; i++) { if (CAL[i].day === day) { entry = CAL[i]; break; } }
+  if (!entry) return;
+  curSel = entry;
+  document.getElementById("card-label").textContent = "Day " + day + " — " + getLabel(entry.type, entry.idx) + " · " + entry.time;
+  showCard(entry.type, entry.idx);
+  showCaption(entry.type, entry.idx, entry.pl);
+  var ar = document.getElementById("action-row");
+  ar.style.display = "flex";
+  var bp = document.getElementById("btn-post");
+  bp.textContent = doneMap[day] ? "✅ Posted!" : "Mark as Posted";
+  bp.style.background = doneMap[day] ? G : "linear-gradient(135deg," + C + "," + M + ")";
   buildSidebar();
+  document.getElementById("main").scrollTop = 0;
 }
 
-function selectItem(type,idx){
-  curSel = {type,idx,pl:type==='reel'?['IG']:['IG','X']};
-  renderCard(type,idx);
-  loadCap(type,idx);
-  setPtags(curSel.pl);
-  document.getElementById('card-label').textContent = `${typeLabel(type)} ${getLabel(type,idx)}`;
+function selectItem(type, idx) {
+  curSel = {type:type, idx:idx, pl: type==="reel" ? ["IG"] : ["IG","X"]};
+  document.getElementById("card-label").textContent = typeEmoji(type) + " " + getLabel(type, idx);
+  showCard(type, idx);
+  showCaption(type, idx, curSel.pl);
+  document.getElementById("action-row").style.display = "none";
   buildSidebar();
+  document.getElementById("main").scrollTop = 0;
 }
 
-function showFirst(type){
-  selectItem(type,0);
+function buildSidebar() {
+  var sb = document.getElementById("sidebar");
+  var html = "";
+  if (curTab === "cal") {
+    html += '<span class="sidebar-label">30-Day Calendar</span>';
+    for (var i = 0; i < CAL.length; i++) {
+      var e = CAL[i];
+      var on = (curSel && curSel.day === e.day) ? " active" : "";
+      var isDone = doneMap[e.day] ? '<span class="done-badge">✅</span>' : "";
+      html += '<button class="side-btn' + on + '" data-day="' + e.day + '">'
+        + '<span class="num">' + e.day + '</span>'
+        + '<span class="lbl">' + e.label + '</span>'
+        + '<span class="ico">' + typeEmoji(e.type) + '</span>'
+        + isDone
+        + '</button>';
+    }
+  } else {
+    var list = curTab === "meme" ? MEMES : curTab === "info" ? INFOS : curTab === "reel" ? REELS : HOTS;
+    html += '<span class="sidebar-label">' + typeEmoji(curTab) + ' ' + list.length + ' posts</span>';
+    for (var j = 0; j < list.length; j++) {
+      var on2 = (curSel && curSel.type === curTab && curSel.idx === j) ? " active" : "";
+      html += '<button class="side-btn' + on2 + '" data-type="' + curTab + '" data-idx="' + j + '">'
+        + '<span class="num">' + (j+1) + '</span>'
+        + '<span class="lbl">' + getLabel(curTab, j) + '</span>'
+        + '</button>';
+    }
+  }
+  sb.innerHTML = html;
 }
 
-function clearCard(){
-  curSel = null;
-  document.getElementById('card-display').innerHTML = '<div style="height:200px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.2);font-size:13px;">Select a post from sidebar</div>';
-  document.getElementById('cap-text').value = '';
-  document.getElementById('char-count').textContent = '0 chars';
-  document.getElementById('ptags').innerHTML = '';
-  buildSidebar();
+function updateProgress() {
+  var count = 0;
+  for (var k in doneMap) { if (doneMap[k]) count++; }
+  var pct = Math.round((count / 30) * 100);
+  document.getElementById("prog-fill").style.width = pct + "%";
+  document.getElementById("prog-text").textContent = count + "/30 posted";
 }
 
-function renderCard(type,idx){
-  const d = getData(type,idx);
-  let html = '';
-  if(type==='meme') html = renderMeme(d);
-  else if(type==='info') html = renderInfo(d);
-  else if(type==='reel') html = renderReel(d);
-  else if(type==='hot') html = renderHot(d);
-  document.getElementById('card-display').innerHTML = html;
-}
-
-function renderMeme(d){
-  const punches = d.punch.map(l=>`<div class="m-punch ${l.c}">${l.t}</div>`).join('');
-  return `<div class="meme-card">
-    <div class="m-glow1"></div><div class="m-glow2"></div><div class="m-grid"></div><div class="m-accent"></div>
-    <div class="m-tag">${d.tag}</div>
-    <div class="m-body">
-      <div class="m-setup">${d.setup}</div>
-      <div>${punches}</div>
-    </div>
-    <div class="m-foot">
-      <div class="m-handle">@geodm.us</div>
-      <div class="m-brand">GEODMus</div>
-    </div>
-  </div>`;
-}
-
-function renderInfo(d){
-  const bars = d.bars.map(b=>`<div class="bar-row">
-    <div class="bar-lbl">${b.l}</div>
-    <div class="bar-track"><div class="bar-fill" style="width:${b.p}%;background:${b.c}"><span class="bar-pct">${b.p}%</span></div></div>
-  </div>`).join('');
-  return `<div class="info-card">
-    <div class="i-accent" style="background:${d.cyan?'#00c8d4':'#cc2d8f'}"></div>
-    <div class="i-glow"></div>
-    <div class="i-cat" style="color:${d.cyan?'#00c8d4':'#cc2d8f'}">${d.cat}</div>
-    <div class="i-title">${d.title}</div>
-    <div class="i-chart">${bars}</div>
-    <div class="i-foot">
-      <div class="i-src">Source: ${d.src}</div>
-      <div class="i-brand">GEODMus</div>
-    </div>
-  </div>`;
-}
-
-function renderReel(d){
-  const hook = d.hook.map(l=>`<div class="r-hook ${l.c}">${l.t}</div>`).join('');
-  return `<div style="display:flex;justify-content:center">
-    <div class="reel-card">
-      <div class="r-bg"></div><div class="r-scan"></div><div class="r-side"></div>
-      <div>
-        <div class="r-ep"><div class="r-dot"></div>${d.ep}</div>
-        <div class="r-ser">${d.ser}</div>
-        <div>${hook}</div>
-        <div class="r-sub" style="margin-top:4%">${d.sub}</div>
-      </div>
-      <div class="r-mid"><div class="r-emi">${d.emi}</div><div class="r-badge">${d.bdg}</div></div>
-      <div>
-        <div class="r-cta">${d.cta}</div>
-        <div class="r-foot"><div class="r-handle">@geodm.us</div><div class="r-brand">GEODMus</div></div>
-      </div>
-    </div>
-  </div>`;
-}
-
-function renderHot(d){
-  const lines = d.lines.map(l=>`<div class="hot-line ${l.c}">${l.t}</div>`).join('');
-  return `<div class="hot-card">
-    <div class="hot-accent"></div>
-    <div class="hot-lines">${lines}</div>
-    <div class="hot-divider"></div>
-    <div class="hot-tag">${d.tag}</div>
-    <div class="hot-brand">GEODMus</div>
-  </div>`;
-}
-
-function loadCap(type,idx){
-  const cap = CAPS[type]?.[idx]||'#GeoDMus #Chicago #DigitalMarketing';
-  document.getElementById('cap-text').value = cap;
-  updateChars();
-}
-
-function setPtags(pl){
-  const ptags = document.getElementById('ptags');
-  ptags.innerHTML = (pl||[]).map(p=>{
-    if(p==='IG') return '<span class="ptag ig">📸 Instagram</span>';
-    if(p==='X') return '<span class="ptag x">🐦 X / Twitter</span>';
-    return '';
-  }).join('');
-}
-
-function updateChars(){
-  const len = document.getElementById('cap-text').value.length;
-  document.getElementById('char-count').textContent = len+' chars';
-}
-
-function updateProgress(){
-  const count = Object.values(done).filter(Boolean).length;
-  const pct = Math.round((count/30)*100);
-  document.getElementById('prog-fill').style.width = pct+'%';
-  document.getElementById('prog-text').textContent = `${count}/30 posted`;
-}
-
-function copyCaption(){
-  const text = document.getElementById('cap-text').value;
-  if(!text.trim()){showToast('No caption to copy!');return;}
-  navigator.clipboard.writeText(text).then(()=>{
-    const btn = document.getElementById('copy-btn');
-    btn.textContent = '✅ Copied!';
-    btn.classList.add('done');
-    showToast('Caption copied! Paste into Metricool.');
-    setTimeout(()=>{btn.textContent='📋 Copy Caption';btn.classList.remove('done');},2000);
-  }).catch(()=>{
-    document.getElementById('cap-text').select();
-    showToast('Select all text and copy manually');
-  });
-}
-
-function openMetricool(){
-  window.open('https://app.metricool.com','_blank');
-}
-
-function markDone(){
-  if(!curSel||!curSel.day) return;
-  done[curSel.day] = !done[curSel.day];
-  saveDone();
-  updateProgress();
-  buildSidebar();
-  showToast(done[curSel.day]?'✅ Marked as posted!':'Unmarked');
-}
-
-function showToast(msg){
-  const t = document.getElementById('toast');
+function showToast(msg) {
+  var t = document.getElementById("toast");
   t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2500);
+  t.className = "toast show";
+  setTimeout(function() { t.className = "toast"; }, 2500);
 }
+
+// EVENT LISTENERS - all delegated, zero inline handlers
+document.getElementById("main").addEventListener("click", function(e) {
+  var btn = e.target.closest("[data-chart]");
+  if (!btn) return;
+  curChartType = btn.dataset.chart;
+  // re-render current info card
+  if (curSel && curSel.type === "info") {
+    showCard("info", curSel.idx);
+  } else if (curSel && curSel.type) {
+    // just in case
+  }
+});
+
+document.getElementById("sidebar").addEventListener("click", function(e) {
+  var btn = e.target.closest(".side-btn");
+  if (!btn) return;
+  if (btn.dataset.day) selectDay(parseInt(btn.dataset.day));
+  else if (btn.dataset.type) selectItem(btn.dataset.type, parseInt(btn.dataset.idx));
+});
+
+document.getElementById("topnav").addEventListener("click", function(e) {
+  var btn = e.target.closest("[data-tab]");
+  if (!btn) return;
+  curTab = btn.dataset.tab;
+  var tabs = document.querySelectorAll(".nav-tab");
+  for (var i = 0; i < tabs.length; i++) tabs[i].classList.remove("active");
+  btn.classList.add("active");
+  buildSidebar();
+  if (curTab !== "cal") selectItem(curTab, 0);
+  else {
+    curSel = null;
+    document.getElementById("card-display").innerHTML = '<div class="empty"><div class="empty-icon">📅</div><div class="empty-text">Tap any day in the sidebar<br>to load your post</div></div>';
+    document.getElementById("card-label").textContent = "Select a post from the sidebar";
+    document.getElementById("action-row").style.display = "none";
+    document.getElementById("cap-text").value = "";
+    document.getElementById("cap-chars").textContent = "0 chars";
+    document.getElementById("ptags").innerHTML = "";
+  }
+});
+
+document.getElementById("cap-text").addEventListener("input", function() {
+  document.getElementById("cap-chars").textContent = this.value.length + " chars";
+});
+
+document.getElementById("btn-copy").addEventListener("click", function() {
+  var text = document.getElementById("cap-text").value;
+  if (!text.trim()) { showToast("No caption loaded yet!"); return; }
+  var self = this;
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(function() {
+      self.textContent = "✅ Copied!";
+      self.classList.add("copied");
+      showToast("Caption copied! Paste into Metricool.");
+      setTimeout(function() {
+        self.textContent = "📋 Copy Caption";
+        self.classList.remove("copied");
+      }, 2000);
+    });
+  } else {
+    document.getElementById("cap-text").select();
+    document.execCommand("copy");
+    showToast("Copied! Paste into Metricool.");
+  }
+});
+
+document.getElementById("btn-metricool").addEventListener("click", function() {
+  window.open("https://app.metricool.com", "_blank");
+});
+
+document.getElementById("btn-back").addEventListener("click", function() {
+  curTab = "cal";
+  var tabs = document.querySelectorAll(".nav-tab");
+  for (var i = 0; i < tabs.length; i++) {
+    tabs[i].classList.remove("active");
+    if (tabs[i].dataset.tab === "cal") tabs[i].classList.add("active");
+  }
+  curSel = null;
+  document.getElementById("card-display").innerHTML = '<div class="empty"><div class="empty-icon">📅</div><div class="empty-text">Tap any day in the sidebar<br>to load your post</div></div>';
+  document.getElementById("card-label").textContent = "Select a post from the sidebar";
+  document.getElementById("action-row").style.display = "none";
+  document.getElementById("cap-text").value = "";
+  document.getElementById("cap-chars").textContent = "0 chars";
+  document.getElementById("ptags").innerHTML = "";
+  buildSidebar();
+});
+
+document.getElementById("btn-post").addEventListener("click", function() {
+  if (!curSel || !curSel.day) return;
+  doneMap[curSel.day] = !doneMap[curSel.day];
+  saveDone();
+  this.textContent = doneMap[curSel.day] ? "✅ Posted!" : "Mark as Posted";
+  this.style.background = doneMap[curSel.day] ? G : "linear-gradient(135deg," + C + "," + M + ")";
+  updateProgress();
+  buildSidebar();
+  showToast(doneMap[curSel.day] ? "Marked as posted! ✅" : "Unmarked");
+});
 
 // INIT
-// Tab click delegation
-document.getElementById('nav').addEventListener('click', function(ev){
-  var btn = ev.target.closest('[data-tab]');
-  if(!btn) return;
-  var tab = btn.dataset.tab;
-  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on');});
-  btn.classList.add('on');
-  curTab = tab;
-  buildSidebar();
-  if(tab !== 'cal') showFirst(tab);
-  else clearCard();
-});
 buildSidebar();
 updateProgress();
 </script>
