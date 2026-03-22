@@ -75,7 +75,16 @@ footer p{font-size:13px;color:var(--g)}.footer-links{display:flex;gap:24px;justi
 </head>
 <body>
 <nav>
-  <a href="index.html" class="logo"><span class="wm">GEODMus</span><span class="sub">Geo Digital Media</span></a>
+  <a href="index.html" class="logo" style="display:flex;align-items:flex-start;gap:8px;text-decoration:none">
+  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+  <polygon points="26,22 26,6 4,14" fill="#cc2d8f"/>
+  <polygon points="24,20 24,6 4,14" fill="#00c8d4"/>
+</svg>
+  <div>
+    <div class="wm"><span style="color:#fff">GEO </span><span style="color:#00c8d4">DM</span><span style="color:#fff"> US</span></div>
+    <div class="sub" style="color:#00c8d4;letter-spacing:3px;font-size:8px;text-transform:uppercase;font-family:inherit">GEO DIGITAL MEDIA</div>
+  </div>
+</a>
   <ul class="nav-links"><li><a href="ventures.html">← Ventures</a></li><li><a href="services.html">Services</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="about.html">About</a></li><li><a href="faq.html">FAQ</a></li></ul>
   <a href="https://calendly.com/hello-geodm/30min" class="nav-btn" target="_blank">Free Strategy Call</a>
 <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')"><span></span><span></span><span></span></button>
