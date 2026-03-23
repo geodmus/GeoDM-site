@@ -1,1091 +1,861 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="GeoDMus pricing. Flat rate, full service, no surprises. Three monthly retainer tiers from $799/mo. Tools stack, standalone projects, crypto payments.">
+<meta property="og:title" content="Pricing | Geo Digital Media — GeoDMus">
+<meta property="og:description" content="Flat rate. Full service. No surprises. Monthly retainers from $799. Bitcoin, ETH, and SOL accepted.">
+<meta property="og:image" content="https://geodm.us/gdm.png">
+<meta property="og:url" content="https://geodm.us/pricing.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://geodm.us/pricing.html">
+<link rel="icon" type="image/png" href="gdm.png">
 <title>Pricing | Geo Digital Media — GeoDMus</title>
-<meta name="description" content="Flat rate. Full service. No surprises. Flexible pricing for every business size — from local shops to scaling enterprises."/>
-<link rel="icon" type="image/png" href="gdm.png"/>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600;700&family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;700;900&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <style>
-:root{--c:#00c8d4;--m:#cc2d8f;--d:#070c0d;--d2:#0d1517;--d3:#111a1c;--w:#fff;--g:#8a9ba0}
-*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
-body{background:var(--d);color:var(--w);font-family:'Barlow',sans-serif;overflow-x:hidden}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:70px;background:rgba(7,12,13,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,200,212,.1)}
-.logo{text-decoration:none;line-height:1}.logo .wm{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:var(--w);display:block}.logo .sub{font-size:9px;letter-spacing:2px;color:var(--c);text-transform:uppercase}
-.nav-links{display:flex;gap:28px;list-style:none}.nav-links a{color:var(--g);text-decoration:none;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;transition:color .2s}.nav-links a:hover,.nav-links a.on{color:var(--c)}
-.nav-btn{background:var(--m);color:var(--w);padding:10px 20px;border-radius:3px;text-decoration:none;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
-.hamburger span{display:block;width:24px;height:2px;background:var(--w)}
-.mobile-menu{display:none;position:fixed;top:70px;left:0;right:0;background:rgba(7,12,13,.98);padding:24px 40px;border-bottom:1px solid rgba(0,200,212,.1);z-index:99}
-.mobile-menu.open{display:block}
-.mobile-menu ul{list-style:none;display:flex;flex-direction:column;gap:16px}
-.mobile-menu a{color:var(--g);text-decoration:none;font-size:14px;letter-spacing:2px;text-transform:uppercase;font-weight:600;transition:color .2s}.mobile-menu a:hover{color:var(--c)}
-
-/* HERO */
-.hero{min-height:48vh;display:flex;align-items:center;padding:130px 40px 72px;position:relative;overflow:hidden}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 80% 40%,rgba(0,200,212,.07) 0%,transparent 70%),radial-gradient(ellipse 40% 50% at 5% 80%,rgba(204,45,143,.06) 0%,transparent 70%),var(--d)}
-.hero-line{position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,transparent,var(--c) 40%,var(--m) 80%,transparent)}
-.hero-inner{position:relative;max-width:800px}
-.lbl{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--c);margin-bottom:18px;display:flex;align-items:center;gap:10px}.lbl::before{content:'';width:32px;height:2px;background:var(--c)}
-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,9vw,110px);line-height:.92;letter-spacing:2px;margin-bottom:24px}
-.h1c{color:var(--c)}.h1m{color:var(--m)}
-.hero-sub{font-size:clamp(15px,2vw,19px);font-weight:300;line-height:1.65;color:rgba(255,255,255,.65);max-width:580px;border-left:3px solid var(--m);padding-left:20px}
-
-/* TICKER */
-.ticker-wrap{overflow:hidden;background:rgba(0,200,212,.04);border-top:1px solid rgba(0,200,212,.1);border-bottom:1px solid rgba(0,200,212,.1);padding:13px 0}
-.ticker{display:flex;gap:48px;white-space:nowrap;animation:tick 30s linear infinite}
-.ticker span{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--c);opacity:.6}.ticker .dot{color:var(--m);opacity:1}
-@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-/* SECTIONS */
-.section{padding:80px 40px}.section.alt{background:var(--d2)}
-.inner{max-width:1100px;margin:0 auto}
-.sec-lbl{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--c);margin-bottom:12px;display:flex;align-items:center;gap:10px}.sec-lbl::before{content:'';width:24px;height:2px;background:var(--c)}
-h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,5vw,66px);letter-spacing:2px;line-height:.95;margin-bottom:16px}
-.h2c{color:var(--c)}.h2m{color:var(--m)}
-.sec-desc{font-size:17px;line-height:1.7;color:rgba(255,255,255,.6);max-width:680px;margin-bottom:48px}
-
-/* PRICING CARDS */
-.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:24px}
-.pcard{background:var(--d3);padding:36px 28px;position:relative}
-.pcard.featured{background:linear-gradient(135deg,rgba(0,200,212,.08),rgba(204,45,143,.06));border:1px solid rgba(0,200,212,.25)}
-.pcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:rgba(0,200,212,.3)}
-.pcard.featured::before{background:linear-gradient(90deg,var(--c),var(--m))}
-.pop-tag{font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:700;padding:4px 12px;border-radius:2px;background:var(--c);color:var(--d);display:inline-block;margin-bottom:16px}
-.tier-label{font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--g);margin-bottom:6px}
-.tier-name{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:2px;color:var(--w);margin-bottom:4px}
-.tier-price{font-family:'Bebas Neue',sans-serif;font-size:60px;line-height:1;color:var(--c);margin-bottom:6px}
-.tier-price span{font-size:18px;color:var(--g)}
-.tier-desc{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:24px;line-height:1.5}
-.feature-list{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:28px}
-.feature-list li{font-size:13px;color:rgba(255,255,255,.65);padding-left:18px;position:relative;line-height:1.4}
-.feature-list li::before{content:'✓';position:absolute;left:0;color:var(--c);font-size:11px;top:1px}
-.pbtn{display:block;text-align:center;padding:13px;border-radius:3px;text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;transition:opacity .2s}
-.pbtn.solid{background:var(--m);color:var(--w)}.pbtn.solid:hover{opacity:.85}
-.pbtn.outline{background:transparent;border:1px solid rgba(0,200,212,.35);color:var(--c)}.pbtn.outline:hover{background:rgba(0,200,212,.08)}
-
-/* FLEXIBLE PRICING */
-.flex-box{background:linear-gradient(135deg,rgba(204,45,143,.08),rgba(0,200,212,.05));border:1px solid rgba(204,45,143,.2);border-left:4px solid var(--m);padding:40px;border-radius:4px;margin-bottom:40px}
-.flex-box h3{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,4vw,48px);letter-spacing:2px;margin-bottom:16px}
-.flex-box h3 span{color:var(--m)}
-.flex-box p{font-size:16px;line-height:1.75;color:rgba(255,255,255,.75);margin-bottom:16px}
-.flex-box p strong{color:var(--w)}.flex-box .c{color:var(--c)}.flex-box .m{color:var(--m)}
-.flex-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:28px}
-.flex-step{background:var(--d3);padding:24px}
-.flex-step .sn{font-family:'Bebas Neue',sans-serif;font-size:42px;line-height:1;color:rgba(204,45,143,.3);margin-bottom:8px}
-.flex-step h5{font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--w);margin-bottom:8px}
-.flex-step p{font-size:13px;color:rgba(255,255,255,.5);line-height:1.6}
-
-/* COMPARISON TABLE */
-.comp-wrap{overflow-x:auto;margin:40px 0}
-table{width:100%;border-collapse:collapse;min-width:600px}
-th{font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;padding:14px 18px;text-align:left;background:var(--d3);color:var(--g)}
-th:first-child{color:var(--w);width:40%}
-th.featured-col{color:var(--c)}
-td{padding:11px 18px;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px;color:rgba(255,255,255,.65)}
-td:first-child{font-weight:600;color:var(--w)}
-tr:hover td{background:rgba(0,200,212,.02)}
-.ck{color:var(--c);font-size:15px}
-.ck.m{color:var(--m)}
-.da{color:rgba(255,255,255,.2)}
-.pr{color:var(--c);font-weight:700}
-
-/* ONE-TIME */
-.otgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px}
-.otcard{background:var(--d3);padding:28px;position:relative;overflow:hidden}
-.otcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--c)}
-.otcard:nth-child(even)::before{background:var(--m)}
-.ot-name{font-family:'Barlow Condensed',sans-serif;font-size:18px;letter-spacing:2px;text-transform:uppercase;color:var(--w);margin-bottom:6px}
-.ot-price{font-family:'Bebas Neue',sans-serif;font-size:40px;line-height:1;color:var(--c);margin-bottom:10px}
-.otcard:nth-child(even) .ot-price{color:var(--m)}
-.ot-desc{font-size:13px;color:rgba(255,255,255,.55);line-height:1.6}
-
-/* STACK */
-.stack-section{padding:80px 40px;background:var(--d2)}
-.stack-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px}
-.stack-col h4{font-family:'Barlow Condensed',sans-serif;font-size:16px;letter-spacing:3px;text-transform:uppercase;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid rgba(0,200,212,.15)}
-.stack-col:first-child h4{color:var(--c)}
-.stack-col:last-child h4{color:var(--m)}
-.tool-grid{display:flex;flex-wrap:wrap;gap:8px}
-.tool{padding:8px 14px;border-radius:2px;font-size:12px;letter-spacing:1px;text-transform:uppercase;font-weight:600}
-.tool.core{background:rgba(0,200,212,.08);border:1px solid rgba(0,200,212,.2);color:var(--c)}
-.tool.prem{background:rgba(204,45,143,.08);border:1px solid rgba(204,45,143,.2);color:var(--m)}
-
-/* CRYPTO */
-.crypto-section{padding:80px 40px}
-.crypto-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:40px}
-.crypto-card{background:var(--d3);padding:32px 28px;text-align:center;border-bottom:3px solid transparent;transition:border-color .3s}
-.crypto-card:hover{border-bottom-color:var(--c)}
-.crypto-card.btc:hover{border-bottom-color:#f7931a}
-.crypto-card.eth:hover{border-bottom-color:#627eea}
-.crypto-sym{font-family:'Bebas Neue',sans-serif;font-size:40px;letter-spacing:2px;margin-bottom:6px}
-.crypto-card.btc .crypto-sym{color:#f7931a}
-.crypto-card.eth .crypto-sym{color:#627eea}
-.crypto-card.stable .crypto-sym{color:var(--c)}
-.crypto-name{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--g);margin-bottom:8px}
-.crypto-desc{font-size:13px;color:rgba(255,255,255,.5);line-height:1.5}
-.crypto-badge{display:inline-block;margin-top:10px;padding:4px 10px;border-radius:2px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700}
-.crypto-badge.strike{background:rgba(247,147,26,.15);border:1px solid rgba(247,147,26,.3);color:#f7931a}
-.crypto-badge.cb{background:rgba(0,200,212,.1);border:1px solid rgba(0,200,212,.25);color:var(--c)}
-
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#020608;color:#e8fffe;font-family:'Barlow',Arial,sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
+a{color:inherit;text-decoration:none;}img{max-width:100%;display:block;}
+/* scanline overlay */
+body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.025) 2px,rgba(0,0,0,.025) 4px);}
+/* grid */
+body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(0,200,212,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,200,212,.03) 1px,transparent 1px);background-size:60px 60px;}
+/* cursor */
+#gdm-cur{width:8px;height:8px;background:#00c8d4;border-radius:50%;position:fixed;top:-20px;left:-20px;pointer-events:none;z-index:10000;transition:transform .1s,background .15s;mix-blend-mode:screen;will-change:transform;}
+#gdm-curR{width:30px;height:30px;border:1px solid rgba(0,200,212,.6);border-radius:50%;position:fixed;top:-20px;left:-20px;pointer-events:none;z-index:9999;will-change:transform;}
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;background:rgba(2,6,8,.9);border-bottom:1px solid rgba(0,200,212,.12);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);}
+.logo-wrap{display:flex;flex-direction:column;line-height:1;text-decoration:none;gap:3px;}
+.logo-top{font-family:'Bebas Neue',Impact,sans-serif;font-size:24px;letter-spacing:.18em;color:#e8fffe;display:flex;align-items:center;gap:8px;}
+.logo-d{color:#00c8d4;}.logo-m{color:#cc2d8f;}
+.logo-sub{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:7px;letter-spacing:3px;text-transform:uppercase;color:#4a7a80;}
+.nav-links{display:flex;gap:32px;list-style:none;}
+.nav-links a{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#4a7a80;transition:color .2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:#00c8d4;transition:width .3s;}
+.nav-links a:hover,.nav-links a.active{color:#00c8d4;}.nav-links a:hover::after{width:100%;}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:4px;cursor:none;}
+.hamburger span{display:block;width:22px;height:2px;background:#e8fffe;border-radius:2px;transition:all .3s;}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;bottom:0;background:rgba(2,6,8,.98);z-index:499;flex-direction:column;align-items:center;justify-content:center;gap:28px;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-family:'Bebas Neue',Impact,sans-serif;font-size:32px;letter-spacing:3px;color:#e8fffe;transition:color .2s;}
+.mobile-menu a:hover{color:#00c8d4;}
+/* sections */
+.pt-hero{padding-top:100px;}
+section{padding:80px 0;}
+.inner{max-width:1140px;margin:0 auto;padding:0 48px;}
+.section-label{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#00c8d4;display:flex;align-items:center;gap:12px;margin-bottom:14px;text-shadow:0 0 10px rgba(0,200,212,.3);}
+.section-label::before{content:'';width:24px;height:1px;background:#00c8d4;flex-shrink:0;}
+.section-title{font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(40px,6vw,80px);line-height:.9;letter-spacing:.01em;margin-bottom:20px;}
+.hl-c{color:#00c8d4;}.hl-m{color:#cc2d8f;}.hl-y{color:#f5c842;}
+/* buttons */
+.mag-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:13px 30px;border-radius:2px;transition:box-shadow .3s;overflow:hidden;white-space:nowrap;border:none;cursor:none;text-decoration:none;}
+.mag-btn-primary{color:#020608;background:#00c8d4;box-shadow:0 0 24px rgba(0,200,212,.4);}
+.mag-btn-primary:hover{box-shadow:0 0 40px rgba(0,200,212,.7);}
+.mag-btn-secondary{color:#00c8d4;background:transparent;border:1px solid rgba(0,200,212,.4);}
+.mag-btn-secondary:hover{background:rgba(0,200,212,.06);border-color:#00c8d4;}
+.mag-btn-ghost{color:#e8fffe;background:transparent;border:1px solid rgba(255,255,255,.15);}
+.mag-btn-ghost:hover{border-color:#cc2d8f;color:#cc2d8f;}
+.nav-cta-wrap{position:relative;overflow:hidden;}
+.nav-cta-wrap::before{content:'';position:absolute;inset:0;background:#cc2d8f;transform:translateX(-101%);transition:transform .3s;}
+.nav-cta-wrap:hover::before{transform:translateX(0);}
+.nav-cta-wrap span{position:relative;z-index:1;}
+/* reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease;}
+.rv.vi{opacity:1;transform:translateY(0);}
+.rv.fl{transform:translateX(-28px);}.rv.fl.vi{transform:translateX(0);}
+.rv.fr{transform:translateX(28px);}.rv.fr.vi{transform:translateX(0);}
+.d1{transition-delay:.08s!important;}.d2{transition-delay:.16s!important;}.d3{transition-delay:.24s!important;}.d4{transition-delay:.32s!important;}
+/* cards */
+.card{background:#0a1214;border:1px solid rgba(255,255,255,.07);border-radius:6px;padding:28px;transition:border-color .2s,transform .2s;}
+.card:hover{border-color:rgba(0,200,212,.2);transform:translateY(-2px);}
+.card-icon{font-size:28px;margin-bottom:14px;}
+.card h4{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:15px;letter-spacing:1px;text-transform:uppercase;font-weight:700;margin-bottom:10px;color:#e8fffe;}
+.card p{font-size:13px;color:#4a7a80;line-height:1.65;}
+/* stats */
+.stat-n{font-family:'Bebas Neue',Impact,sans-serif;font-size:52px;color:#00c8d4;line-height:1;text-shadow:0 0 20px rgba(0,200,212,.4);}
+.stat-l{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#4a7a80;margin-top:4px;}
+/* badges */
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;font-family:'Barlow Condensed','Arial Narrow',sans-serif;margin-bottom:12px;}
+.b-active{background:rgba(0,210,90,.1);border:1px solid rgba(0,210,90,.25);color:#00d25a;}
+.b-dev{background:rgba(0,200,212,.08);border:1px solid rgba(0,200,212,.2);color:#00c8d4;}
+.b-vision{background:rgba(204,45,143,.08);border:1px solid rgba(204,45,143,.2);color:#cc2d8f;}
+/* bento grids */
+.srv-bento{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:rgba(0,200,212,.1);}
+.srv-card{background:#0a1214;padding:40px 32px;position:relative;overflow:hidden;transition:background .3s,transform .3s;}
+.srv-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at var(--mx,50%) var(--my,50%),rgba(0,200,212,.07),transparent 55%);opacity:0;transition:opacity .3s;}
+.srv-card:hover::before{opacity:1;}
+.srv-card::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:linear-gradient(90deg,#00c8d4,#cc2d8f);transition:width .5s;}
+.srv-card:hover::after{width:100%;}
+.srv-card:hover{background:#0d1a1d;transform:translateY(-3px);}
+.c2{grid-column:span 2;}.c3{grid-column:span 3;}.c4{grid-column:span 4;}
+.c6{grid-column:span 6;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.srv-ghost{font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(56px,8vw,96px);color:rgba(0,200,212,.035);line-height:1;user-select:none;}
+.srv-num{font-family:'Bebas Neue',Impact,sans-serif;font-size:72px;color:rgba(0,200,212,.04);position:absolute;top:-8px;right:12px;line-height:1;}
+.srv-icon{width:36px;height:36px;margin-bottom:18px;}
+.srv-name{font-size:15px;font-weight:700;margin-bottom:10px;color:#e8fffe;letter-spacing:.02em;}
+.srv-desc{font-size:13px;line-height:1.75;color:#4a7a80;margin-bottom:18px;}
+.chip{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;border:1px solid rgba(0,200,212,.2);color:#00c8d4;border-radius:2px;display:inline-block;margin:2px;transition:all .2s;}
+.chip:hover{background:rgba(0,200,212,.08);}
+/* portfolio bento */
+.port-bento{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(0,200,212,.1);}
+.port-card{background:#0a1214;padding:36px;position:relative;overflow:hidden;display:block;transition:background .3s;cursor:none;}
+.port-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:linear-gradient(180deg,#00c8d4,#cc2d8f);transition:height .4s;}
+.port-card:hover::before{height:100%;}
+.port-card:hover{background:#0d1a1d;}
+.port-card.hero{grid-column:span 3;display:grid;grid-template-columns:240px 1fr;gap:56px;align-items:center;padding:56px;}
+.ring-logo{width:180px;height:180px;position:relative;display:flex;align-items:center;justify-content:center;}
+.ring-logo::before,.ring-logo::after{content:'';position:absolute;border-radius:50%;border:1px solid;}
+.ring-logo::before{inset:0;border-color:rgba(0,200,212,.3);animation:spin 12s linear infinite;}
+.ring-logo::after{inset:14px;border-color:rgba(204,45,143,.2);animation:spin 8s linear infinite reverse;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.port-hero-svg{position:relative;z-index:1;filter:drop-shadow(0 0 18px rgba(0,200,212,.5));}
+.port-status{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:20px;display:inline-block;margin-bottom:12px;}
+.ps-active{background:rgba(0,210,90,.1);color:#00d25a;border:1px solid rgba(0,210,90,.25);}
+.ps-growing{background:rgba(0,200,212,.08);color:#00c8d4;border:1px solid rgba(0,200,212,.2);}
+.ps-building{background:rgba(204,45,143,.07);color:#cc2d8f;border:1px solid rgba(204,45,143,.18);}
+.ps-vision{background:rgba(204,45,143,.07);color:#cc2d8f;border:1px solid rgba(204,45,143,.18);}
+.port-name{font-family:'Bebas Neue',Impact,sans-serif;font-size:26px;letter-spacing:.04em;color:#e8fffe;margin-bottom:6px;}
+.port-name.xl{font-size:40px;}
+.port-cat{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#4a7a80;margin-bottom:12px;}
+.port-desc{font-size:13px;line-height:1.7;color:#4a7a80;}
+.port-role{margin-top:16px;padding-top:12px;border-top:1px solid rgba(0,200,212,.1);font-size:10px;color:#00c8d4;font-family:'Barlow Condensed','Arial Narrow',sans-serif;letter-spacing:1px;}
+.port-num{font-family:'Bebas Neue',Impact,sans-serif;font-size:48px;color:rgba(0,200,212,.04);position:absolute;bottom:10px;right:16px;}
+/* process */
+.proc-track{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative;margin-top:64px;}
+.proc-track::before{content:'';position:absolute;top:27px;left:5%;right:5%;height:1px;background:linear-gradient(90deg,#00c8d4,#cc2d8f,#00c8d4);opacity:.2;}
+.proc-step{text-align:center;padding:0 12px;}
+.proc-dot{width:54px;height:54px;border-radius:50%;border:1px solid rgba(0,200,212,.25);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:12px;font-weight:700;color:#4a7a80;background:#060d0f;position:relative;z-index:1;transition:all .35s;}
+.proc-dot:hover{border-color:#00c8d4;color:#00c8d4;box-shadow:0 0 24px rgba(0,200,212,.25);}
+.proc-t{font-size:13px;font-weight:700;margin-bottom:8px;color:#e8fffe;}
+.proc-d{font-size:12px;color:#4a7a80;line-height:1.6;}
+/* cta band */
+.cta-band{background:linear-gradient(135deg,#060d0f,#091214);border-top:1px solid rgba(0,200,212,.1);border-bottom:1px solid rgba(0,200,212,.1);padding:80px 32px;text-align:center;}
+.cta-band h3{font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(32px,5vw,56px);letter-spacing:2px;margin-bottom:16px;line-height:1;}
+.cta-band h3 span{color:#00c8d4;}
+.cta-band p{color:#4a7a80;margin-bottom:28px;font-size:16px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.7;}
+.cta-acts{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.cta-note{margin-top:24px;font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:10px;letter-spacing:2px;color:#4a7a80;}
+.cta-note a{color:#00c8d4;}
+/* footer */
+footer{background:#040a0b;border-top:1px solid rgba(255,255,255,.05);padding:56px 48px 28px;}
+.ft-grid{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:44px;margin-bottom:44px;}
+.ft-brand .fwm{font-family:'Bebas Neue',Impact,sans-serif;font-size:20px;letter-spacing:3px;background:linear-gradient(90deg,#00c8d4,#cc2d8f);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:3px;}
+.ft-brand .fsub{font-size:7px;letter-spacing:2px;text-transform:uppercase;color:#4a7a80;display:block;margin-bottom:12px;font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:700;}
+.ft-brand p{font-size:12px;color:#4a7a80;line-height:1.7;max-width:220px;}
+.ft-col h5{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#e8fffe;font-weight:700;margin-bottom:14px;}
+.ft-col ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.ft-col ul li a{font-size:12px;color:#4a7a80;transition:color .2s;}
+.ft-col ul li a:hover{color:#e8fffe;}
+.ft-bot{max-width:1140px;margin:0 auto;padding-top:20px;border-top:1px solid rgba(255,255,255,.05);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+.ft-bot span{font-size:11px;color:#4a7a80;}.ft-bot span a{color:#00c8d4;}
+.ft-socials{display:flex;gap:12px;}
+.ft-socials a{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#4a7a80;border:1px solid rgba(0,200,212,.12);padding:7px 14px;border-radius:2px;display:flex;align-items:center;gap:8px;transition:all .2s;}
+.ft-socials a:hover{border-color:#00c8d4;color:#00c8d4;}
+.ft-socials svg{width:11px;height:11px;fill:currentColor;}
+/* ticker */
+.ticker{overflow:hidden;white-space:nowrap;padding:12px 0;}
+.ticker-inner{display:inline-flex;animation:tick 26s linear infinite;}
+.tick-item{font-family:'Bebas Neue',Impact,sans-serif;font-size:15px;letter-spacing:4px;color:rgba(0,0,0,.75);padding:0 44px;}
+.tick-dot{color:rgba(0,0,0,.3);padding:0 8px;}
+@keyframes tick{to{transform:translateX(-50%);}}
+/* social bar */
+.social-bar{background:#0a1214;border-top:1px solid rgba(0,200,212,.1);border-bottom:1px solid rgba(0,200,212,.1);padding:14px 48px;display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;position:relative;z-index:2;}
+.social-bar p{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#4a7a80;}
+.s-btn{display:flex;align-items:center;gap:8px;font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#e8fffe;border:1px solid rgba(0,200,212,.12);padding:9px 18px;border-radius:2px;transition:all .2s;}
+.s-btn:hover{border-color:#00c8d4;color:#00c8d4;background:rgba(0,200,212,.04);}
+.s-btn svg{width:12px;height:12px;fill:currentColor;}
+/* stats band */
+.stats-band{background:#060d0f;border-top:1px solid rgba(0,200,212,.1);border-bottom:1px solid rgba(0,200,212,.1);}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;}
+.stat-block{padding:40px 28px;text-align:center;background:#060d0f;position:relative;overflow:hidden;transition:background .3s;}
+.stat-block::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#00c8d4,transparent);opacity:0;transition:opacity .4s;}
+.stat-block:hover{background:#0a1214;}.stat-block:hover::before{opacity:1;}
+.stat-big{font-family:'Bebas Neue',Impact,sans-serif;font-size:64px;line-height:1;color:#00c8d4;text-shadow:0 0 24px rgba(0,200,212,.4);margin-bottom:6px;}
+.stat-unit{font-family:'Bebas Neue',Impact,sans-serif;font-size:28px;color:#cc2d8f;}
+.stat-lbl{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#4a7a80;}
+/* markets */
+.m-tag{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:9px 14px;border:1px solid rgba(0,200,212,.1);color:#4a7a80;transition:all .2s;border-radius:2px;}
+.m-tag:hover,.m-tag.h{border-color:rgba(0,200,212,.35);color:#00c8d4;background:rgba(0,200,212,.04);}
+/* ent bar */
+.ent-bar{padding:36px 48px;background:linear-gradient(90deg,#060d0f,#0a1a1d,#060d0f);border:1px solid rgba(0,200,212,.12);display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;position:relative;}
+.ent-bar::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,#00c8d4,#cc2d8f);}
+/* venture hero */
+.v-hero{min-height:60vh;display:flex;align-items:flex-end;padding:120px 0 60px;position:relative;overflow:hidden;}
+.v-back{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#4a7a80;display:inline-flex;align-items:center;gap:6px;margin-bottom:24px;transition:color .2s;}
+.v-back:hover{color:#00c8d4;}
+.v-tag{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#4a7a80;margin-bottom:10px;}
+/* depth rings */
+.depth-rings{position:absolute;right:-8%;top:50%;transform:translateY(-50%);width:540px;height:540px;pointer-events:none;}
+.dring{position:absolute;inset:0;border-radius:50%;border:1px solid;animation:ringPulse 4s ease-in-out infinite;}
+.dring:nth-child(1){border-color:rgba(0,200,212,.4);}.dring:nth-child(2){inset:9%;border-color:rgba(204,45,143,.2);animation-delay:.7s;}
+.dring:nth-child(3){inset:18%;border-color:rgba(0,200,212,.18);animation-delay:1.4s;}.dring:nth-child(4){inset:27%;border-color:rgba(204,45,143,.12);animation-delay:2.1s;}
+.dring:nth-child(5){inset:36%;border-color:rgba(0,200,212,.25);animation-delay:2.8s;}.dring:nth-child(6){inset:45%;border-color:rgba(204,45,143,.35);animation-delay:3.5s;}
+@keyframes ringPulse{0%,100%{transform:scale(1);opacity:.65;}50%{transform:scale(1.05);opacity:1;}}
+/* tw */
+.tw-line{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:14px;letter-spacing:4px;text-transform:uppercase;color:#00c8d4;margin-bottom:24px;min-height:1.4em;text-shadow:0 0 12px rgba(0,200,212,.4);}
+.tw-cur{color:#cc2d8f;animation:blink .65s step-end infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+/* hero anim */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+.a1{animation:fadeUp .7s ease .1s both;}.a2{animation:fadeUp .7s ease .2s both;}
+.a3{animation:fadeUp .7s ease .3s both;}.a4{animation:fadeUp .7s ease .4s both;}
+.a5{animation:fadeUp .7s ease .5s both;}.a6{animation:fadeUp .7s ease .6s both;}
+.bar-anim{animation:fadeUp .7s ease .3s both,barGrow 1s ease .8s both;}
+@keyframes barGrow{from{width:0;}to{width:90px;}}
+/* pricing */
+.p-card{background:#0a1214;padding:48px 36px;position:relative;transition:transform .3s,background .3s;}
+.p-card:hover{transform:translateY(-5px);background:#0d1a1d;}
+.p-card.feat{background:linear-gradient(160deg,#091618,#050e10);border:1px solid rgba(0,200,212,.2);transform:translateY(-14px);box-shadow:0 0 48px rgba(0,200,212,.08);}
+.p-card.feat:hover{transform:translateY(-20px);}
+.p-badge{position:absolute;top:0;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,#00c8d4,#cc2d8f);color:#020608;font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 16px;border-radius:0 0 8px 8px;}
+.p-tier{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:#4a7a80;margin-bottom:10px;}
+.p-name{font-family:'Bebas Neue',Impact,sans-serif;font-size:30px;letter-spacing:.04em;margin-bottom:4px;}
+.p-amt{display:flex;align-items:flex-start;gap:3px;margin-bottom:4px;}
+.p-cur{font-size:16px;font-weight:700;color:#00c8d4;margin-top:9px;}
+.p-num{font-family:'Bebas Neue',Impact,sans-serif;font-size:68px;line-height:1;color:#e8fffe;}
+.p-per{font-size:11px;color:#4a7a80;align-self:flex-end;margin-bottom:9px;}
+.p-desc{font-size:12px;color:#4a7a80;line-height:1.65;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid rgba(0,200,212,.08);}
+.p-feats{list-style:none;margin-bottom:28px;}
+.p-feats li{font-size:12px;color:#4a7a80;padding:7px 0;border-bottom:1px solid rgba(0,200,212,.06);display:flex;align-items:center;gap:10px;line-height:1.4;}
+.p-feats li::before{content:'›';color:#00c8d4;font-size:14px;flex-shrink:0;}
+.p-cta{display:block;text-align:center;font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:14px;border-radius:2px;transition:all .3s;}
+.p-cta.ol{border:1px solid rgba(0,200,212,.25);color:#e8fffe;}
+.p-cta.ol:hover{border-color:#00c8d4;color:#00c8d4;}
+.p-cta.gl{background:linear-gradient(90deg,#00c8d4,#cc2d8f);color:#020608;box-shadow:0 0 24px rgba(0,200,212,.35);}
+.p-cta.gl:hover{box-shadow:0 0 40px rgba(0,200,212,.6);}
 /* FAQ */
-.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:40px}
-.fq{background:var(--d3);padding:24px 28px;border-left:3px solid transparent;transition:border-color .3s}
-.fq:hover{border-left-color:var(--c)}
-.fq h4{font-size:14px;font-weight:700;color:var(--w);margin-bottom:10px;line-height:1.4}
-.fq p{font-size:13px;color:rgba(255,255,255,.55);line-height:1.65}
-.fq .c{color:var(--c)}.fq .m{color:var(--m)}
-
-/* CTA */
-.cta-band{padding:80px 40px;text-align:center;position:relative;overflow:hidden}
-.cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(204,45,143,.07) 0%,transparent 70%),var(--d)}
-.cta-inner{position:relative;max-width:680px;margin:0 auto}
-.cta-band h2{margin-bottom:20px}
-.cta-band p{font-size:17px;color:rgba(255,255,255,.6);margin-bottom:32px;line-height:1.6}
-.btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-.btn1{background:var(--m);color:var(--w);padding:15px 32px;text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;border-radius:3px}
-.btn2{border:1px solid rgba(0,200,212,.4);color:var(--c);padding:15px 32px;text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;border-radius:3px}
-
-/* FOOTER */
-footer{background:var(--d2);border-top:1px solid rgba(0,200,212,.1);padding:56px 40px 36px}
-.fg{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.06)}
-.fb .fwm{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:3px}.fb .fsub{font-size:9px;letter-spacing:2px;color:var(--c);text-transform:uppercase;display:block;margin-bottom:12px}.fb p{font-size:13px;color:var(--g);line-height:1.6}
-.fc h5{font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--w);margin-bottom:16px}
-.fc ul{list-style:none}.fc li{margin-bottom:8px}.fc a{color:var(--g);text-decoration:none;font-size:13px;transition:color .2s}.fc a:hover{color:var(--c)}
-.fbtm{max-width:1100px;margin:28px auto 0;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--g)}
-.fbtm a{color:var(--g);text-decoration:none;margin-left:16px}.fbtm a:hover{color:var(--c)}
-.fu{opacity:1;transform:none}
+details{border:1px solid rgba(255,255,255,.06);border-radius:5px;margin-bottom:8px;background:#0a1214;transition:border-color .2s;}
+details[open]{border-color:rgba(0,200,212,.2);}
+summary{padding:18px 22px;font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:16px;font-weight:700;letter-spacing:.3px;cursor:none;list-style:none;display:flex;justify-content:space-between;align-items:center;color:#e8fffe;}
+summary::-webkit-details-marker{display:none;}
+summary::after{content:'+';font-size:20px;color:#00c8d4;flex-shrink:0;margin-left:14px;font-weight:300;}
+details[open] summary::after{content:'−';}
+.faq-body{padding:0 22px 18px;color:#4a7a80;line-height:1.75;font-size:14px;}
+.faq-body strong{color:#e8fffe;}
+.faq-tip{margin-top:12px;padding:10px 14px;background:rgba(0,200,212,.05);border-left:2px solid #00c8d4;border-radius:2px;font-size:12px;}
+.faq-sect-title{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#00c8d4;display:flex;align-items:center;gap:10px;margin-bottom:16px;margin-top:40px;}
+.faq-sect-title::before{content:'';width:20px;height:1px;background:#00c8d4;}
+/* pay page */
+.pay-wrap{max-width:600px;margin:0 auto;padding:60px 16px 80px;}
+.step-bar{display:flex;gap:8px;margin-bottom:44px;align-items:center;}
+.step{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;font-family:'Barlow Condensed','Arial Narrow',sans-serif;flex-shrink:0;}
+.step.active{background:linear-gradient(135deg,#00c8d4,#cc2d8f);color:#020608;}
+.step.done{background:#00d25a;color:#020608;}
+.step.pending{background:rgba(255,255,255,.08);color:#4a7a80;}
+.step-line{flex:1;height:1px;background:rgba(255,255,255,.08);}
+.plan-card{border:2px solid rgba(255,255,255,.06);border-radius:6px;padding:18px 22px;background:#0a1214;cursor:none;transition:all .2s;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;}
+.plan-card:hover{border-color:rgba(0,200,212,.25);}
+.plan-card.sel{border-color:#00c8d4;background:rgba(0,200,212,.05);}
+.plan-nm{font-family:'Bebas Neue',Impact,sans-serif;font-size:18px;letter-spacing:2px;}
+.plan-pr{font-family:'Bebas Neue',Impact,sans-serif;font-size:28px;color:#00c8d4;}
+.crypto-card{border:2px solid rgba(255,255,255,.06);border-radius:6px;padding:20px 22px;background:#0a1214;cursor:none;transition:all .2s;margin-bottom:10px;display:flex;align-items:center;gap:18px;}
+.crypto-card:hover{border-color:rgba(0,200,212,.25);}
+.crypto-card.sel{border-color:#00c8d4;background:rgba(0,200,212,.05);}
+.pay-step{display:none;}.pay-step.active{display:block;}
+.pay-title{font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(28px,6vw,44px);letter-spacing:2px;margin-bottom:8px;line-height:1;}
+.pay-sub{font-size:14px;color:#4a7a80;margin-bottom:28px;line-height:1.6;}
+.wallet-box{background:#000;border:1px solid rgba(0,200,212,.18);border-radius:6px;padding:24px;text-align:center;margin:20px 0;}
+.wallet-addr{font-family:'Courier New',monospace;font-size:11px;color:#00c8d4;word-break:break-all;margin:12px 0;line-height:1.5;}
+.copy-btn{background:rgba(0,200,212,.08);border:1px solid rgba(0,200,212,.2);color:#00c8d4;padding:7px 18px;border-radius:3px;font-size:11px;font-weight:700;letter-spacing:1px;font-family:'Barlow Condensed','Arial Narrow',sans-serif;cursor:none;transition:all .2s;}
+.copy-btn:hover{background:rgba(0,200,212,.15);}
+input[type=number]{background:#0a1214;border:1px solid rgba(255,255,255,.1);color:#e8fffe;padding:12px 14px;border-radius:5px;font-size:15px;width:100%;font-family:inherit;outline:none;}
+input[type=number]:focus{border-color:#00c8d4;}
+/* responsive */
+@media(max-width:1024px){
+  .c6{grid-column:span 6;grid-template-columns:1fr;gap:28px;}.srv-ghost{display:none;}
+  .c2,.c3,.c4{grid-column:span 3;}
+  .port-card.hero{grid-column:span 3;grid-template-columns:1fr;gap:28px;}
+  .ring-logo{display:none;}
+  .ft-grid{grid-template-columns:1fr 1fr;}
+  .stats-grid{grid-template-columns:repeat(2,1fr);}
+}
 @media(max-width:768px){
-  nav{padding:0 20px}.nav-links{display:none!important}.hamburger{display:flex}
-  .hero{padding:100px 20px 56px}.section{padding:56px 20px}.stack-section{padding:56px 20px}.crypto-section{padding:56px 20px}
-  .pgrid{grid-template-columns:1fr}.flex-steps{grid-template-columns:1fr}
-  .otgrid{grid-template-columns:1fr}.faq-grid{grid-template-columns:1fr}
-  .crypto-grid{grid-template-columns:1fr}.stack-grid{grid-template-columns:1fr}
-  .fg{grid-template-columns:1fr 1fr;gap:28px}.fbtm{flex-direction:column;gap:10px;text-align:center}
+  nav{padding:0 16px;height:56px;}.nav-links{display:none;}.desktop-only{display:none;}
+  .hamburger{display:flex;}.inner{padding:0 16px;}section{padding:56px 0;}
+  .srv-bento{grid-template-columns:1fr;}.c2,.c3,.c4,.c6{grid-column:span 1;grid-template-columns:1fr;}
+  .port-bento{grid-template-columns:1fr;}.port-card.hero{grid-column:span 1;padding:28px;}
+  .proc-track{grid-template-columns:1fr;gap:24px;}.proc-track::before{display:none;}
+  .depth-rings{display:none;}
+  .cta-acts{flex-direction:column;align-items:center;}
+  .ft-grid{grid-template-columns:1fr;gap:28px;}footer{padding:44px 16px 24px;}
+  .ent-bar{padding:24px 20px;}
+  section[style*="padding:120px"]{padding-left:16px!important;padding-right:16px!important;}
+}
+@media(max-width:480px){.stats-grid{grid-template-columns:1fr 1fr;}}
+
+/* ── PRICING CARD BUTTONS (matching screenshot exactly) ── */
+.pay-card-btn {
+  display:block;width:100%;text-align:center;
+  font-family:'Barlow Condensed','Arial Narrow',sans-serif;
+  font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  padding:15px 20px;border-radius:2px;transition:all .25s;
+  text-decoration:none;margin-bottom:10px;cursor:none;
+}
+.pay-card-btn.outline {
+  background:transparent;
+  border:1px solid rgba(0,200,212,.35);
+  color:#e8fffe;
+}
+.pay-card-btn.outline:hover { border-color:#00c8d4; color:#00c8d4; }
+.pay-card-btn.solid-cyn {
+  background:linear-gradient(90deg,#00c8d4,#cc2d8f);
+  border:none; color:#020608;
+  box-shadow:0 0 20px rgba(0,200,212,.3);
+}
+.pay-card-btn.solid-cyn:hover { box-shadow:0 0 36px rgba(0,200,212,.5); }
+
+/* Orange/magenta crypto button - exactly like screenshot */
+.pay-crypto-btn {
+  display:block;width:100%;text-align:center;
+  font-family:'Barlow Condensed','Arial Narrow',sans-serif;
+  font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  padding:15px 20px;border-radius:2px;transition:all .25s;
+  text-decoration:none;cursor:none;
+  background:linear-gradient(90deg,#f5a623,#cc2d8f);
+  border:none; color:#020608;
+}
+.pay-crypto-btn:hover { box-shadow:0 0 28px rgba(245,166,35,.5); }
+
+/* The Growth Engine card has solid cyan PAY WITH CARD */
+.feat .pay-card-btn.outline {
+  background:linear-gradient(90deg,#00c8d4,#0090a0);
+  border:none; color:#020608;
+  box-shadow:0 0 20px rgba(0,200,212,.35);
+}
+.feat .pay-card-btn.outline:hover { box-shadow:0 0 36px rgba(0,200,212,.6); }
+/* Growth Engine crypto button - outlined style */
+.feat .pay-crypto-btn {
+  background:transparent;
+  border:1px solid rgba(245,166,35,.4);
+  color:#f5a623;
+}
+.feat .pay-crypto-btn:hover { background:rgba(245,166,35,.06); border-color:#f5a623; }
+
+/* ── COMPARISON TABLE ── */
+.comp-wrap { overflow-x:auto; margin-top:32px; }
+.comp-table {
+  width:100%; border-collapse:collapse; min-width:600px;
+}
+.comp-table th {
+  padding:16px 20px; text-align:left;
+  font-family:'Barlow Condensed','Arial Narrow',sans-serif;
+  font-size:10px; letter-spacing:3px; text-transform:uppercase;
+  color:#4a7a80; background:#060d0f;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.comp-table th.feat-h { color:#e8fffe; }
+.comp-table th.mid-h  { color:#00c8d4; }
+.comp-table td {
+  padding:13px 20px; font-size:13px; color:#4a7a80;
+  border-bottom:1px solid rgba(255,255,255,.04);
+  text-align:center;
+}
+.comp-table td:first-child { text-align:left; color:#e8fffe; font-weight:400; }
+.comp-table tbody tr:hover { background:rgba(255,255,255,.02); }
+.comp-table .ck  { color:#00d25a; font-size:16px; }
+.comp-table .no  { color:rgba(255,255,255,.15); font-size:14px; }
+.comp-table .mid { color:#00c8d4 !important; font-weight:700; }
+
+/* ── TOOL TAGS ── */
+.tool-tag {
+  font-family:'Barlow Condensed','Arial Narrow',sans-serif;
+  font-size:10px; letter-spacing:1.5px; text-transform:uppercase;
+  padding:6px 14px; border:1px solid rgba(0,200,212,.18);
+  color:#4a7a80; border-radius:2px; display:inline-block;
+  margin:3px; transition:all .2s;
+}
+.tool-tag:hover { border-color:rgba(0,200,212,.4); color:#00c8d4; }
+.tool-tag.mag { border-color:rgba(204,45,143,.18); }
+.tool-tag.mag:hover { border-color:rgba(204,45,143,.4); color:#cc2d8f; }
+
+/* ── WALLET BOXES ── */
+.wallet-box {
+  background:#000; border-radius:6px; padding:28px; text-align:center;
+}
+.w-chain {
+  font-family:'Barlow Condensed','Arial Narrow',sans-serif;
+  font-size:9px; letter-spacing:3px; text-transform:uppercase;
+  color:#4a7a80; margin-bottom:6px;
+}
+.w-name {
+  font-family:'Bebas Neue',Impact,sans-serif;
+  font-size:24px; letter-spacing:2px; margin-bottom:4px;
+}
+.w-sub { font-size:12px; color:#4a7a80; margin-bottom:18px; line-height:1.5; }
+.w-lbl {
+  font-family:'Barlow Condensed','Arial Narrow',sans-serif;
+  font-size:9px; letter-spacing:2px; text-transform:uppercase;
+  margin-bottom:8px;
+}
+.w-addr {
+  font-family:'Courier New',monospace; font-size:10px;
+  word-break:break-all; padding:10px 12px; border-radius:3px;
+  line-height:1.6; margin-bottom:12px;
+}
+.w-copy {
+  width:100%; padding:10px 16px; border-radius:3px;
+  font-family:'Barlow Condensed','Arial Narrow',sans-serif;
+  font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+  cursor:none; transition:all .2s; display:block;
+}
+
+/* ── STANDALONE PROJECTS ── */
+.proj-row {
+  display:grid; grid-template-columns:1fr auto;
+  gap:24px; align-items:center;
+  padding:28px 32px;
+  border-top:1px solid rgba(0,200,212,.1);
+  transition:background .2s;
+}
+.proj-row:first-child { border-top:none; }
+.proj-row:hover { background:rgba(0,200,212,.02); }
+.proj-label {
+  font-family:'Barlow Condensed','Arial Narrow',sans-serif;
+  font-size:11px; letter-spacing:3px; text-transform:uppercase;
+  color:#4a7a80; margin-bottom:6px;
+}
+.proj-price-cyn {
+  font-family:'Bebas Neue',Impact,sans-serif;
+  font-size:30px; color:#00c8d4; line-height:1;
+}
+.proj-price-mag {
+  font-family:'Bebas Neue',Impact,sans-serif;
+  font-size:30px; color:#cc2d8f; line-height:1;
+}
+.proj-desc { font-size:13px; color:#4a7a80; line-height:1.7; margin-top:8px; max-width:540px; }
+
+/* ── PRICING FAQ GRID ── */
+.pfaq-grid {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:1px; background:rgba(255,255,255,.05); margin-top:32px;
+}
+.pfaq-cell { background:#060d0f; padding:32px; transition:background .2s; }
+.pfaq-cell:hover { background:#0a1214; }
+.pfaq-q { font-size:14px; font-weight:700; color:#e8fffe; margin-bottom:12px; line-height:1.4; }
+.pfaq-a { font-size:13px; color:#4a7a80; line-height:1.75; }
+.pfaq-a .hl { color:#00c8d4; }
+.pfaq-a .hlm { color:#cc2d8f; }
+
+@media(max-width:768px) {
+  .pfaq-grid { grid-template-columns:1fr; }
+  .proj-row  { grid-template-columns:1fr; }
+  .comp-table th,.comp-table td { padding:10px 12px; font-size:11px; }
 }
 </style>
 </head>
 <body>
+<canvas id="gdm-cvs" style="position:fixed;inset:0;z-index:0;pointer-events:none;will-change:transform;"></canvas>
+<div id="gdm-cur"></div><div id="gdm-curR"></div>
 
 <nav>
-  <a href="index.html" class="logo" style="display:flex;align-items:flex-start;gap:8px;text-decoration:none">
-  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
-  <polygon points="26,22 26,6 4,14" fill="#cc2d8f"/>
-  <polygon points="24,20 24,6 4,14" fill="#00c8d4"/>
-</svg>
-  <div>
-    <div class="wm"><span style="color:#fff">GEO </span><span style="color:#00c8d4">DM</span><span style="color:#fff"> US</span></div>
-    <div class="sub" style="color:#00c8d4;letter-spacing:3px;font-size:8px;text-transform:uppercase;font-family:inherit">GEO DIGITAL MEDIA</div>
-  </div>
-</a>
+  <a href="index.html" class="logo-wrap">
+    <div class="logo-top"><svg width="18" height="14" viewBox="0 0 28 22" fill="none"><polygon points="0,11 28,0 21,11 28,22" fill="#cc2d8f"/><polygon points="0,11 28,0 23,16" fill="#00c8d4"/></svg> GEO<span class="logo-d">D</span><span class="logo-m">M</span>us</div>
+    <div class="logo-sub">Geo Digital Media</div>
+  </a>
   <ul class="nav-links">
-    <li><a href="services.html">Services</a></li>
-    <li><a href="ventures.html">Ventures</a></li>
-    <li><a href="pricing.html" class="on">Pricing</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="faq.html">FAQ</a></li>
-    <li><a href="index.html#contact">Contact</a></li>
+    <li><a href="services.html">Services</a></li><li><a href="ventures.html">Ventures</a></li>
+    <li><a href="pricing.html" class=active>Pricing</a></li><li><a href="about.html">About</a></li>
+    <li><a href="faq.html">FAQ</a></li><li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="https://calendly.com/hello-geodm/30min" class="nav-btn" target="_blank">Free Strategy Call</a>
-  <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
-    <span></span><span></span><span></span>
-  </button>
+  <a href="https://calendly.com/hello-geodm/30min" target="_blank" rel="noopener noreferrer"
+     class="mag-btn mag-btn-primary nav-cta-wrap desktop-only" data-mag><span>Free Strategy Call</span></a>
+  <button class="hamburger" id="ham-btn" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
-<div class="mobile-menu">
-  <ul>
-    <li><a href="services.html" onclick="this.closest('.mobile-menu').classList.remove('open')">Services</a></li>
-    <li><a href="ventures.html" onclick="this.closest('.mobile-menu').classList.remove('open')">Ventures</a></li>
-    <li><a href="pricing.html" onclick="this.closest('.mobile-menu').classList.remove('open')">Pricing</a></li>
-    <li><a href="about.html" onclick="this.closest('.mobile-menu').classList.remove('open')">About</a></li>
-    <li><a href="faq.html" onclick="this.closest('.mobile-menu').classList.remove('open')">FAQ</a></li>
-    <li><a href="index.html#contact" onclick="this.closest('.mobile-menu').classList.remove('open')">Contact</a></li>
-    <li><a href="https://calendly.com/hello-geodm/30min" target="_blank">Book Free Call</a></li>
-  </ul>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="services.html">Services</a><a href="ventures.html">Ventures</a>
+  <a href="pricing.html">Pricing</a><a href="about.html">About</a>
+  <a href="faq.html">FAQ</a><a href="#contact">Contact</a>
+  <a href="https://calendly.com/hello-geodm/30min" target="_blank" rel="noopener noreferrer"
+     class="mag-btn mag-btn-primary" data-mag>Free Strategy Call</a>
 </div>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-line"></div>
-  <div class="hero-inner">
-    <div class="lbl">Simple Pricing</div>
-    <h1>FLAT RATE.<br/><span class="h1c">FULL SERVICE.</span><br/><span class="h1m">NO SURPRISES.</span></h1>
-    <p class="hero-sub">One monthly retainer covers everything. Cancel anytime after 3 months. No hidden fees. Ever. And if the numbers don't work for you right now — let's talk. We build with people, not against them.</p>
+<section style="padding:120px 0 60px;text-align:center;z-index:2;position:relative;">
+  <div class="inner">
+    <div class="section-label a1" style="justify-content:center;">Simple Pricing</div>
+    <h1 class="section-title a2">FLAT RATE.<br><span class="hl-c">FULL SERVICE.</span><br><span class="hl-m">NO SURPRISES.</span></h1>
+    <p style="color:#4a7a80;max-width:500px;margin:16px auto 0;line-height:1.8;font-size:15px;" class="a3">
+      One monthly retainer covers everything. Cancel anytime after 3 months with 30 days notice. No penalties. No games.
+    </p>
   </div>
 </section>
 
-<!-- TICKER -->
-<div class="ticker-wrap"><div class="ticker">
-  <span>Launchpad $799</span><span class="dot">◆</span><span>Growth Engine $1,599</span><span class="dot">◆</span><span>Empire Mode $2,999</span><span class="dot">◆</span><span>Flexible Plans</span><span class="dot">◆</span><span>Crypto Accepted</span><span class="dot">◆</span><span>Bitcoin</span><span class="dot">◆</span><span>No Hidden Fees</span><span class="dot">◆</span><span>GeoDMus</span><span class="dot">◆</span>
-  <span>Launchpad $799</span><span class="dot">◆</span><span>Growth Engine $1,599</span><span class="dot">◆</span><span>Empire Mode $2,999</span><span class="dot">◆</span><span>Flexible Plans</span><span class="dot">◆</span><span>Crypto Accepted</span><span class="dot">◆</span><span>Bitcoin</span><span class="dot">◆</span><span>No Hidden Fees</span><span class="dot">◆</span><span>GeoDMus</span><span class="dot">◆</span>
-</div></div>
-
-<!-- PRICING TIERS -->
-<section class="section" id="plans">
-<div class="inner">
-  <div class="sec-lbl fu">Monthly Retainers</div>
-  <h2 class="fu">CHOOSE YOUR <span class="h2c">PLAN</span></h2>
-  <p class="sec-desc fu">All plans include a 3-month minimum commitment. Cancel anytime after that with 30 days notice. No penalties. No games.</p>
-  <div class="pgrid fu">
-    <div class="pcard">
-      <div class="tier-label">Tier 01</div>
-      <div class="tier-name">Launchpad</div>
-      <div class="tier-price">$799<span>/mo</span></div>
-      <p class="tier-desc">Get online fast with a professional website and the essentials in place. Perfect for new and growing local businesses.</p>
-      <ul class="feature-list">
-        <li>5-Page Custom Website</li>
-        <li>Mobile Optimized + SEO Ready</li>
-        <li>Online Booking Integration</li>
-        <li>1 Email Campaign / Month</li>
-        <li>Social Media Setup (2 platforms)</li>
-        <li>AI Appointment Automation</li>
-        <li>Zapier Lead Follow-Up Flow</li>
-        <li>ManyChat Instagram DM Setup</li>
-        <li>Monthly Strategy Call</li>
-      </ul>
-      <a href="https://buy.stripe.com/3cI3cugrL4FeaeQ0DK1gs00" class="pbtn outline" target="_blank">Pay with Card</a>
-      <a href="pay.html" class="pbtn solid" style="margin-top:6px;background:linear-gradient(135deg,#f7931a,#cc2d8f);border:none">₿ Pay with Crypto</a>
-    </div>
-    <div class="pcard featured">
-      <div class="pop-tag">Most Popular</div>
-      <div class="tier-label">Tier 02</div>
-      <div class="tier-name">Growth Engine</div>
-      <div class="tier-price">$1,599<span>/mo</span></div>
-      <p class="tier-desc">The full system for businesses ready to dominate. Automation, marketing, and strategy working together every month.</p>
-      <ul class="feature-list">
-        <li>10-Page Premium Website</li>
-        <li>Advanced SEO + Performance</li>
-        <li>Full AI Automation Suite + SMS</li>
-        <li>4 Email Campaigns / Month</li>
-        <li>Social Media — 3 platforms, 4x/week</li>
-        <li>Lead Capture Funnels</li>
-        <li>CRM Integration + Pipeline Setup</li>
-        <li>Go High Level or HubSpot Setup</li>
-        <li>Monthly Analytics Report</li>
-        <li>Monthly Strategy Call</li>
-      </ul>
-      <a href="https://buy.stripe.com/6oUeVc0sN8VuaeQ0DK1gs04" class="pbtn solid" target="_blank">Pay with Card</a>
-      <a href="pay.html" class="pbtn outline" style="margin-top:6px;border-color:rgba(247,147,26,.4);color:#f7931a">₿ Pay with Crypto</a>
-    </div>
-    <div class="pcard">
-      <div class="tier-label">Tier 03</div>
-      <div class="tier-name">Empire Mode</div>
-      <div class="tier-price">$2,999<span>/mo</span></div>
-      <p class="tier-desc">Maximum firepower for businesses scaling across multiple markets. Dedicated team, daily execution, full-stack growth.</p>
-      <ul class="feature-list">
-        <li>Custom Multi-Page Site + Blog</li>
-        <li>Full AI Automation Suite</li>
-        <li>Unlimited Email Campaigns</li>
-        <li>Daily Social — All Platforms</li>
-        <li>Paid Ads — Meta + Google</li>
-        <li>Shopify or Custom E-Commerce</li>
-        <li>Dedicated Account Manager</li>
-        <li>Premium Stack — GHL + ActiveCampaign</li>
-        <li>Weekly Reports + Strategy Calls</li>
-        <li>Priority Support</li>
-      </ul>
-      <a href="https://buy.stripe.com/14AfZgcbvfjScmY2LS1gs03" class="pbtn outline" target="_blank">Pay with Card</a>
-      <a href="pay.html" class="pbtn solid" style="margin-top:6px;background:linear-gradient(135deg,#f7931a,#cc2d8f);border:none">₿ Pay with Crypto</a>
-    </div>
-  </div>
+<!-- PRICING CARDS -->
+<section style="padding:0 0 80px;z-index:2;position:relative;">
+  <div class="inner">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:rgba(0,200,212,.1);">
+      
+<div class="p-card rv">
+  
+  <div class="p-tier" style="color:#4a7a80;">Tier 01</div>
+  <div class="p-name">LAUNCHPAD</div>
+  <div class="p-amt"><span class="p-cur">$</span><span class="p-num">799</span><span class="p-per">/mo</span></div>
+  <p class="p-desc">Get online fast with a professional website and the essentials in place. Perfect for new and growing local businesses.</p>
+  <ul class="p-feats"><li>5-Page Custom Website</li><li>Mobile Optimized + SEO Ready</li><li>Online Booking Integration</li><li>1 Email Campaign / Month</li><li>Social Media Setup (2 platforms)</li><li>AI Appointment Automation</li><li>Zapier Lead Follow-Up Flow</li><li>ManyChat Instagram DM Setup</li><li>Monthly Strategy Call</li></ul>
+  <a href="https://buy.stripe.com/3cI3cugrL4FeaeQ0DK1gs00" target="_blank" rel="noopener noreferrer" class="pay-card-btn outline">Pay with Card</a>
+  <a href="pay.html" class="pay-crypto-btn">&#8383; Pay with Crypto</a>
 </div>
-</section>
-
-<!-- FLEXIBLE PRICING -->
-<section class="section alt">
-<div class="inner">
-  <div class="sec-lbl fu">Flexible Pricing</div>
-  <h2 class="fu">CAN'T AFFORD <span class="h2m">$799/MO</span> RIGHT NOW?</h2>
-  <div class="flex-box fu">
-    <h3>WE WORK WITH <span>YOU.</span></h3>
-    <p>We built GeoDMus to serve every business — from the corner barbershop to the scaling startup. If our standard pricing is out of reach right now, <strong>we have a conversation, not a rejection.</strong></p>
-    <p>During your free discovery call we learn about your business revenue, your goals, and what you can realistically invest. <span class="c">If our standard packages don't fit, we build a custom entry plan together.</span> A lower monthly rate while you're getting started, with the expectation that once results come in you transition to a full package.</p>
-    <p><span class="m">What we ask in return: commitment.</span> If we're discounting our rate to help you grow, we need you to show up, communicate, and hold your end. We're betting on you — bet on yourself too.</p>
-    <div class="flex-steps">
-      <div class="flex-step"><div class="sn">01</div><h5>Discovery Call</h5><p>Free 30 min. We learn your business, revenue, and what you can invest right now.</p></div>
-      <div class="flex-step"><div class="sn">02</div><h5>Custom Plan Built</h5><p>We build a discounted entry plan based on your situation. No templates. Built for you.</p></div>
-      <div class="flex-step"><div class="sn">03</div><h5>Results → Upgrade</h5><p>Once revenue grows from our work, you move to a full package. We grow together.</p></div>
-    </div>
-  </div>
+      
+<div class="p-card feat rv">
+  <div class="p-badge">&#11088; Most Popular</div>
+  <div class="p-tier" style="color:#cc2d8f;">Tier 02</div>
+  <div class="p-name">GROWTH ENGINE</div>
+  <div class="p-amt"><span class="p-cur">$</span><span class="p-num">1,599</span><span class="p-per">/mo</span></div>
+  <p class="p-desc">The full system for businesses ready to dominate. Automation, marketing, and strategy working together every month.</p>
+  <ul class="p-feats"><li>10-Page Premium Website</li><li>Advanced SEO + Performance</li><li>Full AI Automation Suite + SMS</li><li>4 Email Campaigns / Month</li><li>Social Media — 3 platforms, 4x/week</li><li>Lead Capture Funnels</li><li>CRM Integration + Pipeline Setup</li><li>Go High Level or HubSpot Setup</li><li>Monthly Analytics Report</li><li>Monthly Strategy Call</li></ul>
+  <a href="https://buy.stripe.com/6oUeVc0sN8VuaeQ0DK1gs04" target="_blank" rel="noopener noreferrer" class="pay-card-btn outline">Pay with Card</a>
+  <a href="pay.html" class="pay-crypto-btn">&#8383; Pay with Crypto</a>
 </div>
+      
+<div class="p-card rv">
+  
+  <div class="p-tier" style="color:#f5c842;">Tier 03</div>
+  <div class="p-name">EMPIRE MODE</div>
+  <div class="p-amt"><span class="p-cur">$</span><span class="p-num">2,999</span><span class="p-per">/mo</span></div>
+  <p class="p-desc">Maximum firepower for businesses scaling across multiple markets. Dedicated team, daily execution, full-stack growth.</p>
+  <ul class="p-feats"><li>Custom Multi-Page Site + Blog</li><li>Full AI Automation Suite</li><li>Unlimited Email Campaigns</li><li>Daily Social — All Platforms</li><li>Paid Ads — Meta + Google</li><li>Shopify or Custom E-Commerce</li><li>Dedicated Account Manager</li><li>Premium Stack — GHL + ActiveCampaign</li><li>Weekly Reports + Strategy Calls</li><li>Priority Support</li></ul>
+  <a href="https://buy.stripe.com/14AfZgcbvfjScmY2LS1gs03" target="_blank" rel="noopener noreferrer" class="pay-card-btn outline">Pay with Card</a>
+  <a href="pay.html" class="pay-crypto-btn">&#8383; Pay with Crypto</a>
+</div>
+    </div>
+    <p style="text-align:center;margin-top:16px;font-size:12px;color:#4a7a80;">
+      3-month minimum &middot; Cancel anytime after &middot; No hidden fees &middot; You own all your accounts
+    </p>
+  </div>
 </section>
 
 <!-- COMPARISON TABLE -->
-<section class="section">
-<div class="inner">
-  <div class="sec-lbl fu">Compare Plans</div>
-  <h2 class="fu">WHAT'S <span class="h2c">INCLUDED</span></h2>
-  <div class="comp-wrap fu">
-    <table>
-      <thead>
-        <tr>
-          <th>Feature</th>
-          <th>Launchpad</th>
-          <th class="featured-col">Growth Engine</th>
-          <th>Empire Mode</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>Custom Website</td><td>5 pages</td><td class="pr">10 pages</td><td>Unlimited</td></tr>
-        <tr><td>Mobile Optimized</td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
-        <tr><td>SEO Foundation</td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
-        <tr><td>Online Booking Integration</td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
-        <tr><td>Zapier Automation</td><td>Basic flows</td><td class="pr">Advanced multi-step</td><td>Full suite</td></tr>
-        <tr><td>ManyChat DM Automation</td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
-        <tr><td>Email Campaigns</td><td>1/month</td><td class="pr">4/month</td><td>Unlimited</td></tr>
-        <tr><td>Social Media Management</td><td>2 platforms</td><td class="pr">3 platforms 4x/wk</td><td>All platforms daily</td></tr>
-        <tr><td>SMS Automation</td><td><span class="da">—</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
-        <tr><td>Lead Capture Funnels</td><td><span class="da">—</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
-        <tr><td>CRM Setup (GHL / HubSpot)</td><td><span class="da">—</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
-        <tr><td>Paid Ads (Meta + Google)</td><td><span class="da">—</span></td><td><span class="da">—</span></td><td><span class="ck">✓</span></td></tr>
-        <tr><td>E-Commerce (Shopify)</td><td><span class="da">—</span></td><td><span class="da">—</span></td><td><span class="ck">✓</span></td></tr>
-        <tr><td>Dedicated Account Manager</td><td><span class="da">—</span></td><td><span class="da">—</span></td><td><span class="ck">✓</span></td></tr>
-        <tr><td>Strategy Calls</td><td>Monthly</td><td class="pr">Monthly</td><td>Weekly</td></tr>
-        <tr><td>Analytics Reports</td><td><span class="da">—</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
-        <tr><td>Crypto Payment Option</td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-</section>
-
-<!-- ONE-TIME PROJECTS -->
-<section class="section alt">
-<div class="inner">
-  <div class="sec-lbl fu">One-Time Projects</div>
-  <h2 class="fu">NOT READY FOR A <span class="h2m">RETAINER?</span></h2>
-  <p class="sec-desc fu">Need something specific built without a monthly commitment? We offer standalone project pricing for businesses that need a single deliverable done right.</p>
-  <div class="otgrid fu">
-    <div class="otcard">
-      <div class="ot-name">Website Only</div>
-      <div class="ot-price">From $1,200</div>
-      <p class="ot-desc">5-page custom website — design, build, and launch. Mobile optimized, SEO ready, hosted on Vercel. You own everything. One-time payment, no monthly fee.</p>
-    </div>
-    <div class="otcard">
-      <div class="ot-name">Brand Identity Package</div>
-      <div class="ot-price">From $800</div>
-      <p class="ot-desc">Logo design, color palette, typography, and brand guidelines. Everything you need to look professional across every platform from day one.</p>
-    </div>
-    <div class="otcard">
-      <div class="ot-name">Automation Setup</div>
-      <div class="ot-price">From $600</div>
-      <p class="ot-desc">Zapier multi-step flows, ManyChat Instagram DM automation, Calendly booking integration, and branded email auto-replies. Your business running on autopilot.</p>
-    </div>
-    <div class="otcard">
-      <div class="ot-name">Web3 Consultation</div>
-      <div class="ot-price">From $500</div>
-      <p class="ot-desc">2-hour deep dive into where blockchain fits into your business — crypto payment integration strategy, NFT loyalty planning, token consulting, and prediction market analysis.</p>
-    </div>
-    <div class="otcard">
-      <div class="ot-name">E-Commerce Store</div>
-      <div class="ot-price">From $2,000</div>
-      <p class="ot-desc">Full Shopify store build — product pages, collections, checkout, payment integration including crypto, and basic SEO. Ready to sell from day one.</p>
-    </div>
-    <div class="otcard">
-      <div class="ot-name">Custom Platform / Marketplace</div>
-      <div class="ot-price">From $4,500</div>
-      <p class="ot-desc">Full platform builds — marketplaces, community platforms, Web3-enabled apps, and venture launches. Scoped individually. Includes strategy, design, and development.</p>
+<section style="padding:0 0 80px;background:#060d0f;z-index:2;position:relative;">
+  <div class="inner">
+    <div class="section-label rv">Full Breakdown</div>
+    <h2 class="section-title rv">WHAT'S <span class="hl-c">INCLUDED</span></h2>
+    <div class="comp-wrap rv">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th class="feat-h">Feature</th>
+            <th>Launchpad</th>
+            <th class="mid-h">Growth Engine</th>
+            <th>Empire Mode</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Custom Website</td><td>5 pages</td><td class="mid">10 pages</td><td>Unlimited</td></tr>
+          <tr><td>Mobile Optimized</td><td class="ck">&#10003;</td><td class="ck mid">&#10003;</td><td class="ck">&#10003;</td></tr>
+          <tr><td>SEO Foundation</td><td class="ck">&#10003;</td><td class="ck mid">&#10003;</td><td class="ck">&#10003;</td></tr>
+          <tr><td>Online Booking Integration</td><td class="ck">&#10003;</td><td class="ck mid">&#10003;</td><td class="ck">&#10003;</td></tr>
+          <tr><td>Zapier Automation</td><td>Basic flows</td><td class="mid">Advanced multi-step</td><td>Full suite</td></tr>
+          <tr><td>ManyChat DM Automation</td><td class="ck">&#10003;</td><td class="ck mid">&#10003;</td><td class="ck">&#10003;</td></tr>
+          <tr><td>Email Campaigns</td><td>1/month</td><td class="mid">4/month</td><td>Unlimited</td></tr>
+          <tr><td>Social Media Management</td><td>2 platforms</td><td class="mid">3 platforms 4x/wk</td><td>All platforms daily</td></tr>
+          <tr><td>SMS Automation</td><td class="no">—</td><td class="ck mid">&#10003;</td><td class="ck">&#10003;</td></tr>
+          <tr><td>Lead Capture Funnels</td><td class="no">—</td><td class="ck mid">&#10003;</td><td class="ck">&#10003;</td></tr>
+          <tr><td>CRM Setup (GHL / HubSpot)</td><td class="no">—</td><td class="ck mid">&#10003;</td><td class="ck">&#10003;</td></tr>
+          <tr><td>Paid Ads (Meta + Google)</td><td class="no">—</td><td class="no">—</td><td class="ck">&#10003;</td></tr>
+          <tr><td>E-Commerce (Shopify)</td><td class="no">—</td><td class="no">—</td><td class="ck">&#10003;</td></tr>
+          <tr><td>Dedicated Account Manager</td><td class="no">—</td><td class="no">—</td><td class="ck">&#10003;</td></tr>
+          <tr><td>Strategy Calls</td><td>Monthly</td><td class="mid">Monthly</td><td>Weekly</td></tr>
+          <tr><td>Analytics Reports</td><td class="no">—</td><td class="ck mid">&#10003;</td><td class="ck">&#10003;</td></tr>
+          <tr><td>Crypto Payment Option</td><td class="ck">&#10003;</td><td class="ck mid">&#10003;</td><td class="ck">&#10003;</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
-</div>
 </section>
 
-<!-- TECH STACK -->
-<div class="stack-section">
-<div class="inner">
-  <div class="sec-lbl fu">Our Stack</div>
-  <h2 class="fu">TOOLS WE BUILD <span class="h2c">WITH</span></h2>
-  <p class="sec-desc fu">We don't use generic templates or outdated tools. Every platform we deploy is chosen specifically for your business goals and budget.</p>
-  <div class="stack-grid fu">
-    <div class="stack-col">
-      <h4>Core Stack — Every Package</h4>
-      <div class="tool-grid">
-        <span class="tool core">Zapier</span>
-        <span class="tool core">ManyChat</span>
-        <span class="tool core">Calendly</span>
-        <span class="tool core">Later</span>
-        <span class="tool core">Canva</span>
-        <span class="tool core">Wave</span>
-        <span class="tool core">GitHub</span>
-        <span class="tool core">Leonardo AI</span>
-        <span class="tool core">Ideogram</span>
-        <span class="tool core">ElevenLabs</span>
-        <span class="tool core">Stripe</span>
-        <span class="tool core">Strike ⚡</span>
-        <span class="tool core">Coinbase Commerce</span>
-        <span class="tool core">Gemini + Nano Banana 2</span>
-        <span class="tool core">OpenPhone</span>
+<!-- TOOLS STACK -->
+<section style="padding:64px 0;z-index:2;position:relative;">
+  <div class="inner">
+    <div class="section-label rv">Our Stack</div>
+    <h2 class="section-title rv">TOOLS WE BUILD <span class="hl-c">WITH</span></h2>
+    <p style="color:#4a7a80;max-width:560px;line-height:1.75;font-size:14px;margin-bottom:40px;" class="rv">We don't use generic templates or outdated tools. Every platform we deploy is chosen specifically for your business goals and budget.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;" class="rv">
+      <div>
+        <div style="font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#00c8d4;margin-bottom:14px;display:flex;align-items:center;gap:8px;">
+          <span style="width:20px;height:1px;background:#00c8d4;display:inline-block;"></span>Core Stack — Every Package
+        </div>
+        <span class="tool-tag">Zapier</span><span class="tool-tag">ManyChat</span><span class="tool-tag">Calendly</span>
+        <span class="tool-tag">Later</span><span class="tool-tag">Canva</span><span class="tool-tag">Wave</span>
+        <span class="tool-tag">GitHub</span><span class="tool-tag">Leonardo AI</span><span class="tool-tag">Ideogram</span>
+        <span class="tool-tag">ElevenLabs</span><span class="tool-tag">Stripe</span>
+        <span class="tool-tag">Strike &#9889;</span><span class="tool-tag">Coinbase Commerce</span>
+        <span class="tool-tag">Gemini + Nano Banana 2</span><span class="tool-tag">OpenPhone</span>
       </div>
-    </div>
-    <div class="stack-col">
-      <h4>Premium Stack — Growth & Empire</h4>
-      <div class="tool-grid">
-        <span class="tool prem">Go High Level</span>
-        <span class="tool prem">HubSpot</span>
-        <span class="tool prem">ActiveCampaign</span>
-        <span class="tool prem">Klaviyo</span>
-        <span class="tool prem">Vercel</span>
-        <span class="tool prem">Shopify</span>
-        <span class="tool prem">Twilio</span>
-        <span class="tool prem">Midjourney</span>
-        <span class="tool prem">Google Workspace</span>
-        <span class="tool prem">Zoho Mail</span>
-        <span class="tool prem">Buffer</span>
+      <div>
+        <div style="font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#cc2d8f;margin-bottom:14px;display:flex;align-items:center;gap:8px;">
+          <span style="width:20px;height:1px;background:#cc2d8f;display:inline-block;"></span>Premium Stack — Growth &amp; Empire
+        </div>
+        <span class="tool-tag mag">Go High Level</span><span class="tool-tag mag">HubSpot</span>
+        <span class="tool-tag mag">ActiveCampaign</span><span class="tool-tag mag">Klaviyo</span>
+        <span class="tool-tag mag">Vercel</span><span class="tool-tag mag">Shopify</span>
+        <span class="tool-tag mag">Twilio</span><span class="tool-tag mag">Midjourney</span>
+        <span class="tool-tag mag">Google Workspace</span><span class="tool-tag mag">Zoho Mail</span>
+        <span class="tool-tag mag">Buffer</span>
       </div>
     </div>
   </div>
-</div>
-</div>
+</section>
 
 <!-- CRYPTO PAYMENTS -->
-<section class="crypto-section">
-<div class="inner">
-  <div class="sec-lbl fu">Crypto Payments</div>
-  <h2 class="fu">WE ACCEPT <span class="h2c">BITCOIN</span><br/>AND BEYOND.</h2>
-  <p class="sec-desc fu">We're crypto-native. We've been on-chain since before 2015. Paying in crypto isn't an afterthought here — it's a first-class option. No conversion friction, no extra fees.</p>
-  <div class="crypto-grid fu">
-    <div class="crypto-card btc">
-      <div class="crypto-sym">₿</div>
-      <div class="crypto-name">Bitcoin</div>
-      <p class="crypto-desc">Sound money. The original. Send BTC directly to our wallet — on-chain, no middleman, no chargebacks.</p>
-      <div style="margin-top:12px;background:rgba(247,147,26,.08);border:1px solid rgba(247,147,26,.2);border-radius:3px;padding:10px 12px;">
-        <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(247,147,26,.6);margin-bottom:6px">BTC Wallet Address</div>
-        <div style="font-size:10px;color:#f7931a;word-break:break-all;font-family:monospace;line-height:1.4">bc1q5590fdvjhfuzexajefs830wwxdg5eamxpf9p4k</div>
-        <button onclick="navigator.clipboard.writeText('bc1q5590fdvjhfuzexajefs830wwxdg5eamxpf9p4k');this.textContent='Copied!';setTimeout(()=>this.textContent='Copy Address',2000)" style="margin-top:8px;background:rgba(247,147,26,.15);border:1px solid rgba(247,147,26,.3);color:#f7931a;padding:5px 12px;border-radius:2px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;font-weight:700;width:100%">Copy Address</button>
+<section style="padding:64px 0;background:#060d0f;z-index:2;position:relative;" id="crypto">
+  <div class="inner">
+    <div class="section-label rv">Crypto Payments</div>
+    <h2 class="section-title rv">WE ACCEPT <span class="hl-c">BITCOIN</span><br>AND BEYOND.</h2>
+    <p style="color:#4a7a80;max-width:540px;line-height:1.8;font-size:14px;margin-bottom:40px;" class="rv">We're crypto-native. We've been on-chain since before 2015. Paying in crypto isn't an afterthought here — it's a first-class option. No conversion friction, no extra fees.</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(0,200,212,.1);" class="rv">
+
+      <div class="wallet-box" style="border:1px solid rgba(245,166,35,.2);">
+        <div style="font-size:36px;color:#f5a623;margin-bottom:10px;">&#8383;</div>
+        <div class="w-chain">Bitcoin</div>
+        <div class="w-name" style="color:#f5a623;">BITCOIN</div>
+        <p class="w-sub">Sound money. The original. Send BTC directly to our wallet — on-chain, no middleman, no chargebacks.</p>
+        <div class="w-lbl" style="color:#f5a623;">BTC Wallet Address</div>
+        <div class="w-addr" style="color:#f5a623;background:rgba(245,166,35,.05);border:1px solid rgba(245,166,35,.12);">bc1q5590fdvjhfuzexajefs830wwxdg5eamxpf9p4k</div>
+        <button onclick="(function(b){navigator.clipboard.writeText('bc1q5590fdvjhfuzexajefs830wwxdg5eamxpf9p4k');b.textContent='Copied!';setTimeout(function(){b.textContent='Copy Address';},2000);})(this)"
+          class="w-copy" style="background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.25);color:#f5a623;">Copy Address</button>
+      </div>
+
+      <div class="wallet-box" style="border:1px solid rgba(98,126,234,.2);">
+        <div style="font-size:36px;color:#627eea;margin-bottom:10px;">&#926;</div>
+        <div class="w-chain">Ethereum + ERC-20</div>
+        <div class="w-name" style="color:#627eea;">ETHEREUM</div>
+        <p class="w-sub">ETH, USDC, USDT, and all major ERC-20 tokens accepted. Stable and reliable on-chain payments.</p>
+        <div class="w-lbl" style="color:#627eea;">ETH Wallet Address</div>
+        <div class="w-addr" style="color:#627eea;background:rgba(98,126,234,.05);border:1px solid rgba(98,126,234,.12);">0x60a5D149CCD42C70C92C3bC644cE13c09D6508DC</div>
+        <button onclick="(function(b){navigator.clipboard.writeText('0x60a5D149CCD42C70C92C3bC644cE13c09D6508DC');b.textContent='Copied!';setTimeout(function(){b.textContent='Copy Address';},2000);})(this)"
+          class="w-copy" style="background:rgba(98,126,234,.08);border:1px solid rgba(98,126,234,.25);color:#627eea;">Copy Address</button>
+      </div>
+
+      <div class="wallet-box" style="border:1px solid rgba(153,69,255,.2);">
+        <div style="font-size:36px;color:#9945ff;margin-bottom:10px;">&#9675;</div>
+        <div class="w-chain">Solana + USDC on SOL</div>
+        <div class="w-name" style="color:#9945ff;">SOLANA</div>
+        <p class="w-sub">SOL and USDC on Solana accepted. Fast, low-cost, and frictionless on-chain payments.</p>
+        <div class="w-lbl" style="color:#9945ff;">SOL Wallet Address</div>
+        <div class="w-addr" style="color:#9945ff;background:rgba(153,69,255,.05);border:1px solid rgba(153,69,255,.12);">2EX5EYJ9GiXn254Xp6KVvuG2hwW7uVCHttw9ssEKiypB</div>
+        <button onclick="(function(b){navigator.clipboard.writeText('2EX5EYJ9GiXn254Xp6KVvuG2hwW7uVCHttw9ssEKiypB');b.textContent='Copied!';setTimeout(function(){b.textContent='Copy Address';},2000);})(this)"
+          class="w-copy" style="background:rgba(153,69,255,.08);border:1px solid rgba(153,69,255,.25);color:#9945ff;">Copy Address</button>
       </div>
     </div>
-    <div class="crypto-card eth">
-      <div class="crypto-sym">Ξ</div>
-      <div class="crypto-name">Ethereum + ERC-20</div>
-      <p class="crypto-desc">ETH, USDC, USDT, and all major ERC-20 tokens accepted. Stable and reliable on-chain payments.</p>
-      <div style="margin-top:12px;background:rgba(98,126,234,.08);border:1px solid rgba(98,126,234,.2);border-radius:3px;padding:10px 12px;">
-        <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(98,126,234,.6);margin-bottom:6px">ETH Wallet Address</div>
-        <div style="font-size:10px;color:#627eea;word-break:break-all;font-family:monospace;line-height:1.4">0x60a5D149CCD42C70C92C3bC644cE13c09D6508DC</div>
-        <button onclick="navigator.clipboard.writeText('0x60a5D149CCD42C70C92C3bC644cE13c09D6508DC');this.textContent='Copied!';setTimeout(()=>this.textContent='Copy Address',2000)" style="margin-top:8px;background:rgba(98,126,234,.15);border:1px solid rgba(98,126,234,.3);color:#627eea;padding:5px 12px;border-radius:2px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;font-weight:700;width:100%">Copy Address</button>
+    <p style="text-align:center;margin-top:20px;font-size:12px;color:#4a7a80;">After sending, email <strong style="color:#e8fffe;">hello&#64;geodm&#46;us</strong> with your TX ID and selected plan. Confirmed within 24 hours.</p>
+  </div>
+</section>
+
+<!-- STANDALONE PROJECTS -->
+<section style="padding:64px 0;z-index:2;position:relative;">
+  <div class="inner">
+    <div class="section-label rv">One-Time Projects</div>
+    <h2 class="section-title rv">NOT READY FOR A <span class="hl-m">RETAINER?</span></h2>
+    <p style="color:#4a7a80;max-width:540px;line-height:1.8;font-size:14px;margin-bottom:0;" class="rv">
+      Need something specific built without a monthly commitment? We offer standalone project pricing for businesses that need a single deliverable done right.
+    </p>
+    <div style="margin-top:32px;border:1px solid rgba(255,255,255,.06);border-radius:4px;overflow:hidden;" class="rv">
+      <div class="proj-row">
+        <div><div class="proj-label">Website Only</div><div class="proj-price-cyn">FROM $1,200</div>
+          <p class="proj-desc">5-page custom website — design, build, and launch. Mobile optimized, SEO ready, hosted on Vercel. You own everything. One-time payment, no monthly fee.</p></div>
+        <a href="https://calendly.com/hello-geodm/30min" target="_blank" rel="noopener noreferrer" class="mag-btn mag-btn-secondary" data-mag style="white-space:nowrap;">Get a Quote</a>
       </div>
-    </div>
-    <div class="crypto-card stable">
-      <div class="crypto-sym">◎</div>
-      <div class="crypto-name">Solana + USDC on SOL</div>
-      <p class="crypto-desc">SOL and USDC on Solana accepted. Fast, low-cost, and frictionless on-chain payments.</p>
-      <div style="margin-top:12px;background:rgba(153,69,255,.08);border:1px solid rgba(153,69,255,.2);border-radius:3px;padding:10px 12px;">
-        <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(153,69,255,.6);margin-bottom:6px">SOL Wallet Address</div>
-        <div style="font-size:10px;color:#9945ff;word-break:break-all;font-family:monospace;line-height:1.4">2EX5EYJ9GiXn254Xp6KVvuG2hwW7uVCHttw9ssEKiypB</div>
-        <button onclick="navigator.clipboard.writeText('2EX5EYJ9GiXn254Xp6KVvuG2hwW7uVCHttw9ssEKiypB');this.textContent='Copied!';setTimeout(()=>this.textContent='Copy Address',2000)" style="margin-top:8px;background:rgba(153,69,255,.15);border:1px solid rgba(153,69,255,.3);color:#9945ff;padding:5px 12px;border-radius:2px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;font-weight:700;width:100%">Copy Address</button>
+      <div class="proj-row">
+        <div><div class="proj-label">Brand Identity Package</div><div class="proj-price-mag">FROM $800</div>
+          <p class="proj-desc">Logo design, color palette, typography, and brand guidelines. Everything you need to look professional across every platform from day one.</p></div>
+        <a href="https://calendly.com/hello-geodm/30min" target="_blank" rel="noopener noreferrer" class="mag-btn mag-btn-secondary" data-mag style="white-space:nowrap;">Get a Quote</a>
+      </div>
+      <div class="proj-row">
+        <div><div class="proj-label">Automation Setup</div><div class="proj-price-cyn">FROM $600</div>
+          <p class="proj-desc">Zapier multi-step flows, ManyChat Instagram DM automation, Calendly booking integration, and branded email auto-replies. Your business running on autopilot.</p></div>
+        <a href="https://calendly.com/hello-geodm/30min" target="_blank" rel="noopener noreferrer" class="mag-btn mag-btn-secondary" data-mag style="white-space:nowrap;">Get a Quote</a>
+      </div>
+      <div class="proj-row">
+        <div><div class="proj-label">Web3 Consultation</div><div class="proj-price-mag">FROM $500</div>
+          <p class="proj-desc">2-hour deep dive into where blockchain fits into your business — crypto payment integration strategy, NFT loyalty planning, token consulting, and prediction market analysis.</p></div>
+        <a href="https://calendly.com/hello-geodm/30min" target="_blank" rel="noopener noreferrer" class="mag-btn mag-btn-secondary" data-mag style="white-space:nowrap;">Get a Quote</a>
+      </div>
+      <div class="proj-row">
+        <div><div class="proj-label">E-Commerce Store</div><div class="proj-price-cyn">FROM $2,000</div>
+          <p class="proj-desc">Full Shopify store build — product pages, collections, checkout, payment integration including crypto, and basic SEO. Ready to sell from day one.</p></div>
+        <a href="https://calendly.com/hello-geodm/30min" target="_blank" rel="noopener noreferrer" class="mag-btn mag-btn-secondary" data-mag style="white-space:nowrap;">Get a Quote</a>
+      </div>
+      <div class="proj-row" style="border-bottom:1px solid rgba(204,45,143,.12);">
+        <div><div class="proj-label">Custom Platform / Marketplace</div><div class="proj-price-mag">FROM $4,500</div>
+          <p class="proj-desc">Full platform builds — marketplaces, community platforms, Web3-enabled apps, and venture launches. Scoped individually. Includes strategy, design, and development.</p></div>
+        <a href="https://calendly.com/hello-geodm/30min" target="_blank" rel="noopener noreferrer" class="mag-btn mag-btn-secondary" data-mag style="white-space:nowrap;">Get a Quote</a>
       </div>
     </div>
   </div>
-</div>
 </section>
 
 <!-- PRICING FAQ -->
-<section class="section alt">
-<div class="inner">
-  <div class="sec-lbl fu">Pricing FAQ</div>
-  <h2 class="fu">QUICK <span class="h2c">ANSWERS</span></h2>
-  <div class="faq-grid fu">
-    <div class="fq">
-      <h4>Can I really get a discount if I can't afford the standard price?</h4>
-      <p>Yes — and we mean it. We built this agency to serve communities. If your revenue doesn't support $799/mo yet, we have a conversation in your discovery call and build a plan together. <span class="c">Results trigger the upgrade, not a fixed date.</span></p>
-    </div>
-    <div class="fq">
-      <h4>What's the minimum commitment?</h4>
-      <p>3 months on all plans including custom entry plans. After that, cancel anytime with 30 days notice. <span class="c">No penalties, no lock-in games.</span> We want clients who stay because we're delivering — not because they're trapped.</p>
-    </div>
-    <div class="fq">
-      <h4>Do I own everything you build for me?</h4>
-      <p>100%. Your website files, your domain, your social accounts, your email list — all yours from day one. If you ever leave, we hand everything over cleanly. <span class="c">Your assets are never held hostage.</span></p>
-    </div>
-    <div class="fq">
-      <h4>Can I upgrade my plan as my business grows?</h4>
-      <p>That's the whole point. Most clients start on Launchpad and grow into Growth Engine as results compound. <span class="m">Upgrades happen at any billing cycle</span> — no waiting, no penalty, just more firepower when you're ready.</p>
-    </div>
-    <div class="fq">
-      <h4>Are there setup fees or hidden costs?</h4>
-      <p>No setup fees. No hidden costs. What you agree to is what you pay. Third-party tools like ad spend or domain registration are always disclosed upfront — and you own those accounts directly.</p>
-    </div>
-    <div class="fq">
-      <h4>How do payment plans work for one-time projects?</h4>
-      <p>One-time projects can be split into two payments — 50% to start, 50% on delivery. For larger builds we can discuss a 3-payment structure. <span class="c">We figure it out in the discovery call.</span></p>
+<section style="padding:64px 0;background:#060d0f;z-index:2;position:relative;">
+  <div class="inner">
+    <div class="section-label rv">Pricing FAQ</div>
+    <h2 class="section-title rv">QUICK <span class="hl-c">ANSWERS</span></h2>
+    <div class="pfaq-grid rv">
+      <div class="pfaq-cell">
+        <div class="pfaq-q">Can I really get a discount if I can't afford the standard price?</div>
+        <div class="pfaq-a">Yes — and we mean it. We built this agency to serve communities. If your revenue doesn't support $799/mo yet, we have a conversation in your discovery call and build a plan together. <span class="hl">Results trigger the upgrade, not a fixed date.</span></div>
+      </div>
+      <div class="pfaq-cell">
+        <div class="pfaq-q">What's the minimum commitment?</div>
+        <div class="pfaq-a">3 months on all plans including custom entry plans. After that, cancel anytime with 30 days notice. <span class="hl">No penalties, no lock-in games.</span> We want clients who stay because we're delivering — not because they're trapped.</div>
+      </div>
+      <div class="pfaq-cell">
+        <div class="pfaq-q">Do I own everything you build for me?</div>
+        <div class="pfaq-a">100%. Your website files, your domain, your social accounts, your email list — all yours from day one. If you ever leave, we hand everything over cleanly. <span class="hl">Your assets are never held hostage.</span></div>
+      </div>
+      <div class="pfaq-cell">
+        <div class="pfaq-q">Can I upgrade my plan as my business grows?</div>
+        <div class="pfaq-a">That's the whole point. Most clients start on Launchpad and grow into Growth Engine as results compound. <span class="hl">Upgrades happen at any billing cycle</span> — no waiting, no penalty, just more firepower when you're ready.</div>
+      </div>
+      <div class="pfaq-cell">
+        <div class="pfaq-q">Are there setup fees or hidden costs?</div>
+        <div class="pfaq-a">No setup fees. No hidden costs. What you agree to is what you pay. Third-party tools like ad spend or domain registration are always disclosed upfront — and you own those accounts directly.</div>
+      </div>
+      <div class="pfaq-cell">
+        <div class="pfaq-q">How do payment plans work for one-time projects?</div>
+        <div class="pfaq-a">One-time projects can be split into two payments — 50% to start, 50% on delivery. For larger builds we can discuss a 3-payment structure. <span class="hl">We figure it out in the discovery call.</span></div>
+      </div>
     </div>
   </div>
-</div>
 </section>
 
 <!-- CTA -->
-<section class="cta-band">
-  <div class="cta-bg"></div>
-  <div class="cta-inner">
-    <div class="sec-lbl fu" style="justify-content:center;margin-bottom:16px">Let's Build</div>
-    <h2 class="fu">READY TO GET <span class="h2c">STARTED?</span></h2>
-    <p class="fu">Book a free 30-minute strategy call. We'll review your business, find the right plan, and show you exactly what's possible — no commitment, no pressure.</p>
-    <div class="btns fu">
-      <a href="https://calendly.com/hello-geodm/30min" class="btn1" target="_blank">Book Free Strategy Call</a>
-      <button id="email-btn" style="display:inline-block;margin-top:14px;padding:13px 32px;background:#00c8d4;color:#070c0d;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-radius:3px;border:none;cursor:pointer;">EMAIL US DIRECTLY</button>
-      </div>
-    <div style="margin-top:14px">
+<section style="padding:100px 0;text-align:center;background:#020608;position:relative;z-index:2;overflow:hidden;" id="contact">
+  <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#00c8d4,#cc2d8f,#00c8d4,transparent);"></div>
+  <div class="inner rv">
+    <div class="section-label" style="justify-content:center;">Let's Build</div>
+    <h2 style="font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(48px,8vw,88px);line-height:.9;margin-bottom:20px;">
+      READY TO GET <span style="color:#00c8d4;">STARTED?</span>
+    </h2>
+    <p style="color:#4a7a80;font-size:15px;line-height:1.8;max-width:440px;margin:0 auto 36px;">
+      Book a free 30-minute strategy call. We'll figure out the right plan for your business — no pressure, no commitment.
+    </p>
+    <div class="cta-acts">
+      <a href="https://calendly.com/hello-geodm/30min" target="_blank" rel="noopener noreferrer" class="mag-btn mag-btn-primary" data-mag>Book Free Strategy Call</a>
+      <button class="mag-btn mag-btn-secondary" id="em-cta" data-mag>Email Us Directly</button>
+      <a href="tel:7732361831" class="mag-btn mag-btn-ghost" data-mag>&#128222; 773.236.1831</a>
     </div>
-    <p class="fu" style="margin-top:16px;font-size:13px;color:rgba(255,255,255,.3)">¿Prefieres hablar en español? Escríbenos — hello&#64;geodm&#46;us</p>
+    <p style="margin-top:24px;font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:10px;letter-spacing:2px;color:#4a7a80;">
+      &iquest;Prefieres hablar en espa&ntilde;ol? <a href="#" id="em-esp" style="color:#00c8d4;">Esc&iacute;benos</a>
+    </p>
   </div>
 </section>
 
 <footer>
-  <div class="fg">
-    <div class="fb"><div class="fwm">GEODMus</div><span class="fsub">Geo Digital Media</span><p>Your digital growth partner — from local businesses to full venture ecosystems.</p></div>
-    <div class="fc"><h5>Services</h5><ul><li><a href="services.html#web-design">Website Design</a></li><li><a href="services.html#ai-automation">AI Automation</a></li><li><a href="services.html#marketing">Marketing & Social</a></li><li><a href="services.html#web3">Web3 & Blockchain</a></li></ul></div>
-    <div class="fc"><h5>Company</h5><ul><li><a href="about.html">About</a></li><li><a href="ventures.html">Ventures</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
-    <div class="fc"><h5>Connect</h5><ul><li><a href="#" data-em="1" data-show="1"><span class="__cf_email__" data-cfemail="85ede0e9e9eac5e2e0eae1e8abf0f6">[email&#160;protected]</span></a></li><li><a href="tel:7732361831">773.236.1831</a></li><li><a href="https://instagram.com/geodm.us" target="_blank">@geodm.us</a></li><li><a href="https://x.com/geodmus" target="_blank">@geodmus</a></li></ul></div>
+  <div class="ft-grid">
+    <div class="ft-brand"><div class="fwm">GEODMus</div><span class="fsub">Geo Digital Media</span><p>Your digital growth partner — from local businesses to full venture ecosystems.</p></div>
+    <div class="ft-col"><h5>Services</h5><ul><li><a href="services.html">Website Design</a></li><li><a href="services.html">AI Automation</a></li><li><a href="services.html">Marketing &amp; Social</a></li><li><a href="services.html">Web3 &amp; Blockchain</a></li></ul></div>
+    <div class="ft-col"><h5>Company</h5><ul><li><a href="about.html">About</a></li><li><a href="ventures.html">Portfolio</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+    <div class="ft-col"><h5>Connect</h5><ul><li><a href="#" id="em-footer">hello&#64;geodm&#46;us</a></li><li><a href="tel:7732361831">773.236.1831</a></li><li><a href="https://instagram.com/geodm.us" target="_blank" rel="noopener noreferrer">@geodm.us</a></li><li><a href="https://x.com/geodmus" target="_blank" rel="noopener noreferrer">@geodmus</a></li></ul></div>
   </div>
-  <div class="fbtm">
-    <span>© 2026 Geo Digital Media · GeoDMus · geodm.us · All rights reserved.</span>
-    <div><a href="https://instagram.com/geodm.us" target="_blank">Instagram</a><a href="https://x.com/geodmus" target="_blank">X / Twitter</a></div>
+  <div class="ft-bot">
+    <span>&copy; 2026 <a href="index.html">Geo Digital Media</a> &middot; GeoDMus &middot; All rights reserved.</span>
+    <div class="ft-socials">
+      <a href="https://instagram.com/geodm.us" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>Instagram</a>
+      <a href="https://x.com/geodmus" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>X / Twitter</a>
+    </div>
   </div>
 </footer>
-E html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Pricing | Geo Digital Media — GeoDMus</title>
-<meta name="description" content="Flat rate. Full service. No surprises. Flexible pricing for every business size — from local shops to scaling enterprises."/>
-<link rel="icon" type="image/png" href="gdm.png"/>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600;700&family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet"/>
-<style>
-:root{--c:#00c8d4;--m:#cc2d8f;--d:#070c0d;--d2:#0d1517;--d3:#111a1c;--w:#fff;--g:#8a9ba0}
-*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
-body{background:var(--d);color:var(--w);font-family:'Barlow',sans-serif;overflow-x:hidden}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:70px;background:rgba(7,12,13,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,200,212,.1)}
-.logo{text-decoration:none;line-height:1}.logo .wm{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:var(--w);display:block}.logo .sub{font-size:9px;letter-spacing:2px;color:var(--c);text-transform:uppercase}
-.nav-links{display:flex;gap:28px;list-style:none}.nav-links a{color:var(--g);text-decoration:none;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;transition:color .2s}.nav-links a:hover,.nav-links a.on{color:var(--c)}
-.nav-btn{background:var(--m);color:var(--w);padding:10px 20px;border-radius:3px;text-decoration:none;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
-.hamburger span{display:block;width:24px;height:2px;background:var(--w)}
-.mobile-menu{display:none;position:fixed;top:70px;left:0;right:0;background:rgba(7,12,13,.98);padding:24px 40px;border-bottom:1px solid rgba(0,200,212,.1);z-index:99}
-.mobile-menu.open{display:block}
-.mobile-menu ul{list-style:none;display:flex;flex-direction:column;gap:16px}
-.mobile-menu a{color:var(--g);text-decoration:none;font-size:14px;letter-spacing:2px;text-transform:uppercase;font-weight:600;transition:color .2s}.mobile-menu a:hover{color:var(--c)}
 
-/* HERO */
-.hero{min-height:48vh;display:flex;align-items:center;padding:130px 40px 72px;position:relative;overflow:hidden}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 80% 40%,rgba(0,200,212,.07) 0%,transparent 70%),radial-gradient(ellipse 40% 50% at 5% 80%,rgba(204,45,143,.06) 0%,transparent 70%),var(--d)}
-.hero-line{position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,transparent,var(--c) 40%,var(--m) 80%,transparent)}
-.hero-inner{position:relative;max-width:800px}
-.lbl{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--c);margin-bottom:18px;display:flex;align-items:center;gap:10px}.lbl::before{content:'';width:32px;height:2px;background:var(--c)}
-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,9vw,110px);line-height:.92;letter-spacing:2px;margin-bottom:24px}
-.h1c{color:var(--c)}.h1m{color:var(--m)}
-.hero-sub{font-size:clamp(15px,2vw,19px);font-weight:300;line-height:1.65;color:rgba(255,255,255,.65);max-width:580px;border-left:3px solid var(--m);padding-left:20px}
 
-/* TICKER */
-.ticker-wrap{overflow:hidden;background:rgba(0,200,212,.04);border-top:1px solid rgba(0,200,212,.1);border-bottom:1px solid rgba(0,200,212,.1);padding:13px 0}
-.ticker{display:flex;gap:48px;white-space:nowrap;animation:tick 30s linear infinite}
-.ticker span{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--c);opacity:.6}.ticker .dot{color:var(--m);opacity:1}
-@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-/* SECTIONS */
-.section{padding:80px 40px}.section.alt{background:var(--d2)}
-.inner{max-width:1100px;margin:0 auto}
-.sec-lbl{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--c);margin-bottom:12px;display:flex;align-items:center;gap:10px}.sec-lbl::before{content:'';width:24px;height:2px;background:var(--c)}
-h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,5vw,66px);letter-spacing:2px;line-height:.95;margin-bottom:16px}
-.h2c{color:var(--c)}.h2m{color:var(--m)}
-.sec-desc{font-size:17px;line-height:1.7;color:rgba(255,255,255,.6);max-width:680px;margin-bottom:48px}
-
-/* PRICING CARDS */
-.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:24px}
-.pcard{background:var(--d3);padding:36px 28px;position:relative}
-.pcard.featured{background:linear-gradient(135deg,rgba(0,200,212,.08),rgba(204,45,143,.06));border:1px solid rgba(0,200,212,.25)}
-.pcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:rgba(0,200,212,.3)}
-.pcard.featured::before{background:linear-gradient(90deg,var(--c),var(--m))}
-.pop-tag{font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:700;padding:4px 12px;border-radius:2px;background:var(--c);color:var(--d);display:inline-block;margin-bottom:16px}
-.tier-label{font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--g);margin-bottom:6px}
-.tier-name{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:2px;color:var(--w);margin-bottom:4px}
-.tier-price{font-family:'Bebas Neue',sans-serif;font-size:60px;line-height:1;color:var(--c);margin-bottom:6px}
-.tier-price span{font-size:18px;color:var(--g)}
-.tier-desc{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:24px;line-height:1.5}
-.feature-list{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:28px}
-.feature-list li{font-size:13px;color:rgba(255,255,255,.65);padding-left:18px;position:relative;line-height:1.4}
-.feature-list li::before{content:'✓';position:absolute;left:0;color:var(--c);font-size:11px;top:1px}
-.pbtn{display:block;text-align:center;padding:13px;border-radius:3px;text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;transition:opacity .2s}
-.pbtn.solid{background:var(--m);color:var(--w)}.pbtn.solid:hover{opacity:.85}
-.pbtn.outline{background:transparent;border:1px solid rgba(0,200,212,.35);color:var(--c)}.pbtn.outline:hover{background:rgba(0,200,212,.08)}
-
-/* FLEXIBLE PRICING */
-.flex-box{background:linear-gradient(135deg,rgba(204,45,143,.08),rgba(0,200,212,.05));border:1px solid rgba(204,45,143,.2);border-left:4px solid var(--m);padding:40px;border-radius:4px;margin-bottom:40px}
-.flex-box h3{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,4vw,48px);letter-spacing:2px;margin-bottom:16px}
-.flex-box h3 span{color:var(--m)}
-.flex-box p{font-size:16px;line-height:1.75;color:rgba(255,255,255,.75);margin-bottom:16px}
-.flex-box p strong{color:var(--w)}.flex-box .c{color:var(--c)}.flex-box .m{color:var(--m)}
-.flex-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:28px}
-.flex-step{background:var(--d3);padding:24px}
-.flex-step .sn{font-family:'Bebas Neue',sans-serif;font-size:42px;line-height:1;color:rgba(204,45,143,.3);margin-bottom:8px}
-.flex-step h5{font-family:'Barlow Condensed',sans-serif;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--w);margin-bottom:8px}
-.flex-step p{font-size:13px;color:rgba(255,255,255,.5);line-height:1.6}
-
-/* COMPARISON TABLE */
-.comp-wrap{overflow-x:auto;margin:40px 0}
-table{width:100%;border-collapse:collapse;min-width:600px}
-th{font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;padding:14px 18px;text-align:left;background:var(--d3);color:var(--g)}
-th:first-child{color:var(--w);width:40%}
-th.featured-col{color:var(--c)}
-td{padding:11px 18px;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px;color:rgba(255,255,255,.65)}
-td:first-child{font-weight:600;color:var(--w)}
-tr:hover td{background:rgba(0,200,212,.02)}
-.ck{color:var(--c);font-size:15px}
-.ck.m{color:var(--m)}
-.da{color:rgba(255,255,255,.2)}
-.pr{color:var(--c);font-weight:700}
-
-/* ONE-TIME */
-.otgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px}
-.otcard{background:var(--d3);padding:28px;position:relative;overflow:hidden}
-.otcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--c)}
-.otcard:nth-child(even)::before{background:var(--m)}
-.ot-name{font-family:'Barlow Condensed',sans-serif;font-size:18px;letter-spacing:2px;text-transform:uppercase;color:var(--w);margin-bottom:6px}
-.ot-price{font-family:'Bebas Neue',sans-serif;font-size:40px;line-height:1;color:var(--c);margin-bottom:10px}
-.otcard:nth-child(even) .ot-price{color:var(--m)}
-.ot-desc{font-size:13px;color:rgba(255,255,255,.55);line-height:1.6}
-
-/* STACK */
-.stack-section{padding:80px 40px;background:var(--d2)}
-.stack-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px}
-.stack-col h4{font-family:'Barlow Condensed',sans-serif;font-size:16px;letter-spacing:3px;text-transform:uppercase;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid rgba(0,200,212,.15)}
-.stack-col:first-child h4{color:var(--c)}
-.stack-col:last-child h4{color:var(--m)}
-.tool-grid{display:flex;flex-wrap:wrap;gap:8px}
-.tool{padding:8px 14px;border-radius:2px;font-size:12px;letter-spacing:1px;text-transform:uppercase;font-weight:600}
-.tool.core{background:rgba(0,200,212,.08);border:1px solid rgba(0,200,212,.2);color:var(--c)}
-.tool.prem{background:rgba(204,45,143,.08);border:1px solid rgba(204,45,143,.2);color:var(--m)}
-
-/* CRYPTO */
-.crypto-section{padding:80px 40px}
-.crypto-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:40px}
-.crypto-card{background:var(--d3);padding:32px 28px;text-align:center;border-bottom:3px solid transparent;transition:border-color .3s}
-.crypto-card:hover{border-bottom-color:var(--c)}
-.crypto-card.btc:hover{border-bottom-color:#f7931a}
-.crypto-card.eth:hover{border-bottom-color:#627eea}
-.crypto-sym{font-family:'Bebas Neue',sans-serif;font-size:40px;letter-spacing:2px;margin-bottom:6px}
-.crypto-card.btc .crypto-sym{color:#f7931a}
-.crypto-card.eth .crypto-sym{color:#627eea}
-.crypto-card.stable .crypto-sym{color:var(--c)}
-.crypto-name{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--g);margin-bottom:8px}
-.crypto-desc{font-size:13px;color:rgba(255,255,255,.5);line-height:1.5}
-.crypto-badge{display:inline-block;margin-top:10px;padding:4px 10px;border-radius:2px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700}
-.crypto-badge.strike{background:rgba(247,147,26,.15);border:1px solid rgba(247,147,26,.3);color:#f7931a}
-.crypto-badge.cb{background:rgba(0,200,212,.1);border:1px solid rgba(0,200,212,.25);color:var(--c)}
-
-/* FAQ */
-.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:40px}
-.fq{background:var(--d3);padding:24px 28px;border-left:3px solid transparent;transition:border-color .3s}
-.fq:hover{border-left-color:var(--c)}
-.fq h4{font-size:14px;font-weight:700;color:var(--w);margin-bottom:10px;line-height:1.4}
-.fq p{font-size:13px;color:rgba(255,255,255,.55);line-height:1.65}
-.fq .c{color:var(--c)}.fq .m{color:var(--m)}
-
-/* CTA */
-.cta-band{padding:80px 40px;text-align:center;position:relative;overflow:hidden}
-.cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(204,45,143,.07) 0%,transparent 70%),var(--d)}
-.cta-inner{position:relative;max-width:680px;margin:0 auto}
-.cta-band h2{margin-bottom:20px}
-.cta-band p{font-size:17px;color:rgba(255,255,255,.6);margin-bottom:32px;line-height:1.6}
-.btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-.btn1{background:var(--m);color:var(--w);padding:15px 32px;text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;border-radius:3px}
-.btn2{border:1px solid rgba(0,200,212,.4);color:var(--c);padding:15px 32px;text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;border-radius:3px}
-
-/* FOOTER */
-footer{background:var(--d2);border-top:1px solid rgba(0,200,212,.1);padding:56px 40px 36px}
-.fg{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.06)}
-.fb .fwm{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:3px}.fb .fsub{font-size:9px;letter-spacing:2px;color:var(--c);text-transform:uppercase;display:block;margin-bottom:12px}.fb p{font-size:13px;color:var(--g);line-height:1.6}
-.fc h5{font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--w);margin-bottom:16px}
-.fc ul{list-style:none}.fc li{margin-bottom:8px}.fc a{color:var(--g);text-decoration:none;font-size:13px;transition:color .2s}.fc a:hover{color:var(--c)}
-.fbtm{max-width:1100px;margin:28px auto 0;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--g)}
-.fbtm a{color:var(--g);text-decoration:none;margin-left:16px}.fbtm a:hover{color:var(--c)}
-.fu{opacity:1;transform:none}
-@media(max-width:768px){
-  nav{padding:0 20px}.nav-links{display:none!important}.hamburger{display:flex}
-  .hero{padding:100px 20px 56px}.section{padding:56px 20px}.stack-section{padding:56px 20px}.crypto-section{padding:56px 20px}
-  .pgrid{grid-template-columns:1fr}.flex-steps{grid-template-columns:1fr}
-  .otgrid{grid-template-columns:1fr}.faq-grid{grid-template-columns:1fr}
-  .crypto-grid{grid-template-columns:1fr}.stack-grid{grid-template-columns:1fr}
-  .fg{grid-template-columns:1fr 1fr;gap:28px}.fbtm{flex-direction:column;gap:10px;text-align:center}
+<script>
+(function(){
+'use strict';
+/* PARTICLES — 50 particles, 30fps, no connection lines */
+var cvs=document.getElementById('gdm-cvs');
+if(cvs){
+  var cx=cvs.getContext('2d'),W=0,H=0,pts=[],lt=0;
+  function rsz(){W=cvs.width=innerWidth;H=cvs.height=innerHeight;}
+  rsz();addEventListener('resize',rsz,{passive:true});
+  function Pt(){this.reset();}
+  Pt.prototype.reset=function(){
+    this.x=Math.random()*W;this.y=Math.random()*H;
+    this.vx=(Math.random()-.5)*.2;this.vy=(Math.random()-.5)*.2;
+    this.r=Math.random()*1.1+.3;this.life=Math.random();
+    var c=window.GDM_P_COLORS||[[0,200,212],[204,45,143]];
+    this.c=c[Math.floor(Math.random()*c.length)];
+  };
+  for(var i=0;i<50;i++){var p=new Pt();p.life=Math.random();pts.push(p);}
+  (function draw(ts){
+    requestAnimationFrame(draw);
+    if(ts-lt<33)return;lt=ts;
+    cx.clearRect(0,0,W,H);
+    for(var j=0;j<pts.length;j++){
+      var q=pts[j];q.x+=q.vx;q.y+=q.vy;q.life+=.004;
+      if(q.x<0||q.x>W||q.y<0||q.y>H||q.life>1)q.reset();
+      var a=Math.sin(q.life*Math.PI)*.45;
+      cx.beginPath();cx.arc(q.x,q.y,q.r,0,6.28);
+      cx.fillStyle='rgba('+q.c[0]+','+q.c[1]+','+q.c[2]+','+a+')';cx.fill();
+    }
+  })(0);
 }
-</style>
-</head>
-<body>
+/* CURSOR */
+var cur=document.getElementById('gdm-cur'),curR=document.getElementById('gdm-curR');
+if(cur&&curR){
+  var mx=-30,my=-30,rx=-30,ry=-30;
+  cur.style.opacity='0';curR.style.opacity='0';
+  addEventListener('mousemove',function(e){
+    mx=e.clientX;my=e.clientY;
+    cur.style.opacity='1';curR.style.opacity='1';
+  },{passive:true});
+  (function loop(){
+    cur.style.transform='translate('+(mx-4)+'px,'+(my-4)+'px)';
+    rx+=(mx-rx-15)*.11;ry+=(my-ry-15)*.11;
+    curR.style.transform='translate('+rx+'px,'+ry+'px)';
+    requestAnimationFrame(loop);
+  })();
+  addEventListener('mouseover',function(e){
+    if(e.target.closest('a,button,[data-mag]')){
+      cur.style.transform+=' scale(2.5)';cur.style.background='#cc2d8f';
+      curR.style.borderColor='rgba(204,45,143,.6)';
+    }
+  },{passive:true});
+  addEventListener('mouseout',function(e){
+    if(e.target.closest('a,button,[data-mag]')){
+      cur.style.background='#00c8d4';curR.style.borderColor='rgba(0,200,212,.6)';
+    }
+  },{passive:true});
+}
+/* MAGNETIC BUTTONS */
+document.querySelectorAll('[data-mag]').forEach(function(b){
+  b.addEventListener('mousemove',function(e){
+    var r=b.getBoundingClientRect(),dx=(e.clientX-(r.left+r.width/2))*.2,dy=(e.clientY-(r.top+r.height/2))*.2;
+    b.style.transform='translate('+dx+'px,'+dy+'px)';
+  });
+  b.addEventListener('mouseleave',function(){b.style.transition='transform .4s cubic-bezier(.23,1,.32,1)';b.style.transform='';});
+  b.addEventListener('mouseenter',function(){b.style.transition='transform .08s';});
+});
+/* SCROLL REVEAL */
+if(IntersectionObserver){
+  var ro=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('vi');});},{threshold:.07,rootMargin:'0px 0px -30px 0px'});
+  document.querySelectorAll('.rv').forEach(function(el){ro.observe(el);});
+  var so=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.querySelectorAll('[data-count]').forEach(function(el){var t=parseInt(el.dataset.count),s=0,st=t/55,iv=setInterval(function(){s=Math.min(s+st,t);el.textContent=Math.floor(s);if(s>=t)clearInterval(iv);},22);});so.unobserve(e.target);}});},{threshold:.2});
+  document.querySelectorAll('.gdm-sz').forEach(function(z){so.observe(z);});
+}
+/* CARD HOVER GLOW */
+document.querySelectorAll('[data-hg]').forEach(function(c){
+  c.addEventListener('mousemove',function(e){var r=c.getBoundingClientRect();c.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');c.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');},{passive:true});
+});
+/* PARALLAX RINGS */
+addEventListener('scroll',function(){var r=document.querySelector('.depth-rings');if(r)r.style.transform='translateY(calc(-50% + '+scrollY*.1+'px))';},{passive:true});
+/* TYPEWRITER */
+var tw=document.getElementById('gdm-tw');
+if(tw){var ph=['Your Digital Growth Partner.','Websites That Convert.','Automation That Works 24/7.','Web3 Strategy That Wins.'],pi=0,ci=0,dl=false,pa=0;
+(function type(){if(pa>0){pa--;setTimeout(type,50);return;}var p=ph[pi];if(!dl){tw.textContent=p.substring(0,ci+1);ci++;if(ci===p.length){pa=40;dl=true;}setTimeout(type,70);}else{tw.textContent=p.substring(0,ci-1);ci--;if(ci===0){dl=false;pi=(pi+1)%ph.length;pa=10;}setTimeout(type,35);}})();
+}
+/* HAMBURGER (handled inline per page) */
+/* EMAIL (handled inline per page) */
+})();
+</script>
 
-<nav>
-  <a href="index.html" class="logo" style="display:flex;align-items:flex-start;gap:8px;text-decoration:none">
-  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
-  <polygon points="26,22 26,6 4,14" fill="#cc2d8f"/>
-  <polygon points="24,20 24,6 4,14" fill="#00c8d4"/>
-</svg>
-  <div>
-    <div class="wm"><span style="color:#fff">GEO </span><span style="color:#00c8d4">DM</span><span style="color:#fff"> US</span></div>
-    <div class="sub" style="color:#00c8d4;letter-spacing:3px;font-size:8px;text-transform:uppercase;font-family:inherit">GEO DIGITAL MEDIA</div>
-  </div>
-</a>
-  <ul class="nav-links">
-    <li><a href="services.html">Services</a></li>
-    <li><a href="ventures.html">Ventures</a></li>
-    <li><a href="pricing.html" class="on">Pricing</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="faq.html">FAQ</a></li>
-    <li><a href="index.html#contact">Contact</a></li>
-  </ul>
-  <a href="https://calendly.com/hello-geodm/30min" class="nav-btn" target="_blank">Free Strategy Call</a>
-  <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-<div class="mobile-menu">
-  <ul>
-    <li><a href="services.html" onclick="this.closest('.mobile-menu').classList.remove('open')">Services</a></li>
-    <li><a href="ventures.html" onclick="this.closest('.mobile-menu').classList.remove('open')">Ventures</a></li>
-    <li><a href="pricing.html" onclick="this.closest('.mobile-menu').classList.remove('open')">Pricing</a></li>
-    <li><a href="about.html" onclick="this.closest('.mobile-menu').classList.remove('open')">About</a></li>
-    <li><a href="faq.html" onclick="this.closest('.mobile-menu').classList.remove('open')">FAQ</a></li>
-    <li><a href="index.html#contact" onclick="this.closest('.mobile-menu').classList.remove('open')">Contact</a></li>
-    <li><a href="https://calendly.com/hello-geodm/30min" target="_blank">Book Free Call</a></li>
-  </ul>
-</div>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-line"></div>
-  <div class="hero-inner">
-    <div class="lbl">Simple Pricing</div>
-    <h1>FLAT RATE.<br/><span class="h1c">FULL SERVICE.</span><br/><span class="h1m">NO SURPRISES.</span></h1>
-    <p class="hero-sub">One monthly retainer covers everything. Cancel anytime after 3 months. No hidden fees. Ever. And if the numbers don't work for you right now — let's talk. We build with people, not against them.</p>
-  </div>
-</section>
-
-<!-- TICKER -->
-<div class="ticker-wrap"><div class="ticker">
-  <span>Launchpad $799</span><span class="dot">◆</span><span>Growth Engine $1,599</span><span class="dot">◆</span><span>Empire Mode $2,999</span><span class="dot">◆</span><span>Flexible Plans</span><span class="dot">◆</span><span>Crypto Accepted</span><span class="dot">◆</span><span>Bitcoin</span><span class="dot">◆</span><span>No Hidden Fees</span><span class="dot">◆</span><span>GeoDMus</span><span class="dot">◆</span>
-  <span>Launchpad $799</span><span class="dot">◆</span><span>Growth Engine $1,599</span><span class="dot">◆</span><span>Empire Mode $2,999</span><span class="dot">◆</span><span>Flexible Plans</span><span class="dot">◆</span><span>Crypto Accepted</span><span class="dot">◆</span><span>Bitcoin</span><span class="dot">◆</span><span>No Hidden Fees</span><span class="dot">◆</span><span>GeoDMus</span><span class="dot">◆</span>
-</div></div>
-
-<!-- PRICING TIERS -->
-<section class="section" id="plans">
-<div class="inner">
-  <div class="sec-lbl fu">Monthly Retainers</div>
-  <h2 class="fu">CHOOSE YOUR <span class="h2c">PLAN</span></h2>
-  <p class="sec-desc fu">All plans include a 3-month minimum commitment. Cancel anytime after that with 30 days notice. No penalties. No games.</p>
-  <div class="pgrid fu">
-    <div class="pcard">
-      <div class="tier-label">Tier 01</div>
-      <div class="tier-name">Launchpad</div>
-      <div class="tier-price">$799<span>/mo</span></div>
-      <p class="tier-desc">Get online fast with a professional website and the essentials in place. Perfect for new and growing local businesses.</p>
-      <ul class="feature-list">
-        <li>5-Page Custom Website</li>
-        <li>Mobile Optimized + SEO Ready</li>
-        <li>Online Booking Integration</li>
-        <li>1 Email Campaign / Month</li>
-        <li>Social Media Setup (2 platforms)</li>
-        <li>AI Appointment Automation</li>
-        <li>Zapier Lead Follow-Up Flow</li>
-        <li>ManyChat Instagram DM Setup</li>
-        <li>Monthly Strategy Call</li>
-      </ul>
-      <a href="https://buy.stripe.com/3cI3cugrL4FeaeQ0DK1gs00" class="pbtn outline" target="_blank">Pay with Card</a>
-      <a href="pay.html" class="pbtn solid" style="margin-top:6px;background:linear-gradient(135deg,#f7931a,#cc2d8f);border:none">₿ Pay with Crypto</a>
-    </div>
-    <div class="pcard featured">
-      <div class="pop-tag">Most Popular</div>
-      <div class="tier-label">Tier 02</div>
-      <div class="tier-name">Growth Engine</div>
-      <div class="tier-price">$1,599<span>/mo</span></div>
-      <p class="tier-desc">The full system for businesses ready to dominate. Automation, marketing, and strategy working together every month.</p>
-      <ul class="feature-list">
-        <li>10-Page Premium Website</li>
-        <li>Advanced SEO + Performance</li>
-        <li>Full AI Automation Suite + SMS</li>
-        <li>4 Email Campaigns / Month</li>
-        <li>Social Media — 3 platforms, 4x/week</li>
-        <li>Lead Capture Funnels</li>
-        <li>CRM Integration + Pipeline Setup</li>
-        <li>Go High Level or HubSpot Setup</li>
-        <li>Monthly Analytics Report</li>
-        <li>Monthly Strategy Call</li>
-      </ul>
-      <a href="https://buy.stripe.com/6oUeVc0sN8VuaeQ0DK1gs04" class="pbtn solid" target="_blank">Pay with Card</a>
-      <a href="pay.html" class="pbtn outline" style="margin-top:6px;border-color:rgba(247,147,26,.4);color:#f7931a">₿ Pay with Crypto</a>
-    </div>
-    <div class="pcard">
-      <div class="tier-label">Tier 03</div>
-      <div class="tier-name">Empire Mode</div>
-      <div class="tier-price">$2,999<span>/mo</span></div>
-      <p class="tier-desc">Maximum firepower for businesses scaling across multiple markets. Dedicated team, daily execution, full-stack growth.</p>
-      <ul class="feature-list">
-        <li>Custom Multi-Page Site + Blog</li>
-        <li>Full AI Automation Suite</li>
-        <li>Unlimited Email Campaigns</li>
-        <li>Daily Social — All Platforms</li>
-        <li>Paid Ads — Meta + Google</li>
-        <li>Shopify or Custom E-Commerce</li>
-        <li>Dedicated Account Manager</li>
-        <li>Premium Stack — GHL + ActiveCampaign</li>
-        <li>Weekly Reports + Strategy Calls</li>
-        <li>Priority Support</li>
-      </ul>
-      <a href="https://buy.stripe.com/14AfZgcbvfjScmY2LS1gs03" class="pbtn outline" target="_blank">Pay with Card</a>
-      <a href="pay.html" class="pbtn solid" style="margin-top:6px;background:linear-gradient(135deg,#f7931a,#cc2d8f);border:none">₿ Pay with Crypto</a>
-    </div>
-  </div>
-</div>
-</section>
-
-<!-- FLEXIBLE PRICING -->
-<section class="section alt">
-<div class="inner">
-  <div class="sec-lbl fu">Flexible Pricing</div>
-  <h2 class="fu">CAN'T AFFORD <span class="h2m">$799/MO</span> RIGHT NOW?</h2>
-  <div class="flex-box fu">
-    <h3>WE WORK WITH <span>YOU.</span></h3>
-    <p>We built GeoDMus to serve every business — from the corner barbershop to the scaling startup. If our standard pricing is out of reach right now, <strong>we have a conversation, not a rejection.</strong></p>
-    <p>During your free discovery call we learn about your business revenue, your goals, and what you can realistically invest. <span class="c">If our standard packages don't fit, we build a custom entry plan together.</span> A lower monthly rate while you're getting started, with the expectation that once results come in you transition to a full package.</p>
-    <p><span class="m">What we ask in return: commitment.</span> If we're discounting our rate to help you grow, we need you to show up, communicate, and hold your end. We're betting on you — bet on yourself too.</p>
-    <div class="flex-steps">
-      <div class="flex-step"><div class="sn">01</div><h5>Discovery Call</h5><p>Free 30 min. We learn your business, revenue, and what you can invest right now.</p></div>
-      <div class="flex-step"><div class="sn">02</div><h5>Custom Plan Built</h5><p>We build a discounted entry plan based on your situation. No templates. Built for you.</p></div>
-      <div class="flex-step"><div class="sn">03</div><h5>Results → Upgrade</h5><p>Once revenue grows from our work, you move to a full package. We grow together.</p></div>
-    </div>
-  </div>
-</div>
-</section>
-
-<!-- COMPARISON TABLE -->
-<section class="section">
-<div class="inner">
-  <div class="sec-lbl fu">Compare Plans</div>
-  <h2 class="fu">WHAT'S <span class="h2c">INCLUDED</span></h2>
-  <div class="comp-wrap fu">
-    <table>
-      <thead>
-        <tr>
-          <th>Feature</th>
-          <th>Launchpad</th>
-          <th class="featured-col">Growth Engine</th>
-          <th>Empire Mode</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>Custom Website</td><td>5 pages</td><td class="pr">10 pages</td><td>Unlimited</td></tr>
-        <tr><td>Mobile Optimized</td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
-        <tr><td>SEO Foundation</td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
-        <tr><td>Online Booking Integration</td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
-        <tr><td>Zapier Automation</td><td>Basic flows</td><td class="pr">Advanced multi-step</td><td>Full suite</td></tr>
-        <tr><td>ManyChat DM Automation</td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
-        <tr><td>Email Campaigns</td><td>1/month</td><td class="pr">4/month</td><td>Unlimited</td></tr>
-        <tr><td>Social Media Management</td><td>2 platforms</td><td class="pr">3 platforms 4x/wk</td><td>All platforms daily</td></tr>
-        <tr><td>SMS Automation</td><td><span class="da">—</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
-        <tr><td>Lead Capture Funnels</td><td><span class="da">—</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
-        <tr><td>CRM Setup (GHL / HubSpot)</td><td><span class="da">—</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
-        <tr><td>Paid Ads (Meta + Google)</td><td><span class="da">—</span></td><td><span class="da">—</span></td><td><span class="ck">✓</span></td></tr>
-        <tr><td>E-Commerce (Shopify)</td><td><span class="da">—</span></td><td><span class="da">—</span></td><td><span class="ck">✓</span></td></tr>
-        <tr><td>Dedicated Account Manager</td><td><span class="da">—</span></td><td><span class="da">—</span></td><td><span class="ck">✓</span></td></tr>
-        <tr><td>Strategy Calls</td><td>Monthly</td><td class="pr">Monthly</td><td>Weekly</td></tr>
-        <tr><td>Analytics Reports</td><td><span class="da">—</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
-        <tr><td>Crypto Payment Option</td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-</section>
-
-<!-- ONE-TIME PROJECTS -->
-<section class="section alt">
-<div class="inner">
-  <div class="sec-lbl fu">One-Time Projects</div>
-  <h2 class="fu">NOT READY FOR A <span class="h2m">RETAINER?</span></h2>
-  <p class="sec-desc fu">Need something specific built without a monthly commitment? We offer standalone project pricing for businesses that need a single deliverable done right.</p>
-  <div class="otgrid fu">
-    <div class="otcard">
-      <div class="ot-name">Website Only</div>
-      <div class="ot-price">From $1,200</div>
-      <p class="ot-desc">5-page custom website — design, build, and launch. Mobile optimized, SEO ready, hosted on Vercel. You own everything. One-time payment, no monthly fee.</p>
-    </div>
-    <div class="otcard">
-      <div class="ot-name">Brand Identity Package</div>
-      <div class="ot-price">From $800</div>
-      <p class="ot-desc">Logo design, color palette, typography, and brand guidelines. Everything you need to look professional across every platform from day one.</p>
-    </div>
-    <div class="otcard">
-      <div class="ot-name">Automation Setup</div>
-      <div class="ot-price">From $600</div>
-      <p class="ot-desc">Zapier multi-step flows, ManyChat Instagram DM automation, Calendly booking integration, and branded email auto-replies. Your business running on autopilot.</p>
-    </div>
-    <div class="otcard">
-      <div class="ot-name">Web3 Consultation</div>
-      <div class="ot-price">From $500</div>
-      <p class="ot-desc">2-hour deep dive into where blockchain fits into your business — crypto payment integration strategy, NFT loyalty planning, token consulting, and prediction market analysis.</p>
-    </div>
-    <div class="otcard">
-      <div class="ot-name">E-Commerce Store</div>
-      <div class="ot-price">From $2,000</div>
-      <p class="ot-desc">Full Shopify store build — product pages, collections, checkout, payment integration including crypto, and basic SEO. Ready to sell from day one.</p>
-    </div>
-    <div class="otcard">
-      <div class="ot-name">Custom Platform / Marketplace</div>
-      <div class="ot-price">From $4,500</div>
-      <p class="ot-desc">Full platform builds — marketplaces, community platforms, Web3-enabled apps, and venture launches. Scoped individually. Includes strategy, design, and development.</p>
-    </div>
-  </div>
-</div>
-</section>
-
-<!-- TECH STACK -->
-<div class="stack-section">
-<div class="inner">
-  <div class="sec-lbl fu">Our Stack</div>
-  <h2 class="fu">TOOLS WE BUILD <span class="h2c">WITH</span></h2>
-  <p class="sec-desc fu">We don't use generic templates or outdated tools. Every platform we deploy is chosen specifically for your business goals and budget.</p>
-  <div class="stack-grid fu">
-    <div class="stack-col">
-      <h4>Core Stack — Every Package</h4>
-      <div class="tool-grid">
-        <span class="tool core">Zapier</span>
-        <span class="tool core">ManyChat</span>
-        <span class="tool core">Calendly</span>
-        <span class="tool core">Later</span>
-        <span class="tool core">Canva</span>
-        <span class="tool core">Wave</span>
-        <span class="tool core">GitHub</span>
-        <span class="tool core">Leonardo AI</span>
-        <span class="tool core">Ideogram</span>
-        <span class="tool core">ElevenLabs</span>
-        <span class="tool core">Stripe</span>
-        <span class="tool core">Strike ⚡</span>
-        <span class="tool core">Coinbase Commerce</span>
-        <span class="tool core">Gemini + Nano Banana 2</span>
-        <span class="tool core">OpenPhone</span>
-      </div>
-    </div>
-    <div class="stack-col">
-      <h4>Premium Stack — Growth & Empire</h4>
-      <div class="tool-grid">
-        <span class="tool prem">Go High Level</span>
-        <span class="tool prem">HubSpot</span>
-        <span class="tool prem">ActiveCampaign</span>
-        <span class="tool prem">Klaviyo</span>
-        <span class="tool prem">Vercel</span>
-        <span class="tool prem">Shopify</span>
-        <span class="tool prem">Twilio</span>
-        <span class="tool prem">Midjourney</span>
-        <span class="tool prem">Google Workspace</span>
-        <span class="tool prem">Zoho Mail</span>
-        <span class="tool prem">Buffer</span>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-
-<!-- CRYPTO PAYMENTS -->
-<section class="crypto-section">
-<div class="inner">
-  <div class="sec-lbl fu">Crypto Payments</div>
-  <h2 class="fu">WE ACCEPT <span class="h2c">BITCOIN</span><br/>AND BEYOND.</h2>
-  <p class="sec-desc fu">We're crypto-native. We've been on-chain since before 2015. Paying in crypto isn't an afterthought here — it's a first-class option. No conversion friction, no extra fees.</p>
-  <div class="crypto-grid fu">
-    <div class="crypto-card btc">
-      <div class="crypto-sym">₿</div>
-      <div class="crypto-name">Bitcoin</div>
-      <p class="crypto-desc">Sound money. The original. Send BTC directly to our wallet — on-chain, no middleman, no chargebacks.</p>
-      <div style="margin-top:12px;background:rgba(247,147,26,.08);border:1px solid rgba(247,147,26,.2);border-radius:3px;padding:10px 12px;">
-        <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(247,147,26,.6);margin-bottom:6px">BTC Wallet Address</div>
-        <div style="font-size:10px;color:#f7931a;word-break:break-all;font-family:monospace;line-height:1.4">bc1q5590fdvjhfuzexajefs830wwxdg5eamxpf9p4k</div>
-        <button onclick="navigator.clipboard.writeText('bc1q5590fdvjhfuzexajefs830wwxdg5eamxpf9p4k');this.textContent='Copied!';setTimeout(()=>this.textContent='Copy Address',2000)" style="margin-top:8px;background:rgba(247,147,26,.15);border:1px solid rgba(247,147,26,.3);color:#f7931a;padding:5px 12px;border-radius:2px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;font-weight:700;width:100%">Copy Address</button>
-      </div>
-    </div>
-    <div class="crypto-card eth">
-      <div class="crypto-sym">Ξ</div>
-      <div class="crypto-name">Ethereum + ERC-20</div>
-      <p class="crypto-desc">ETH, USDC, USDT, and all major ERC-20 tokens accepted. Stable and reliable on-chain payments.</p>
-      <div style="margin-top:12px;background:rgba(98,126,234,.08);border:1px solid rgba(98,126,234,.2);border-radius:3px;padding:10px 12px;">
-        <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(98,126,234,.6);margin-bottom:6px">ETH Wallet Address</div>
-        <div style="font-size:10px;color:#627eea;word-break:break-all;font-family:monospace;line-height:1.4">0x60a5D149CCD42C70C92C3bC644cE13c09D6508DC</div>
-        <button onclick="navigator.clipboard.writeText('0x60a5D149CCD42C70C92C3bC644cE13c09D6508DC');this.textContent='Copied!';setTimeout(()=>this.textContent='Copy Address',2000)" style="margin-top:8px;background:rgba(98,126,234,.15);border:1px solid rgba(98,126,234,.3);color:#627eea;padding:5px 12px;border-radius:2px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;font-weight:700;width:100%">Copy Address</button>
-      </div>
-    </div>
-    <div class="crypto-card stable">
-      <div class="crypto-sym">◎</div>
-      <div class="crypto-name">Solana + USDC on SOL</div>
-      <p class="crypto-desc">SOL and USDC on Solana accepted. Fast, low-cost, and frictionless on-chain payments.</p>
-      <div style="margin-top:12px;background:rgba(153,69,255,.08);border:1px solid rgba(153,69,255,.2);border-radius:3px;padding:10px 12px;">
-        <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(153,69,255,.6);margin-bottom:6px">SOL Wallet Address</div>
-        <div style="font-size:10px;color:#9945ff;word-break:break-all;font-family:monospace;line-height:1.4">2EX5EYJ9GiXn254Xp6KVvuG2hwW7uVCHttw9ssEKiypB</div>
-        <button onclick="navigator.clipboard.writeText('2EX5EYJ9GiXn254Xp6KVvuG2hwW7uVCHttw9ssEKiypB');this.textContent='Copied!';setTimeout(()=>this.textContent='Copy Address',2000)" style="margin-top:8px;background:rgba(153,69,255,.15);border:1px solid rgba(153,69,255,.3);color:#9945ff;padding:5px 12px;border-radius:2px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;font-weight:700;width:100%">Copy Address</button>
-      </div>
-    </div>
-  </div>
-</div>
-</section>
-
-<!-- PRICING FAQ -->
-<section class="section alt">
-<div class="inner">
-  <div class="sec-lbl fu">Pricing FAQ</div>
-  <h2 class="fu">QUICK <span class="h2c">ANSWERS</span></h2>
-  <div class="faq-grid fu">
-    <div class="fq">
-      <h4>Can I really get a discount if I can't afford the standard price?</h4>
-      <p>Yes — and we mean it. We built this agency to serve communities. If your revenue doesn't support $799/mo yet, we have a conversation in your discovery call and build a plan together. <span class="c">Results trigger the upgrade, not a fixed date.</span></p>
-    </div>
-    <div class="fq">
-      <h4>What's the minimum commitment?</h4>
-      <p>3 months on all plans including custom entry plans. After that, cancel anytime with 30 days notice. <span class="c">No penalties, no lock-in games.</span> We want clients who stay because we're delivering — not because they're trapped.</p>
-    </div>
-    <div class="fq">
-      <h4>Do I own everything you build for me?</h4>
-      <p>100%. Your website files, your domain, your social accounts, your email list — all yours from day one. If you ever leave, we hand everything over cleanly. <span class="c">Your assets are never held hostage.</span></p>
-    </div>
-    <div class="fq">
-      <h4>Can I upgrade my plan as my business grows?</h4>
-      <p>That's the whole point. Most clients start on Launchpad and grow into Growth Engine as results compound. <span class="m">Upgrades happen at any billing cycle</span> — no waiting, no penalty, just more firepower when you're ready.</p>
-    </div>
-    <div class="fq">
-      <h4>Are there setup fees or hidden costs?</h4>
-      <p>No setup fees. No hidden costs. What you agree to is what you pay. Third-party tools like ad spend or domain registration are always disclosed upfront — and you own those accounts directly.</p>
-    </div>
-    <div class="fq">
-      <h4>How do payment plans work for one-time projects?</h4>
-      <p>One-time projects can be split into two payments — 50% to start, 50% on delivery. For larger builds we can discuss a 3-payment structure. <span class="c">We figure it out in the discovery call.</span></p>
-    </div>
-  </div>
-</div>
-</section>
-
-<!-- CTA -->
-<section class="cta-band">
-  <div class="cta-bg"></div>
-  <div class="cta-inner">
-    <div class="sec-lbl fu" style="justify-content:center;margin-bottom:16px">Let's Build</div>
-    <h2 class="fu">READY TO GET <span class="h2c">STARTED?</span></h2>
-    <p class="fu">Book a free 30-minute strategy call. We'll review your business, find the right plan, and show you exactly what's possible — no commitment, no pressure.</p>
-    <div class="btns fu">
-      <a href="https://calendly.com/hello-geodm/30min" class="btn1" target="_blank">Book Free Strategy Call</a>
-      <button id="email-btn" style="display:inline-block;margin-top:14px;padding:13px 32px;background:#00c8d4;color:#070c0d;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-radius:3px;border:none;cursor:pointer;">EMAIL US DIRECTLY</button>
-      </div>
-    <div style="margin-top:14px">
-    </div>
-    <p class="fu" style="margin-top:16px;font-size:13px;color:rgba(255,255,255,.3)">¿Prefieres hablar en español? Escríbenos — hello&#64;geodm&#46;us</p>
-  </div>
-</section>
-
-<footer>
-  <div class="fg">
-    <div class="fb"><div class="fwm">GEODMus</div><span class="fsub">Geo Digital Media</span><p>Your digital growth partner — from local businesses to full venture ecosystems.</p></div>
-    <div class="fc"><h5>Services</h5><ul><li><a href="services.html#web-design">Website Design</a></li><li><a href="services.html#ai-automation">AI Automation</a></li><li><a href="services.html#marketing">Marketing & Social</a></li><li><a href="services.html#web3">Web3 & Blockchain</a></li></ul></div>
-    <div class="fc"><h5>Company</h5><ul><li><a href="about.html">About</a></li><li><a href="ventures.html">Ventures</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
-    <div class="fc"><h5>Connect</h5><ul><li><a href="#" data-em="1" data-show="1"><span class="__cf_email__" data-cfemail="85ede0e9e9eac5e2e0eae1e8abf0f6">[email&#160;protected]</span></a></li><li><a href="tel:7732361831">773.236.1831</a></li><li><a href="https://instagram.com/geodm.us" target="_blank">@geodm.us</a></li><li><a href="https://x.com/geodmus" target="_blank">@geodmus</a></li></ul></div>
-  </div>
-  <div class="fbtm">
-    <span>© 2026 Geo Digital Media · GeoDMus · geodm.us · All rights reserved.</span>
-    <div><a href="https://instagram.com/geodm.us" target="_blank">Instagram</a><a href="https://x.com/geodmus" target="_blank">X / Twitter</a></div>
-  </div>
-</footer>
-
+<script>
+(function(){
+  var hb=document.getElementById("ham-btn"),mm=document.getElementById("mobile-menu");
+  if(hb&&mm){hb.addEventListener("click",function(){mm.classList.toggle("open");});mm.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(){mm.classList.remove("open");});});}
+  var ep="mai"+"lto:",ea="hello",eb="geodm.us",em=ep+ea+"@"+eb;
+  ["em-cta","em-footer","em-esp"].forEach(function(id){var el=document.getElementById(id);if(el)el.addEventListener("click",function(e){e.preventDefault();location.href=em;});});
+})();
+</script>
 </body>
 </html>

@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="GeoDMus builds the digital infrastructure that grows your business. Websites, AI automation, marketing, and Web3 strategy. Done for you, every month. Chicago.">
+<meta property="og:title" content="Geo Digital Media | GeoDMus — Your Digital Growth Partner">
+<meta property="og:description" content="From the corner barbershop to the next big platform — we build the digital infrastructure that grows your business.">
+<meta property="og:image" content="https://geodm.us/gdm.png">
+<meta property="og:url" content="https://geodm.us/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://geodm.us/">
+<link rel="icon" type="image/png" href="gdm.png">
+<title>Geo Digital Media | GeoDMus — Your Digital Growth Partner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;700;900&family=Barlow+Condensed:wght@700;900&family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#020608;color:#e8fffe;font-family:'Barlow',Arial,sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
+
+/* ── SPLASH SCREEN ── */
+#gdm-splash{
+  position:fixed;inset:0;z-index:99999;
+  background:#020608;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;
+  transition:opacity .7s ease, visibility .7s ease;
+}
+#gdm-splash.hidden{opacity:0;visibility:hidden;pointer-events:none;}
+.splash-logo{
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  animation:splashFadeIn .6s ease both;
+}
+.splash-mark{filter:drop-shadow(0 0 28px rgba(0,200,212,.6));animation:splashPulse 1.4s ease-in-out infinite;}
+.splash-wordmark{
+  font-family:'Bebas Neue',Impact,sans-serif;font-size:36px;letter-spacing:.3em;
+  background:linear-gradient(90deg,#00c8d4,#cc2d8f,#00c8d4);
+  background-size:200% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  animation:shimmer 2s linear infinite;
+}
+.splash-sub{
+  font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:9px;letter-spacing:4px;
+  text-transform:uppercase;color:#4a7a80;
+  animation:splashFadeIn .6s ease .2s both;
+}
+.splash-bar-wrap{
+  width:200px;height:1px;background:rgba(0,200,212,.15);border-radius:1px;overflow:hidden;
+  animation:splashFadeIn .4s ease .3s both;
+}
+.splash-bar{
+  height:100%;width:0%;
+  background:linear-gradient(90deg,#00c8d4,#cc2d8f);
+  transition:width .05s linear;
+}
+.splash-pct{
+  font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:10px;letter-spacing:2px;
+  color:#4a7a80;margin-top:6px;
+  animation:splashFadeIn .4s ease .3s both;
+}
+@keyframes splashFadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+@keyframes splashPulse{0%,100%{filter:drop-shadow(0 0 18px rgba(0,200,212,.4));}50%{filter:drop-shadow(0 0 36px rgba(0,200,212,.9));}}
+@keyframes shimmer{to{background-position:200% center;}}
+
+/* ── SCROLL PROGRESS BAR ── */
+#gdm-progress{
+  position:fixed;top:0;left:0;height:2px;width:0%;z-index:10000;
+  background:linear-gradient(90deg,#00c8d4,#cc2d8f,#00c8d4);
+  background-size:200% auto;
+  animation:shimmer 3s linear infinite;
+  box-shadow:0 0 8px rgba(0,200,212,.6);
+  transition:width .1s linear;
+  pointer-events:none;
+}
+
+/* ── NAV SCROLL STATE ── */
+nav.scrolled{
+  background:rgba(2,6,8,.97) !important;
+  box-shadow:0 4px 32px rgba(0,0,0,.4);
+}
+nav .logo-top{transition:filter .3s;}
+nav.scrolled .logo-top{filter:drop-shadow(0 0 8px rgba(0,200,212,.3));}
+
+/* ── PAGE TRANSITION OVERLAY ── */
+#gdm-wipe{
+  position:fixed;inset:0;z-index:9998;pointer-events:none;
+  background:linear-gradient(135deg,#00c8d4,#cc2d8f);
+  transform:scaleX(0);transform-origin:left;
+}
+#gdm-wipe.wipe-in{animation:wipeIn .45s cubic-bezier(.77,0,.18,1) forwards;}
+#gdm-wipe.wipe-out{animation:wipeOut .45s cubic-bezier(.77,0,.18,1) forwards;}
+@keyframes wipeIn{to{transform:scaleX(1);}}
+@keyframes wipeOut{from{transform:scaleX(1);transform-origin:right;}to{transform:scaleX(0);transform-origin:right;}}
+
+/* ── RIPPLE on buttons ── */
+.ripple-wrap{overflow:hidden;position:relative;}
+.ripple{
+  position:absolute;border-radius:50%;
+  background:rgba(255,255,255,.25);
+  transform:scale(0);animation:rippleOut .55s linear;
+  pointer-events:none;
+}
+@keyframes rippleOut{to{transform:scale(4);opacity:0;}}
+
+/* ── GLOW PULSE on stat numbers ── */
+.stat-big,.stat-n{animation:numGlow 3s ease-in-out infinite;}
+@keyframes numGlow{0%,100%{text-shadow:0 0 24px rgba(0,200,212,.4);}50%{text-shadow:0 0 48px rgba(0,200,212,.9),0 0 80px rgba(0,200,212,.3);}}
+
+/* ── FLOATING LABEL on section entry ── */
+.section-label{position:relative;overflow:hidden;}
+.section-label::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(0,200,212,.15),transparent);
+  transform:translateX(-100%);
+}
+.rv.vi .section-label::after{animation:labelSheen 1s ease .3s forwards;}
+@keyframes labelSheen{to{transform:translateX(200%);}}
+
+/* ── TICKER pause on hover ── */
+.ticker:hover .ticker-inner{animation-play-state:paused;}
+
+/* ── CARD shimmer border ── */
+.srv-card::before{transition:opacity .3s;}
+.port-card:hover{box-shadow:0 0 32px rgba(0,200,212,.07);}
+
+/* ── PROC DOT active pulse ── */
+.proc-dot.active{
+  border-color:#00c8d4;color:#00c8d4;
+  box-shadow:0 0 0 0 rgba(0,200,212,.4);
+  animation:dotPing 1.5s ease-out infinite;
+}
+@keyframes dotPing{0%{box-shadow:0 0 0 0 rgba(0,200,212,.5);}100%{box-shadow:0 0 0 14px rgba(0,200,212,0);}}
+
+/* ── PRICING card hover glow ── */
+.p-card.feat{position:relative;}
+.p-card.feat::before{
+  content:'';position:absolute;inset:-1px;border-radius:2px;
+  background:linear-gradient(135deg,rgba(0,200,212,.3),rgba(204,45,143,.2),rgba(0,200,212,.3));
+  background-size:300% 300%;z-index:-1;
+  animation:borderGlow 4s ease infinite;
+}
+@keyframes borderGlow{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+
+/* ── FOOTER link hover trail ── */
+.ft-col ul li a{position:relative;}
+.ft-col ul li a::before{
+  content:'›';position:absolute;left:-14px;color:#00c8d4;
+  opacity:0;transform:translateX(-4px);transition:all .2s;font-size:12px;
+}
+.ft-col ul li a:hover::before{opacity:1;transform:translateX(0);}
+
+/* ── SMOOTH section dividers ── */
+.section-divider{
+  width:100%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(0,200,212,.15),rgba(204,45,143,.1),rgba(0,200,212,.15),transparent);
+}
+
+/* ── BACK TO TOP button ── */
+#gdm-top{
+  position:fixed;bottom:32px;right:32px;z-index:1000;
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(0,200,212,.1);border:1px solid rgba(0,200,212,.3);
+  color:#00c8d4;font-size:18px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:none;transition:all .3s;
+  opacity:0;transform:translateY(16px);pointer-events:none;
+  box-shadow:0 0 16px rgba(0,200,212,.15);
+}
+#gdm-top.show{opacity:1;transform:translateY(0);pointer-events:all;}
+#gdm-top:hover{background:rgba(0,200,212,.2);box-shadow:0 0 28px rgba(0,200,212,.4);transform:translateY(-3px);}
+
+/* ── NOISE texture overlay ── */
+#gdm-noise{
+  position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.025;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size:128px 128px;
+}
+
+/* ── CURSOR trail dots ── */
+.cur-trail{
+  width:4px;height:4px;border-radius:50%;
+  position:fixed;pointer-events:none;z-index:9998;
+  background:#00c8d4;mix-blend-mode:screen;
+  transition:opacity .4s;
+}
+a{color:inherit;text-decoration:none;}img{max-width:100%;display:block;}
+body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.025) 2px,rgba(0,0,0,.025) 4px);}
+body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(0,200,212,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,200,212,.03) 1px,transparent 1px);background-size:60px 60px;}
+#gdm-cur{width:8px;height:8px;background:#00c8d4;border-radius:50%;position:fixed;top:-20px;left:-20px;pointer-events:none;z-index:10000;transition:transform .1s,background .15s;mix-blend-mode:screen;will-change:transform;}
+#gdm-curR{width:30px;height:30px;border:1px solid rgba(0,200,212,.6);border-radius:50%;position:fixed;top:-20px;left:-20px;pointer-events:none;z-index:9999;will-change:transform;}
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;background:rgba(2,6,8,.9);border-bottom:1px solid rgba(0,200,212,.12);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);}
+.logo-wrap{display:flex;flex-direction:column;line-height:1;text-decoration:none;gap:3px;}
+.logo-top{font-family:'Bebas Neue',Impact,sans-serif;font-size:24px;letter-spacing:.18em;color:#e8fffe;display:flex;align-items:center;gap:8px;}
+.logo-d{color:#00c8d4;}.logo-m{color:#cc2d8f;}
+.logo-sub{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:7px;letter-spacing:3px;text-transform:uppercase;color:#4a7a80;}
+.nav-links{display:flex;gap:32px;list-style:none;}
+.nav-links a{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#4a7a80;transition:color .2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:#00c8d4;transition:width .3s;}
+.nav-links a:hover,.nav-links a.active{color:#00c8d4;}.nav-links a:hover::after{width:100%;}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:4px;cursor:none;}
+.hamburger span{display:block;width:22px;height:2px;background:#e8fffe;border-radius:2px;transition:all .3s;}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;bottom:0;background:rgba(2,6,8,.98);z-index:499;flex-direction:column;align-items:center;justify-content:center;gap:28px;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-family:'Bebas Neue',Impact,sans-serif;font-size:32px;letter-spacing:3px;color:#e8fffe;transition:color .2s;}
+.mobile-menu a:hover{color:#00c8d4;}
+.pt-hero{padding-top:100px;}
+section{padding:80px 0;}
+.inner{max-width:1140px;margin:0 auto;padding:0 48px;}
+.section-label{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#00c8d4;display:flex;align-items:center;gap:12px;margin-bottom:14px;text-shadow:0 0 10px rgba(0,200,212,.3);}
+.section-label::before{content:'';width:24px;height:1px;background:#00c8d4;flex-shrink:0;}
+.section-title{font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(40px,6vw,80px);line-height:.9;letter-spacing:.01em;margin-bottom:20px;}
+.hl-c{color:#00c8d4;}.hl-m{color:#cc2d8f;}.hl-y{color:#f5c842;}
+.mag-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:13px 30px;border-radius:2px;transition:box-shadow .3s;overflow:hidden;white-space:nowrap;border:none;cursor:none;text-decoration:none;}
+.mag-btn-primary{color:#020608;background:#00c8d4;box-shadow:0 0 24px rgba(0,200,212,.4);}
+.mag-btn-primary:hover{box-shadow:0 0 40px rgba(0,200,212,.7);}
+.mag-btn-secondary{color:#00c8d4;background:transparent;border:1px solid rgba(0,200,212,.4);}
+.mag-btn-secondary:hover{background:rgba(0,200,212,.06);border-color:#00c8d4;}
+.mag-btn-ghost{color:#e8fffe;background:transparent;border:1px solid rgba(255,255,255,.15);}
+.mag-btn-ghost:hover{border-color:#cc2d8f;color:#cc2d8f;}
+.nav-cta-wrap{position:relative;overflow:hidden;}
+.nav-cta-wrap::before{content:'';position:absolute;inset:0;background:#cc2d8f;transform:translateX(-101%);transition:transform .3s;}
+.nav-cta-wrap:hover::before{transform:translateX(0);}
+.nav-cta-wrap span{position:relative;z-index:1;}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease;}
+.rv.vi{opacity:1;transform:translateY(0);}
+.rv.fl{transform:translateX(-28px);}.rv.fl.vi{transform:translateX(0);}
+.rv.fr{transform:translateX(28px);}.rv.fr.vi{transform:translateX(0);}
+.d1{transition-delay:.08s!important;}.d2{transition-delay:.16s!important;}.d3{transition-delay:.24s!important;}.d4{transition-delay:.32s!important;}
+.card{background:#0a1214;border:1px solid rgba(255,255,255,.07);border-radius:6px;padding:28px;transition:border-color .2s,transform .2s;}
+.card:hover{border-color:rgba(0,200,212,.2);transform:translateY(-2px);}
+.card-icon{font-size:28px;margin-bottom:14px;}
+.card h4{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:15px;letter-spacing:1px;text-transform:uppercase;font-weight:700;margin-bottom:10px;color:#e8fffe;}
+.card p{font-size:13px;color:#4a7a80;line-height:1.65;}
+.stat-n{font-family:'Bebas Neue',Impact,sans-serif;font-size:52px;color:#00c8d4;line-height:1;text-shadow:0 0 20px rgba(0,200,212,.4);}
+.stat-l{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#4a7a80;margin-top:4px;}
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;font-family:'Barlow Condensed','Arial Narrow',sans-serif;margin-bottom:12px;}
+.b-active{background:rgba(0,210,90,.1);border:1px solid rgba(0,210,90,.25);color:#00d25a;}
+.b-dev{background:rgba(0,200,212,.08);border:1px solid rgba(0,200,212,.2);color:#00c8d4;}
+.b-vision{background:rgba(204,45,143,.08);border:1px solid rgba(204,45,143,.2);color:#cc2d8f;}
+.srv-bento{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:rgba(0,200,212,.1);}
+.srv-card{background:#0a1214;padding:40px 32px;position:relative;overflow:hidden;transition:background .3s,transform .3s;}
+.srv-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at var(--mx,50%) var(--my,50%),rgba(0,200,212,.07),transparent 55%);opacity:0;transition:opacity .3s;}
+.srv-card:hover::before{opacity:1;}
+.srv-card::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:linear-gradient(90deg,#00c8d4,#cc2d8f);transition:width .5s;}
+.srv-card:hover::after{width:100%;}
+.srv-card:hover{background:#0d1a1d;transform:translateY(-3px);}
+.c2{grid-column:span 2;}.c3{grid-column:span 3;}.c4{grid-column:span 4;}
+.c6{grid-column:span 6;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.srv-ghost{font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(56px,8vw,96px);color:rgba(0,200,212,.035);line-height:1;user-select:none;}
+.srv-num{font-family:'Bebas Neue',Impact,sans-serif;font-size:72px;color:rgba(0,200,212,.04);position:absolute;top:-8px;right:12px;line-height:1;}
+.srv-icon{width:36px;height:36px;margin-bottom:18px;}
+.srv-name{font-size:15px;font-weight:700;margin-bottom:10px;color:#e8fffe;letter-spacing:.02em;}
+.srv-desc{font-size:13px;line-height:1.75;color:#4a7a80;margin-bottom:18px;}
+.chip{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;border:1px solid rgba(0,200,212,.2);color:#00c8d4;border-radius:2px;display:inline-block;margin:2px;transition:all .2s;}
+.chip:hover{background:rgba(0,200,212,.08);}
+.port-bento{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(0,200,212,.1);}
+.port-card{background:#0a1214;padding:36px;position:relative;overflow:hidden;display:block;transition:background .3s;cursor:none;}
+.port-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:linear-gradient(180deg,#00c8d4,#cc2d8f);transition:height .4s;}
+.port-card:hover::before{height:100%;}
+.port-card:hover{background:#0d1a1d;}
+.port-card.hero{grid-column:span 3;display:grid;grid-template-columns:240px 1fr;gap:56px;align-items:center;padding:56px;}
+.ring-logo{width:180px;height:180px;position:relative;display:flex;align-items:center;justify-content:center;}
+.ring-logo::before,.ring-logo::after{content:'';position:absolute;border-radius:50%;border:1px solid;}
+.ring-logo::before{inset:0;border-color:rgba(0,200,212,.3);animation:spin 12s linear infinite;}
+.ring-logo::after{inset:14px;border-color:rgba(204,45,143,.2);animation:spin 8s linear infinite reverse;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.port-hero-svg{position:relative;z-index:1;filter:drop-shadow(0 0 18px rgba(0,200,212,.5));}
+.port-status{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:20px;display:inline-block;margin-bottom:12px;}
+.ps-active{background:rgba(0,210,90,.1);color:#00d25a;border:1px solid rgba(0,210,90,.25);}
+.ps-growing{background:rgba(0,200,212,.08);color:#00c8d4;border:1px solid rgba(0,200,212,.2);}
+.ps-building{background:rgba(204,45,143,.07);color:#cc2d8f;border:1px solid rgba(204,45,143,.18);}
+.ps-vision{background:rgba(204,45,143,.07);color:#cc2d8f;border:1px solid rgba(204,45,143,.18);}
+.port-name{font-family:'Bebas Neue',Impact,sans-serif;font-size:26px;letter-spacing:.04em;color:#e8fffe;margin-bottom:6px;}
+.port-name.xl{font-size:40px;}
+.port-cat{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#4a7a80;margin-bottom:12px;}
+.port-desc{font-size:13px;line-height:1.7;color:#4a7a80;}
+.port-role{margin-top:16px;padding-top:12px;border-top:1px solid rgba(0,200,212,.1);font-size:10px;color:#00c8d4;font-family:'Barlow Condensed','Arial Narrow',sans-serif;letter-spacing:1px;}
+.port-num{font-family:'Bebas Neue',Impact,sans-serif;font-size:48px;color:rgba(0,200,212,.04);position:absolute;bottom:10px;right:16px;}
+.proc-track{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative;margin-top:64px;}
+.proc-track::before{content:'';position:absolute;top:27px;left:5%;right:5%;height:1px;background:linear-gradient(90deg,#00c8d4,#cc2d8f,#00c8d4);opacity:.2;}
+.proc-step{text-align:center;padding:0 12px;}
+.proc-dot{width:54px;height:54px;border-radius:50%;border:1px solid rgba(0,200,212,.25);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:12px;font-weight:700;color:#4a7a80;background:#060d0f;position:relative;z-index:1;transition:all .35s;}
+.proc-dot:hover{border-color:#00c8d4;color:#00c8d4;box-shadow:0 0 24px rgba(0,200,212,.25);}
+.proc-t{font-size:13px;font-weight:700;margin-bottom:8px;color:#e8fffe;}
+.proc-d{font-size:12px;color:#4a7a80;line-height:1.6;}
+.cta-band{background:linear-gradient(135deg,#060d0f,#091214);border-top:1px solid rgba(0,200,212,.1);border-bottom:1px solid rgba(0,200,212,.1);padding:80px 32px;text-align:center;}
+.cta-band h3{font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(32px,5vw,56px);letter-spacing:2px;margin-bottom:16px;line-height:1;}
+.cta-band h3 span{color:#00c8d4;}
+.cta-band p{color:#4a7a80;margin-bottom:28px;font-size:16px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.7;}
+.cta-acts{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.cta-note{margin-top:24px;font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:10px;letter-spacing:2px;color:#4a7a80;}
+.cta-note a{color:#00c8d4;}
+footer{background:#040a0b;border-top:1px solid rgba(255,255,255,.05);padding:56px 48px 28px;}
+.ft-grid{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:44px;margin-bottom:44px;}
+.ft-brand .fwm{font-family:'Bebas Neue',Impact,sans-serif;font-size:20px;letter-spacing:3px;background:linear-gradient(90deg,#00c8d4,#cc2d8f);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:3px;}
+.ft-brand .fsub{font-size:7px;letter-spacing:2px;text-transform:uppercase;color:#4a7a80;display:block;margin-bottom:12px;font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:700;}
+.ft-brand p{font-size:12px;color:#4a7a80;line-height:1.7;max-width:220px;}
+.ft-col h5{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#e8fffe;font-weight:700;margin-bottom:14px;}
+.ft-col ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.ft-col ul li a{font-size:12px;color:#4a7a80;transition:color .2s;}
+.ft-col ul li a:hover{color:#e8fffe;}
+.ft-bot{max-width:1140px;margin:0 auto;padding-top:20px;border-top:1px solid rgba(255,255,255,.05);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+.ft-bot span{font-size:11px;color:#4a7a80;}.ft-bot span a{color:#00c8d4;}
+.ft-socials{display:flex;gap:12px;}
+.ft-socials a{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#4a7a80;border:1px solid rgba(0,200,212,.12);padding:7px 14px;border-radius:2px;display:flex;align-items:center;gap:8px;transition:all .2s;}
+.ft-socials a:hover{border-color:#00c8d4;color:#00c8d4;}
+.ft-socials svg{width:11px;height:11px;fill:currentColor;}
+.ticker{overflow:hidden;white-space:nowrap;padding:12px 0;}
+.ticker-inner{display:inline-flex;animation:tick 26s linear infinite;}
+.tick-item{font-family:'Bebas Neue',Impact,sans-serif;font-size:15px;letter-spacing:4px;color:rgba(0,0,0,.75);padding:0 44px;}
+.tick-dot{color:rgba(0,0,0,.3);padding:0 8px;}
+@keyframes tick{to{transform:translateX(-50%);}}
+.social-bar{background:#0a1214;border-top:1px solid rgba(0,200,212,.1);border-bottom:1px solid rgba(0,200,212,.1);padding:14px 48px;display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;position:relative;z-index:2;}
+.social-bar p{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#4a7a80;}
+.s-btn{display:flex;align-items:center;gap:8px;font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#e8fffe;border:1px solid rgba(0,200,212,.12);padding:9px 18px;border-radius:2px;transition:all .2s;}
+.s-btn:hover{border-color:#00c8d4;color:#00c8d4;background:rgba(0,200,212,.04);}
+.s-btn svg{width:12px;height:12px;fill:currentColor;}
+.stats-band{background:#060d0f;border-top:1px solid rgba(0,200,212,.1);border-bottom:1px solid rgba(0,200,212,.1);}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;}
+.stat-block{padding:40px 28px;text-align:center;background:#060d0f;position:relative;overflow:hidden;transition:background .3s;}
+.stat-block::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#00c8d4,transparent);opacity:0;transition:opacity .4s;}
+.stat-block:hover{background:#0a1214;}.stat-block:hover::before{opacity:1;}
+.stat-big{font-family:'Bebas Neue',Impact,sans-serif;font-size:64px;line-height:1;color:#00c8d4;text-shadow:0 0 24px rgba(0,200,212,.4);margin-bottom:6px;}
+.stat-unit{font-family:'Bebas Neue',Impact,sans-serif;font-size:28px;color:#cc2d8f;}
+.stat-lbl{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#4a7a80;}
+.m-tag{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:9px 14px;border:1px solid rgba(0,200,212,.1);color:#4a7a80;transition:all .2s;border-radius:2px;}
+.m-tag:hover,.m-tag.h{border-color:rgba(0,200,212,.35);color:#00c8d4;background:rgba(0,200,212,.04);}
+.depth-rings{position:absolute;right:-8%;top:50%;transform:translateY(-50%);width:540px;height:540px;pointer-events:none;}
+.dring{position:absolute;inset:0;border-radius:50%;border:1px solid;animation:ringPulse 4s ease-in-out infinite;}
+.dring:nth-child(1){border-color:rgba(0,200,212,.4);}.dring:nth-child(2){inset:9%;border-color:rgba(204,45,143,.2);animation-delay:.7s;}
+.dring:nth-child(3){inset:18%;border-color:rgba(0,200,212,.18);animation-delay:1.4s;}.dring:nth-child(4){inset:27%;border-color:rgba(204,45,143,.12);animation-delay:2.1s;}
+.dring:nth-child(5){inset:36%;border-color:rgba(0,200,212,.25);animation-delay:2.8s;}.dring:nth-child(6){inset:45%;border-color:rgba(204,45,143,.35);animation-delay:3.5s;}
+@keyframes ringPulse{0%,100%{transform:scale(1);opacity:.65;}50%{transform:scale(1.05);opacity:1;}}
+.tw-line{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:14px;letter-spacing:4px;text-transform:uppercase;color:#00c8d4;margin-bottom:24px;min-height:1.4em;text-shadow:0 0 12px rgba(0,200,212,.4);}
+.tw-cur{color:#cc2d8f;animation:blink .65s step-end infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+.a1{animation:fadeUp .7s ease .1s both;}.a2{animation:fadeUp .7s ease .2s both;}
+.a3{animation:fadeUp .7s ease .3s both;}.a4{animation:fadeUp .7s ease .4s both;}
+.a5{animation:fadeUp .7s ease .5s both;}.a6{animation:fadeUp .7s ease .6s both;}
+.bar-anim{animation:fadeUp .7s ease .3s both,barGrow 1s ease .8s both;}
+@keyframes barGrow{from{width:0;}to{width:90px;}}
+.p-card{background:#0a1214;padding:48px 36px;position:relative;transition:transform .3s,background .3s;}
+.p-card:hover{transform:translateY(-5px);background:#0d1a1d;}
+.p-card.feat{background:linear-gradient(160deg,#091618,#050e10);border:1px solid rgba(0,200,212,.2);transform:translateY(-14px);box-shadow:0 0 48px rgba(0,200,212,.08);}
+.p-card.feat:hover{transform:translateY(-20px);}
+.p-badge{position:absolute;top:0;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,#00c8d4,#cc2d8f);color:#020608;font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 16px;border-radius:0 0 8px 8px;}
+.p-tier{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:#4a7a80;margin-bottom:10px;}
+.p-name{font-family:'Bebas Neue',Impact,sans-serif;font-size:30px;letter-spacing:.04em;margin-bottom:4px;}
+.p-amt{display:flex;align-items:flex-start;gap:3px;margin-bottom:4px;}
+.p-cur{font-size:16px;font-weight:700;color:#00c8d4;margin-top:9px;}
+.p-num{font-family:'Bebas Neue',Impact,sans-serif;font-size:68px;line-height:1;color:#e8fffe;}
+.p-per{font-size:11px;color:#4a7a80;align-self:flex-end;margin-bottom:9px;}
+.p-desc{font-size:12px;color:#4a7a80;line-height:1.65;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid rgba(0,200,212,.08);}
+.p-feats{list-style:none;margin-bottom:28px;}
+.p-feats li{font-size:12px;color:#4a7a80;padding:7px 0;border-bottom:1px solid rgba(0,200,212,.06);display:flex;align-items:center;gap:10px;line-height:1.4;}
+.p-feats li::before{content:'›';color:#00c8d4;font-size:14px;flex-shrink:0;}
+.p-cta{display:block;text-align:center;font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:14px;border-radius:2px;transition:all .3s;}
+.p-cta.ol{border:1px solid rgba(0,200,212,.25);color:#e8fffe;}
+.p-cta.ol:hover{border-color:#00c8d4;color:#00c8d4;}
+.p-cta.gl{background:linear-gradient(90deg,#00c8d4,#cc2d8f);color:#020608;box-shadow:0 0 24px rgba(0,200,212,.35);}
+.p-cta.gl:hover{box-shadow:0 0 40px rgba(0,200,212,.6);}
+
+/* ── GLITCH HERO SECTION from V1 ── */
+#v1-hero{
+  padding-top:64px;
+  background:#0a0a0a;
+  position:relative;
+  z-index:2;
+  border-bottom:1px solid rgba(0,200,212,.12);
+}
+#bg-canvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
+.v1-hero-inner{
+  position:relative;z-index:1;
+  min-height:100vh;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;padding:80px 10% 60px;
+}
+.glitch-text{
+  font-family:'Space Grotesk','Barlow',sans-serif;
+  font-size:clamp(3rem,8vw,6rem);
+  text-transform:uppercase;font-weight:700;
+  margin-bottom:1rem;cursor:default;
+  color:#f0f0f0;
+}
+.sub-hero{color:#a9aeb1;max-width:600px;font-size:1.2rem;margin-bottom:2rem;}
+.v1-btn{
+  padding:1rem 2rem;
+  border:1px solid #00f2ff;
+  color:#00f2ff;
+  font-family:'JetBrains Mono',monospace;
+  transition:0.3s;background:transparent;
+  cursor:none;text-decoration:none;display:inline-flex;
+}
+.v1-btn:hover{background:#00f2ff;color:#0a0a0a;box-shadow:0 0 20px #00f2ff;}
+.v1-cards-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:2rem;padding:3rem 10%;
+  background:#0a0a0a;position:relative;z-index:2;
+}
+.v1-card{
+  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);
+  padding:2.5rem;transition:0.4s;position:relative;
+}
+.v1-card:hover{border-color:#00f2ff;transform:translateY(-10px);}
+.v1-card h3{font-family:'JetBrains Mono',monospace;color:#00f2ff;margin-bottom:1rem;}
+.v1-card p{color:#a9aeb1;font-size:0.95rem;}
+.pillar-num{position:absolute;top:10px;right:20px;font-family:'JetBrains Mono',monospace;opacity:0.2;font-size:1.5rem;color:#f0f0f0;}
+.section-tag-v1{
+  text-align:center;font-family:'JetBrains Mono',monospace;
+  color:#00f2ff;font-size:0.8rem;letter-spacing:4px;
+  padding:2rem 10% 0;background:#0a0a0a;position:relative;z-index:2;
+}
+
+@media(max-width:1024px){
+  .c6{grid-column:span 6;grid-template-columns:1fr;gap:28px;}.srv-ghost{display:none;}
+  .c2,.c3,.c4{grid-column:span 3;}
+  .port-card.hero{grid-column:span 3;grid-template-columns:1fr;gap:28px;}
+  .ring-logo{display:none;}
+  .ft-grid{grid-template-columns:1fr 1fr;}
+  .stats-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:768px){
+  nav{padding:0 16px;height:56px;}.nav-links{display:none;}.desktop-only{display:none;}
+  .hamburger{display:flex;}.inner{padding:0 16px;}section{padding:56px 0;}
+  .srv-bento{grid-template-columns:1fr;}.c2,.c3,.c4,.c6{grid-column:span 1;grid-template-columns:1fr;}
+  .port-bento{grid-template-columns:1fr;}.port-card.hero{grid-column:span 1;padding:28px;}
+  .proc-track{grid-template-columns:1fr;gap:24px;}.proc-track::before{display:none;}
+  .depth-rings{display:none;}
+  .cta-acts{flex-direction:column;align-items:center;}
+  .ft-grid{grid-template-columns:1fr;gap:28px;}footer{padding:44px 16px 24px;}
+  .v1-hero-inner{padding:80px 6% 60px;}
+}
+@media(max-width:480px){.stats-grid{grid-template-columns:1fr 1fr;}}
+</style>
+</head>
+<body>
+<!-- SPLASH -->
+<div id="gdm-splash">
+  <div class="splash-logo">
+    <svg class="splash-mark" width="64" height="52" viewBox="0 0 28 22" fill="none">
+      <polygon points="0,11 28,0 21,11 28,22" fill="#cc2d8f"/>
+      <polygon points="0,11 28,0 23,16" fill="#00c8d4"/>
+    </svg>
+    <div class="splash-wordmark">GEODMus</div>
+    <div class="splash-sub">Geo Digital Media</div>
+  </div>
+  <div>
+    <div class="splash-bar-wrap"><div class="splash-bar" id="splash-bar"></div></div>
+    <div class="splash-pct" id="splash-pct">0%</div>
+  </div>
+</div>
+
+<!-- SCROLL PROGRESS -->
+<div id="gdm-progress"></div>
+
+<!-- PAGE WIPE -->
+<div id="gdm-wipe"></div>
+
+<!-- NOISE TEXTURE -->
+<div id="gdm-noise"></div>
+
+<!-- BACK TO TOP -->
+<button id="gdm-top" aria-label="Back to top">↑</button>
+
+<canvas id="gdm-cvs" style="position:fixed;inset:0;z-index:0;pointer-events:none;will-change:transform;"></canvas>
+<div id="gdm-cur"></div><div id="gdm-curR"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo-wrap">
+    <div class="logo-top"><svg width="18" height="14" viewBox="0 0 28 22" fill="none"><polygon points="0,11 28,0 21,11 28,22" fill="#cc2d8f"/><polygon points="0,11 28,0 23,16" fill="#00c8d4"/></svg> GEO<span class="logo-d">D</span><span class="logo-m">M</span>us</div>
+    <div class="logo-sub">Geo Digital Media</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Ventures</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="https://calendly.com/hello-geodm/30min" target="_blank" rel="noopener noreferrer" class="mag-btn mag-btn-primary nav-cta-wrap desktop-only" data-mag><span>Free Strategy Call</span></a>
+  <button class="hamburger" id="ham-btn" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#services">Services</a><a href="#portfolio">Ventures</a>
+  <a href="#pricing">Pricing</a><a href="#contact">Contact</a>
+  <a href="https://calendly.com/hello-geodm/30min" target="_blank" rel="noopener noreferrer" class="mag-btn mag-btn-primary" data-mag>Free Strategy Call</a>
+</div>
+
+<!-- ══════════════════════════════════════════
+     GLITCH HERO (V1 Canvas + Scramble Text)
+══════════════════════════════════════════ -->
+<div id="v1-hero">
+  <canvas id="bg-canvas"></canvas>
+  <div class="v1-hero-inner">
+    <h1 class="glitch-text" data-value="GEODIGITAL MEDIA">GEODIGITAL MEDIA</h1>
+    <p class="sub-hero">From the corner barbershop to the next big platform — we build the digital infrastructure that grows your business.</p>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;">
+      <a href="https://calendly.com/hello-geodm/30min" target="_blank" rel="noopener noreferrer" class="v1-btn">Book Call</a>
+      <a href="#portfolio" class="v1-btn" style="border-color:#fff;color:#fff;">Our Work</a>
+    </div>
+  </div>
+  <div class="section-tag-v1">FOUR PILLARS. ONE PARTNER.</div>
+  <div class="v1-cards-grid">
+    <div class="v1-card"><span class="pillar-num">01</span><h3>Web Design & Dev</h3><p>Fast, mobile-first sites that convert visitors into customers. From 5-page local business sites to full marketplace platforms.</p></div>
+    <div class="v1-card"><span class="pillar-num">02</span><h3>AI Automation</h3><p>Booking flows, SMS reminders, and lead follow-ups. Your business runs 24/7 without adding headcount.</p></div>
+    <div class="v1-card"><span class="pillar-num">03</span><h3>Marketing & Social</h3><p>Email campaigns and paid ads. We keep your pipeline full so you can focus on the work.</p></div>
+    <div class="v1-card"><span class="pillar-num">04</span><h3>Web3 & Strategy</h3><p>Crypto payment integration and NFT loyalty programs. The future of business is on-chain.</p></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     FULL SITE (V2) — HERO, TICKER, STATS…
+══════════════════════════════════════════ -->
+<section style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 0 80px;position:relative;overflow:hidden;background:#020608;">
+  <div class="depth-rings">
+    <div class="dring"></div><div class="dring"></div><div class="dring"></div>
+    <div class="dring"></div><div class="dring"></div><div class="dring"></div>
+  </div>
+  <div class="inner" style="position:relative;z-index:2;">
+    <div class="section-label a1">Geo Digital Media &mdash; Chicago</div>
+    <h2 style="font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(64px,11vw,128px);line-height:.85;margin-bottom:20px;" class="a2">
+      <span style="display:block;color:#e8fffe;">GEO</span>
+      <span style="display:block;color:transparent;-webkit-text-stroke:1px #00c8d4;filter:drop-shadow(0 0 18px rgba(0,200,212,.45));">DIGITAL</span>
+      <span style="display:block;color:#cc2d8f;text-shadow:0 0 36px rgba(204,45,143,.55);">MEDIA</span>
+    </h2>
+    <div style="width:90px;height:2px;background:linear-gradient(90deg,#00c8d4,#cc2d8f);margin-bottom:20px;" class="bar-anim"></div>
+    <div class="tw-line a3"><span id="gdm-tw"></span><span class="tw-cur">_</span></div>
+    <p style="max-width:500px;font-size:15px;line-height:1.8;color:#4a7a80;margin-bottom:40px;" class="a4">
+      From the corner barbershop to the next big platform &mdash;
+      <strong style="color:#e8fffe;">we build the digital infrastructure that grows your business.</strong>
+      Websites, automation, marketing, and Web3. Done for you, every month.
+    </p>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;" class="a5">
+      <a href="https://calendly.com/hello-geodm/30min" target="_blank" rel="noopener noreferrer" class="mag-btn mag-btn-primary" data-mag>Book Free Strategy Call</a>
+      <a href="#services" class="mag-btn mag-btn-secondary" data-mag>See What We Do</a>
+      <button class="mag-btn mag-btn-ghost" id="em-btn" data-mag>&#9993; Email Us</button>
+    </div>
+    <div style="display:flex;gap:44px;margin-top:56px;padding-top:40px;border-top:1px solid rgba(0,200,212,.1);flex-wrap:wrap;" class="a6 gdm-sz">
+      <div><div class="stat-n" data-count="7">0</div><div class="stat-l">Ventures Built</div></div>
+      <div><div class="stat-n" data-count="4">0</div><div class="stat-l">Service Pillars</div></div>
+      <div><div style="display:flex;align-items:baseline;gap:2px;"><div class="stat-n" data-count="100">0</div><span style="font-family:'Bebas Neue',Impact,sans-serif;font-size:28px;color:#cc2d8f;">%</span></div><div class="stat-l">Done For You</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" style="background:linear-gradient(90deg,#00c8d4,#cc2d8f,#00c8d4);">
+  <div class="ticker-inner">
+    <span class="tick-item">Geo Digital Media</span><span class="tick-dot">◆</span>
+    <span class="tick-item">Web Design</span><span class="tick-dot">◆</span>
+    <span class="tick-item">AI Automation</span><span class="tick-dot">◆</span>
+    <span class="tick-item">Web3 Strategy</span><span class="tick-dot">◆</span>
+    <span class="tick-item">Social Media</span><span class="tick-dot">◆</span>
+    <span class="tick-item">GeoDMus</span><span class="tick-dot">◆</span>
+    <span class="tick-item">Chicago</span><span class="tick-dot">◆</span>
+    <span class="tick-item">Geo Digital Media</span><span class="tick-dot">◆</span>
+    <span class="tick-item">Web Design</span><span class="tick-dot">◆</span>
+    <span class="tick-item">AI Automation</span><span class="tick-dot">◆</span>
+    <span class="tick-item">Web3 Strategy</span><span class="tick-dot">◆</span>
+    <span class="tick-item">Social Media</span><span class="tick-dot">◆</span>
+    <span class="tick-item">GeoDMus</span><span class="tick-dot">◆</span>
+    <span class="tick-item">Chicago</span><span class="tick-dot">◆</span>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+<!-- STATS -->
+<section class="stats-band" style="padding:0;">
+  <div class="stats-grid gdm-sz">
+    <div class="stat-block rv d1"><div class="stat-big" data-count="7">0</div><div class="stat-lbl">Ventures Built</div></div>
+    <div class="stat-block rv d2"><div><span class="stat-big" data-count="100">0</span><span class="stat-unit">%</span></div><div class="stat-lbl">Done For You</div></div>
+    <div class="stat-block rv d3"><div><span class="stat-big" data-count="24">0</span><span class="stat-unit">/7</span></div><div class="stat-lbl">Automation Active</div></div>
+    <div class="stat-block rv d4"><div class="stat-big" data-count="4">0</div><div class="stat-lbl">Service Pillars</div></div>
+  </div>
+</section>
+
+<!-- SOCIAL BAR -->
+<div class="social-bar">
+  <p>Follow Us &mdash;</p>
+  <a href="https://instagram.com/geodm.us" target="_blank" rel="noopener noreferrer" class="s-btn">
+    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>@geodm.us</a>
+  <a href="https://x.com/geodmus" target="_blank" rel="noopener noreferrer" class="s-btn">
+    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@geodmus</a>
+</div>
+
+<!-- SERVICES BENTO -->
+<section style="padding:100px 0;background:#020608;position:relative;z-index:2;" id="services">
+  <div class="inner">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:60px;gap:28px;" class="rv">
+      <div><div class="section-label">What We Do</div><h2 class="section-title">FOUR PILLARS.<br><span class="hl-c">ONE PARTNER.</span></h2></div>
+      <p style="max-width:320px;color:#4a7a80;line-height:1.75;font-size:14px;">Whether you're a local business or a startup — we have the stack. One team owns everything.</p>
+    </div>
+    <div class="srv-bento">
+      <div class="srv-card c6 rv" data-hg>
+        <div>
+          <svg class="srv-icon" viewBox="0 0 40 40" fill="none"><rect x="2" y="8" width="36" height="24" rx="2" stroke="#00c8d4" stroke-width="1.5"/><path d="M14 32l-4 7h20l-4-7" stroke="#00c8d4" stroke-width="1.5"/><path d="M8 16h8M8 20h14M8 24h10" stroke="#cc2d8f" stroke-width="1.2" stroke-linecap="round"/><circle cx="30" cy="20" r="5" stroke="#00c8d4" stroke-width="1.5"/></svg>
+          <div class="srv-num">01</div>
+          <h3 class="srv-name">Website Design &amp; Development</h3>
+          <p class="srv-desc">Fast, mobile-first sites that convert visitors into customers. From 5-page local business sites to full marketplace platforms. We don't build websites — we build revenue engines.</p>
+          <div><span class="chip">Custom Design</span><span class="chip">SEO Ready</span><span class="chip">Rapid Launch</span><span class="chip">Mobile First</span></div>
+        </div>
+        <div class="srv-ghost">WEB</div>
+      </div>
+      <div class="srv-card c3 rv d1" data-hg>
+        <svg class="srv-icon" viewBox="0 0 40 40" fill="none"><path d="M22 3L7 22h14l-3 15L34 18H20L22 3z" stroke="#00c8d4" stroke-width="1.5" stroke-linejoin="round"/><path d="M22 3L7 22h14" stroke="#cc2d8f" stroke-width="1.2"/></svg>
+        <div class="srv-num">02</div>
+        <h3 class="srv-name">AI Automation &amp; Systems</h3>
+        <p class="srv-desc">Booking flows, SMS reminders, lead follow-ups, CRM integration. Your business runs 24/7 without adding headcount.</p>
+        <div><span class="chip">AI Booking</span><span class="chip">SMS Flows</span><span class="chip">CRM Sync</span></div>
+      </div>
+      <div class="srv-card c3 rv d2" data-hg>
+        <svg class="srv-icon" viewBox="0 0 40 40" fill="none"><path d="M7 15h7l14-9v26L14 22H7V15z" stroke="#00c8d4" stroke-width="1.5" stroke-linejoin="round"/><path d="M14 22v9" stroke="#cc2d8f" stroke-width="1.5" stroke-linecap="round"/><path d="M28 16c3 2 3 8 0 10M32 12c5 4 5 14 0 18" stroke="#00c8d4" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <div class="srv-num">03</div>
+        <h3 class="srv-name">Marketing &amp; Social</h3>
+        <p class="srv-desc">Email campaigns, social media management, and paid ads. We keep your pipeline full so you can focus on the work.</p>
+        <div><span class="chip">Email</span><span class="chip">Social Media</span><span class="chip">Paid Ads</span></div>
+      </div>
+      <div class="srv-card c2 rv d3" data-hg>
+        <svg class="srv-icon" viewBox="0 0 40 40" fill="none"><rect x="2" y="16" width="11" height="9" rx="2" stroke="#00c8d4" stroke-width="1.5"/><rect x="27" y="16" width="11" height="9" rx="2" stroke="#cc2d8f" stroke-width="1.5"/><rect x="14" y="16" width="11" height="9" rx="2" stroke="#00c8d4" stroke-width="1.5"/><circle cx="20" cy="9" r="4" stroke="#cc2d8f" stroke-width="1.5"/><circle cx="20" cy="31" r="4" stroke="#cc2d8f" stroke-width="1.5"/></svg>
+        <div class="srv-num">04</div>
+        <h3 class="srv-name">Web3 &amp; Blockchain</h3>
+        <p class="srv-desc">Crypto payments, NFT loyalty, token strategy, blockchain consulting. The future is on-chain.</p>
+        <div><span class="chip">Bitcoin</span><span class="chip">NFT Loyalty</span><span class="chip">Web3</span></div>
+      </div>
+      <div class="srv-card c4 rv d4" data-hg style="display:flex;align-items:center;justify-content:center;">
+        <div style="text-align:center;">
+          <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:16px;letter-spacing:4px;color:#4a7a80;margin-bottom:16px;">READY TO DOMINATE?</div>
+          <a href="https://calendly.com/hello-geodm/30min" target="_blank" rel="noopener noreferrer" class="mag-btn mag-btn-primary" data-mag>Book Free Strategy Call</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section style="padding:100px 0;background:#060d0f;position:relative;z-index:2;" id="portfolio">
+  <div class="inner">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:60px;gap:28px;flex-wrap:wrap;" class="rv">
+      <div><div class="section-label">Built by GeoDMus</div><h2 class="section-title">REAL WORK.<br><span class="hl-m">REAL VENTURES.</span></h2></div>
+      <p style="max-width:320px;color:#4a7a80;line-height:1.75;font-size:14px;">We don't just serve clients — we build companies. Every venture was designed, built, and managed by Geo Digital Media.</p>
+    </div>
+    <div class="port-bento">
+      <div class="port-card hero rv">
+        <div class="ring-logo">
+          <svg class="port-hero-svg" width="72" height="58" viewBox="0 0 28 22" fill="none">
+            <polygon points="0,11 28,0 21,11 28,22" fill="#cc2d8f"/>
+            <polygon points="0,11 28,0 23,16" fill="#00c8d4"/>
+          </svg>
+        </div>
+        <div>
+          <span class="port-status ps-active">Active &mdash; Flagship</span>
+          <div class="port-name xl">GEO Digital Media</div>
+          <div class="port-cat">Digital Media &middot; Web &middot; Web3 &middot; AI</div>
+          <p class="port-desc">Full-service digital media company. The digital backbone and growth engine for the entire portfolio. We don't just build brands — we build the infrastructure brands run on.</p>
+          <div class="port-role">Brand &middot; Web &middot; Strategy &middot; Web3</div>
+        </div>
+      </div>
+      <a href="#" class="port-card rv d1"><span class="port-status ps-growing">Growing</span><div class="port-name">Premier Group</div><div class="port-cat">Tax &middot; Credit &middot; Real Estate</div><p class="port-desc">Family-focused financial services — tax prep, credit building, and real estate advisory for everyday families.</p><div class="port-role">Brand &middot; Website &middot; Automation</div><span class="port-num">02</span></a>
+      <a href="#" class="port-card rv d2"><span class="port-status ps-building">Building</span><div class="port-name">Juice Yoga Body</div><div class="port-cat">Nutrition &middot; Movement &middot; Recovery</div><p class="port-desc">Three-pillar wellness brand — signature lemonade, yoga content, and massage services.</p><div class="port-role">E-Commerce &middot; Social &middot; Product</div><span class="port-num">03</span></a>
+      <a href="#" class="port-card rv d3"><span class="port-status ps-building">Building</span><div class="port-name">Creativo</div><div class="port-cat">Events &middot; Production &middot; Community</div><p class="port-desc">Marketplace connecting local creative pros with clients for life's biggest moments.</p><div class="port-role">Platform &middot; Dev &middot; Community</div><span class="port-num">04</span></a>
+      <a href="#" class="port-card rv d1"><span class="port-status ps-building">Building</span><div class="port-name">Your Splashy Kicks</div><div class="port-cat">Sneaker Marketplace &middot; YSK</div><p class="port-desc">Community-first platform for buying and selling sneakers. Mobile-first, culturally embedded.</p><div class="port-role">Marketplace &middot; Mobile UX &middot; Social</div><span class="port-num">05</span></a>
+      <a href="#" class="port-card rv d2"><span class="port-status ps-building">Building</span><div class="port-name">Glow Guide</div><div class="port-cat">Beauty &middot; Influencer Marketing</div><p class="port-desc">Matching nano &amp; micro beauty influencers with brand sponsors. Performance-driven, creator-first.</p><div class="port-role">Platform &middot; Onboarding &middot; Matching</div><span class="port-num">06</span></a>
+      <a href="#" class="port-card rv d3"><span class="port-status ps-vision">Season 2 Vision</span><div class="port-name">SocialLens</div><div class="port-cat">AR &middot; Social Identity &middot; The Future</div><p class="port-desc">Open-source AR protocol. The social layer of the physical world.</p><div class="port-role">Protocol &middot; AR Layer &middot; Web3</div><span class="port-num">07</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section style="padding:80px 0;background:#020608;position:relative;z-index:2;overflow:hidden;">
+  <div style="position:absolute;font-family:'Bebas Neue',Impact,sans-serif;font-size:28vw;color:rgba(0,200,212,.012);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;white-space:nowrap;z-index:0;">PROCESS</div>
+  <div class="inner" style="position:relative;z-index:1;">
+    <div style="text-align:center;max-width:500px;margin:0 auto 0;" class="rv">
+      <div class="section-label" style="justify-content:center;">How It Works</div>
+      <h2 class="section-title">FROM DAY ONE<br><span class="hl-c">TO SCALING</span></h2>
+    </div>
+    <div class="proc-track">
+      <div class="proc-step rv"><div class="proc-dot">01</div><h4 class="proc-t">Discovery Call</h4><p class="proc-d">Free 30-min session. We learn your business, goals, and gaps.</p></div>
+      <div class="proc-step rv d1"><div class="proc-dot">02</div><h4 class="proc-t">Custom Strategy</h4><p class="proc-d">A tailored growth plan. No templates. Built for your business.</p></div>
+      <div class="proc-step rv d2"><div class="proc-dot">03</div><h4 class="proc-t">Build &amp; Launch</h4><p class="proc-d">Site and automations go live on a rapid, agreed timeline.</p></div>
+      <div class="proc-step rv d3"><div class="proc-dot">04</div><h4 class="proc-t">Marketing Live</h4><p class="proc-d">Email, social, and automation run on autopilot. Leads flow in.</p></div>
+      <div class="proc-step rv d4"><div class="proc-dot">05</div><h4 class="proc-t">Scale Together</h4><p class="proc-d">Monthly reports, strategy calls, and expansion as you grow.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section style="padding:80px 0;background:#060d0f;position:relative;z-index:2;overflow:hidden;" id="pricing">
+  <div style="position:absolute;font-family:'Bebas Neue',Impact,sans-serif;font-size:36vw;color:rgba(0,200,212,.012);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:0;">GEO</div>
+  <div class="inner" style="position:relative;z-index:1;">
+    <div style="text-align:center;margin-bottom:52px;" class="rv">
+      <div class="section-label" style="justify-content:center;">Simple Pricing</div>
+      <h2 class="section-title">FLAT RATE.<br><span class="hl-c">NO SURPRISES.</span></h2>
+      <p style="color:#4a7a80;max-width:420px;margin:10px auto 0;line-height:1.75;font-size:14px;">One monthly retainer covers everything. Cancel anytime after 3 months.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;max-width:1000px;margin:0 auto;background:rgba(0,200,212,.1);">
+      <div class="p-card rv">
+        <div class="p-tier">Tier 01</div><div class="p-name">LAUNCHPAD</div>
+        <div class="p-amt"><span class="p-cur">$</span><span class="p-num">799</span><span class="p-per">/mo</span></div>
+        <p class="p-desc">5-page site, booking, AI automation, email campaign, social setup.</p>
+        <a href="#" class="p-cta ol">Get Started</a>
+      </div>
+      <div class="p-card feat rv d1">
+        <div class="p-badge">&#11088; Most Popular</div>
+        <div class="p-tier" style="color:#cc2d8f;">Tier 02</div><div class="p-name">GROWTH ENGINE</div>
+        <div class="p-amt"><span class="p-cur">$</span><span class="p-num">1,599</span><span class="p-per">/mo</span></div>
+        <p class="p-desc">Full AI automation, 4 email campaigns, 3 social platforms 4x/week, CRM, lead funnels.</p>
+        <a href="#" class="p-cta gl">Get Started</a>
+      </div>
+      <div class="p-card rv d2">
+        <div class="p-tier" style="color:#f5c842;">Tier 03</div><div class="p-name">EMPIRE MODE</div>
+        <div class="p-amt"><span class="p-cur">$</span><span class="p-num">2,999</span><span class="p-per">/mo</span></div>
+        <p class="p-desc">Custom site, unlimited email, daily social all platforms, paid ads, dedicated account manager.</p>
+        <a href="#" class="p-cta ol">Let's Talk</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKETS -->
+<section style="padding:60px 0;background:#020608;position:relative;z-index:2;">
+  <div class="inner" style="display:flex;align-items:center;gap:64px;flex-wrap:wrap;">
+    <div style="flex:1;min-width:260px;" class="rv fl">
+      <div class="section-label">Who We Serve</div>
+      <h2 class="section-title">YOUR INDUSTRY.<br><span class="hl-c">OUR EXPERTISE.</span></h2>
+      <p style="color:#4a7a80;line-height:1.75;margin-top:16px;font-size:14px;">Local businesses, startups, multi-venture operators — if you need to grow online, we have the system.</p>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;flex:1;min-width:260px;" class="rv fr">
+      <span class="m-tag h">Hair Salons</span><span class="m-tag h">Barbershops</span><span class="m-tag h">Med Spas</span>
+      <span class="m-tag h">Gyms &amp; Fitness</span><span class="m-tag h">Dental Clinics</span><span class="m-tag h">Wellness</span>
+      <span class="m-tag">Restaurants</span><span class="m-tag">Real Estate</span><span class="m-tag">Financial Services</span>
+      <span class="m-tag">Law Firms</span><span class="m-tag">E-Commerce</span><span class="m-tag">Coaches</span>
+      <span class="m-tag">Creatives</span><span class="m-tag">Startups</span><span class="m-tag">Web3 Projects</span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="padding:120px 0;text-align:center;background:#060d0f;position:relative;z-index:2;overflow:hidden;" id="contact">
+  <div style="position:absolute;bottom:-360px;left:50%;transform:translateX(-50%);width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(0,200,212,.05) 0%,rgba(204,45,143,.025) 40%,transparent 70%);pointer-events:none;"></div>
+  <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#00c8d4,#cc2d8f,#00c8d4,transparent);"></div>
+  <div class="inner rv">
+    <div class="section-label" style="justify-content:center;">Let's Build</div>
+    <h2 style="font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(48px,8vw,96px);line-height:.88;margin-bottom:24px;position:relative;z-index:1;">
+      READY TO<br><span style="color:#00c8d4;text-shadow:0 0 36px rgba(0,200,212,.45);">GROW YOUR BUSINESS?</span>
+    </h2>
+    <p style="color:#4a7a80;font-size:15px;line-height:1.8;max-width:460px;margin:0 auto 40px;position:relative;z-index:1;">
+      Book a free 30-minute strategy call. We'll review your digital presence and show you exactly what's leaving money on the table.
+    </p>
+    <div class="cta-acts" style="position:relative;z-index:1;">
+      <a href="https://calendly.com/hello-geodm/30min" target="_blank" rel="noopener noreferrer" class="mag-btn mag-btn-primary" data-mag>Book Free Strategy Call</a>
+      <button class="mag-btn mag-btn-secondary" id="em-cta" data-mag>Email Us Directly</button>
+      <a href="tel:7732361831" class="mag-btn mag-btn-ghost" data-mag>&#128222; 773.236.1831</a>
+    </div>
+    <p class="cta-note" style="position:relative;z-index:1;">&iquest;Prefieres hablar en espa&ntilde;ol? <a href="#" id="em-esp">Esc&iacute;benos &mdash; hello&#64;geodm&#46;us</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-grid">
+    <div class="ft-brand"><div class="fwm">GEODMus</div><span class="fsub">Geo Digital Media</span><p>Your digital growth partner — from local businesses to full venture ecosystems.</p></div>
+    <div class="ft-col"><h5>Services</h5><ul><li><a href="#services">Website Design</a></li><li><a href="#services">AI Automation</a></li><li><a href="#services">Marketing &amp; Social</a></li><li><a href="#services">Web3 &amp; Blockchain</a></li></ul></div>
+    <div class="ft-col"><h5>Company</h5><ul><li><a href="#">About</a></li><li><a href="#portfolio">Portfolio</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#contact">Contact</a></li></ul></div>
+    <div class="ft-col"><h5>Connect</h5><ul>
+      <li><a href="#" id="em-footer">hello&#64;geodm&#46;us</a></li>
+      <li><a href="tel:7732361831">773.236.1831</a></li>
+      <li><a href="https://instagram.com/geodm.us" target="_blank" rel="noopener noreferrer">@geodm.us</a></li>
+      <li><a href="https://x.com/geodmus" target="_blank" rel="noopener noreferrer">@geodmus</a></li>
+    </ul></div>
+  </div>
+  <div class="ft-bot">
+    <span>&copy; 2026 <a href="#">Geo Digital Media</a> &middot; GeoDMus &middot; All rights reserved.</span>
+    <div class="ft-socials">
+      <a href="https://instagram.com/geodm.us" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>Instagram</a>
+      <a href="https://x.com/geodmus" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>X / Twitter</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ════════════ SCRIPTS ════════════ -->
+<script>
+/* ── V1 Particle Canvas (hero section) ── */
+(function(){
+  var canvas=document.getElementById('bg-canvas');
+  if(!canvas)return;
+  var ctx=canvas.getContext('2d');
+  function resize(){canvas.width=canvas.parentElement.offsetWidth;canvas.height=canvas.parentElement.offsetHeight;}
+  resize();
+  window.addEventListener('resize',resize,{passive:true});
+  var pts=[],mouse={x:null,y:null,radius:150};
+  window.addEventListener('mousemove',function(e){mouse.x=e.clientX;mouse.y=e.clientY;},{passive:true});
+  function Particle(){
+    this.x=Math.random()*canvas.width;this.y=Math.random()*canvas.height;
+    this.size=Math.random()*2;this.baseX=this.x;this.baseY=this.y;
+    this.density=(Math.random()*30)+1;
+  }
+  Particle.prototype.draw=function(){
+    ctx.fillStyle='rgba(0,242,255,0.5)';ctx.beginPath();
+    ctx.arc(this.x,this.y,this.size,0,Math.PI*2);ctx.closePath();ctx.fill();
+  };
+  Particle.prototype.update=function(){
+    var dx=mouse.x-this.x,dy=mouse.y-this.y,dist=Math.sqrt(dx*dx+dy*dy);
+    if(dist<mouse.radius){this.x-=dx/10;this.y-=dy/10;}
+    else{if(this.x!==this.baseX)this.x-=(this.x-this.baseX)/20;if(this.y!==this.baseY)this.y-=(this.y-this.baseY)/20;}
+  };
+  for(var i=0;i<100;i++)pts.push(new Particle());
+  (function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    for(var i=0;i<pts.length;i++){pts[i].draw();pts[i].update();}
+    requestAnimationFrame(animate);
+  })();
+  /* Text Scramble */
+  var letters='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  var title=document.querySelector('.glitch-text');
+  if(title){
+    title.onmouseover=function(e){
+      var iter=0;
+      var iv=setInterval(function(){
+        e.target.innerText=e.target.innerText.split('').map(function(l,idx){
+          if(idx<iter)return e.target.dataset.value[idx];
+          return letters[Math.floor(Math.random()*26)];
+        }).join('');
+        if(iter>=e.target.dataset.value.length)clearInterval(iv);
+        iter+=1/3;
+      },30);
+    };
+  }
+})();
+</script>
+
+<script>
+(function(){
+'use strict';
+
+/* ══ SPLASH SCREEN ══ */
+var splash=document.getElementById('gdm-splash');
+var splashBar=document.getElementById('splash-bar');
+var splashPct=document.getElementById('splash-pct');
+var pct=0;
+var splashInterval=setInterval(function(){
+  pct+=Math.random()*18+4;
+  if(pct>100)pct=100;
+  splashBar.style.width=pct+'%';
+  splashPct.textContent=Math.floor(pct)+'%';
+  if(pct>=100){
+    clearInterval(splashInterval);
+    setTimeout(function(){
+      splash.classList.add('hidden');
+      document.body.style.overflow='';
+    },340);
+  }
+},80);
+document.body.style.overflow='hidden';
+
+/* ══ SCROLL PROGRESS ══ */
+var prog=document.getElementById('gdm-progress');
+function updateProgress(){
+  var s=document.documentElement.scrollTop||document.body.scrollTop;
+  var h=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+  if(prog)prog.style.width=(h>0?(s/h*100):0)+'%';
+}
+addEventListener('scroll',updateProgress,{passive:true});
+
+/* ══ NAV SCROLL STATE ══ */
+var nav=document.querySelector('nav');
+function updateNav(){
+  if(!nav)return;
+  if(scrollY>60)nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+}
+addEventListener('scroll',updateNav,{passive:true});
+
+/* ══ BACK TO TOP ══ */
+var topBtn=document.getElementById('gdm-top');
+if(topBtn){
+  addEventListener('scroll',function(){
+    if(scrollY>400)topBtn.classList.add('show');
+    else topBtn.classList.remove('show');
+  },{passive:true});
+  topBtn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+}
+
+/* ══ GDM Particle Canvas (fixed background) ══ */
+var cvs=document.getElementById('gdm-cvs');
+if(cvs){
+  var cx=cvs.getContext('2d'),W=0,H=0,pts=[],lt=0;
+  function rsz(){W=cvs.width=innerWidth;H=cvs.height=innerHeight;}
+  rsz();addEventListener('resize',rsz,{passive:true});
+  function Pt(){this.reset();}
+  Pt.prototype.reset=function(){
+    this.x=Math.random()*W;this.y=Math.random()*H;
+    this.vx=(Math.random()-.5)*.2;this.vy=(Math.random()-.5)*.2;
+    this.r=Math.random()*1.1+.3;this.life=Math.random();
+    var c=[[0,200,212],[204,45,143]];
+    this.c=c[Math.floor(Math.random()*c.length)];
+  };
+  for(var i=0;i<50;i++){var p=new Pt();p.life=Math.random();pts.push(p);}
+  (function draw(ts){
+    requestAnimationFrame(draw);
+    if(ts-lt<33)return;lt=ts;
+    cx.clearRect(0,0,W,H);
+    for(var j=0;j<pts.length;j++){
+      var q=pts[j];q.x+=q.vx;q.y+=q.vy;q.life+=.004;
+      if(q.x<0||q.x>W||q.y<0||q.y>H||q.life>1)q.reset();
+      var a=Math.sin(q.life*Math.PI)*.45;
+      cx.beginPath();cx.arc(q.x,q.y,q.r,0,6.28);
+      cx.fillStyle='rgba('+q.c[0]+','+q.c[1]+','+q.c[2]+','+a+')';cx.fill();
+    }
+  })(0);
+}
+
+/* ══ CURSOR ══ */
+var cur=document.getElementById('gdm-cur'),curR=document.getElementById('gdm-curR');
+if(cur&&curR){
+  var mx=-30,my=-30,rx=-30,ry=-30;
+  cur.style.opacity='0';curR.style.opacity='0';
+  addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.opacity='1';curR.style.opacity='1';},{passive:true});
+  (function loop(){
+    cur.style.transform='translate('+(mx-4)+'px,'+(my-4)+'px)';
+    rx+=(mx-rx-15)*.11;ry+=(my-ry-15)*.11;
+    curR.style.transform='translate('+rx+'px,'+ry+'px)';
+    requestAnimationFrame(loop);
+  })();
+  addEventListener('mouseover',function(e){
+    if(e.target.closest('a,button,[data-mag]')){cur.style.background='#cc2d8f';curR.style.borderColor='rgba(204,45,143,.6)';}
+  },{passive:true});
+  addEventListener('mouseout',function(e){
+    if(e.target.closest('a,button,[data-mag]')){cur.style.background='#00c8d4';curR.style.borderColor='rgba(0,200,212,.6)';}
+  },{passive:true});
+}
+
+/* ══ CURSOR TRAIL ══ */
+var trailDots=[],trailMax=8;
+for(var ti=0;ti<trailMax;ti++){
+  var td=document.createElement('div');
+  td.className='cur-trail';
+  td.style.opacity=((ti+1)/trailMax*0.35).toFixed(2);
+  td.style.transform='scale('+(0.3+ti/trailMax*0.7)+')';
+  document.body.appendChild(td);
+  trailDots.push({el:td,x:-30,y:-30});
+}
+var tmx=-30,tmy=-30;
+addEventListener('mousemove',function(e){tmx=e.clientX;tmy=e.clientY;},{passive:true});
+(function trailLoop(){
+  var lx=tmx,ly=tmy;
+  for(var i=trailDots.length-1;i>=0;i--){
+    var d=trailDots[i];
+    if(i===0){d.x+=(lx-d.x)*.35;d.y+=(ly-d.y)*.35;}
+    else{d.x+=(trailDots[i-1].x-d.x)*.45;d.y+=(trailDots[i-1].y-d.y)*.45;}
+    d.el.style.transform='translate('+(d.x-2)+'px,'+(d.y-2)+'px) scale('+(0.3+(i+1)/trailDots.length*0.5)+')';
+  }
+  requestAnimationFrame(trailLoop);
+})();
+
+/* ══ MAGNETIC BUTTONS ══ */
+document.querySelectorAll('[data-mag]').forEach(function(b){
+  b.addEventListener('mousemove',function(e){var r=b.getBoundingClientRect(),dx=(e.clientX-(r.left+r.width/2))*.2,dy=(e.clientY-(r.top+r.height/2))*.2;b.style.transform='translate('+dx+'px,'+dy+'px)';});
+  b.addEventListener('mouseleave',function(){b.style.transition='transform .4s cubic-bezier(.23,1,.32,1)';b.style.transform='';});
+  b.addEventListener('mouseenter',function(){b.style.transition='transform .08s';});
+});
+
+/* ══ RIPPLE EFFECT on all buttons/links ══ */
+document.querySelectorAll('.mag-btn,.v1-btn,.p-cta').forEach(function(btn){
+  btn.classList.add('ripple-wrap');
+  btn.addEventListener('click',function(e){
+    var r=btn.getBoundingClientRect(),size=Math.max(r.width,r.height)*2;
+    var rip=document.createElement('span');
+    rip.className='ripple';
+    rip.style.cssText='width:'+size+'px;height:'+size+'px;left:'+(e.clientX-r.left-size/2)+'px;top:'+(e.clientY-r.top-size/2)+'px;';
+    btn.appendChild(rip);
+    setTimeout(function(){rip.remove();},600);
+  });
+});
+
+/* ══ SCROLL REVEAL ══ */
+if(IntersectionObserver){
+  var ro=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('vi');});},{threshold:.07,rootMargin:'0px 0px -30px 0px'});
+  document.querySelectorAll('.rv').forEach(function(el){ro.observe(el);});
+  var so=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.querySelectorAll('[data-count]').forEach(function(el){var t=parseInt(el.dataset.count),s=0,st=t/55,iv=setInterval(function(){s=Math.min(s+st,t);el.textContent=Math.floor(s);if(s>=t)clearInterval(iv);},22);});so.unobserve(e.target);}});},{threshold:.2});
+  document.querySelectorAll('.gdm-sz').forEach(function(z){so.observe(z);});
+}
+
+/* ══ CARD HOVER GLOW ══ */
+document.querySelectorAll('[data-hg]').forEach(function(c){
+  c.addEventListener('mousemove',function(e){var r=c.getBoundingClientRect();c.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');c.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');},{passive:true});
+});
+
+/* ══ ACTIVE PROCESS STEP on scroll ══ */
+var procDots=document.querySelectorAll('.proc-dot');
+if(procDots.length&&IntersectionObserver){
+  var pi2=0;
+  var procObs=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        procDots.forEach(function(d){d.classList.remove('active');});
+        var idx=Array.from(document.querySelectorAll('.proc-step')).indexOf(e.target);
+        var activate=function(n){if(n<procDots.length){procDots[n].classList.add('active');setTimeout(function(){activate(n+1);},320);}};
+        activate(0);
+        procObs.disconnect();
+      }
+    });
+  },{threshold:.4});
+  var procSection=document.querySelector('.proc-track');
+  if(procSection)procObs.observe(procSection);
+}
+
+/* ══ PARALLAX RINGS ══ */
+addEventListener('scroll',function(){var r=document.querySelector('.depth-rings');if(r)r.style.transform='translateY(calc(-50% + '+scrollY*.1+'px))';},{passive:true});
+
+/* ══ TYPEWRITER ══ */
+var tw=document.getElementById('gdm-tw');
+if(tw){var ph=['Your Digital Growth Partner.','Websites That Convert.','Automation That Works 24/7.','Web3 Strategy That Wins.'],pi=0,ci=0,dl=false,pa=0;
+(function type(){if(pa>0){pa--;setTimeout(type,50);return;}var p=ph[pi];if(!dl){tw.textContent=p.substring(0,ci+1);ci++;if(ci===p.length){pa=40;dl=true;}setTimeout(type,70);}else{tw.textContent=p.substring(0,ci-1);ci--;if(ci===0){dl=false;pi=(pi+1)%ph.length;pa=10;}setTimeout(type,35);}})();}
+
+/* ══ HAMBURGER ══ */
+var hb=document.getElementById('ham-btn'),mm=document.getElementById('mobile-menu');
+if(hb&&mm){hb.addEventListener('click',function(){mm.classList.toggle('open');});mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mm.classList.remove('open');});});}
+
+/* ══ EMAIL ══ */
+var ep='mai'+'lto:',ea='hello',eb='geodm.us',em=ep+ea+'@'+eb;
+['em-btn','em-cta','em-footer','em-esp'].forEach(function(id){var el=document.getElementById(id);if(el)el.addEventListener('click',function(e){e.preventDefault();location.href=em;});});
+
+})();
+</script>
+</body>
+</html>
