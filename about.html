@@ -6,6 +6,8 @@
 <title>About | Geo Digital Media — GeoDMus</title>
 <meta name="description" content="The story behind GeoDMus — built from nothing, driven by vision, powered by real experience."/>
 <link rel="icon" type="image/png" href="gdm.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600;700&family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet"/>
 <style>
 :root{--c:#00c8d4;--m:#cc2d8f;--d:#070c0d;--d2:#0d1517;--d3:#111a1c;--w:#fff;--g:#8a9ba0}
@@ -24,7 +26,7 @@ h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(64px,10vw,130px);line-hei
 .h1c{color:var(--c)}.h1m{color:var(--m)}
 .hero-sub{font-size:clamp(16px,2vw,20px);font-weight:300;line-height:1.65;color:rgba(255,255,255,.7);max-width:580px;border-left:3px solid var(--m);padding-left:20px}
 .ticker-wrap{overflow:hidden;background:rgba(0,200,212,.04);border-top:1px solid rgba(0,200,212,.1);border-bottom:1px solid rgba(0,200,212,.1);padding:13px 0}
-.ticker{display:flex;gap:48px;white-space:nowrap;animation:tick 30s linear infinite}
+.ticker{display:flex;gap:48px;white-space:nowrap;will-change:transform;animation:tick 30s linear infinite}
 .ticker span{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--c);opacity:.6}.ticker .dot{color:var(--m);opacity:1}
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .section{padding:80px 40px}.section.alt{background:var(--d2)}
@@ -80,18 +82,22 @@ footer{background:var(--d2);border-top:1px solid rgba(0,200,212,.1);padding:56px
 .fbtm{max-width:1100px;margin:28px auto 0;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--g)}
 .fbtm a{color:var(--g);text-decoration:none;margin-left:16px}.fbtm a:hover{color:var(--c)}
 .fu{opacity:1;transform:none}.fu.on{opacity:1;transform:none}
-@media(max-width:768px){nav{padding:0 20px}.nav-links{display:none}.hero{padding:100px 20px 56px}.section{padding:56px 20px}.two-col{grid-template-columns:1fr;gap:40px}.vision-grid,.pillars-grid{grid-template-columns:1fr}.fg{grid-template-columns:1fr 1fr;gap:28px}.fbtm{flex-direction:column;gap:10px;text-align:center}}
+@media(max-width:768px){nav{padding:0 20px}.nav-btn{display:none}.nav-links{display:none}.hero{padding:100px 20px 56px}.section{padding:56px 20px}.two-col{grid-template-columns:1fr;gap:40px}.vision-grid,.pillars-grid{grid-template-columns:1fr}.fg{grid-template-columns:1fr 1fr;gap:28px}.fbtm{flex-direction:column;gap:10px;text-align:center}}
 
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:10px;min-width:44px;min-height:44px;justify-content:center}
 .hamburger span{display:block;width:24px;height:2px;background:var(--w);transition:all .3s}
 .mobile-menu{display:none;position:fixed;top:70px;left:0;right:0;background:rgba(7,12,13,.98);padding:24px 40px;border-bottom:1px solid rgba(0,200,212,.1);z-index:99}
 .mobile-menu.open{display:block}
 .mobile-menu ul{list-style:none;display:flex;flex-direction:column;gap:16px}
 .mobile-menu a{color:var(--g);text-decoration:none;font-size:14px;letter-spacing:2px;text-transform:uppercase;font-weight:600;transition:color .2s}.mobile-menu a:hover{color:var(--c)}
 @media(max-width:768px){.nav-links{display:none!important}.hamburger{display:flex}}
+.skip-link{position:absolute;top:-100%;left:0;background:var(--m);color:var(--w);padding:12px 20px;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none;z-index:999;transition:top .2s}.skip-link:focus{top:0}:focus-visible{outline:2px solid var(--c);outline-offset:3px;border-radius:2px}
+@media(prefers-reduced-motion:reduce){.ticker{animation:none;transform:none}}
+@media(max-width:480px){.fg{grid-template-columns:1fr!important}.hero{min-height:auto}.lbl{letter-spacing:2px}.sec-lbl{letter-spacing:2px}}
 </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <nav>
   <a href="index.html" class="logo" style="display:flex;align-items:flex-start;gap:8px;text-decoration:none">
   <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
@@ -112,7 +118,7 @@ footer{background:var(--d2);border-top:1px solid rgba(0,200,212,.1);padding:56px
     <li><a href="index.html#contact">Contact</a></li>
   </ul>
   <a href="https://calendly.com/hello-geodm/30min" class="nav-btn" target="_blank">Free Strategy Call</a>
-<button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')"><span></span><span></span><span></span></button>
+<button class="hamburger" aria-label="Toggle navigation" onclick="document.querySelector('.mobile-menu').classList.toggle('open')"><span></span><span></span><span></span></button>
 </nav>
 <div class="mobile-menu">
   <ul>
@@ -126,7 +132,7 @@ footer{background:var(--d2);border-top:1px solid rgba(0,200,212,.1);padding:56px
   </ul>
 </div>
 
-<section class="hero">
+<section id="main-content" class="hero">
   <div class="hero-bg"></div>
   <div class="hero-line"></div>
   <div class="hero-inner">
@@ -222,7 +228,7 @@ footer{background:var(--d2);border-top:1px solid rgba(0,200,212,.1);padding:56px
     <p class="fu">Book a free 30-minute strategy call. No pitch, no pressure — just an honest conversation about where your business is and where it could go.</p>
     <div class="btns fu">
       <a href="https://calendly.com/hello-geodm/30min" class="btn1" target="_blank">Book Free Strategy Call</a>
-      <button id="email-btn" style="display:inline-block;margin-top:14px;padding:13px 32px;background:#00c8d4;color:#070c0d;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-radius:3px;border:none;cursor:pointer;">EMAIL US DIRECTLY</button>
+      <button type="button" id="email-btn" style="display:inline-block;margin-top:14px;padding:13px 32px;background:#00c8d4;color:#070c0d;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-radius:3px;border:none;cursor:pointer;">EMAIL US DIRECTLY</button>
       
     </div>
     <div style="margin-top:14px">
@@ -238,254 +244,13 @@ footer{background:var(--d2);border-top:1px solid rgba(0,200,212,.1);padding:56px
     <div class="fc"><h5>Connect</h5><ul><li><a href="#" data-em="1" data-show="1"><span class="__cf_email__" data-cfemail="066e636a6a6946616369626b287375">[email&#160;protected]</span></a></li><li><a href="tel:7732361831">773.236.1831</a></li><li><a href="https://instagram.com/geodm.us" target="_blank">@geodm.us</a></li><li><a href="https://x.com/geodmus" target="_blank">@geodmus</a></li></ul></div>
   </div>
   <div class="fbtm">
-    <span>© 2026 Geo Digital Media · GeoDMus · geodm.us · All rights reserved.</s</span>
-</div>
-</div>
-</footer>
-E html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>About | Geo Digital Media — GeoDMus</title>
-<meta name="description" content="The story behind GeoDMus — built from nothing, driven by vision, powered by real experience."/>
-<link rel="icon" type="image/png" href="gdm.png"/>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600;700&family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet"/>
-<style>
-:root{--c:#00c8d4;--m:#cc2d8f;--d:#070c0d;--d2:#0d1517;--d3:#111a1c;--w:#fff;--g:#8a9ba0}
-*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
-body{background:var(--d);color:var(--w);font-family:'Barlow',sans-serif;overflow-x:hidden}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:70px;background:rgba(7,12,13,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,200,212,.1)}
-.logo{text-decoration:none;line-height:1}.logo .wm{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:var(--w);display:block}.logo .sub{font-size:9px;letter-spacing:2px;color:var(--c);text-transform:uppercase}
-.nav-links{display:flex;gap:28px;list-style:none}.nav-links a{color:var(--g);text-decoration:none;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;transition:color .2s}.nav-links a:hover,.nav-links a.on{color:var(--c)}
-.nav-btn{background:var(--m);color:var(--w);padding:10px 20px;border-radius:3px;text-decoration:none;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700}
-.hero{min-height:100vh;display:flex;align-items:center;padding:130px 40px 80px;position:relative;overflow:hidden}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 80% 50%,rgba(0,200,212,.07) 0%,transparent 70%),radial-gradient(ellipse 40% 60% at 10% 80%,rgba(204,45,143,.06) 0%,transparent 70%),var(--d)}
-.hero-line{position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,transparent,var(--m) 30%,var(--c) 70%,transparent)}
-.hero-inner{position:relative;max-width:900px}
-.lbl{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--c);margin-bottom:18px;display:flex;align-items:center;gap:10px}.lbl::before{content:'';width:32px;height:2px;background:var(--c)}
-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(64px,10vw,130px);line-height:.9;letter-spacing:2px;margin-bottom:28px}
-.h1c{color:var(--c)}.h1m{color:var(--m)}
-.hero-sub{font-size:clamp(16px,2vw,20px);font-weight:300;line-height:1.65;color:rgba(255,255,255,.7);max-width:580px;border-left:3px solid var(--m);padding-left:20px}
-.ticker-wrap{overflow:hidden;background:rgba(0,200,212,.04);border-top:1px solid rgba(0,200,212,.1);border-bottom:1px solid rgba(0,200,212,.1);padding:13px 0}
-.ticker{display:flex;gap:48px;white-space:nowrap;animation:tick 30s linear infinite}
-.ticker span{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--c);opacity:.6}.ticker .dot{color:var(--m);opacity:1}
-@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.section{padding:80px 40px}.section.alt{background:var(--d2)}
-.inner{max-width:1100px;margin:0 auto}
-.sec-lbl{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--c);margin-bottom:12px;display:flex;align-items:center;gap:10px}.sec-lbl::before{content:'';width:24px;height:2px;background:var(--c)}
-h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,5.5vw,68px);letter-spacing:2px;line-height:.95;margin-bottom:40px}
-.h2c{color:var(--c)}.h2m{color:var(--m)}
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
-.prose p{font-size:16px;line-height:1.85;color:rgba(255,255,255,.7);margin-bottom:20px}
-.prose p strong{color:var(--w)}.prose .c{color:var(--c)}.prose .m{color:var(--m)}
-.stat-stack{display:flex;flex-direction:column;gap:28px}
-.stat-block{border-left:3px solid var(--c);padding-left:20px}
-.stat-block.m{border-color:var(--m)}
-.stat-n{font-family:'Bebas Neue',sans-serif;font-size:52px;line-height:1;color:var(--c)}
-.stat-block.m .stat-n{color:var(--m)}
-.stat-l{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--g);margin-top:4px}
-.stat-d{font-size:14px;color:rgba(255,255,255,.5);margin-top:6px;line-height:1.5}
-.founder-photo{width:100%;aspect-ratio:3/4;background:var(--d3);border:2px dashed rgba(0,200,212,.15);border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--g)}
-.founder-photo .ico{font-size:44px;opacity:.25}
-.founder-photo p{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;opacity:.35}
-.founder-tag{background:var(--m);padding:12px 20px;border-radius:3px;margin-top:16px;display:inline-block}
-.founder-tag .name{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px}
-.founder-tag .title{font-size:10px;letter-spacing:2px;text-transform:uppercase;opacity:.85;margin-top:2px}
-.roots{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-.root{background:rgba(0,200,212,.07);border:1px solid rgba(0,200,212,.2);color:var(--c);padding:5px 12px;border-radius:2px;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:600}
-.vision-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:40px}
-.vcard{background:var(--d3);padding:36px 28px;position:relative}
-.vcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--c)}
-.vcard:nth-child(2)::before{background:var(--m)}.vcard:nth-child(3)::before{background:linear-gradient(90deg,var(--c),var(--m))}
-.vn{font-family:'Bebas Neue',sans-serif;font-size:56px;line-height:1;color:rgba(0,200,212,.1);margin-bottom:12px}
-.vcard:nth-child(2) .vn{color:rgba(204,45,143,.1)}
-.vcard h4{font-family:'Barlow Condensed',sans-serif;font-size:18px;letter-spacing:2px;text-transform:uppercase;color:var(--w);margin-bottom:12px}
-.vcard p{font-size:14px;line-height:1.65;color:rgba(255,255,255,.55)}
-.pillars-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:40px}
-.pcard{background:var(--d2);border:1px solid rgba(0,200,212,.1);padding:28px;border-radius:4px;display:flex;gap:20px;align-items:flex-start;transition:border-color .3s}
-.pcard:hover{border-color:rgba(0,200,212,.35)}
-.pico{font-size:28px;flex-shrink:0;width:52px;height:52px;display:flex;align-items:center;justify-content:center;background:rgba(0,200,212,.07);border-radius:4px}
-.pcard h5{font-family:'Barlow Condensed',sans-serif;font-size:16px;letter-spacing:2px;text-transform:uppercase;color:var(--c);margin-bottom:8px}
-.pcard p{font-size:13px;line-height:1.6;color:rgba(255,255,255,.55)}
-.cta-band{padding:100px 40px;text-align:center;position:relative;overflow:hidden}
-.cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(204,45,143,.07) 0%,transparent 70%),var(--d)}
-.cta-inner{position:relative;max-width:680px;margin:0 auto}
-.cta-band h2{margin-bottom:20px}
-.cta-band p{font-size:17px;color:rgba(255,255,255,.6);margin-bottom:36px;line-height:1.6}
-.btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-.btn1{background:var(--m);color:var(--w);padding:15px 32px;text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;border-radius:3px}
-.btn2{border:1px solid rgba(0,200,212,.4);color:var(--c);padding:15px 32px;text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;border-radius:3px}
-footer{background:var(--d2);border-top:1px solid rgba(0,200,212,.1);padding:56px 40px 36px}
-.fg{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.06)}
-.fb .fwm{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:3px}.fb .fsub{font-size:9px;letter-spacing:2px;color:var(--c);text-transform:uppercase;display:block;margin-bottom:12px}.fb p{font-size:13px;color:var(--g);line-height:1.6}
-.fc h5{font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--w);margin-bottom:16px}
-.fc ul{list-style:none}.fc li{margin-bottom:8px}.fc a{color:var(--g);text-decoration:none;font-size:13px;transition:color .2s}.fc a:hover{color:var(--c)}
-.fbtm{max-width:1100px;margin:28px auto 0;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--g)}
-.fbtm a{color:var(--g);text-decoration:none;margin-left:16px}.fbtm a:hover{color:var(--c)}
-.fu{opacity:1;transform:none}.fu.on{opacity:1;transform:none}
-@media(max-width:768px){nav{padding:0 20px}.nav-links{display:none}.hero{padding:100px 20px 56px}.section{padding:56px 20px}.two-col{grid-template-columns:1fr;gap:40px}.vision-grid,.pillars-grid{grid-template-columns:1fr}.fg{grid-template-columns:1fr 1fr;gap:28px}.fbtm{flex-direction:column;gap:10px;text-align:center}}
-
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
-.hamburger span{display:block;width:24px;height:2px;background:var(--w);transition:all .3s}
-.mobile-menu{display:none;position:fixed;top:70px;left:0;right:0;background:rgba(7,12,13,.98);padding:24px 40px;border-bottom:1px solid rgba(0,200,212,.1);z-index:99}
-.mobile-menu.open{display:block}
-.mobile-menu ul{list-style:none;display:flex;flex-direction:column;gap:16px}
-.mobile-menu a{color:var(--g);text-decoration:none;font-size:14px;letter-spacing:2px;text-transform:uppercase;font-weight:600;transition:color .2s}.mobile-menu a:hover{color:var(--c)}
-@media(max-width:768px){.nav-links{display:none!important}.hamburger{display:flex}}
-</style>
-</head>
-<body>
-<nav>
-  <a href="index.html" class="logo" style="display:flex;align-items:flex-start;gap:8px;text-decoration:none">
-  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
-  <polygon points="26,22 26,6 4,14" fill="#cc2d8f"/>
-  <polygon points="24,20 24,6 4,14" fill="#00c8d4"/>
-</svg>
-  <div>
-    <div class="wm"><span style="color:#fff">GEO </span><span style="color:#00c8d4">DM</span><span style="color:#fff"> US</span></div>
-    <div class="sub" style="color:#00c8d4;letter-spacing:3px;font-size:8px;text-transform:uppercase;font-family:inherit">GEO DIGITAL MEDIA</div>
-  </div>
-</a>
-  <ul class="nav-links">
-    <li><a href="services.html">Services</a></li>
-    <li><a href="ventures.html">Ventures</a></li>
-    <li><a href="pricing.html">Pricing</a></li>
-    <li><a href="about.html" class="on">About</a></li>
-    <li><a href="faq.html">FAQ</a></li>
-    <li><a href="index.html#contact">Contact</a></li>
-  </ul>
-  <a href="https://calendly.com/hello-geodm/30min" class="nav-btn" target="_blank">Free Strategy Call</a>
-<button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')"><span></span><span></span><span></span></button>
-</nav>
-<div class="mobile-menu">
-  <ul>
-    <li><a href="services.html" onclick="this.closest('.mobile-menu').classList.remove('open')">Services</a></li>
-    <li><a href="ventures.html" onclick="this.closest('.mobile-menu').classList.remove('open')">Ventures</a></li>
-    <li><a href="pricing.html" onclick="this.closest('.mobile-menu').classList.remove('open')">Pricing</a></li>
-    <li><a href="about.html" onclick="this.closest('.mobile-menu').classList.remove('open')">About</a></li>
-    <li><a href="faq.html" onclick="this.closest('.mobile-menu').classList.remove('open')">FAQ</a></li>
-    <li><a href="index.html#contact" onclick="this.closest('.mobile-menu').classList.remove('open')">Contact</a></li>
-    <li><a href="https://calendly.com/hello-geodm/30min" target="_blank">Book Free Call</a></li>
-  </ul>
-</div>
-
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-line"></div>
-  <div class="hero-inner">
-    <div class="lbl">About Geo Digital Media</div>
-    <h1>BUILT FROM<br/><span class="h1m">NOTHING.</span><br/>BUILT FOR<br/><span class="h1c">EVERYTHING.</span></h1>
-    <p class="hero-sub">GeoDMus wasn't born in a boardroom. It was built in the margins — between ideas, between cities, between what was and what could be. This is the real story.</p>
-  </div>
-</section>
-
-<div class="ticker-wrap"><div class="ticker">
-  <span>Web Design</span><span class="dot">◆</span><span>AI Automation</span><span class="dot">◆</span><span>Web3 Strategy</span><span class="dot">◆</span><span>Marketing & Social</span><span class="dot">◆</span><span>GeoDMus</span><span class="dot">◆</span><span>Chicago</span><span class="dot">◆</span><span>Los Angeles</span><span class="dot">◆</span><span>Your Digital Growth Partner</span><span class="dot">◆</span>
-  <span>Web Design</span><span class="dot">◆</span><span>AI Automation</span><span class="dot">◆</span><span>Web3 Strategy</span><span class="dot">◆</span><span>Marketing & Social</span><span class="dot">◆</span><span>GeoDMus</span><span class="dot">◆</span><span>Chicago</span><span class="dot">◆</span><span>Los Angeles</span><span class="dot">◆</span><span>Your Digital Growth Partner</span><span class="dot">◆</span>
-</div></div>
-
-<!-- ORIGIN -->
-<section class="section alt">
-<div class="inner">
-  <div class="two-col">
-    <div class="prose fu">
-      <div class="sec-lbl">The Origin</div>
-      <h2>WHERE IT <span class="h2c">STARTED</span></h2>
-      <p>GeoDMus didn't launch from a pitch deck. It started with a simple, real problem — <strong>businesses around me needed marketing and had nowhere to turn.</strong> Friends with ideas, family with businesses, people working hard but invisible online.</p>
-      <p>The seed was planted inside a tax office — <span class="c">Premier Tax</span> — where Giovanni first got his hands on real marketing for real businesses. That office became the first chapter and gave birth to <span class="m">Premier Group</span> — one of seven ventures now operating under the GeoDMus ecosystem.</p>
-      <p>Before that, there was Bass Consulting — a corporate credit and financing startup where Giovanni sharpened his instincts for business infrastructure. The company wound down, but the lessons never did. <strong>Every failure is a blueprint for what comes next.</strong></p>
-    </div>
-    <div class="stat-stack fu">
-      <div class="stat-block"><div class="stat-n">7</div><div class="stat-l">Ventures in the ecosystem</div><div class="stat-d">From digital media to fintech, wellness, sneakers, and AR — one founder, one vision.</div></div>
-      <div class="stat-block m"><div class="stat-n">4</div><div class="stat-l">Service pillars</div><div class="stat-d">Web design, AI automation, marketing & social, and Web3 — the full stack your business needs.</div></div>
-      <div class="stat-block"><div class="stat-n">3</div><div class="stat-l">Cities. One DNA.</div><div class="stat-d">Los Angeles. Chicago. Sahuayo. The perspective that comes from living between cultures is built into everything.</div></div>
-    </div>
-  </div>
-</div>
-</section>
-
-<!-- FOUNDER -->
-<section class="section">
-<div class="inner">
-  <div class="two-col">
-    <div class="fu">
-      <div class="founder-photo"><div class="ico">📸</div><p>Photo Coming Soon</p></div>
-      <div class="founder-tag"><div class="name">Giovanni Salazar</div><div class="title">Founder & CEO — Geo Digital Media</div></div>
-      <div class="roots">
-        <span class="root">Bell Gardens LA</span><span class="root">Chicago</span><span class="root">Sahuayo MX</span><span class="root">Bilingual</span><span class="root">Tech Native</span><span class="root">Faith Driven</span>
-      </div>
-    </div>
-    <div class="prose fu">
-      <div class="sec-lbl">The Founder</div>
-      <h2>THE MAN <span class="h2c">BEHIND IT</span></h2>
-      <p>Born in <strong>Bell Gardens, South LA</strong> in 1985. Raised between Los Angeles, Chicago, and Sahuayo, Mexico. That upbringing didn't just shape his language skills — it shaped how he sees the world.</p>
-      <p><span class="c">Bilingual, bicultural, and built for it.</span> Giovanni's fluency in English and Spanish isn't just a skill — it's a bridge to communities that are often underserved in the digital economy.</p>
-      <p>His love for technology started young — <strong>watching Terminator, War Games, and Star Wars</strong> — asking the question every builder eventually asks: <em>what if I could build that?</em></p>
-      <p>Life hasn't been a straight line. There were real setbacks. Losing everything. Starting over. Being humbled at an age when most people expect to already have it figured out. But those moments didn't break him. <span class="m">They built him.</span></p>
-      <p>Today he's building not just an agency but an ecosystem — <span class="c">seven ventures, one vision, and a mission to give every business the digital tools to compete and win.</span></p>
-    </div>
-  </div>
-</div>
-</section>
-
-<!-- VISION -->
-<section class="section alt">
-<div class="inner">
-  <div class="sec-lbl fu">The Vision</div>
-  <h2 class="fu">WHERE WE'RE <span class="h2c">GOING</span></h2>
-  <p class="fu" style="font-size:17px;color:rgba(255,255,255,.6);max-width:680px;line-height:1.7">Digital media has taken over the world. Data-driven companies will shape how every industry operates for the next 50 years. GeoDMus exists to make sure businesses of every size have a seat at that table.</p>
-  <div class="vision-grid fu">
-    <div class="vcard"><div class="vn">01</div><h4>The Agency Engine</h4><p>GeoDMus serves as the digital backbone — building, growing, and managing digital infrastructure for businesses across Chicago and beyond.</p></div>
-    <div class="vcard"><div class="vn">02</div><h4>The Venture Portfolio</h4><p>Six additional companies — from financial services to wellness to AR platforms — built under the GeoDMus umbrella. Each one proves what's possible when digital strategy is built in from day one.</p></div>
-    <div class="vcard"><div class="vn">03</div><h4>The Long Game</h4><p>In five years, GeoDMus will be a partner to the companies that run the world — across industries, across borders. Web3. Agentic AI. AR. Whatever comes next, we'll be building with it.</p></div>
-  </div>
-</div>
-</section>
-
-<!-- PILLARS -->
-<section class="section">
-<div class="inner">
-  <div class="sec-lbl fu">What We Do</div>
-  <h2 class="fu">FOUR PILLARS. <span class="h2c">ONE PARTNER.</span></h2>
-  <div class="pillars-grid fu">
-    <div class="pcard"><div class="pico">🌐</div><div><h5>Website Design & Dev</h5><p>Fast, mobile-first sites that convert visitors into customers. From 5-page local business sites to full marketplace platforms.</p></div></div>
-    <div class="pcard"><div class="pico">⚡</div><div><h5>AI Automation & Agentic AI</h5><p>Booking flows, SMS reminders, lead follow-ups, CRM integration — and the emerging agentic AI systems that run your business autonomously.</p></div></div>
-    <div class="pcard"><div class="pico">📧</div><div><h5>Marketing & Social</h5><p>Email campaigns, social media management, and paid ads. We keep your pipeline full so you can focus on the work.</p></div></div>
-    <div class="pcard"><div class="pico">🔗</div><div><h5>Web3 & Blockchain</h5><p>Crypto payments, NFT loyalty programs, token strategy, prediction market integration, and blockchain consulting.</p></div></div>
-  </div>
-</div>
-</section>
-
-<!-- CTA -->
-<section class="cta-band">
-  <div class="cta-bg"></div>
-  <div class="cta-inner">
-    <div class="sec-lbl fu" style="justify-content:center;margin-bottom:16px">Ready to Build?</div>
-    <h2 class="fu">LET'S BUILD SOMETHING <span class="h2c">REAL.</span></h2>
-    <p class="fu">Book a free 30-minute strategy call. No pitch, no pressure — just an honest conversation about where your business is and where it could go.</p>
-    <div class="btns fu">
-      <a href="https://calendly.com/hello-geodm/30min" class="btn1" target="_blank">Book Free Strategy Call</a>
-      <button id="email-btn" style="display:inline-block;margin-top:14px;padding:13px 32px;background:#00c8d4;color:#070c0d;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-radius:3px;border:none;cursor:pointer;">EMAIL US DIRECTLY</button>
-      
-    </div>
-    <div style="margin-top:14px">
-    <p class="fu" style="margin-top:20px;font-size:13px;color:rgba(255,255,255,.3)">¿Prefieres hablar en español? Escríbenos — hello&#64;geodm&#46;us</p>
-  </div>
-</section>
-
-<footer>
-  <div class="fg">
-    <div class="fb"><div class="fwm">GEODMus</div><span class="fsub">Geo Digital Media</span><p>Your digital growth partner — from local businesses to full venture ecosystems.</p></div>
-    <div class="fc"><h5>Services</h5><ul><li><a href="services.html#web-design">Website Design</a></li><li><a href="services.html#ai-automation">AI Automation</a></li><li><a href="services.html#marketing">Marketing & Social</a></li><li><a href="services.html#web3">Web3 & Blockchain</a></li></ul></div>
-    <div class="fc"><h5>Company</h5><ul><li><a href="about.html">About</a></li><li><a href="ventures.html">Ventures</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
-    <div class="fc"><h5>Connect</h5><ul><li><a href="#" data-em="1" data-show="1"><span class="__cf_email__" data-cfemail="066e636a6a6946616369626b287375">[email&#160;protected]</span></a></li><li><a href="tel:7732361831">773.236.1831</a></li><li><a href="https://instagram.com/geodm.us" target="_blank">@geodm.us</a></li><li><a href="https://x.com/geodmus" target="_blank">@geodmus</a></li></ul></div>
-  </div>
-  <div class="fbtm">
-    <span>© 2026 Geo Digital Media · GeoDMus · geodm.us · All rights reserved.</s</span>
-</div>
+    <span>© 2026 Geo Digital Media · GeoDMus · geodm.us · All rights reserved.</span>
 </div>
 </footer>
 
+<script>
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){var m=document.querySelector('.mobile-menu');if(m)m.classList.remove('open')}});
+document.addEventListener('click',function(e){var m=document.querySelector('.mobile-menu');var h=document.querySelector('.hamburger');if(m&&m.classList.contains('open')&&!m.contains(e.target)&&h&&!h.contains(e.target)){m.classList.remove('open')}});
+</script>
 </body>
 </html>

@@ -6,6 +6,8 @@
 <title>Geo Digital Media | GeoDMus — Your Digital Growth Partner</title>
 <meta name="description" content="Chicago's boldest digital agency. Web design, AI automation, marketing, and real Web3 strategy. From the corner barbershop to the next big platform — we build the digital infrastructure that grows your business."/>
 <link rel="icon" type="image/png" href="gdm.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600;700&family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet"/>
 <style>
 :root{--c:#00c8d4;--m:#cc2d8f;--d:#070c0d;--d2:#0d1517;--d3:#111a1c;--w:#fff;--g:#8a9ba0}
@@ -17,7 +19,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .logo{text-decoration:none;line-height:1}.logo .wm{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:var(--w);display:block}.logo .sub{font-size:9px;letter-spacing:2px;color:var(--c);text-transform:uppercase}
 .nav-links{display:flex;gap:24px;list-style:none}.nav-links a{color:var(--g);text-decoration:none;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;transition:color .2s}.nav-links a:hover{color:var(--c)}
 .nav-btn{background:var(--m);color:var(--w);padding:10px 20px;border-radius:3px;text-decoration:none;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;white-space:nowrap}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:10px;min-width:44px;min-height:44px;justify-content:center}
 .hamburger span{display:block;width:24px;height:2px;background:var(--w);transition:all .3s}
 .mobile-menu{display:none;position:fixed;top:70px;left:0;right:0;background:rgba(7,12,13,.98);padding:24px 40px;border-bottom:1px solid rgba(0,200,212,.1);z-index:99}
 .mobile-menu.open{display:block}
@@ -50,7 +52,7 @@ h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(64px,11vw,140px);line-hei
 
 /* TICKER */
 .ticker-wrap{overflow:hidden;background:rgba(0,200,212,.04);border-top:1px solid rgba(0,200,212,.1);border-bottom:1px solid rgba(0,200,212,.1);padding:13px 0}
-.ticker{display:flex;gap:48px;white-space:nowrap;animation:tick 30s linear infinite}
+.ticker{display:flex;gap:48px;white-space:nowrap;will-change:transform;animation:tick 30s linear infinite}
 .ticker span{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--c);opacity:.6}.ticker .dot{color:var(--m);opacity:1}
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
@@ -185,7 +187,7 @@ footer{background:var(--d2);border-top:1px solid rgba(0,200,212,.1);padding:56px
 
 /* MOBILE */
 @media(max-width:768px){
-  nav{padding:0 20px}.nav-links{display:none}.hamburger{display:flex}
+  nav{padding:0 20px}.nav-btn{display:none}.nav-links{display:none}.hamburger{display:flex}
   .hero{padding:100px 20px 56px}
   .stats-row{gap:28px}
   .section{padding:56px 20px}
@@ -201,9 +203,13 @@ footer{background:var(--d2);border-top:1px solid rgba(0,200,212,.1);padding:56px
   .custom-work{flex-direction:column}
   .ventures-intro{flex-direction:column;align-items:flex-start}
 }
+.skip-link{position:absolute;top:-100%;left:0;background:var(--m);color:var(--w);padding:12px 20px;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none;z-index:999;transition:top .2s}.skip-link:focus{top:0}:focus-visible{outline:2px solid var(--c);outline-offset:3px;border-radius:2px}
+@media(prefers-reduced-motion:reduce){.ticker{animation:none;transform:none}}
+@media(max-width:480px){.fg{grid-template-columns:1fr!important}.hero{min-height:auto}.lbl{letter-spacing:2px}.sec-lbl{letter-spacing:2px}}
 </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 
 <!-- NAV -->
 <nav>
@@ -226,7 +232,7 @@ footer{background:var(--d2);border-top:1px solid rgba(0,200,212,.1);padding:56px
     <li><a href="index.html#contact">Contact</a></li>
   </ul>
   <a href="https://calendly.com/hello-geodm/30min" class="nav-btn" target="_blank">Free Strategy Call</a>
-  <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
+  <button class="hamburger" aria-label="Toggle navigation" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -243,7 +249,7 @@ footer{background:var(--d2);border-top:1px solid rgba(0,200,212,.1);padding:56px
 </div>
 
 <!-- HERO -->
-<section class="hero" id="home">
+<section id="main-content" class="hero">
   <div class="hero-bg"></div>
   <div class="hero-line"></div>
   <div class="hero-inner">
@@ -252,7 +258,7 @@ footer{background:var(--d2);border-top:1px solid rgba(0,200,212,.1);padding:56px
     <p class="hero-sub">From the corner barbershop to the next big platform — <strong>we build the digital infrastructure that grows your business.</strong> Websites, AI automation, marketing, and Web3 strategy. Done for you, every month.</p>
     <div class="hero-btns">
       <a href="https://calendly.com/hello-geodm/30min" class="btn1" target="_blank">Book Free Strategy Call</a>
-      <button id="email-btn" style="display:inline-block;margin-top:14px;padding:13px 32px;background:#00c8d4;color:#070c0d;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-radius:3px;border:none;cursor:pointer;">EMAIL US DIRECTLY</button>
+      <button type="button" id="email-btn" style="display:inline-block;margin-top:14px;padding:13px 32px;background:#00c8d4;color:#070c0d;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-radius:3px;border:none;cursor:pointer;">EMAIL US DIRECTLY</button>
       <a href="services.html" class="btn2">See What We Do</a>
     </div>
     <div style="margin-top:14px">
@@ -576,6 +582,10 @@ footer{background:var(--d2);border-top:1px solid rgba(0,200,212,.1);padding:56px
     }
   }
 })();
+</script>
+<script>
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){var m=document.querySelector('.mobile-menu');if(m)m.classList.remove('open')}});
+document.addEventListener('click',function(e){var m=document.querySelector('.mobile-menu');var h=document.querySelector('.hamburger');if(m&&m.classList.contains('open')&&!m.contains(e.target)&&h&&!h.contains(e.target)){m.classList.remove('open')}});
 </script>
 </body>
 </html>
