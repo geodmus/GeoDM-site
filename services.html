@@ -109,6 +109,24 @@ footer{background:var(--d2);border-top:1px solid rgba(0,200,212,.1);padding:56px
 @media(max-width:768px){.nav-links{display:none!important}.hamburger{display:flex}}
 </style>
 </head>
+  <script>
+// Auto-anchor services sections
+[
+  ['web-design',    ['Web Design','Website Design','Web Dev']],
+  ['ai-automation', ['AI Automation','Automation','Agentic']],
+  ['marketing',     ['Marketing','Social Media','Social &']],
+  ['web3',          ['Web3','Blockchain','Crypto']],
+].forEach(function(pair){
+  var id = pair[0], terms = pair[1];
+  var found = Array.from(document.querySelectorAll('h1,h2,h3,h4,h5,h6'))
+    .find(function(el){ return terms.some(function(t){ return el.textContent.includes(t); }); });
+  if(found){
+    var target = found.closest('section') || found.closest('[class*="card"]') || found.closest('div') || found;
+    if(!target.id) target.id = id;
+  }
+});
+</script>
+
 <body>
 
 <nav>
