@@ -416,26 +416,132 @@ color:#00f2ff;font-size:0.8rem;letter-spacing:4px;
 padding:2rem 10% 0;background:#0a0a0a;position:relative;z-index:2;
 }
 
+/* ── TABLET ── */
 @media(max-width:1024px){
-.c6{grid-column:span 6;grid-template-columns:1fr;gap:28px;}.srv-ghost{display:none;}
+.c6{grid-column:span 6;grid-template-columns:1fr;gap:28px;}
+.srv-ghost{display:none;}
 .c2,.c3,.c4{grid-column:span 3;}
 .port-card.hero{grid-column:span 3;grid-template-columns:1fr;gap:28px;}
 .ring-logo{display:none;}
 .ft-grid{grid-template-columns:1fr 1fr;}
 .stats-grid{grid-template-columns:repeat(2,1fr);}
 }
+
+/* ── MOBILE ── */
 @media(max-width:768px){
-nav{padding:0 16px;height:56px;}.nav-links{display:none;}.desktop-only{display:none;}
-.hamburger{display:flex;}.inner{padding:0 16px;}section{padding:56px 0;}
-.srv-bento{grid-template-columns:1fr;}.c2,.c3,.c4,.c6{grid-column:span 1;grid-template-columns:1fr;}
-.port-bento{grid-template-columns:1fr;}.port-card.hero{grid-column:span 1;padding:28px;}
-.proc-track{grid-template-columns:1fr;gap:24px;}.proc-track::before{display:none;}
+/* Nav */
+nav{padding:0 16px;height:56px;}
+.nav-links{display:none;}
+.desktop-only{display:none;}
+.hamburger{display:flex;}
+
+/* Layout */
+.inner{padding:0 16px;}
+section{padding:48px 0;}
+
+/* V1 hero section */
+.v1-hero-inner{padding:80px 16px 48px;text-align:center;}
+.glitch-text{font-size:clamp(2.2rem,10vw,4rem);}
+.sub-hero{font-size:1rem;}
+.v1-cards-grid{padding:2rem 16px;grid-template-columns:1fr;}
+.section-tag-v1{padding:1.5rem 16px 0;}
+
+/* V2 hero */
+#v1-hero + section{padding:80px 0 48px;}
 .depth-rings{display:none;}
-.cta-acts{flex-direction:column;align-items:center;}
-.ft-grid{grid-template-columns:1fr;gap:28px;}footer{padding:44px 16px 24px;}
-.v1-hero-inner{padding:80px 6% 60px;}
+.bar-anim{width:60px!important;}
+
+/* Stats band */
+.stats-grid{grid-template-columns:1fr 1fr;}
+.stat-big{font-size:48px;}
+
+/* Social bar */
+.social-bar{padding:12px 16px;gap:12px;flex-wrap:wrap;justify-content:flex-start;}
+.social-bar p{display:none;}
+
+/* Services bento */
+.srv-bento{grid-template-columns:1fr;}
+.c2,.c3,.c4,.c6{grid-column:span 1;grid-template-columns:1fr;}
+.srv-card{padding:28px 20px;}
+.srv-num{font-size:48px;}
+
+/* Portfolio bento */
+.port-bento{grid-template-columns:1fr;}
+.port-card.hero{grid-column:span 1;padding:28px 20px;}
+.port-card{padding:24px 20px;}
+
+/* Process */
+.proc-track{grid-template-columns:1fr;gap:20px;}
+.proc-track::before{display:none;}
+.proc-step{display:flex;align-items:flex-start;gap:16px;text-align:left;}
+.proc-dot{flex-shrink:0;margin:0;}
+.proc-t{font-size:14px;}
+
+/* Pricing grid */
+#pricing > .inner > div[style*=“grid-template-columns:1fr 1fr 1fr”]{
+grid-template-columns:1fr!important;
 }
-@media(max-width:480px){.stats-grid{grid-template-columns:1fr 1fr;}}
+.p-card.feat{transform:translateY(0);}
+.p-card.feat:hover{transform:translateY(-5px);}
+.p-num{font-size:52px;}
+
+/* Markets tags */
+section .inner > div[style*=“gap:64px”]{flex-direction:column;gap:32px!important;}
+
+/* CTA section */
+.cta-acts{flex-direction:column;align-items:stretch;}
+.cta-acts a,.cta-acts button{width:100%;justify-content:center;}
+
+/* Footer */
+.ft-grid{grid-template-columns:1fr;gap:28px;}
+footer{padding:44px 16px 24px;}
+.ft-bot{flex-direction:column;align-items:flex-start;gap:16px;}
+.ft-socials{flex-wrap:wrap;}
+
+/* Ticker */
+.ticker-inner{animation-duration:18s;}
+
+/* Section titles */
+.section-title{font-size:clamp(32px,8vw,56px);}
+
+/* Cursor — hide on touch */
+#gdm-cur,#gdm-curR,.cur-trail{display:none!important;}
+
+/* Back to top */
+#gdm-top{bottom:16px;right:16px;width:38px;height:38px;font-size:16px;}
+
+/* Buttons — touch friendly */
+.mag-btn{padding:14px 22px;font-size:12px;}
+.v1-btn{padding:12px 20px;}
+}
+
+/* ── SMALL MOBILE ── */
+@media(max-width:480px){
+.stats-grid{grid-template-columns:1fr 1fr;}
+.stat-big{font-size:40px;}
+.stat-unit{font-size:22px;}
+
+/* Hero text */
+section h1,section h2{font-size:clamp(52px,14vw,80px)!important;}
+.hero-h1,.section-title{font-size:clamp(36px,10vw,56px);}
+
+/* Nav */
+nav{height:52px;}
+.logo-top{font-size:18px;}
+
+/* Cards full padding */
+.port-card,.srv-card{padding:20px 16px;}
+
+/* Pricing */
+.p-num{font-size:44px;}
+.p-card{padding:32px 20px;}
+
+/* Footer */
+.ft-socials a{padding:6px 10px;font-size:9px;}
+
+/* Process steps */
+.proc-dot{width:44px;height:44px;font-size:11px;}
+}
 </style>
 
 </head>
@@ -479,14 +585,16 @@ nav{padding:0 16px;height:56px;}.nav-links{display:none;}.desktop-only{display:n
 <!-- NAV -->
 
 <nav>
-  <a href="#" class="logo-wrap">
+  <a href="index.html" class="logo-wrap">
     <div class="logo-top"><svg width="18" height="14" viewBox="0 0 28 22" fill="none"><polygon points="0,11 28,0 21,11 28,22" fill="#cc2d8f"/><polygon points="0,11 28,0 23,16" fill="#00c8d4"/></svg> GEO<span class="logo-d">D</span><span class="logo-m">M</span>us</div>
     <div class="logo-sub">Geo Digital Media</div>
   </a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#portfolio">Ventures</a></li>
-    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="faq.html">FAQ</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a href="https://calendly.com/hello-geodm/30min" target="_blank" rel="noopener noreferrer" class="mag-btn mag-btn-primary nav-cta-wrap desktop-only" data-mag><span>Free Strategy Call</span></a>
@@ -494,7 +602,8 @@ nav{padding:0 16px;height:56px;}.nav-links{display:none;}.desktop-only{display:n
 </nav>
 <div class="mobile-menu" id="mobile-menu">
   <a href="#services">Services</a><a href="#portfolio">Ventures</a>
-  <a href="#pricing">Pricing</a><a href="#contact">Contact</a>
+  <a href="pricing.html">Pricing</a><a href="about.html">About</a>
+  <a href="faq.html">FAQ</a><a href="#contact">Contact</a>
   <a href="https://calendly.com/hello-geodm/30min" target="_blank" rel="noopener noreferrer" class="mag-btn mag-btn-primary" data-mag>Free Strategy Call</a>
 </div>
 
@@ -673,12 +782,12 @@ nav{padding:0 16px;height:56px;}.nav-links{display:none;}.desktop-only{display:n
           <div class="port-role">Brand &middot; Web &middot; Strategy &middot; Web3</div>
         </div>
       </div>
-      <a href="#" class="port-card rv d1"><span class="port-status ps-growing">Growing</span><div class="port-name">Premier Group</div><div class="port-cat">Tax &middot; Credit &middot; Real Estate</div><p class="port-desc">Family-focused financial services — tax prep, credit building, and real estate advisory for everyday families.</p><div class="port-role">Brand &middot; Website &middot; Automation</div><span class="port-num">02</span></a>
-      <a href="#" class="port-card rv d2"><span class="port-status ps-building">Building</span><div class="port-name">Juice Yoga Body</div><div class="port-cat">Nutrition &middot; Movement &middot; Recovery</div><p class="port-desc">Three-pillar wellness brand — signature lemonade, yoga content, and massage services.</p><div class="port-role">E-Commerce &middot; Social &middot; Product</div><span class="port-num">03</span></a>
-      <a href="#" class="port-card rv d3"><span class="port-status ps-building">Building</span><div class="port-name">Creativo</div><div class="port-cat">Events &middot; Production &middot; Community</div><p class="port-desc">Marketplace connecting local creative pros with clients for life's biggest moments.</p><div class="port-role">Platform &middot; Dev &middot; Community</div><span class="port-num">04</span></a>
-      <a href="#" class="port-card rv d1"><span class="port-status ps-building">Building</span><div class="port-name">Your Splashy Kicks</div><div class="port-cat">Sneaker Marketplace &middot; YSK</div><p class="port-desc">Community-first platform for buying and selling sneakers. Mobile-first, culturally embedded.</p><div class="port-role">Marketplace &middot; Mobile UX &middot; Social</div><span class="port-num">05</span></a>
-      <a href="#" class="port-card rv d2"><span class="port-status ps-building">Building</span><div class="port-name">Glow Guide</div><div class="port-cat">Beauty &middot; Influencer Marketing</div><p class="port-desc">Matching nano &amp; micro beauty influencers with brand sponsors. Performance-driven, creator-first.</p><div class="port-role">Platform &middot; Onboarding &middot; Matching</div><span class="port-num">06</span></a>
-      <a href="#" class="port-card rv d3"><span class="port-status ps-vision">Season 2 Vision</span><div class="port-name">SocialLens</div><div class="port-cat">AR &middot; Social Identity &middot; The Future</div><p class="port-desc">Open-source AR protocol. The social layer of the physical world.</p><div class="port-role">Protocol &middot; AR Layer &middot; Web3</div><span class="port-num">07</span></a>
+      <a href="premier-group.html" class="port-card rv d1"><span class="port-status ps-growing">Growing</span><div class="port-name">Premier Group</div><div class="port-cat">Tax &middot; Credit &middot; Real Estate</div><p class="port-desc">Family-focused financial services — tax prep, credit building, and real estate advisory for everyday families.</p><div class="port-role">Brand &middot; Website &middot; Automation</div><span class="port-num">02</span></a>
+      <a href="juice-yoga-body.html" class="port-card rv d2"><span class="port-status ps-building">Building</span><div class="port-name">Juice Yoga Body</div><div class="port-cat">Nutrition &middot; Movement &middot; Recovery</div><p class="port-desc">Three-pillar wellness brand — signature lemonade, yoga content, and massage services.</p><div class="port-role">E-Commerce &middot; Social &middot; Product</div><span class="port-num">03</span></a>
+      <a href="creativo.html" class="port-card rv d3"><span class="port-status ps-building">Building</span><div class="port-name">Creativo</div><div class="port-cat">Events &middot; Production &middot; Community</div><p class="port-desc">Marketplace connecting local creative pros with clients for life's biggest moments.</p><div class="port-role">Platform &middot; Dev &middot; Community</div><span class="port-num">04</span></a>
+      <a href="your-splashy-kicks.html" class="port-card rv d1"><span class="port-status ps-building">Building</span><div class="port-name">Your Splashy Kicks</div><div class="port-cat">Sneaker Marketplace &middot; YSK</div><p class="port-desc">Community-first platform for buying and selling sneakers. Mobile-first, culturally embedded.</p><div class="port-role">Marketplace &middot; Mobile UX &middot; Social</div><span class="port-num">05</span></a>
+      <a href="glow-guide.html" class="port-card rv d2"><span class="port-status ps-building">Building</span><div class="port-name">Glow Guide</div><div class="port-cat">Beauty &middot; Influencer Marketing</div><p class="port-desc">Matching nano &amp; micro beauty influencers with brand sponsors. Performance-driven, creator-first.</p><div class="port-role">Platform &middot; Onboarding &middot; Matching</div><span class="port-num">06</span></a>
+      <a href="sociallens.html" class="port-card rv d3"><span class="port-status ps-vision">Season 2 Vision</span><div class="port-name">SocialLens</div><div class="port-cat">AR &middot; Social Identity &middot; The Future</div><p class="port-desc">Open-source AR protocol. The social layer of the physical world.</p><div class="port-role">Protocol &middot; AR Layer &middot; Web3</div><span class="port-num">07</span></a>
     </div>
   </div>
 </section>
@@ -717,20 +826,20 @@ nav{padding:0 16px;height:56px;}.nav-links{display:none;}.desktop-only{display:n
         <div class="p-tier">Tier 01</div><div class="p-name">LAUNCHPAD</div>
         <div class="p-amt"><span class="p-cur">$</span><span class="p-num">799</span><span class="p-per">/mo</span></div>
         <p class="p-desc">5-page site, booking, AI automation, email campaign, social setup.</p>
-        <a href="#" class="p-cta ol">Get Started</a>
+        <a href="pay.html" class="p-cta ol">Get Started</a>
       </div>
       <div class="p-card feat rv d1">
         <div class="p-badge">&#11088; Most Popular</div>
         <div class="p-tier" style="color:#cc2d8f;">Tier 02</div><div class="p-name">GROWTH ENGINE</div>
         <div class="p-amt"><span class="p-cur">$</span><span class="p-num">1,599</span><span class="p-per">/mo</span></div>
         <p class="p-desc">Full AI automation, 4 email campaigns, 3 social platforms 4x/week, CRM, lead funnels.</p>
-        <a href="#" class="p-cta gl">Get Started</a>
+        <a href="pay.html" class="p-cta gl">Get Started</a>
       </div>
       <div class="p-card rv d2">
         <div class="p-tier" style="color:#f5c842;">Tier 03</div><div class="p-name">EMPIRE MODE</div>
         <div class="p-amt"><span class="p-cur">$</span><span class="p-num">2,999</span><span class="p-per">/mo</span></div>
         <p class="p-desc">Custom site, unlimited email, daily social all platforms, paid ads, dedicated account manager.</p>
-        <a href="#" class="p-cta ol">Let's Talk</a>
+        <a href="pay.html" class="p-cta ol">Let's Talk</a>
       </div>
     </div>
   </div>
@@ -781,7 +890,7 @@ nav{padding:0 16px;height:56px;}.nav-links{display:none;}.desktop-only{display:n
   <div class="ft-grid">
     <div class="ft-brand"><div class="fwm">GEODMus</div><span class="fsub">Geo Digital Media</span><p>Your digital growth partner — from local businesses to full venture ecosystems.</p></div>
     <div class="ft-col"><h5>Services</h5><ul><li><a href="#services">Website Design</a></li><li><a href="#services">AI Automation</a></li><li><a href="#services">Marketing &amp; Social</a></li><li><a href="#services">Web3 &amp; Blockchain</a></li></ul></div>
-    <div class="ft-col"><h5>Company</h5><ul><li><a href="#">About</a></li><li><a href="#portfolio">Portfolio</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#contact">Contact</a></li></ul></div>
+    <div class="ft-col"><h5>Company</h5><ul><li><a href="about.html">About</a></li><li><a href="#portfolio">Portfolio</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="faq.html">FAQ</a></li><li><a href="#contact">Contact</a></li></ul></div>
     <div class="ft-col"><h5>Connect</h5><ul>
       <li><a href="#" id="em-footer">hello&#64;geodm&#46;us</a></li>
       <li><a href="tel:7732361831">773.236.1831</a></li>
@@ -790,7 +899,7 @@ nav{padding:0 16px;height:56px;}.nav-links{display:none;}.desktop-only{display:n
     </ul></div>
   </div>
   <div class="ft-bot">
-    <span>&copy; 2026 <a href="#">Geo Digital Media</a> &middot; GeoDMus &middot; All rights reserved.</span>
+    <span>&copy; 2026 <a href="index.html">Geo Digital Media</a> &middot; GeoDMus &middot; All rights reserved.</span>
     <div class="ft-socials">
       <a href="https://instagram.com/geodm.us" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>Instagram</a>
       <a href="https://x.com/geodmus" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>X / Twitter</a>
