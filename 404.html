@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The page you're looking for doesn't exist. Head back to GeoDMus.">
+<meta property="og:title" content="404 — Page Not Found | GeoDMus">
+<meta property="og:description" content="The page you're looking for doesn't exist. Head back to GeoDMus.">
+<meta property="og:image" content="https://geodm.us/gdm.png">
+<meta property="og:url" content="https://geodm.us/404.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="404 — Page Not Found | GeoDMus">
+<meta name="twitter:description" content="The page you're looking for doesn't exist. Head back to GeoDMus.">
+<link rel="canonical" href="https://geodm.us/404.html">
+<link rel="icon" type="image/png" href="gdm.png">
+<title>404 — Page Not Found | GeoDMus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,700;0,900;1,400&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,700;0,900;1,400&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet"></noscript>
+<style>
+
+:root {
+  --c: #00c8d4;
+  --m: #cc2d8f;
+  --d: #070c0d;
+  --d2: #0d1517;
+  --d3: #111a1c;
+  --w: #ffffff;
+  --g: rgba(255,255,255,0.5);
+  --g2: rgba(255,255,255,0.25);
+  --y: #f5c842;
+  --gr: #00c853;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--d);
+  color: var(--w);
+  font-family: 'Barlow', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; font-family: inherit; }
+
+/* ── LOGO ── */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.logo-text { display: flex; flex-direction: column; gap: 1px; }
+.wm {
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: 20px;
+  letter-spacing: 3px;
+  color: var(--w);
+  line-height: 1;
+}
+.wm .geo { color: var(--w); }
+.wm .d { color: var(--c); }
+.wm .m { color: var(--m); }
+.wm .us { color: var(--w); }
+.sub {
+  font-size: 7px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--c);
+  font-family: 'Barlow Condensed', Arial Narrow, sans-serif;
+  font-weight: 700;
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(7,12,13,0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0,200,212,0.12);
+  padding: 0 32px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+}
+.nav-links a {
+  font-family: 'Barlow Condensed', Arial Narrow, sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--g);
+  transition: color 0.2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--c); }
+.nav-btn {
+  background: linear-gradient(135deg, var(--c), var(--m));
+  color: var(--d);
+  padding: 9px 20px;
+  border: none;
+  border-radius: 3px;
+  font-family: 'Barlow Condensed', Arial Narrow, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+.nav-btn:hover { opacity: 0.85; }
+
+/* ── HAMBURGER ── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+}
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--w);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(7,12,13,0.98);
+  z-index: 99;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: 32px;
+  letter-spacing: 3px;
+  color: var(--w);
+  transition: color 0.2s;
+}
+.mobile-menu a:hover { color: var(--c); }
+.mobile-menu .nav-btn { font-size: 14px; padding: 12px 32px; }
+
+/* ── SECTIONS ── */
+section { padding: 80px 0; }
+.inner { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+.section-tag {
+  font-family: 'Barlow Condensed', Arial Narrow, sans-serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--c);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.section-tag::before {
+  content: '';
+  width: 32px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--c), var(--m));
+  flex-shrink: 0;
+}
+.section-title {
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: clamp(42px, 7vw, 80px);
+  line-height: 0.92;
+  letter-spacing: 1px;
+  color: var(--w);
+  margin-bottom: 20px;
+}
+.section-title .hl-c { color: var(--c); }
+.section-title .hl-m { color: var(--m); }
+.section-sub {
+  font-size: clamp(15px, 2vw, 18px);
+  color: var(--g);
+  max-width: 600px;
+  line-height: 1.7;
+}
+
+/* ── BUTTONS ── */
+.btn-primary {
+  display: inline-block;
+  padding: 14px 32px;
+  background: linear-gradient(135deg, var(--m), #a01870);
+  color: var(--w);
+  font-family: 'Barlow Condensed', Arial Narrow, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+  text-decoration: none;
+}
+.btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+.btn-secondary {
+  display: inline-block;
+  padding: 13px 32px;
+  background: none;
+  color: var(--c);
+  font-family: 'Barlow Condensed', Arial Narrow, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: 1px solid rgba(0,200,212,0.4);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+.btn-secondary:hover { border-color: var(--c); background: rgba(0,200,212,0.08); }
+.btn-email {
+  display: inline-block;
+  padding: 13px 32px;
+  background: var(--c);
+  color: var(--d);
+  font-family: 'Barlow Condensed', Arial Narrow, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  text-decoration: none;
+}
+.btn-email:hover { opacity: 0.85; }
+
+/* ── CTA BAND ── */
+.cta-band {
+  background: linear-gradient(135deg, #0a1618, #0d1d20);
+  border-top: 1px solid rgba(0,200,212,0.1);
+  border-bottom: 1px solid rgba(0,200,212,0.1);
+  padding: 80px 32px;
+  text-align: center;
+}
+.cta-band h3 {
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: clamp(32px, 5vw, 56px);
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+  line-height: 1;
+}
+.cta-band h3 span { color: var(--c); }
+.cta-band p { color: var(--g); margin-bottom: 32px; font-size: 17px; max-width: 500px; margin-left: auto; margin-right: auto; }
+.cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; align-items: center; }
+.cta-esp {
+  margin-top: 20px;
+  font-size: 13px;
+  color: var(--g2);
+}
+.cta-esp a { color: var(--c); text-decoration: underline; }
+
+/* ── FOOTER ── */
+footer {
+  background: #040a0b;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 60px 32px 32px;
+}
+.fg {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+.fb .fwm {
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: 22px;
+  letter-spacing: 3px;
+  background: linear-gradient(90deg, var(--c), var(--m));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 4px;
+}
+.fb .fsub {
+  font-size: 8px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--c);
+  display: block;
+  margin-bottom: 14px;
+  font-family: 'Barlow Condensed', Arial Narrow, sans-serif;
+  font-weight: 700;
+}
+.fb p { font-size: 13px; color: var(--g2); line-height: 1.7; max-width: 240px; }
+.fc h5 {
+  font-family: 'Barlow Condensed', Arial Narrow, sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--c);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.fc ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.fc ul li a {
+  font-size: 13px;
+  color: var(--g2);
+  transition: color 0.2s;
+}
+.fc ul li a:hover { color: var(--w); }
+.fbtm {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.fbtm span { font-size: 12px; color: var(--g2); }
+.fbtm div { display: flex; gap: 16px; }
+.fbtm div a { font-size: 12px; color: var(--g2); transition: color 0.2s; }
+.fbtm div a:hover { color: var(--w); }
+
+/* ── STATS ROW ── */
+.stats-row {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+.stat-item .stat-n {
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: 48px;
+  color: var(--c);
+  line-height: 1;
+}
+.stat-item .stat-l {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--g2);
+  font-family: 'Barlow Condensed', Arial Narrow, sans-serif;
+  font-weight: 700;
+}
+
+/* ── BADGES ── */
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-family: 'Barlow Condensed', Arial Narrow, sans-serif;
+  margin-bottom: 12px;
+}
+.badge-active { background: rgba(0,200,83,0.12); border: 1px solid rgba(0,200,83,0.25); color: #00c853; }
+.badge-dev { background: rgba(0,200,212,0.1); border: 1px solid rgba(0,200,212,0.25); color: var(--c); }
+.badge-vision { background: rgba(204,45,143,0.1); border: 1px solid rgba(204,45,143,0.25); color: var(--m); }
+
+/* ── UTILITY ── */
+.hl-c { color: var(--c); }
+.hl-m { color: var(--m); }
+.hl-y { color: var(--y); }
+.text-center { text-align: center; }
+.mt-8 { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.mt-32 { margin-top: 32px; }
+.mt-48 { margin-top: 48px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+
+/* ── CARDS ── */
+.card {
+  background: var(--d2);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 8px;
+  padding: 28px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.card:hover { border-color: rgba(0,200,212,0.25); transform: translateY(-2px); }
+.card-icon { font-size: 28px; margin-bottom: 14px; }
+.card h4 {
+  font-family: 'Barlow Condensed', Arial Narrow, sans-serif;
+  font-size: 16px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--w);
+}
+.card p { font-size: 14px; color: var(--g2); line-height: 1.65; }
+
+/* ── SEO / SECURITY FIX ── */
+a[target="_blank"] { /* handled inline */ }
+
+/* ── MOBILE ── */
+@media (max-width: 900px) {
+  .fg { grid-template-columns: 1fr 1fr; }
+  .grid-4 { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  nav { padding: 0 16px; }
+  .nav-links { display: none; }
+  .nav-btn.desktop-only { display: none; }
+  .hamburger { display: flex; }
+  .inner { padding: 0 16px; }
+  section { padding: 56px 0; }
+  .grid-2 { grid-template-columns: 1fr; }
+  .grid-3 { grid-template-columns: 1fr; }
+  .fg { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .cta-btns { flex-direction: column; align-items: center; }
+  footer { padding: 48px 16px 24px; }
+}
+@media (max-width: 480px) {
+  .section-title { font-size: clamp(36px, 10vw, 56px); }
+  .fg { grid-template-columns: 1fr; }
+  .stats-row { gap: 24px; }
+}
+
+</style>
+</head>
+<body><nav>
+  <a href="index.html" class="logo" aria-label="GeoDMus Home">
+  <svg width="26" height="26" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;display:block">
+  <polygon points="26,22 26,6 4,14" fill="#cc2d8f"/>
+  <polygon points="24,20 24,6 4,14" fill="#00c8d4"/>
+</svg>
+  <div class="logo-text">
+    <div class="wm"><span class="geo">GEO </span><span class="d">D</span><span class="m">M</span><span class="us"> US</span></div>
+    <div class="sub">Geo Digital Media</div>
+  </div>
+</a>
+  <ul class="nav-links">
+    <li><a href="services.html">Services</a></li>
+    <li><a href="ventures.html">Ventures</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    
+  </ul>
+  <a href="https://calendly.com/hello-geodm/30min" class="nav-btn desktop-only" target="_blank" rel="noopener noreferrer">Free Strategy Call</a>
+  <button class="hamburger" id="ham-btn" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="services.html">Services</a>
+  <a href="ventures.html">Ventures</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="about.html">About</a>
+  <a href="faq.html">FAQ</a>
+  <a href="contact.html">Contact</a>
+  <a href="https://calendly.com/hello-geodm/30min" class="nav-btn" target="_blank" rel="noopener noreferrer">Free Strategy Call</a>
+</div>
+<section style="min-height:70vh;display:flex;align-items:center;text-align:center">
+  <div class="inner">
+    <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(120px,20vw,200px);line-height:1;color:rgba(0,200,212,0.08);margin-bottom:-20px">404</div>
+    <h1 class="section-title">PAGE NOT<br><span class="hl-m">FOUND.</span></h1>
+    <p class="section-sub" style="margin:20px auto 40px">This page doesn&rsquo;t exist &mdash; but your digital growth strategy should. Let&rsquo;s get you back on track.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="index.html" class="btn-primary">Go Home</a>
+      <a href="services.html" class="btn-secondary">See Our Services</a>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="fg">
+    <div class="fb">
+      <div class="fwm">GEODMus</div>
+      <span class="fsub">Geo Digital Media</span>
+      <p>Your digital growth partner — from local businesses to full venture ecosystems.</p>
+    </div>
+    <div class="fc">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="services.html">Website Design</a></li>
+        <li><a href="services.html">AI Automation</a></li>
+        <li><a href="services.html">Marketing &amp; Social</a></li>
+        <li><a href="services.html">Web3 &amp; Blockchain</a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="ventures.html">Portfolio</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h5>Connect</h5>
+      <ul>
+        <li><a href="#" id="em-footer">hello&#64;geodm&#46;us</a></li>
+        <li><a href="tel:7732361831">773.236.1831</a></li>
+        <li><a href="https://instagram.com/geodm.us" target="_blank" rel="noopener noreferrer">@geodm.us</a></li>
+        <li><a href="https://x.com/geodmus" target="_blank" rel="noopener noreferrer">@geodmus</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fbtm">
+    <span>&copy; 2026 Geo Digital Media &middot; GeoDMus &middot; geodm.us &middot; All rights reserved.</span>
+    <div>
+      <a href="https://instagram.com/geodm.us" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://x.com/geodmus" target="_blank" rel="noopener noreferrer">X / Twitter</a>
+    </div>
+  </div>
+</footer>
+<script>
+(function(){
+  var btn=document.getElementById("ham-btn");
+  var menu=document.getElementById("mobile-menu");
+  if(btn&&menu){
+    btn.addEventListener("click",function(){
+      menu.classList.toggle("open");
+    });
+    menu.querySelectorAll("a").forEach(function(a){
+      a.addEventListener("click",function(){menu.classList.remove("open");});
+    });
+  }
+})();
+</script>
+<script>
+(function(){
+  var p="mail"+"to:";
+  var a="hello";
+  var b="geodm.us";
+  var ml=p+a+"@"+b;
+  ["em-btn","em-nav","em-footer","em-cta"].forEach(function(id){
+    var el=document.getElementById(id);
+    if(el){el.addEventListener("click",function(ev){
+      ev.preventDefault();window.location.href=ml;
+    });}
+  });
+})();
+</script>
+
+</body>
+</html>

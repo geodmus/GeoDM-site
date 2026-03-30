@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://geodm.us/sitemap.xml
+
+# Keep content studio private from indexing
+Disallow: /content.html
