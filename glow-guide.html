@@ -6,6 +6,8 @@
 <title>Glow Guide | Beauty · Influencer Marketing</title>
 <meta name="description" content="Matching platform connecting nano and micro beauty influencers with brand sponsors. Performance-driven, creator-first."/>
 <link rel="icon" type="image/png" href="gdm.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600;700&family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet"/>
 <style>
 :root{--c:#00c8d4;--m:#cc2d8f;--a:#ff6b9d;--a2:#ff8fb3;--d:#070c0d;--d2:#0d1517;--d3:#111a1c;--w:#fff;--g:#8a9ba0}
@@ -56,18 +58,21 @@ h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,5vw,64px);letter-spa
 footer{background:var(--d2);border-top:1px solid rgba(0,200,212,.1);padding:40px;text-align:center}
 footer p{font-size:13px;color:var(--g)}.footer-links{display:flex;gap:24px;justify-content:center;margin-top:12px}.footer-links a{color:var(--g);text-decoration:none;font-size:12px;letter-spacing:1px;text-transform:uppercase;transition:color .2s}.footer-links a:hover{color:var(--c)}
 .fu{opacity:1;transform:none}
-@media(max-width:768px){nav{padding:0 20px}.nav-links{display:none}.hero{padding:100px 20px 56px}.section{padding:56px 20px}.sgrid{grid-template-columns:1fr}.match-grid{grid-template-columns:1fr;gap:2px}.match-arrow{padding:16px 0}}
+@media(max-width:768px){nav{padding:0 20px}.nav-btn{display:none}.nav-links{display:none}.hero{padding:100px 20px 56px}.section{padding:56px 20px}.sgrid{grid-template-columns:1fr}.match-grid{grid-template-columns:1fr;gap:2px}.match-arrow{padding:16px 0}}
 
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:10px;min-width:44px;min-height:44px;justify-content:center}
 .hamburger span{display:block;width:24px;height:2px;background:var(--w);transition:all .3s}
 .mobile-menu{display:none;position:fixed;top:70px;left:0;right:0;background:rgba(7,12,13,.98);padding:24px 40px;border-bottom:1px solid rgba(0,200,212,.1);z-index:99}
 .mobile-menu.open{display:block}
 .mobile-menu ul{list-style:none;display:flex;flex-direction:column;gap:16px}
 .mobile-menu a{color:var(--g);text-decoration:none;font-size:14px;letter-spacing:2px;text-transform:uppercase;font-weight:600;transition:color .2s}.mobile-menu a:hover{color:var(--c)}
 @media(max-width:768px){.nav-links{display:none!important}.hamburger{display:flex}}
+.skip-link{position:absolute;top:-100%;left:0;background:var(--m);color:var(--w);padding:12px 20px;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none;z-index:999;transition:top .2s}.skip-link:focus{top:0}:focus-visible{outline:2px solid var(--c);outline-offset:3px;border-radius:2px}
+@media(max-width:480px){.fg{grid-template-columns:1fr!important}.hero{min-height:auto}.lbl{letter-spacing:2px}.sec-lbl{letter-spacing:2px}}
 </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <nav>
   <a href="index.html" class="logo" style="display:flex;align-items:flex-start;gap:8px;text-decoration:none">
   <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
@@ -81,7 +86,7 @@ footer p{font-size:13px;color:var(--g)}.footer-links{display:flex;gap:24px;justi
 </a>
   <ul class="nav-links"><li><a href="ventures.html">← Ventures</a></li><li><a href="services.html">Services</a></li><li><a href="about.html">About</a></li></ul>
   <a href="https://calendly.com/hello-geodm/30min" class="nav-btn" target="_blank">Free Strategy Call</a>
-<button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')"><span></span><span></span><span></span></button>
+<button class="hamburger" aria-label="Toggle navigation" onclick="document.querySelector('.mobile-menu').classList.toggle('open')"><span></span><span></span><span></span></button>
 </nav>
 <div class="mobile-menu">
   <ul>
@@ -93,7 +98,7 @@ footer p{font-size:13px;color:var(--g)}.footer-links{display:flex;gap:24px;justi
     <li><a href="https://calendly.com/hello-geodm/30min" target="_blank">Book Free Call</a></li>
   </ul>
 </div>
-<section class="hero">
+<section id="main-content" class="hero">
   <div class="hero-bg"></div>
   <div class="hero-line"></div>
   <div class="hero-inner">
@@ -171,5 +176,9 @@ document.querySelectorAll('.fu').forEach(el=>fo.observe(el));
 })();
 </script>
 <script>(function(){var u="hello",d="geodm"+".us",e=u+"@"+d;document.querySelectorAll("[data-em]").forEach(function(a){a.href="mailto:"+e;if(a.dataset.show)a.textContent=e;});})();</script>
+<script>
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){var m=document.querySelector('.mobile-menu');if(m)m.classList.remove('open')}});
+document.addEventListener('click',function(e){var m=document.querySelector('.mobile-menu');var h=document.querySelector('.hamburger');if(m&&m.classList.contains('open')&&!m.contains(e.target)&&h&&!h.contains(e.target)){m.classList.remove('open')}});
+</script>
 </body>
 </html>

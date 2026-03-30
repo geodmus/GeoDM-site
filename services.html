@@ -6,6 +6,8 @@
 <title>Services | Geo Digital Media — GeoDMus</title>
 <meta name="description" content="Four service pillars. One partner. Web design, AI automation, marketing, and real Web3 integration."/>
 <link rel="icon" type="image/png" href="gdm.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600;700&family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet"/>
 <style>
 :root{--c:#00c8d4;--m:#cc2d8f;--d:#070c0d;--d2:#0d1517;--d3:#111a1c;--w:#fff;--g:#8a9ba0}
@@ -24,7 +26,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,9vw,110px);line-height:.92;letter-spacing:2px;margin-bottom:24px}.h1c{color:var(--c)}.h1m{color:var(--m)}
 .hero-sub{font-size:clamp(15px,2vw,19px);font-weight:300;line-height:1.65;color:rgba(255,255,255,.65);max-width:580px;border-left:3px solid var(--m);padding-left:20px}
 .ticker-wrap{overflow:hidden;background:rgba(0,200,212,.04);border-top:1px solid rgba(0,200,212,.1);border-bottom:1px solid rgba(0,200,212,.1);padding:13px 0}
-.ticker{display:flex;gap:48px;white-space:nowrap;animation:tick 32s linear infinite}
+.ticker{display:flex;gap:48px;white-space:nowrap;will-change:transform;animation:tick 32s linear infinite}
 .ticker span{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--c);opacity:.6}.ticker .dot{color:var(--m);opacity:1}
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .pill-nav{position:sticky;top:70px;z-index:50;background:rgba(13,21,23,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,200,212,.08);padding:0 40px;display:flex;overflow-x:auto}
@@ -92,7 +94,7 @@ footer{background:var(--d2);border-top:1px solid rgba(0,200,212,.1);padding:56px
 .fbtm a{color:var(--g);text-decoration:none;margin-left:16px}.fbtm a:hover{color:var(--c)}
 .fu{opacity:1;transform:none}.fu.on{opacity:1;transform:none}
 @media(max-width:768px){
-  nav{padding:0 20px}.nav-links{display:none}
+  nav{padding:0 20px}.nav-btn{display:none}.nav-links{display:none}
   .hero{padding:100px 20px 56px}.pillar{padding:60px 20px}.pill-nav{padding:0 20px}
   .ph{grid-template-columns:1fr;gap:12px}.pnum{font-size:64px}
   .sgrid{grid-template-columns:1fr}.pgrid{grid-template-columns:1fr}
@@ -100,13 +102,16 @@ footer{background:var(--d2);border-top:1px solid rgba(0,200,212,.1);padding:56px
   .fg{grid-template-columns:1fr 1fr;gap:28px}.fbtm{flex-direction:column;gap:10px;text-align:center}
 }
 
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:10px;min-width:44px;min-height:44px;justify-content:center}
 .hamburger span{display:block;width:24px;height:2px;background:var(--w);transition:all .3s}
 .mobile-menu{display:none;position:fixed;top:70px;left:0;right:0;background:rgba(7,12,13,.98);padding:24px 40px;border-bottom:1px solid rgba(0,200,212,.1);z-index:99}
 .mobile-menu.open{display:block}
 .mobile-menu ul{list-style:none;display:flex;flex-direction:column;gap:16px}
 .mobile-menu a{color:var(--g);text-decoration:none;font-size:14px;letter-spacing:2px;text-transform:uppercase;font-weight:600;transition:color .2s}.mobile-menu a:hover{color:var(--c)}
 @media(max-width:768px){.nav-links{display:none!important}.hamburger{display:flex}}
+.skip-link{position:absolute;top:-100%;left:0;background:var(--m);color:var(--w);padding:12px 20px;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none;z-index:999;transition:top .2s}.skip-link:focus{top:0}:focus-visible{outline:2px solid var(--c);outline-offset:3px;border-radius:2px}
+@media(prefers-reduced-motion:reduce){.ticker{animation:none;transform:none}}
+@media(max-width:480px){.fg{grid-template-columns:1fr!important}.hero{min-height:auto}.lbl{letter-spacing:2px}.sec-lbl{letter-spacing:2px}}
 </style>
 </head>
   <script>
@@ -128,6 +133,7 @@ footer{background:var(--d2);border-top:1px solid rgba(0,200,212,.1);padding:56px
 </script>
 
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 
 <nav>
   <a href="index.html" class="logo" style="display:flex;align-items:flex-start;gap:8px;text-decoration:none">
@@ -149,7 +155,7 @@ footer{background:var(--d2);border-top:1px solid rgba(0,200,212,.1);padding:56px
     <li><a href="index.html#contact">Contact</a></li>
   </ul>
   <a href="https://calendly.com/hello-geodm/30min" class="nav-btn" target="_blank">Free Strategy Call</a>
-<button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')"><span></span><span></span><span></span></button>
+<button class="hamburger" aria-label="Toggle navigation" onclick="document.querySelector('.mobile-menu').classList.toggle('open')"><span></span><span></span><span></span></button>
 </nav>
 <div class="mobile-menu">
   <ul>
@@ -163,7 +169,7 @@ footer{background:var(--d2);border-top:1px solid rgba(0,200,212,.1);padding:56px
   </ul>
 </div>
 
-<section class="hero">
+<section id="main-content" class="hero">
   <div class="hero-bg"></div>
   <div class="hero-line"></div>
   <div class="hero-inner">
@@ -218,7 +224,7 @@ footer{background:var(--d2);border-top:1px solid rgba(0,200,212,.1);padding:56px
   <h3>READY TO LAUNCH YOUR <span>SITE?</span></h3>
   <p>Standard 5-page sites can be live in under 2 weeks. Let's scope yours.</p>
   <div class="btns"><a href="https://calendly.com/hello-geodm/30min" class="btn1" target="_blank">Book Free Strategy Call</a>
-      <button id="email-btn" style="display:inline-block;margin-top:14px;padding:13px 32px;background:#00c8d4;color:#070c0d;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-radius:3px;border:none;cursor:pointer;">EMAIL US DIRECTLY</button><a href="pricing.html" class="btn2">See Pricing</a></div>
+      <button type="button" id="email-btn" style="display:inline-block;margin-top:14px;padding:13px 32px;background:#00c8d4;color:#070c0d;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-radius:3px;border:none;cursor:pointer;">EMAIL US DIRECTLY</button><a href="pricing.html" class="btn2">See Pricing</a></div>
 </div>
 
 <!-- PILLAR 02 -->
@@ -367,5 +373,9 @@ footer{background:var(--d2);border-top:1px solid rgba(0,200,212,.1);padding:56px
 </div>
 </footer>
 <script>(function(){var u="hello",d="geodm"+".us",e=u+"@"+d;document.querySelect
+<script>
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){var m=document.querySelector('.mobile-menu');if(m)m.classList.remove('open')}});
+document.addEventListener('click',function(e){var m=document.querySelector('.mobile-menu');var h=document.querySelector('.hamburger');if(m&&m.classList.contains('open')&&!m.contains(e.target)&&h&&!h.contains(e.target)){m.classList.remove('open')}});
+</script>
 </body>
 </html>
