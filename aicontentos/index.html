@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Meme Workshop — GeoDMus</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cyan: #00c8d4;
+    --magenta: #cc2d8f;
+    --dark: #0a0a0f;
+    --dark2: #111118;
+    --dark3: #1a1a24;
+    --dark4: #22222f;
+    --border: rgba(0,200,212,0.15);
+    --text: #e8e8f0;
+    --muted: #888899;
+    --success: #00d48a;
+    --warning: #f0a500;
+  }
+
+- { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+background: var(–dark);
+color: var(–text);
+font-family: ‘Barlow’, sans-serif;
+min-height: 100vh;
+overflow-x: hidden;
+}
+
+/* TOPBAR */
+.topbar {
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 0 24px;
+height: 56px;
+background: var(–dark2);
+border-bottom: 1px solid var(–border);
+position: sticky;
+top: 0;
+z-index: 100;
+}
+
+.topbar-left {
+display: flex;
+align-items: center;
+gap: 16px;
+}
+
+.logo {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 22px;
+letter-spacing: 2px;
+background: linear-gradient(135deg, var(–cyan), var(–magenta));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+
+.page-label {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 13px;
+font-weight: 600;
+letter-spacing: 3px;
+text-transform: uppercase;
+color: var(–muted);
+border-left: 1px solid var(–border);
+padding-left: 16px;
+}
+
+.topbar-right {
+display: flex;
+align-items: center;
+gap: 12px;
+}
+
+.btn-settings {
+background: var(–dark3);
+border: 1px solid var(–border);
+color: var(–muted);
+padding: 7px 14px;
+border-radius: 6px;
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 13px;
+letter-spacing: 1px;
+cursor: pointer;
+transition: all 0.2s;
+display: flex;
+align-items: center;
+gap: 6px;
+}
+
+.btn-settings:hover {
+border-color: var(–cyan);
+color: var(–cyan);
+}
+
+.api-status {
+font-size: 11px;
+font-family: ‘Barlow Condensed’, sans-serif;
+letter-spacing: 1px;
+padding: 4px 10px;
+border-radius: 4px;
+background: rgba(0,212,138,0.1);
+border: 1px solid rgba(0,212,138,0.3);
+color: var(–success);
+}
+
+.api-status.no-key {
+background: rgba(240,165,0,0.1);
+border-color: rgba(240,165,0,0.3);
+color: var(–warning);
+}
+
+/* NAV BACK */
+.nav-back {
+padding: 10px 24px;
+border-bottom: 1px solid var(–border);
+background: var(–dark2);
+}
+
+.nav-back a {
+color: var(–muted);
+text-decoration: none;
+font-size: 13px;
+font-family: ‘Barlow Condensed’, sans-serif;
+letter-spacing: 1px;
+transition: color 0.2s;
+}
+
+.nav-back a:hover { color: var(–cyan); }
+
+/* MAIN LAYOUT */
+.workspace {
+display: grid;
+grid-template-columns: 280px 1fr 320px;
+height: calc(100vh - 87px);
+overflow: hidden;
+}
+
+/* LEFT — MEME LIBRARY */
+.panel-left {
+background: var(–dark2);
+border-right: 1px solid var(–border);
+display: flex;
+flex-direction: column;
+overflow: hidden;
+}
+
+.panel-header {
+padding: 14px 16px;
+border-bottom: 1px solid var(–border);
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+
+.panel-title {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 11px;
+font-weight: 600;
+letter-spacing: 3px;
+text-transform: uppercase;
+color: var(–muted);
+}
+
+.meme-count {
+font-size: 11px;
+color: var(–cyan);
+font-family: ‘Barlow Condensed’, sans-serif;
+}
+
+.btn-generate-new {
+margin: 12px;
+padding: 10px;
+background: linear-gradient(135deg, rgba(0,200,212,0.15), rgba(204,45,143,0.15));
+border: 1px solid var(–cyan);
+border-radius: 8px;
+color: var(–cyan);
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 13px;
+font-weight: 600;
+letter-spacing: 2px;
+text-transform: uppercase;
+cursor: pointer;
+transition: all 0.2s;
+text-align: center;
+}
+
+.btn-generate-new:hover {
+background: linear-gradient(135deg, rgba(0,200,212,0.25), rgba(204,45,143,0.25));
+box-shadow: 0 0 20px rgba(0,200,212,0.2);
+}
+
+.meme-list {
+flex: 1;
+overflow-y: auto;
+padding: 8px;
+}
+
+.meme-list::-webkit-scrollbar { width: 4px; }
+.meme-list::-webkit-scrollbar-track { background: transparent; }
+.meme-list::-webkit-scrollbar-thumb { background: var(–dark4); border-radius: 2px; }
+
+.meme-card {
+padding: 10px 12px;
+border-radius: 8px;
+border: 1px solid transparent;
+cursor: pointer;
+transition: all 0.2s;
+margin-bottom: 4px;
+background: var(–dark3);
+}
+
+.meme-card:hover {
+border-color: rgba(0,200,212,0.3);
+background: var(–dark4);
+}
+
+.meme-card.active {
+border-color: var(–cyan);
+background: rgba(0,200,212,0.08);
+}
+
+.meme-card.workshopped {
+border-color: rgba(0,212,138,0.3);
+}
+
+.meme-card-setup {
+font-size: 11px;
+color: var(–muted);
+font-family: ‘Barlow Condensed’, sans-serif;
+letter-spacing: 1px;
+text-transform: uppercase;
+margin-bottom: 4px;
+}
+
+.meme-card-punch {
+font-size: 13px;
+color: var(–text);
+font-weight: 600;
+line-height: 1.3;
+}
+
+.meme-status {
+display: inline-block;
+font-size: 9px;
+letter-spacing: 1px;
+text-transform: uppercase;
+font-family: ‘Barlow Condensed’, sans-serif;
+padding: 2px 6px;
+border-radius: 3px;
+margin-top: 5px;
+}
+
+.status-workshopped {
+background: rgba(0,212,138,0.15);
+color: var(–success);
+border: 1px solid rgba(0,212,138,0.3);
+}
+
+.status-fresh {
+background: rgba(136,136,153,0.1);
+color: var(–muted);
+border: 1px solid rgba(136,136,153,0.2);
+}
+
+/* CENTER — WORKSHOP PANEL */
+.panel-center {
+background: var(–dark);
+overflow-y: auto;
+display: flex;
+flex-direction: column;
+}
+
+.panel-center::-webkit-scrollbar { width: 4px; }
+.panel-center::-webkit-scrollbar-track { background: transparent; }
+.panel-center::-webkit-scrollbar-thumb { background: var(–dark4); border-radius: 2px; }
+
+.workshop-empty {
+flex: 1;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+padding: 40px;
+text-align: center;
+gap: 16px;
+}
+
+.workshop-empty-icon {
+font-size: 48px;
+opacity: 0.3;
+}
+
+.workshop-empty h2 {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 28px;
+letter-spacing: 3px;
+color: var(–muted);
+}
+
+.workshop-empty p {
+font-size: 14px;
+color: var(–muted);
+max-width: 280px;
+line-height: 1.6;
+}
+
+/* SELECTED MEME DISPLAY */
+.selected-meme {
+padding: 24px;
+border-bottom: 1px solid var(–border);
+}
+
+.meme-display {
+background: #000;
+border-radius: 12px;
+padding: 28px 24px;
+margin-bottom: 20px;
+position: relative;
+overflow: hidden;
+}
+
+.meme-display::before {
+content: ‘’;
+position: absolute;
+inset: 0;
+background: linear-gradient(135deg, rgba(0,200,212,0.03), rgba(204,45,143,0.03));
+}
+
+.meme-text-setup {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 13px;
+letter-spacing: 3px;
+color: var(–muted);
+margin-bottom: 6px;
+}
+
+.meme-text-punch {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 28px;
+letter-spacing: 2px;
+color: #fff;
+line-height: 1.1;
+margin-bottom: 12px;
+}
+
+.meme-meta {
+display: flex;
+gap: 8px;
+flex-wrap: wrap;
+}
+
+.meme-tag {
+font-size: 11px;
+font-family: ‘Barlow Condensed’, sans-serif;
+letter-spacing: 1px;
+padding: 3px 8px;
+border-radius: 4px;
+background: var(–dark3);
+color: var(–muted);
+border: 1px solid var(–border);
+}
+
+/* WORKSHOP INPUTS */
+.workshop-inputs {
+padding: 0 24px 20px;
+display: flex;
+flex-direction: column;
+gap: 14px;
+}
+
+.input-row {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 12px;
+}
+
+.input-group {
+display: flex;
+flex-direction: column;
+gap: 6px;
+}
+
+.input-label {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 11px;
+font-weight: 600;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(–muted);
+}
+
+.input-field {
+background: var(–dark2);
+border: 1px solid var(–border);
+border-radius: 8px;
+padding: 10px 14px;
+color: var(–text);
+font-family: ‘Barlow’, sans-serif;
+font-size: 14px;
+transition: border-color 0.2s;
+width: 100%;
+}
+
+.input-field:focus {
+outline: none;
+border-color: var(–cyan);
+}
+
+.input-field::placeholder { color: var(–muted); }
+
+select.input-field {
+cursor: pointer;
+appearance: none;
+background-image: url(“data:image/svg+xml,%3Csvg xmlns=‘http://www.w3.org/2000/svg’ width=‘12’ height=‘12’ fill=’%23888899’ viewBox=‘0 0 16 16’%3E%3Cpath d=‘M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z’/%3E%3C/svg%3E”);
+background-repeat: no-repeat;
+background-position: right 12px center;
+padding-right: 32px;
+}
+
+select.input-field option {
+background: var(–dark2);
+}
+
+.reaction-pills {
+display: flex;
+gap: 8px;
+flex-wrap: wrap;
+}
+
+.reaction-pill {
+padding: 7px 14px;
+border-radius: 20px;
+border: 1px solid var(–border);
+background: var(–dark2);
+color: var(–muted);
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 13px;
+font-weight: 600;
+letter-spacing: 1px;
+cursor: pointer;
+transition: all 0.2s;
+}
+
+.reaction-pill:hover {
+border-color: var(–cyan);
+color: var(–cyan);
+}
+
+.reaction-pill.active {
+background: rgba(0,200,212,0.15);
+border-color: var(–cyan);
+color: var(–cyan);
+}
+
+.btn-workshop {
+margin: 0 24px 24px;
+padding: 16px;
+background: linear-gradient(135deg, var(–cyan), var(–magenta));
+border: none;
+border-radius: 10px;
+color: #fff;
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 20px;
+letter-spacing: 4px;
+cursor: pointer;
+transition: all 0.2s;
+position: relative;
+overflow: hidden;
+}
+
+.btn-workshop:hover {
+transform: translateY(-1px);
+box-shadow: 0 8px 30px rgba(0,200,212,0.3);
+}
+
+.btn-workshop:disabled {
+opacity: 0.5;
+cursor: not-allowed;
+transform: none;
+}
+
+.btn-workshop .loading-dots {
+display: none;
+}
+
+.btn-workshop.loading .btn-text { display: none; }
+.btn-workshop.loading .loading-dots { display: inline; }
+
+/* BREAKDOWN RESULT */
+.breakdown-result {
+margin: 0 24px 24px;
+background: var(–dark2);
+border: 1px solid var(–border);
+border-radius: 12px;
+overflow: hidden;
+animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+from { opacity: 0; transform: translateY(10px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+.breakdown-header {
+padding: 14px 18px;
+background: linear-gradient(135deg, rgba(0,200,212,0.1), rgba(204,45,143,0.1));
+border-bottom: 1px solid var(–border);
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+
+.breakdown-title {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 11px;
+font-weight: 600;
+letter-spacing: 3px;
+text-transform: uppercase;
+color: var(–cyan);
+}
+
+.breakdown-body {
+padding: 18px;
+display: flex;
+flex-direction: column;
+gap: 16px;
+}
+
+.breakdown-item {
+display: flex;
+flex-direction: column;
+gap: 6px;
+}
+
+.breakdown-item-label {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 10px;
+font-weight: 600;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(–magenta);
+}
+
+.breakdown-item-value {
+font-size: 14px;
+color: var(–text);
+line-height: 1.5;
+}
+
+.text-line-display {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 22px;
+letter-spacing: 2px;
+color: #fff;
+background: #000;
+padding: 16px;
+border-radius: 8px;
+line-height: 1.2;
+}
+
+.btn-use-text {
+display: inline-block;
+margin-top: 8px;
+padding: 6px 14px;
+background: rgba(0,200,212,0.1);
+border: 1px solid var(–cyan);
+border-radius: 6px;
+color: var(–cyan);
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 12px;
+font-weight: 600;
+letter-spacing: 1px;
+cursor: pointer;
+transition: all 0.2s;
+}
+
+.btn-use-text:hover {
+background: rgba(0,200,212,0.2);
+}
+
+/* GENERATE NEW MODE */
+.generate-mode {
+padding: 24px;
+display: flex;
+flex-direction: column;
+gap: 16px;
+}
+
+.mode-header {
+display: flex;
+align-items: center;
+gap: 12px;
+margin-bottom: 4px;
+}
+
+.mode-badge {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 11px;
+font-weight: 600;
+letter-spacing: 2px;
+text-transform: uppercase;
+padding: 4px 10px;
+border-radius: 4px;
+background: rgba(204,45,143,0.15);
+border: 1px solid rgba(204,45,143,0.4);
+color: var(–magenta);
+}
+
+.mode-title {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 24px;
+letter-spacing: 3px;
+color: var(–text);
+}
+
+/* RIGHT — POST PANEL */
+.panel-right {
+background: var(–dark2);
+border-left: 1px solid var(–border);
+display: flex;
+flex-direction: column;
+overflow: hidden;
+}
+
+.post-panel-body {
+flex: 1;
+overflow-y: auto;
+padding: 16px;
+display: flex;
+flex-direction: column;
+gap: 16px;
+}
+
+.post-panel-body::-webkit-scrollbar { width: 4px; }
+.post-panel-body::-webkit-scrollbar-track { background: transparent; }
+.post-panel-body::-webkit-scrollbar-thumb { background: var(–dark4); border-radius: 2px; }
+
+.caption-area {
+display: flex;
+flex-direction: column;
+gap: 8px;
+}
+
+.caption-textarea {
+background: var(–dark3);
+border: 1px solid var(–border);
+border-radius: 8px;
+padding: 12px;
+color: var(–text);
+font-family: ‘Barlow’, sans-serif;
+font-size: 13px;
+line-height: 1.6;
+resize: none;
+height: 120px;
+width: 100%;
+transition: border-color 0.2s;
+}
+
+.caption-textarea:focus {
+outline: none;
+border-color: var(–cyan);
+}
+
+.char-counter {
+font-size: 11px;
+color: var(–muted);
+font-family: ‘Barlow Condensed’, sans-serif;
+text-align: right;
+}
+
+.char-counter.over { color: var(–magenta); }
+
+/* HASHTAG CHIPS */
+.hashtag-section { display: flex; flex-direction: column; gap: 8px; }
+
+.venture-pills {
+display: flex;
+flex-wrap: wrap;
+gap: 6px;
+}
+
+.venture-pill {
+padding: 4px 10px;
+border-radius: 12px;
+border: 1px solid var(–border);
+background: var(–dark3);
+color: var(–muted);
+font-size: 11px;
+font-family: ‘Barlow Condensed’, sans-serif;
+letter-spacing: 1px;
+cursor: pointer;
+transition: all 0.2s;
+}
+
+.venture-pill:hover {
+border-color: var(–magenta);
+color: var(–magenta);
+}
+
+.venture-pill.active {
+background: rgba(204,45,143,0.15);
+border-color: var(–magenta);
+color: var(–magenta);
+}
+
+.hashtag-output {
+font-size: 12px;
+color: var(–cyan);
+font-family: ‘Barlow’, sans-serif;
+line-height: 1.7;
+padding: 10px;
+background: var(–dark3);
+border-radius: 6px;
+border: 1px solid var(–border);
+min-height: 40px;
+}
+
+/* PLATFORM TOGGLES */
+.platform-section { display: flex; flex-direction: column; gap: 8px; }
+
+.platform-toggles {
+display: flex;
+gap: 8px;
+}
+
+.platform-toggle {
+flex: 1;
+padding: 8px 6px;
+border-radius: 8px;
+border: 1px solid var(–border);
+background: var(–dark3);
+color: var(–muted);
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 12px;
+font-weight: 600;
+letter-spacing: 1px;
+cursor: pointer;
+transition: all 0.2s;
+text-align: center;
+}
+
+.platform-toggle.active {
+background: rgba(0,200,212,0.15);
+border-color: var(–cyan);
+color: var(–cyan);
+}
+
+/* ACTION BUTTONS */
+.action-buttons {
+display: flex;
+flex-direction: column;
+gap: 8px;
+padding-top: 4px;
+}
+
+.btn-copy {
+padding: 12px;
+background: var(–dark3);
+border: 1px solid var(–border);
+border-radius: 8px;
+color: var(–text);
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 14px;
+font-weight: 600;
+letter-spacing: 2px;
+cursor: pointer;
+transition: all 0.2s;
+text-align: center;
+}
+
+.btn-copy:hover {
+border-color: var(–cyan);
+color: var(–cyan);
+}
+
+.btn-copy.copied {
+border-color: var(–success);
+color: var(–success);
+}
+
+.btn-metricool {
+padding: 12px;
+background: linear-gradient(135deg, rgba(0,200,212,0.1), rgba(204,45,143,0.1));
+border: 1px solid var(–cyan);
+border-radius: 8px;
+color: var(–cyan);
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 14px;
+font-weight: 600;
+letter-spacing: 2px;
+cursor: pointer;
+transition: all 0.2s;
+text-align: center;
+}
+
+.btn-metricool:hover {
+background: linear-gradient(135deg, rgba(0,200,212,0.2), rgba(204,45,143,0.2));
+box-shadow: 0 4px 20px rgba(0,200,212,0.2);
+}
+
+.metricool-note {
+font-size: 11px;
+color: var(–muted);
+text-align: center;
+font-family: ‘Barlow Condensed’, sans-serif;
+letter-spacing: 1px;
+}
+
+/* SETTINGS MODAL */
+.modal-overlay {
+display: none;
+position: fixed;
+inset: 0;
+background: rgba(0,0,0,0.8);
+z-index: 200;
+align-items: center;
+justify-content: center;
+backdrop-filter: blur(4px);
+}
+
+.modal-overlay.open { display: flex; }
+
+.modal {
+background: var(–dark2);
+border: 1px solid var(–border);
+border-radius: 16px;
+padding: 28px;
+width: 440px;
+max-width: 90vw;
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+
+.modal-title {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 24px;
+letter-spacing: 3px;
+color: var(–text);
+}
+
+.modal-field {
+display: flex;
+flex-direction: column;
+gap: 8px;
+}
+
+.modal-label {
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 11px;
+font-weight: 600;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(–muted);
+}
+
+.modal-hint {
+font-size: 11px;
+color: var(–muted);
+font-family: ‘Barlow’, sans-serif;
+line-height: 1.5;
+}
+
+.modal-hint a {
+color: var(–cyan);
+text-decoration: none;
+}
+
+.modal-actions {
+display: flex;
+gap: 10px;
+justify-content: flex-end;
+margin-top: 4px;
+}
+
+.btn-cancel {
+padding: 10px 20px;
+background: var(–dark3);
+border: 1px solid var(–border);
+border-radius: 8px;
+color: var(–muted);
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 14px;
+font-weight: 600;
+letter-spacing: 1px;
+cursor: pointer;
+transition: all 0.2s;
+}
+
+.btn-cancel:hover { color: var(–text); }
+
+.btn-save {
+padding: 10px 24px;
+background: var(–cyan);
+border: none;
+border-radius: 8px;
+color: #000;
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 14px;
+font-weight: 700;
+letter-spacing: 2px;
+cursor: pointer;
+transition: all 0.2s;
+}
+
+.btn-save:hover { opacity: 0.9; }
+
+/* TOAST */
+.toast {
+position: fixed;
+bottom: 24px;
+right: 24px;
+background: var(–dark2);
+border: 1px solid var(–success);
+border-radius: 10px;
+padding: 14px 20px;
+color: var(–success);
+font-family: ‘Barlow Condensed’, sans-serif;
+font-size: 14px;
+font-weight: 600;
+letter-spacing: 1px;
+z-index: 300;
+transform: translateY(20px);
+opacity: 0;
+transition: all 0.3s;
+}
+
+.toast.show {
+transform: translateY(0);
+opacity: 1;
+}
+
+.toast.error {
+border-color: var(–magenta);
+color: var(–magenta);
+}
+
+/* DIVIDER */
+.divider {
+height: 1px;
+background: var(–border);
+margin: 4px 0;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+.workspace {
+grid-template-columns: 1fr;
+grid-template-rows: auto 1fr auto;
+height: auto;
+}
+.panel-left, .panel-right {
+max-height: 300px;
+}
+}
+</style>
+
+</head>
+<body>
+
+<!-- TOPBAR -->
+
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">GeoDMus</div>
+    <div class="page-label">AI Meme Workshop</div>
+  </div>
+  <div class="topbar-right">
+    <div class="api-status no-key" id="apiStatus">⚡ NO API KEY</div>
+    <button class="btn-settings" onclick="openSettings()">⚙ Settings</button>
+  </div>
+</div>
+
+<!-- NAV -->
+
+<div class="nav-back">
+  <a href="/contentos">← Back to Contentos</a>
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="/">Home</a>
+</div>
+
+<!-- MAIN WORKSPACE -->
+
+<div class="workspace">
+
+  <!-- LEFT: MEME LIBRARY -->
+
+  <div class="panel-left">
+    <div class="panel-header">
+      <div class="panel-title">Meme Library</div>
+      <div class="meme-count" id="memeCount">20 memes</div>
+    </div>
+    <button class="btn-generate-new" onclick="switchToGenerateMode()">+ Generate New Meme</button>
+    <div class="meme-list" id="memeList"></div>
+  </div>
+
+  <!-- CENTER: WORKSHOP -->
+
+  <div class="panel-center" id="panelCenter">
+    <div class="workshop-empty" id="workshopEmpty">
+      <div class="workshop-empty-icon">🔬</div>
+      <h2>Select a Meme to Workshop</h2>
+      <p>Pick any meme from the library to get a full AI breakdown — text line, visual, audio suggestion, and caption. Or generate a brand new one.</p>
+    </div>
+  </div>
+
+  <!-- RIGHT: POST PANEL -->
+
+  <div class="panel-right">
+    <div class="panel-header">
+      <div class="panel-title">Post Panel</div>
+    </div>
+    <div class="post-panel-body">
+
+```
+  <div class="caption-area">
+    <div class="input-label">Caption</div>
+    <textarea class="caption-textarea" id="captionText" placeholder="Workshop a meme to generate a caption..."></textarea>
+    <div class="char-counter" id="charCounter">0 / 2200</div>
+  </div>
+
+  <div class="hashtag-section">
+    <div class="input-label">Venture Hashtags</div>
+    <div class="venture-pills" id="venturePills"></div>
+    <div class="hashtag-output" id="hashtagOutput">Select a venture to load hashtags</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="platform-section">
+    <div class="input-label">Platforms</div>
+    <div class="platform-toggles">
+      <div class="platform-toggle active" data-platform="ig" onclick="togglePlatform(this)">IG</div>
+      <div class="platform-toggle active" data-platform="x" onclick="togglePlatform(this)">X</div>
+      <div class="platform-toggle" data-platform="tt" onclick="togglePlatform(this)">TT</div>
+    </div>
+  </div>
+
+  <div class="action-buttons">
+    <button class="btn-copy" id="btnCopy" onclick="copyCaption()">COPY CAPTION + HASHTAGS</button>
+    <button class="btn-metricool" onclick="openMetricool()">OPEN METRICOOL →</button>
+    <div class="metricool-note">Paste directly into your Metricool scheduler</div>
+  </div>
+
+</div>
+```
+
+  </div>
+
+</div>
+
+<!-- SETTINGS MODAL -->
+
+<div class="modal-overlay" id="settingsModal">
+  <div class="modal">
+    <div class="modal-title">Settings</div>
+
+```
+<div class="modal-field">
+  <div class="modal-label">Gemini API Key</div>
+  <input type="password" class="input-field" id="geminiKeyInput" placeholder="AIza...">
+  <div class="modal-hint">
+    Free tier — 1,500 requests/day, no billing required.<br>
+    Get yours at <a href="https://aistudio.google.com" target="_blank">aistudio.google.com</a>
+  </div>
+</div>
+
+<div class="modal-actions">
+  <button class="btn-cancel" onclick="closeSettings()">Cancel</button>
+  <button class="btn-save" onclick="saveSettings()">Save Settings</button>
+</div>
+```
+
+  </div>
+</div>
+
+<!-- TOAST -->
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ============================================================
+// DATA
+// ============================================================
+
+const MEMES = [
+  { id: 1, setup: "POV", punch: "CLAUDE CODE IS DOWN AND THEY ASK YOU TO WRITE CODE MANUALLY", category: "AI Humor", reaction: "Suffering" },
+  { id: 2, setup: "2 hours before deadline", punch: "DEVELOPER vs CLAUDE CODE — cat driving, dog panicking", category: "AI Humor", reaction: "Panicking" },
+  { id: 3, setup: "PLUMBERS AND ELECTRICIANS", punch: "SEEING AI REPLACE EVERYONE WHO WENT TO COLLEGE", category: "AI Disruption", reaction: "Unbothered" },
+  { id: 4, setup: "YOUR FRIEND", punch: "PRESENTING WHAT HE MADE USING HIS $200 AI TOOLS", category: "AI Humor", reaction: "Suffering" },
+  { id: 5, setup: "CHINA'S RESPONSE TO ANTHROPIC", punch: "不客气 / YOU ARE WELCOME", category: "Tech News", reaction: "Unbothered" },
+  { id: 6, setup: "STARTUP IDEA: BUILD INTERACTIVE CHARTS IN THE CHAT", punch: "CLAUDE THE VERY NEXT DAY:", category: "AI Humor", reaction: "Unbothered" },
+  { id: 7, setup: "THE MARKET WHENEVER", punch: "ANTHROPIC TWEETS SOME SHIT", category: "Tech News", reaction: "Panicking" },
+  { id: 8, setup: "AI MODELS FOR MILITARY USE", punch: "IT'S SO OVER", category: "AI Disruption", reaction: "Suffering" },
+  { id: 9, setup: "BREAKING: META REPORTEDLY LAYING OFF 20%", punch: "TO OFFSET RISING AI COSTS", category: "Tech News", reaction: "Suffering" },
+  { id: 10, setup: "THE SAME PEOPLE WHO SAID 'LEARN TO CODE'", punch: "ARE NOW SAYING SOFTWARE IS BEING REPLACED", category: "AI Disruption", reaction: "Unbothered" },
+  { id: 11, setup: "AI WILL NOT REPLACE ME", punch: "ME: [2 + 11 - 1 = TWO ELEVEN]", category: "AI Humor", reaction: "Suffering" },
+  { id: 12, setup: "THIS IS WHY RAM IS SO EXPENSIVE", punch: "SAM ALTMAN AND DARIO AMODEI HUGGING", category: "Tech News", reaction: "Unbothered" },
+  { id: 13, setup: "FEEDING CHATGPT MY COMPANY'S ENTIRE CONFIDENTIAL DATA", punch: "JUST TO DRAFT ONE EMAIL", category: "AI Humor", reaction: "Panicking" },
+  { id: 14, setup: "CHATGPT IN 2030", punch: "YOU'RE NOT A PERSON — YOU ARE A MACHINE", category: "AI Future", reaction: "Suffering" },
+  { id: 15, setup: "PERPLEXITY IS OFFICIALLY STEPPING INTO BLOOMBERG TERRITORY", punch: "AND THIS TIME IT ACTUALLY LOOKS SERIOUS", category: "Tech News", reaction: "Winning" },
+  { id: 16, setup: "THIS SCENE WAS MADE WITH SEEDANCE 2.0 AI MODEL", punch: "IT COST ABOUT $60 TO MAKE", category: "AI Future", reaction: "Winning" },
+  { id: 17, setup: "THIS USED TO TAKE HUGE PRODUCTION TEAMS AND MILLIONS", punch: "NOW IT'S A FEW PROMPTS AND $9 IN AI CREDITS", category: "AI Future", reaction: "Winning" },
+  { id: 18, setup: "PULMONOLOGIST WITH 20 YEARS EXPERIENCE", punch: "SAYS HE'S ABOUT TO LOSE HIS JOB TO AI", category: "AI Disruption", reaction: "Suffering" },
+  { id: 19, setup: "DEVELOPER BUILDS PALANTIR-LIKE SURVEILLANCE DASHBOARD SOLO", punch: "WITH NEW AI MODELS", category: "AI Future", reaction: "Winning" },
+  { id: 20, setup: "STRONG ENGINEERS BUILD C > C BUILDS FOUNDATIONS...", punch: "AI CREATES VIBE CODING > WEAK ENGINEERS > COLLAPSE > STRONG ENGINEERS", category: "AI Humor", reaction: "Unbothered" }
+];
+
+const VENTURES = {
+  "GeoDMus": ["#GeoDMus", "#ChicagoAgency", "#DigitalMarketing", "#ChicagoBusiness", "#AIMarketing", "#WebDesignChicago"],
+  "Juice Yoga Body": ["#JuiceYogaBody", "#WellnessChicago", "#Yoga", "#HealthyLiving", "#Mindfulness"],
+  "Creativo": ["#Creativo", "#CreativeMarketplace", "#Freelance", "#CreativePros", "#DesignCommunity"],
+  "Glow Guide": ["#GlowGuide", "#InfluencerMarketing", "#ContentCreator", "#BrandDeals", "#SocialMedia"],
+  "SocialLens": ["#SocialLens", "#ARMarketing", "#AugmentedReality", "#TechMarketing", "#FutureTech"],
+  "Premier Group": ["#PremierGroup", "#Finance", "#BusinessGrowth", "#Investing", "#Entrepreneurship"],
+  "YSK": ["#YourSplashyKicks", "#Sneakers", "#SneakerHead", "#KickGame", "#SneakerCulture"]
+};
+
+// ============================================================
+// STATE
+// ============================================================
+
+let selectedMeme = null;
+let selectedReaction = 'Unbothered';
+let selectedVenture = 'GeoDMus';
+let workshoppedMemes = JSON.parse(localStorage.getItem('gdm_workshopped') || '{}');
+let currentBreakdown = null;
+
+// ============================================================
+// INIT
+// ============================================================
+
+function init() {
+  renderMemeList();
+  renderVenturePills();
+  checkApiKey();
+  updateHashtags();
+
+  document.getElementById('captionText').addEventListener('input', updateCharCounter);
+}
+
+function checkApiKey() {
+  const key = localStorage.getItem('gdm_gemini_key');
+  const status = document.getElementById('apiStatus');
+  if (key && key.length > 10) {
+    status.textContent = '⚡ GEMINI READY';
+    status.className = 'api-status';
+  } else {
+    status.textContent = '⚡ NO API KEY';
+    status.className = 'api-status no-key';
+  }
+}
+
+// ============================================================
+// MEME LIST
+// ============================================================
+
+function renderMemeList() {
+  const list = document.getElementById('memeList');
+  list.innerHTML = MEMES.map(m => `
+    <div class="meme-card ${workshoppedMemes[m.id] ? 'workshopped' : ''} ${selectedMeme?.id === m.id ? 'active' : ''}"
+         onclick="selectMeme(${m.id})" id="memeCard${m.id}">
+      <div class="meme-card-setup">${m.setup}</div>
+      <div class="meme-card-punch">${m.punch.substring(0, 60)}${m.punch.length > 60 ? '...' : ''}</div>
+      <span class="meme-status ${workshoppedMemes[m.id] ? 'status-workshopped' : 'status-fresh'}">
+        ${workshoppedMemes[m.id] ? '✓ Workshopped' : 'Fresh'}
+      </span>
+    </div>
+  `).join('');
+}
+
+function selectMeme(id) {
+  selectedMeme = MEMES.find(m => m.id === id);
+  document.querySelectorAll('.meme-card').forEach(c => c.classList.remove('active'));
+  document.getElementById(`memeCard${id}`)?.classList.add('active');
+  renderWorkshopMode();
+}
+
+// ============================================================
+// WORKSHOP MODE (existing meme)
+// ============================================================
+
+function renderWorkshopMode() {
+  if (!selectedMeme) return;
+  const center = document.getElementById('panelCenter');
+  selectedReaction = selectedMeme.reaction || 'Unbothered';
+
+  center.innerHTML = `
+    <div class="selected-meme">
+      <div class="meme-display">
+        <div class="meme-text-setup">${selectedMeme.setup}</div>
+        <div class="meme-text-punch">${selectedMeme.punch}</div>
+        <div class="meme-meta">
+          <span class="meme-tag">${selectedMeme.category}</span>
+          <span class="meme-tag">${selectedMeme.reaction}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="workshop-inputs">
+      <div class="input-group">
+        <div class="input-label">Reaction Type</div>
+        <div class="reaction-pills">
+          ${['Unbothered','Panicking','Winning','Suffering'].map(r => `
+            <div class="reaction-pill ${r === selectedReaction ? 'active' : ''}"
+                 onclick="setReaction('${r}', this)">${r}</div>
+          `).join('')}
+        </div>
+      </div>
+
+      <div class="input-row">
+        <div class="input-group">
+          <div class="input-label">Venture</div>
+          <select class="input-field" id="ventureSelect" onchange="setVentureFromDropdown(this.value)">
+            ${Object.keys(VENTURES).map(v => `<option value="${v}" ${v === selectedVenture ? 'selected' : ''}>${v}</option>`).join('')}
+          </select>
+        </div>
+        <div class="input-group">
+          <div class="input-label">Target Audience</div>
+          <input type="text" class="input-field" id="audienceInput" placeholder="e.g. Chicago founders" value="">
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-workshop" id="btnWorkshop" onclick="doWorkshop()">
+      <span class="btn-text">⚡ WORKSHOP THIS MEME</span>
+      <span class="loading-dots">⏳ Analyzing...</span>
+    </button>
+
+    <div id="breakdownResult"></div>
+  `;
+}
+
+function setReaction(reaction, el) {
+  selectedReaction = reaction;
+  document.querySelectorAll('.reaction-pill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function setVentureFromDropdown(val) {
+  selectedVenture = val;
+  updateHashtags();
+  // sync venture pills
+  document.querySelectorAll('.venture-pill').forEach(p => {
+    p.classList.toggle('active', p.dataset.venture === val);
+  });
+}
+
+// ============================================================
+// GENERATE NEW MODE
+// ============================================================
+
+function switchToGenerateMode() {
+  selectedMeme = null;
+  document.querySelectorAll('.meme-card').forEach(c => c.classList.remove('active'));
+
+  const center = document.getElementById('panelCenter');
+  center.innerHTML = `
+    <div class="generate-mode">
+      <div class="mode-header">
+        <span class="mode-badge">NEW MEME</span>
+        <div class="mode-title">Generate from Scratch</div>
+      </div>
+
+      <div class="input-group">
+        <div class="input-label">Topic / News Peg</div>
+        <input type="text" class="input-field" id="topicInput"
+               placeholder="e.g. Anthropic released new model, Chicago rent going up">
+      </div>
+
+      <div class="input-row">
+        <div class="input-group">
+          <div class="input-label">Who's the Subject</div>
+          <input type="text" class="input-field" id="subjectInput"
+                 placeholder="e.g. agency founders, trade workers">
+        </div>
+        <div class="input-group">
+          <div class="input-label">Venture</div>
+          <select class="input-field" id="ventureSelectGen" onchange="setVentureFromDropdown(this.value)">
+            ${Object.keys(VENTURES).map(v => `<option value="${v}" ${v === selectedVenture ? 'selected' : ''}>${v}</option>`).join('')}
+          </select>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <div class="input-label">Reaction Type</div>
+        <div class="reaction-pills">
+          ${['Unbothered','Panicking','Winning','Suffering'].map(r => `
+            <div class="reaction-pill ${r === selectedReaction ? 'active' : ''}"
+                 onclick="setReaction('${r}', this)">${r}</div>
+          `).join('')}
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-workshop" id="btnWorkshop" onclick="doGenerate()">
+      <span class="btn-text">⚡ GENERATE MEME</span>
+      <span class="loading-dots">⏳ Generating...</span>
+    </button>
+
+    <div id="breakdownResult"></div>
+  `;
+}
+
+// ============================================================
+// GEMINI API — WORKSHOP EXISTING
+// ============================================================
+
+async function doWorkshop() {
+  const key = localStorage.getItem('gdm_gemini_key');
+  if (!key) { showToast('Add your Gemini API key in Settings first', true); openSettings(); return; }
+
+  const btn = document.getElementById('btnWorkshop');
+  btn.classList.add('loading');
+  btn.disabled = true;
+
+  const venture = document.getElementById('ventureSelect')?.value || selectedVenture;
+  const audience = document.getElementById('audienceInput')?.value || '';
+
+  const prompt = `You are a social media meme consultant specializing in viral AI/tech content.
+
+Analyze this meme for the brand ${venture}:
+Setup: ${selectedMeme.setup}
+Punchline: ${selectedMeme.punch}
+Reaction type: ${selectedReaction}
+${audience ? `Target audience: ${audience}` : ''}
+
+Return ONLY a valid JSON object (no markdown, no backticks) with these exact keys:
+{
+  "text_line": "Improved plain-text setup line (plain caps text, no branding, no pricing — just the scenario)",
+  "visual_suggestion": "Describe the exact reaction image or video clip to find — be specific about the character/moment/emotion",
+  "audio_suggestion": "Suggest the specific song or audio type that amplifies the emotion for TikTok/Reels",
+  "why_it_works": "2-3 sentences on the humor mechanics — the relatable pain, the subversion, the specificity",
+  "who_shares_this": "Exactly who will share this and why — be specific, not generic",
+  "improvements": "1-2 concrete ways to make the punchline sharper",
+  "caption": "A social media caption — conversational, not salesy, ends with a question or hook. No emojis unless essential."
+}
+
+Do NOT use hustle culture clichés. Specificity over generality. The visual IS the punchline.`;
+
+  try {
+    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+    });
+
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.error?.message || 'API error');
+    }
+
+    const data = await res.json();
+    const raw = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    const clean = raw.replace(/```json|```/g, '').trim();
+    const breakdown = JSON.parse(clean);
+
+    currentBreakdown = breakdown;
+    renderBreakdown(breakdown);
+
+    // mark as workshopped
+    workshoppedMemes[selectedMeme.id] = true;
+    localStorage.setItem('gdm_workshopped', JSON.stringify(workshoppedMemes));
+    renderMemeList();
+    // reselect
+    document.getElementById(`memeCard${selectedMeme.id}`)?.classList.add('active');
+
+    // auto-fill caption
+    document.getElementById('captionText').value = breakdown.caption || '';
+    updateCharCounter();
+
+  } catch(e) {
+    showToast('Error: ' + e.message, true);
+  }
+
+  btn.classList.remove('loading');
+  btn.disabled = false;
+}
+
+// ============================================================
+// GEMINI API — GENERATE NEW
+// ============================================================
+
+async function doGenerate() {
+  const key = localStorage.getItem('gdm_gemini_key');
+  if (!key) { showToast('Add your Gemini API key in Settings first', true); openSettings(); return; }
+
+  const topic = document.getElementById('topicInput')?.value?.trim();
+  const subject = document.getElementById('subjectInput')?.value?.trim();
+  if (!topic) { showToast('Enter a topic first', true); return; }
+
+  const btn = document.getElementById('btnWorkshop');
+  btn.classList.add('loading');
+  btn.disabled = true;
+
+  const venture = document.getElementById('ventureSelectGen')?.value || selectedVenture;
+
+  const prompt = `You are a social media meme consultant specializing in viral AI/tech content for ${venture}, a Chicago digital agency.
+
+Create a brand new meme concept:
+Topic/peg: ${topic}
+Subject (the "character"): ${subject || 'agency founders / entrepreneurs'}
+Reaction type: ${selectedReaction}
+
+Meme format rules:
+- Plain text on black sets the scenario (no branding, no pricing, no ALL CAPS hustle)
+- The visual IS the punchline — it shows the emotional state
+- Specificity over generality ("Claude Code" not just "AI")
+- Two audiences share it: person IN the meme (pride) + person WATCHING (relatability)
+
+Return ONLY a valid JSON object (no markdown, no backticks):
+{
+  "text_line": "The plain text that goes on screen — sets the scenario",
+  "visual_suggestion": "The specific reaction image/video/character to find — describe the exact moment/emotion",
+  "audio_suggestion": "Specific song or audio type that amplifies the emotion for TikTok/Reels",
+  "why_it_works": "2-3 sentences on the humor mechanics",
+  "who_shares_this": "Exactly who shares this and why",
+  "caption": "Social media caption — conversational, not salesy, ends with question or hook"
+}
+
+Do NOT use hustle culture clichés. No generic motivational content.`;
+
+  try {
+    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+    });
+
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.error?.message || 'API error');
+    }
+
+    const data = await res.json();
+    const raw = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    const clean = raw.replace(/```json|```/g, '').trim();
+    const breakdown = JSON.parse(clean);
+
+    currentBreakdown = breakdown;
+    renderBreakdown(breakdown);
+
+    document.getElementById('captionText').value = breakdown.caption || '';
+    updateCharCounter();
+
+  } catch(e) {
+    showToast('Error: ' + e.message, true);
+  }
+
+  btn.classList.remove('loading');
+  btn.disabled = false;
+}
+
+// ============================================================
+// RENDER BREAKDOWN
+// ============================================================
+
+function renderBreakdown(b) {
+  const container = document.getElementById('breakdownResult');
+  container.innerHTML = `
+    <div class="breakdown-result">
+      <div class="breakdown-header">
+        <div class="breakdown-title">⚡ AI Breakdown</div>
+      </div>
+      <div class="breakdown-body">
+
+        <div class="breakdown-item">
+          <div class="breakdown-item-label">Text Line</div>
+          <div class="text-line-display">${b.text_line || '—'}</div>
+          <button class="btn-use-text" onclick="useText('${(b.text_line || '').replace(/'/g, "\\'")}')">Use This Text</button>
+        </div>
+
+        <div class="breakdown-item">
+          <div class="breakdown-item-label">Visual to Find</div>
+          <div class="breakdown-item-value">${b.visual_suggestion || '—'}</div>
+        </div>
+
+        <div class="breakdown-item">
+          <div class="breakdown-item-label">Audio / Song</div>
+          <div class="breakdown-item-value">${b.audio_suggestion || '—'}</div>
+        </div>
+
+        <div class="breakdown-item">
+          <div class="breakdown-item-label">Why It Works</div>
+          <div class="breakdown-item-value">${b.why_it_works || '—'}</div>
+        </div>
+
+        <div class="breakdown-item">
+          <div class="breakdown-item-label">Who Shares This</div>
+          <div class="breakdown-item-value">${b.who_shares_this || '—'}</div>
+        </div>
+
+        ${b.improvements ? `
+        <div class="breakdown-item">
+          <div class="breakdown-item-label">How to Make It Sharper</div>
+          <div class="breakdown-item-value">${b.improvements}</div>
+        </div>` : ''}
+
+      </div>
+    </div>
+  `;
+}
+
+function useText(text) {
+  const cap = document.getElementById('captionText');
+  cap.value = text + '\n\n' + (currentBreakdown?.caption || '');
+  updateCharCounter();
+  showToast('Text added to caption');
+}
+
+// ============================================================
+// POST PANEL
+// ============================================================
+
+function renderVenturePills() {
+  const container = document.getElementById('venturePills');
+  container.innerHTML = Object.keys(VENTURES).map(v => `
+    <div class="venture-pill ${v === selectedVenture ? 'active' : ''}"
+         data-venture="${v}" onclick="selectVenture('${v}', this)">${v}</div>
+  `).join('');
+}
+
+function selectVenture(venture, el) {
+  selectedVenture = venture;
+  document.querySelectorAll('.venture-pill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  updateHashtags();
+}
+
+function updateHashtags() {
+  const tags = VENTURES[selectedVenture] || [];
+  document.getElementById('hashtagOutput').textContent = tags.join(' ');
+}
+
+function togglePlatform(el) {
+  el.classList.toggle('active');
+}
+
+function updateCharCounter() {
+  const text = document.getElementById('captionText').value;
+  const len = text.length;
+  const counter = document.getElementById('charCounter');
+  counter.textContent = `${len} / 2200`;
+  counter.className = 'char-counter' + (len > 2200 ? ' over' : '');
+}
+
+function copyCaption() {
+  const caption = document.getElementById('captionText').value;
+  const hashtags = document.getElementById('hashtagOutput').textContent;
+  const full = caption + (caption && hashtags ? '\n\n' : '') + hashtags;
+
+  navigator.clipboard.writeText(full).then(() => {
+    const btn = document.getElementById('btnCopy');
+    btn.textContent = '✓ COPIED!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'COPY CAPTION + HASHTAGS';
+      btn.classList.remove('copied');
+    }, 2000);
+    showToast('Caption + hashtags copied');
+  }).catch(() => {
+    showToast('Copy failed — try manually selecting', true);
+  });
+}
+
+function openMetricool() {
+  window.open('https://app.metricool.com', '_blank');
+}
+
+// ============================================================
+// SETTINGS
+// ============================================================
+
+function openSettings() {
+  document.getElementById('settingsModal').classList.add('open');
+  const key = localStorage.getItem('gdm_gemini_key') || '';
+  document.getElementById('geminiKeyInput').value = key;
+}
+
+function closeSettings() {
+  document.getElementById('settingsModal').classList.remove('open');
+}
+
+function saveSettings() {
+  const key = document.getElementById('geminiKeyInput').value.trim();
+  if (key) {
+    localStorage.setItem('gdm_gemini_key', key);
+    showToast('Settings saved');
+    checkApiKey();
+  }
+  closeSettings();
+}
+
+// click outside modal to close
+document.getElementById('settingsModal').addEventListener('click', function(e) {
+  if (e.target === this) closeSettings();
+});
+
+// ============================================================
+// TOAST
+// ============================================================
+
+function showToast(msg, isError = false) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.className = 'toast show' + (isError ? ' error' : '');
+  setTimeout(() => { toast.className = 'toast'; }, 3000);
+}
+
+// ============================================================
+// START
+// ============================================================
+
+init();
+</script>
+
+</body>
+</html>
