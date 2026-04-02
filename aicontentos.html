@@ -5,492 +5,237 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MEME.OS — GeoDMus</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@400;700;900&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@400;700;900&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{
-  --c:#00c8d4;--m:#cc2d8f;--g:#00ff88;--y:#ffd700;--r:#ff3355;
-  --d:#04040c;--d2:#080816;--d3:#0c0c20;--d4:#111128;--d5:#181830;
-  --b:rgba(0,200,212,.12);--b2:rgba(0,200,212,.3);
-  --t:#e0e0ff;--t2:#9090b8;--mu:#444466;
-}
 *{margin:0;padding:0;box-sizing:border-box}
-::-webkit-scrollbar{width:2px}
-::-webkit-scrollbar-thumb{background:var(--c);border-radius:1px}
-
-/* GRID BG */
-body{
-background:#04040c;color:#e0e0ff;
-font-family:‘Barlow Condensed’,sans-serif;
-min-height:100vh;overflow-x:hidden;
-background-image:
-linear-gradient(rgba(0,200,212,.03) 1px,transparent 1px),
-linear-gradient(90deg,rgba(0,200,212,.03) 1px,transparent 1px);
-background-size:40px 40px;
-}
-
-/* CORNER DECORATIONS */
-body::before{
-content:’’;position:fixed;top:0;left:0;right:0;height:2px;
-background:linear-gradient(90deg,transparent,var(–c),var(–m),var(–c),transparent);
-z-index:200;animation:scanH 3s linear infinite;
-}
+:root{--c:#00c8d4;--m:#cc2d8f;--g:#00ff88;--y:#ffd700;--r:#ff3355;--d:#04040c;--d2:#080816;--d3:#0c0c20;--d4:#111128;--d5:#181830;--b:rgba(0,200,212,.12);--t:#e0e0ff;--t2:#9090b8;--mu:#444466}
+::-webkit-scrollbar{width:2px}::-webkit-scrollbar-thumb{background:#00c8d4;border-radius:1px}
+body{background:#04040c;color:#e0e0ff;font-family:'Barlow Condensed',sans-serif;min-height:100vh;overflow-x:hidden;background-image:linear-gradient(rgba(0,200,212,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,200,212,.03) 1px,transparent 1px);background-size:40px 40px}
+body::before{content:'';position:fixed;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#00c8d4,#cc2d8f,#00c8d4,transparent);z-index:200;animation:scanH 3s linear infinite}
 @keyframes scanH{0%{opacity:.4}50%{opacity:1}100%{opacity:.4}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:translateX(0)}}
+@keyframes scanV{0%{transform:translateY(-100%)}100%{transform:translateY(100%)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+@keyframes moIn{from{opacity:0;transform:scale(.96) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
 
 /* TOPBAR */
-.topbar{
-position:sticky;top:0;z-index:100;
-background:rgba(4,4,12,.97);
-border-bottom:1px solid var(–b);
-height:54px;display:flex;align-items:center;justify-content:space-between;
-padding:0 16px;
-}
-
-.logo-wrap{display:flex;align-items:center;gap:10px}
-
-.logo{
-font-family:‘Orbitron’,sans-serif;font-size:16px;font-weight:900;
-letter-spacing:4px;color:var(–c);
-text-shadow:0 0 20px rgba(0,200,212,.5);
-}
-
-.sys-badge{
-display:flex;align-items:center;gap:5px;
-padding:3px 10px;border:1px solid rgba(0,200,212,.2);border-radius:3px;
-background:rgba(0,200,212,.05);
-font-family:‘Orbitron’,sans-serif;font-size:8px;font-weight:700;
-letter-spacing:3px;color:var(–c);opacity:.7;
-}
-
-.sys-dot{width:4px;height:4px;border-radius:50%;background:var(–g);animation:blink 1.2s step-end infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-
+.topbar{position:sticky;top:0;z-index:100;background:rgba(4,4,12,.97);border-bottom:1px solid rgba(0,200,212,.12);height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 16px}
+.logo{font-family:‘Orbitron’,sans-serif;font-size:16px;font-weight:900;letter-spacing:4px;color:#00c8d4;text-shadow:0 0 20px rgba(0,200,212,.5)}
+.logo span{color:#cc2d8f}
+.sys-badge{display:flex;align-items:center;gap:5px;padding:3px 10px;border:1px solid rgba(0,200,212,.2);border-radius:3px;background:rgba(0,200,212,.05);font-family:‘Orbitron’,sans-serif;font-size:8px;font-weight:700;letter-spacing:3px;color:#00c8d4;opacity:.7}
+.sys-dot{width:4px;height:4px;border-radius:50%;background:#00ff88;animation:blink 1.2s step-end infinite}
 .tr{display:flex;align-items:center;gap:8px}
-
-.api-status{
-display:flex;align-items:center;gap:5px;
-padding:4px 10px;border-radius:3px;border:1px solid;
-font-family:‘Orbitron’,sans-serif;font-size:8px;font-weight:700;letter-spacing:2px;
-cursor:pointer;transition:.2s;
-}
-.api-status.ok{background:rgba(0,255,136,.06);border-color:rgba(0,255,136,.3);color:var(–g)}
-.api-status.no{background:rgba(255,211,0,.06);border-color:rgba(255,211,0,.3);color:var(–y)}
-.api-status .sd{width:4px;height:4px;border-radius:50%;background:currentColor;animation:blink 1.2s step-end infinite}
-
-.btn-cfg{
-padding:5px 11px;background:transparent;border:1px solid var(–b);border-radius:3px;
-color:var(–t2);font-family:‘Orbitron’,sans-serif;font-size:8px;font-weight:700;letter-spacing:2px;
-cursor:pointer;transition:.2s;
-}
-.btn-cfg:hover{border-color:var(–c);color:var(–c);box-shadow:0 0 10px rgba(0,200,212,.15)}
+.api-pill{display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:3px;border:1px solid;font-family:‘Orbitron’,sans-serif;font-size:8px;font-weight:700;letter-spacing:2px;cursor:pointer;transition:.2s}
+.api-pill.ok{background:rgba(0,255,136,.06);border-color:rgba(0,255,136,.3);color:#00ff88}
+.api-pill.no{background:rgba(255,211,0,.06);border-color:rgba(255,211,0,.3);color:#ffd700}
+.api-pill .sd{width:4px;height:4px;border-radius:50%;background:currentColor;animation:blink 1.2s step-end infinite}
+.btn-cfg{padding:5px 11px;background:transparent;border:1px solid rgba(0,200,212,.12);border-radius:3px;color:#9090b8;font-family:‘Orbitron’,sans-serif;font-size:8px;font-weight:700;letter-spacing:2px;cursor:pointer;transition:.2s}
+.btn-cfg:hover{border-color:#00c8d4;color:#00c8d4}
 
 /* BREADCRUMB */
-.bc{
-padding:5px 16px;background:rgba(4,4,12,.9);border-bottom:1px solid rgba(0,200,212,.06);
-font-size:10px;letter-spacing:2px;color:var(–mu);display:flex;align-items:center;gap:6px;
-}
-.bc a{color:var(–mu);text-decoration:none;transition:.2s}.bc a:hover{color:var(–c)}
+.bc{padding:5px 16px;background:rgba(4,4,12,.9);border-bottom:1px solid rgba(0,200,212,.06);font-size:10px;letter-spacing:2px;color:#444466;display:flex;align-items:center;gap:6px}
+.bc a{color:#444466;text-decoration:none;transition:.2s}.bc a:hover{color:#00c8d4}
 .bc-sep{color:rgba(0,200,212,.2)}
 
 /* WORKSPACE */
 .ws{display:grid;grid-template-columns:240px 1fr 280px;height:calc(100vh - 74px);overflow:hidden}
 
-/* ===== LEFT PANEL ===== */
-.pl{background:var(–d2);border-right:1px solid var(–b);display:flex;flex-direction:column;overflow:hidden;position:relative}
-
-.pl::after{
-content:’’;position:absolute;top:0;right:0;bottom:0;width:1px;
-background:linear-gradient(180deg,transparent,var(–c),transparent);
-opacity:.3;animation:scanV 4s linear infinite;
-}
-@keyframes scanV{0%{transform:translateY(-100%)}100%{transform:translateY(100%)}}
-
-.ph{padding:10px 12px;border-bottom:1px solid var(–b);display:flex;align-items:center;justify-content:space-between}
-.ph-lbl{font-family:‘Orbitron’,sans-serif;font-size:9px;font-weight:700;letter-spacing:3px;color:var(–c);opacity:.8}
-.ph-cnt{font-family:‘Orbitron’,sans-serif;font-size:9px;color:var(–g);background:rgba(0,255,136,.08);padding:2px 7px;border:1px solid rgba(0,255,136,.2);border-radius:2px}
-
-.btn-gen{
-margin:8px;padding:10px;
-background:linear-gradient(135deg,rgba(0,200,212,.08),rgba(204,45,143,.08));
-border:1px solid rgba(0,200,212,.35);border-radius:4px;
-color:var(–c);font-family:‘Orbitron’,sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;
-cursor:pointer;transition:.25s;text-align:center;position:relative;overflow:hidden;
-}
-.btn-gen::before{
-content:’’;position:absolute;inset:0;
-background:linear-gradient(135deg,rgba(0,200,212,.15),rgba(204,45,143,.15));
-opacity:0;transition:.25s;
-}
-.btn-gen:hover::before{opacity:1}
-.btn-gen:hover{box-shadow:0 0 20px rgba(0,200,212,.2);transform:translateY(-1px)}
-
-.search-wrap{margin:0 8px 6px;position:relative}
-.search-wrap input{
-width:100%;background:var(–d3);border:1px solid var(–b);border-radius:3px;
-padding:6px 10px 6px 24px;color:var(–t);font-family:‘Barlow Condensed’,sans-serif;font-size:11px;
-letter-spacing:1px;
-}
-.search-wrap input:focus{outline:none;border-color:var(–c);box-shadow:0 0 8px rgba(0,200,212,.1)}
-.search-wrap input::placeholder{color:var(–mu)}
-.search-wrap .si{position:absolute;left:8px;top:50%;transform:translateY(-50%);color:var(–mu);font-size:10px}
-
-/* MEME LIST */
+/* LEFT PANEL */
+.pl{background:#080816;border-right:1px solid rgba(0,200,212,.12);display:flex;flex-direction:column;overflow:hidden;position:relative}
+.pl::after{content:’’;position:absolute;top:0;right:0;bottom:0;width:1px;background:linear-gradient(180deg,transparent,#00c8d4,transparent);opacity:.3;animation:scanV 4s linear infinite}
+.ph{padding:10px 12px;border-bottom:1px solid rgba(0,200,212,.12);display:flex;align-items:center;justify-content:space-between}
+.ph-lbl{font-family:‘Orbitron’,sans-serif;font-size:9px;font-weight:700;letter-spacing:3px;color:#00c8d4;opacity:.8}
+.ph-cnt{font-family:‘Orbitron’,sans-serif;font-size:9px;color:#00ff88;background:rgba(0,255,136,.08);padding:2px 7px;border:1px solid rgba(0,255,136,.2);border-radius:2px}
+.btn-gen{margin:8px;padding:10px;background:linear-gradient(135deg,rgba(0,200,212,.08),rgba(204,45,143,.08));border:1px solid rgba(0,200,212,.35);border-radius:4px;color:#00c8d4;font-family:‘Orbitron’,sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;cursor:pointer;transition:.25s;text-align:center}
+.btn-gen:hover{background:linear-gradient(135deg,rgba(0,200,212,.18),rgba(204,45,143,.18));box-shadow:0 0 20px rgba(0,200,212,.2)}
+.sw{margin:0 8px 6px;position:relative}
+.sw input{width:100%;background:#0c0c20;border:1px solid rgba(0,200,212,.12);border-radius:3px;padding:6px 10px 6px 22px;color:#e0e0ff;font-family:‘Barlow Condensed’,sans-serif;font-size:11px;letter-spacing:1px}
+.sw input:focus{outline:none;border-color:#00c8d4}
+.sw input::placeholder{color:#444466}
+.sw-i{position:absolute;left:8px;top:50%;transform:translateY(-50%);color:#444466;font-size:9px}
 .ml{flex:1;overflow-y:auto;padding:4px 6px 6px}
-
-.mc{
-padding:9px 10px;border-radius:4px;border:1px solid transparent;
-cursor:pointer;transition:all .15s;margin-bottom:3px;
-background:var(–d3);position:relative;overflow:hidden;
-}
-.mc::before{
-content:’’;position:absolute;left:0;top:0;bottom:0;width:2px;
-background:linear-gradient(180deg,var(–c),var(–m));
-transform:scaleY(0);transition:.15s;transform-origin:bottom;
-}
-.mc:hover{border-color:rgba(0,200,212,.25);background:var(–d4)}
+.mc{padding:9px 10px;border-radius:4px;border:1px solid transparent;cursor:pointer;transition:all .15s;margin-bottom:3px;background:#0c0c20;position:relative;overflow:hidden}
+.mc::before{content:’’;position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,#00c8d4,#cc2d8f);transform:scaleY(0);transition:.15s;transform-origin:bottom}
+.mc:hover{border-color:rgba(0,200,212,.25);background:#111128}
 .mc:hover::before,.mc.active::before{transform:scaleY(1)}
-.mc.active{border-color:rgba(0,200,212,.4);background:rgba(0,200,212,.06)}
-.mc.done::before{background:linear-gradient(180deg,var(–g),#00a86b);transform:scaleY(1)}
+.mc.active{border-color:rgba(0,200,212,.4);background:rgba(0,200,212,.06);box-shadow:0 0 15px rgba(0,200,212,.08)}
+.mc.done::before{background:linear-gradient(180deg,#00ff88,#00a86b);transform:scaleY(1)}
 .mc.done{border-color:rgba(0,255,136,.15)}
 
-/* HOVER GLOW */
-.mc:hover{box-shadow:inset 0 0 20px rgba(0,200,212,.03)}
-.mc.active{box-shadow:inset 0 0 20px rgba(0,200,212,.06),0 0 15px rgba(0,200,212,.08)}
-
-.mc-num{
-font-family:‘Orbitron’,sans-serif;font-size:8px;color:var(–mu);
-letter-spacing:1px;margin-bottom:2px;
-}
-.mc-s{font-size:9px;font-weight:700;letter-spacing:2px;color:var(–mu);margin-bottom:2px;text-transform:uppercase}
-.mc-p{font-size:11px;font-weight:600;color:var(–t);line-height:1.3;margin-bottom:5px}
-.mc-tags{display:flex;gap:3px;flex-wrap:wrap}
-.mc-tag{font-size:8px;letter-spacing:1px;padding:1px 5px;border-radius:2px;background:var(–d5);color:var(–mu);border:1px solid rgba(255,255,255,.04)}
-.mc-st{font-size:8px;font-weight:700;letter-spacing:1px;padding:1px 5px;border-radius:2px}
-.mc-st.done{background:rgba(0,255,136,.1);color:var(–g);border:1px solid rgba(0,255,136,.2)}
-.mc-st.fresh{background:rgba(68,68,102,.1);color:var(–mu);border:1px solid rgba(68,68,102,.15)}
-
-/* ===== CENTER PANEL ===== */
-.pc{background:var(–d);overflow-y:auto;display:flex;flex-direction:column;position:relative}
-
-/* EMPTY */
-.empty{
-flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
-padding:50px 30px;text-align:center;gap:20px;animation:fadeUp .4s ease;
-}
-@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-
-.empty-glyph{
-width:90px;height:90px;border-radius:4px;position:relative;
-background:linear-gradient(135deg,rgba(0,200,212,.06),rgba(204,45,143,.06));
-border:1px solid rgba(0,200,212,.2);display:flex;align-items:center;justify-content:center;
-font-size:36px;
-}
-.empty-glyph::before,.empty-glyph::after{
-content:’’;position:absolute;
-}
-.empty-glyph::before{top:-1px;left:10px;right:10px;height:1px;background:var(–c);box-shadow:0 0 8px var(–c)}
-.empty-glyph::after{bottom:-1px;left:10px;right:10px;height:1px;background:var(–m);box-shadow:0 0 8px var(–m)}
-
-.empty-title{font-family:‘Orbitron’,sans-serif;font-size:20px;font-weight:900;letter-spacing:4px;color:var(–c);text-shadow:0 0 20px rgba(0,200,212,.3)}
-.empty-sub{font-size:12px;color:var(–mu);max-width:280px;line-height:1.8;letter-spacing:1px}
+/* CENTER PANEL */
+.pc{background:#04040c;overflow-y:auto;display:flex;flex-direction:column}
+.empty-wrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:50px 30px;text-align:center;gap:20px;animation:fadeUp .4s ease}
+.empty-glyph{width:90px;height:90px;border-radius:4px;background:linear-gradient(135deg,rgba(0,200,212,.06),rgba(204,45,143,.06));border:1px solid rgba(0,200,212,.2);display:flex;align-items:center;justify-content:center;font-size:36px;position:relative}
+.empty-glyph::before{content:’’;position:absolute;top:-1px;left:10px;right:10px;height:1px;background:#00c8d4;box-shadow:0 0 8px #00c8d4}
+.empty-glyph::after{content:’’;position:absolute;bottom:-1px;left:10px;right:10px;height:1px;background:#cc2d8f;box-shadow:0 0 8px #cc2d8f}
+.empty-title{font-family:‘Orbitron’,sans-serif;font-size:20px;font-weight:900;letter-spacing:4px;color:#00c8d4;text-shadow:0 0 20px rgba(0,200,212,.3)}
+.empty-sub{font-size:12px;color:#444466;max-width:280px;line-height:1.8;letter-spacing:1px}
 
 /* MEME HERO */
-.mhero{
-margin:16px;background:#000;border-radius:6px;padding:24px 20px;
-border:1px solid rgba(255,255,255,.06);animation:fadeUp .25s ease;
-position:relative;overflow:hidden;
-}
-.mhero::before{
-content:’’;position:absolute;top:0;left:0;right:0;height:1px;
-background:linear-gradient(90deg,transparent,var(–c),transparent);
-box-shadow:0 0 8px var(–c);
-}
-.mhero::after{
-content:’’;position:absolute;inset:0;
-background:linear-gradient(135deg,rgba(0,200,212,.02),transparent,rgba(204,45,143,.02));
-pointer-events:none;
-}
-
+.mhero{margin:16px;background:#000;border-radius:6px;padding:0;border:1px solid rgba(255,255,255,.06);animation:fadeUp .25s ease;position:relative;overflow:hidden}
+.mhero::before{content:’’;position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#00c8d4,transparent);box-shadow:0 0 8px #00c8d4}
+.hero-inner{padding:22px 20px}
 .hero-id{font-family:‘Orbitron’,sans-serif;font-size:8px;letter-spacing:3px;color:rgba(0,200,212,.4);margin-bottom:8px}
-.hero-s{font-family:‘Orbitron’,sans-serif;font-size:10px;letter-spacing:2px;color:rgba(255,255,255,.25);margin-bottom:6px}
-.hero-p{font-family:‘Bebas Neue’,sans-serif;font-size:28px;letter-spacing:2px;color:#fff;line-height:1.1;margin-bottom:14px;text-shadow:0 0 30px rgba(255,255,255,.1)}
-.hero-meta{display:flex;gap:6px}
+.hero-handle{font-family:‘Orbitron’,sans-serif;font-size:8px;letter-spacing:2px;color:rgba(255,255,255,.2);margin-bottom:8px}
+.hero-setup{font-family:‘Bebas Neue’,sans-serif;font-size:12px;letter-spacing:3px;color:rgba(255,255,255,.3);margin-bottom:4px}
+.hero-punch{font-family:‘Bebas Neue’,sans-serif;font-size:26px;letter-spacing:2px;color:#fff;line-height:1.1;margin-bottom:14px;text-shadow:0 0 30px rgba(255,255,255,.1)}
+.hero-visual{margin:0 20px 16px;padding:10px 12px;background:rgba(0,200,212,.05);border:1px solid rgba(0,200,212,.15);border-radius:3px;font-size:10px;color:rgba(0,200,212,.6);font-family:‘Orbitron’,sans-serif;letter-spacing:1px;line-height:1.5}
+.hero-meta{padding:0 20px 16px;display:flex;gap:6px}
 .hero-tag{font-size:9px;letter-spacing:1px;padding:2px 8px;border-radius:2px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.3);border:1px solid rgba(255,255,255,.07);font-family:‘Barlow Condensed’,sans-serif}
 
 /* CONTROLS */
-.wctrl{padding:0 16px 14px;display:flex;flex-direction:column;gap:12px;animation:fadeUp .25s ease}
-
-.ctrl-lbl{font-family:‘Orbitron’,sans-serif;font-size:8px;font-weight:700;letter-spacing:3px;color:var(–mu);margin-bottom:6px;text-transform:uppercase}
-
+.wctrl{padding:0 16px 14px;display:flex;flex-direction:column;gap:12px}
+.ctrl-lbl{font-family:‘Orbitron’,sans-serif;font-size:8px;font-weight:700;letter-spacing:3px;color:#444466;margin-bottom:6px}
 .rg{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
-.rb{
-padding:7px 4px;border-radius:3px;border:1px solid var(–b);
-background:var(–d3);color:var(–mu);
-font-family:‘Orbitron’,sans-serif;font-size:8px;font-weight:700;letter-spacing:1px;
-cursor:pointer;transition:.15s;text-align:center;
-}
-.rb:hover{border-color:var(–c);color:var(–c);box-shadow:0 0 8px rgba(0,200,212,.1)}
-.rb.active{background:rgba(0,200,212,.1);border-color:var(–c);color:var(–c);box-shadow:0 0 12px rgba(0,200,212,.15)}
-
+.rb{padding:7px 4px;border-radius:3px;border:1px solid rgba(0,200,212,.12);background:#0c0c20;color:#444466;font-family:‘Orbitron’,sans-serif;font-size:8px;font-weight:700;letter-spacing:1px;cursor:pointer;transition:.15s;text-align:center}
+.rb:hover{border-color:#00c8d4;color:#00c8d4}
+.rb.active{background:rgba(0,200,212,.1);border-color:#00c8d4;color:#00c8d4;box-shadow:0 0 12px rgba(0,200,212,.15)}
 .tc{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .fg{display:flex;flex-direction:column;gap:5px}
-
-.fi{
-background:var(–d3);border:1px solid var(–b);border-radius:3px;
-padding:8px 10px;color:var(–t);font-family:‘Barlow Condensed’,sans-serif;font-size:12px;
-letter-spacing:1px;transition:.2s;width:100%;
-}
-.fi:focus{outline:none;border-color:var(–c);box-shadow:0 0 10px rgba(0,200,212,.1)}
-.fi::placeholder{color:var(–mu)}
-select.fi{cursor:pointer;appearance:none;background-image:url(“data:image/svg+xml,%3Csvg xmlns=‘http://www.w3.org/2000/svg’ width=‘8’ height=‘8’ fill=’%23444466’ viewBox=‘0 0 16 16’%3E%3Cpath d=‘M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z’/%3E%3C/svg%3E”);background-repeat:no-repeat;background-position:right 9px center;padding-right:24px}
-select.fi option{background:var(–d2)}
+.fi{background:#0c0c20;border:1px solid rgba(0,200,212,.12);border-radius:3px;padding:8px 10px;color:#e0e0ff;font-family:‘Barlow Condensed’,sans-serif;font-size:12px;letter-spacing:1px;transition:.2s;width:100%}
+.fi:focus{outline:none;border-color:#00c8d4;box-shadow:0 0 10px rgba(0,200,212,.1)}
+.fi::placeholder{color:#444466}
+select.fi{cursor:pointer;-webkit-appearance:none;appearance:none;background-image:url(“data:image/svg+xml,%3Csvg xmlns=‘http://www.w3.org/2000/svg’ width=‘8’ height=‘8’ fill=’%23444466’ viewBox=‘0 0 16 16’%3E%3Cpath d=‘M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z’/%3E%3C/svg%3E”);background-repeat:no-repeat;background-position:right 9px center;padding-right:24px}
+select.fi option{background:#080816}
 
 /* WORKSHOP BUTTON */
 .bwrap{padding:0 16px 16px}
-.bws{
-width:100%;padding:16px;border:none;border-radius:4px;
-background:#00c8d4;
-color:#000;font-family:‘Orbitron’,sans-serif;font-size:14px;font-weight:900;letter-spacing:4px;
-cursor:pointer;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:10px;
-position:relative;overflow:hidden;-webkit-appearance:none;appearance:none;
-}
-.bws::before{
-content:’’;position:absolute;inset:0;
-background:linear-gradient(90deg,#00c8d4,#cc2d8f);
-z-index:0;
-}
-.bws .bi,.bws .bl,.bws .sp{position:relative;z-index:1}
-.bws:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,200,212,.4)}
-.bws:disabled{opacity:.35;cursor:not-allowed;transform:none;box-shadow:none}
-.bws.loading{opacity:.7;cursor:wait}
-.bws.loading::before{background:linear-gradient(90deg,rgba(0,200,212,.6),rgba(204,45,143,.6))}
-.bws.success::before{background:linear-gradient(90deg,#00ff88,#00a86b)}
+.bws{width:100%;padding:16px;border:none;border-radius:4px;background:#00c8d4;color:#000;font-family:‘Orbitron’,sans-serif;font-size:14px;font-weight:900;letter-spacing:4px;cursor:pointer;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:10px;position:relative;overflow:hidden;-webkit-appearance:none;appearance:none}
+.bws-bg{position:absolute;inset:0;background:linear-gradient(90deg,#00c8d4,#cc2d8f);z-index:0}
+.bws-content{position:relative;z-index:1;display:flex;align-items:center;gap:10px}
+.bws:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,200,212,.4)}
+.bws:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
 
 /* SPINNER */
 .sp{width:16px;height:16px;border:2px solid rgba(0,0,0,.3);border-top-color:#000;border-radius:50%;animation:spin .6s linear infinite;display:none}
-@keyframes spin{to{transform:rotate(360deg)}}
-.bws.loading .sp{display:block}.bws.loading .bi,.bws.loading .bl{display:none}
+.loading .sp{display:block !important}
+.loading .bi,.loading .bl{display:none !important}
+
+/* TERMINAL */
+.terminal{margin:16px;background:#080816;border:1px solid rgba(0,200,212,.12);border-radius:4px;padding:16px;font-family:‘Orbitron’,sans-serif;font-size:9px;color:#00c8d4;letter-spacing:2px;line-height:2;animation:fadeUp .3s ease}
+.t-line{opacity:0;animation:slideIn .1s ease forwards}
+.t-line:nth-child(1){animation-delay:.1s}
+.t-line:nth-child(2){animation-delay:.4s}
+.t-line:nth-child(3){animation-delay:.7s}
+.t-line:nth-child(4){animation-delay:1s}
+.t-line:nth-child(5){animation-delay:1.3s}
+.t-cursor{display:inline-block;width:6px;height:10px;background:#00c8d4;animation:blink .8s step-end infinite;vertical-align:middle}
 
 /* BREAKDOWN */
 .brwrap{margin:0 16px 20px;display:flex;flex-direction:column;gap:7px}
-
-.br-hdr{
-font-family:‘Orbitron’,sans-serif;font-size:14px;font-weight:900;letter-spacing:4px;
-background:linear-gradient(90deg,var(–c),var(–m));-webkit-background-clip:text;-webkit-text-fill-color:transparent;
-padding-bottom:8px;border-bottom:1px solid var(–b);margin-bottom:4px;
-display:flex;align-items:center;gap:8px;
-}
-
-.brc{
-background:var(–d2);border:1px solid var(–b);border-radius:4px;overflow:hidden;
-animation:slideIn .3s ease both;transition:border-color .2s;
-}
+.br-hdr{font-family:‘Orbitron’,sans-serif;font-size:14px;font-weight:900;letter-spacing:4px;background:linear-gradient(90deg,#00c8d4,#cc2d8f);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;padding-bottom:8px;border-bottom:1px solid rgba(0,200,212,.12);margin-bottom:4px}
+.brc{background:#080816;border:1px solid rgba(0,200,212,.12);border-radius:4px;overflow:hidden;animation:slideIn .3s ease both;transition:border-color .2s}
 .brc:hover{border-color:rgba(0,200,212,.25)}
-.brc:nth-child(2){animation-delay:.05s}
-.brc:nth-child(3){animation-delay:.1s}
-.brc:nth-child(4){animation-delay:.15s}
-.brc:nth-child(5){animation-delay:.2s}
-.brc:nth-child(6){animation-delay:.25s}
-.brc:nth-child(7){animation-delay:.3s}
-@keyframes slideIn{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:translateX(0)}}
-
-.brc-h{
-padding:7px 12px;background:rgba(0,200,212,.04);border-bottom:1px solid var(–b);
-display:flex;align-items:center;gap:7px;
-}
-.brc-i{font-size:11px}.brc-l{font-family:‘Orbitron’,sans-serif;font-size:8px;font-weight:700;letter-spacing:2px;color:var(–c)}
+.brc:nth-child(2){animation-delay:.05s}.brc:nth-child(3){animation-delay:.1s}.brc:nth-child(4){animation-delay:.15s}.brc:nth-child(5){animation-delay:.2s}.brc:nth-child(6){animation-delay:.25s}.brc:nth-child(7){animation-delay:.3s}
+.brc-h{padding:7px 12px;background:rgba(0,200,212,.04);border-bottom:1px solid rgba(0,200,212,.12);display:flex;align-items:center;gap:7px}
+.brc-i{font-size:11px}
+.brc-l{font-family:‘Orbitron’,sans-serif;font-size:8px;font-weight:700;letter-spacing:2px;color:#00c8d4}
 .brc-b{padding:12px}
-
-.tld{
-font-family:‘Bebas Neue’,sans-serif;font-size:22px;letter-spacing:2px;color:#fff;
-background:#000;padding:14px 16px;border-radius:3px;line-height:1.2;margin-bottom:8px;
-border-left:2px solid var(–c);box-shadow:inset 0 0 20px rgba(0,0,0,.5);
-}
-
-.but{
-display:inline-flex;align-items:center;gap:5px;padding:5px 11px;
-background:rgba(0,200,212,.06);border:1px solid rgba(0,200,212,.25);border-radius:2px;
-color:var(–c);font-family:‘Orbitron’,sans-serif;font-size:8px;font-weight:700;letter-spacing:1px;
-cursor:pointer;transition:.2s;
-}
-.but:hover{background:rgba(0,200,212,.12);border-color:var(–c);box-shadow:0 0 8px rgba(0,200,212,.15)}
-
-.bvt{font-size:12px;color:var(–t);line-height:1.7;margin-bottom:10px;letter-spacing:.5px}
-.wt{font-size:12px;color:var(–t2);line-height:1.7;letter-spacing:.5px}
-
+.tld{font-family:‘Bebas Neue’,sans-serif;font-size:22px;letter-spacing:2px;color:#fff;background:#000;padding:14px 16px;border-radius:3px;line-height:1.2;margin-bottom:8px;border-left:2px solid #00c8d4}
+.but{display:inline-flex;align-items:center;gap:5px;padding:5px 11px;background:rgba(0,200,212,.06);border:1px solid rgba(0,200,212,.25);border-radius:2px;color:#00c8d4;font-family:‘Orbitron’,sans-serif;font-size:8px;font-weight:700;letter-spacing:1px;cursor:pointer;transition:.2s}
+.but:hover{background:rgba(0,200,212,.12);border-color:#00c8d4}
+.bvt{font-size:12px;color:#e0e0ff;line-height:1.7;margin-bottom:10px;letter-spacing:.5px}
+.wt{font-size:12px;color:#9090b8;line-height:1.7;letter-spacing:.5px}
 .sbs{display:flex;gap:5px;flex-wrap:wrap}
-.sb{
-display:inline-flex;align-items:center;gap:4px;padding:5px 10px;border-radius:2px;border:1px solid;
-font-family:‘Orbitron’,sans-serif;font-size:8px;font-weight:700;letter-spacing:1px;
-cursor:pointer;transition:.18s;text-decoration:none;
-}
+.sb{display:inline-flex;align-items:center;gap:4px;padding:5px 10px;border-radius:2px;border:1px solid;font-family:‘Orbitron’,sans-serif;font-size:8px;font-weight:700;letter-spacing:1px;cursor:pointer;transition:.18s;text-decoration:none}
 .sb-yt{background:rgba(255,0,0,.06);border-color:rgba(255,0,0,.25);color:#ff4444}
-.sb-yt:hover{background:rgba(255,0,0,.12);box-shadow:0 0 8px rgba(255,0,0,.15)}
-.sb-ig{background:rgba(204,45,143,.06);border-color:rgba(204,45,143,.25);color:var(–m)}
-.sb-ig:hover{background:rgba(204,45,143,.12);box-shadow:0 0 8px rgba(204,45,143,.15)}
-.sb-x{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.12);color:var(–t2)}
+.sb-yt:hover{background:rgba(255,0,0,.12)}
+.sb-ig{background:rgba(204,45,143,.06);border-color:rgba(204,45,143,.25);color:#cc2d8f}
+.sb-ig:hover{background:rgba(204,45,143,.12)}
+.sb-x{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.12);color:#9090b8}
 .sb-x:hover{background:rgba(255,255,255,.08)}
 .sb-sp{background:rgba(30,215,96,.06);border-color:rgba(30,215,96,.25);color:#1ed760}
-.sb-sp:hover{background:rgba(30,215,96,.12);box-shadow:0 0 8px rgba(30,215,96,.15)}
-.sb-tt{background:rgba(0,200,212,.06);border-color:rgba(0,200,212,.25);color:var(–c)}
-.sb-tt:hover{background:rgba(0,200,212,.12);box-shadow:0 0 8px rgba(0,200,212,.15)}
+.sb-sp:hover{background:rgba(30,215,96,.12)}
+.sb-tt{background:rgba(0,200,212,.06);border-color:rgba(0,200,212,.25);color:#00c8d4}
+.sb-tt:hover{background:rgba(0,200,212,.12)}
 
 /* GEN MODE */
 .gm{padding:16px;animation:fadeUp .3s ease}
 .gm-hdr{display:flex;align-items:center;gap:10px;margin-bottom:18px}
-.gm-badge{
-padding:3px 10px;border-radius:2px;background:rgba(204,45,143,.1);border:1px solid rgba(204,45,143,.3);
-font-family:‘Orbitron’,sans-serif;font-size:8px;font-weight:700;letter-spacing:2px;color:var(–m);
-}
-.gm-title{font-family:‘Orbitron’,sans-serif;font-size:18px;font-weight:900;letter-spacing:3px;color:var(–t)}
+.gm-badge{padding:3px 10px;border-radius:2px;background:rgba(204,45,143,.1);border:1px solid rgba(204,45,143,.3);font-family:‘Orbitron’,sans-serif;font-size:8px;font-weight:700;letter-spacing:2px;color:#cc2d8f}
+.gm-title{font-family:‘Orbitron’,sans-serif;font-size:18px;font-weight:900;letter-spacing:3px;color:#e0e0ff}
 
-/* ===== RIGHT PANEL ===== */
-.pr{background:var(–d2);border-left:1px solid var(–b);display:flex;flex-direction:column;overflow:hidden}
-
+/* RIGHT PANEL */
+.pr{background:#080816;border-left:1px solid rgba(0,200,212,.12);display:flex;flex-direction:column;overflow:hidden}
 .post-body{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:12px}
-
-.cap-area{display:flex;flex-direction:column;gap:5px}
-.cap-area textarea{
-background:var(–d3);border:1px solid var(–b);border-radius:3px;
-padding:10px 11px;color:var(–t);font-family:‘Barlow Condensed’,sans-serif;
-font-size:12px;letter-spacing:.5px;line-height:1.6;resize:none;height:100px;width:100%;transition:.2s;
-}
-.cap-area textarea:focus{outline:none;border-color:var(–c);box-shadow:0 0 10px rgba(0,200,212,.08)}
-.cap-area textarea::placeholder{color:var(–mu)}
-.chr{font-family:‘Orbitron’,sans-serif;font-size:8px;color:var(–mu);text-align:right;letter-spacing:1px}
-.chr.ov{color:var(–r)}
-
-.sep{height:1px;background:var(–b)}
-
-.sec-lbl{font-family:‘Orbitron’,sans-serif;font-size:8px;font-weight:700;letter-spacing:3px;color:var(–mu);margin-bottom:7px}
-
+.cap-wrap textarea{background:#0c0c20;border:1px solid rgba(0,200,212,.12);border-radius:3px;padding:10px 11px;color:#e0e0ff;font-family:‘Barlow Condensed’,sans-serif;font-size:12px;letter-spacing:.5px;line-height:1.6;resize:none;height:100px;width:100%;transition:.2s}
+.cap-wrap textarea:focus{outline:none;border-color:#00c8d4;box-shadow:0 0 10px rgba(0,200,212,.08)}
+.cap-wrap textarea::placeholder{color:#444466}
+.chr{font-family:‘Orbitron’,sans-serif;font-size:8px;color:#444466;text-align:right;letter-spacing:1px;margin-top:4px}
+.chr.ov{color:#ff3355}
+.sep{height:1px;background:rgba(0,200,212,.12)}
+.sec-lbl{font-family:‘Orbitron’,sans-serif;font-size:8px;font-weight:700;letter-spacing:3px;color:#444466;margin-bottom:7px}
 .vg{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:7px}
-.vc{
-padding:3px 8px;border-radius:2px;border:1px solid var(–b);
-background:var(–d3);color:var(–mu);
-font-family:‘Orbitron’,sans-serif;font-size:7px;font-weight:700;letter-spacing:1px;
-cursor:pointer;transition:.18s;
-}
-.vc:hover{border-color:var(–m);color:var(–m)}
-.vc.active{background:rgba(204,45,143,.1);border-color:var(–m);color:var(–m);box-shadow:0 0 8px rgba(204,45,143,.1)}
-
-.hbox{
-background:var(–d3);border:1px solid var(–b);border-radius:3px;
-padding:9px 10px;font-size:10px;color:var(–c);line-height:1.9;
-min-height:36px;word-break:break-word;letter-spacing:.5px;
-}
-
+.vc{padding:3px 8px;border-radius:2px;border:1px solid rgba(0,200,212,.12);background:#0c0c20;color:#444466;font-family:‘Orbitron’,sans-serif;font-size:7px;font-weight:700;letter-spacing:1px;cursor:pointer;transition:.18s}
+.vc:hover{border-color:#cc2d8f;color:#cc2d8f}
+.vc.active{background:rgba(204,45,143,.1);border-color:#cc2d8f;color:#cc2d8f;box-shadow:0 0 8px rgba(204,45,143,.1)}
+.hbox{background:#0c0c20;border:1px solid rgba(0,200,212,.12);border-radius:3px;padding:9px 10px;font-size:10px;color:#00c8d4;line-height:1.9;min-height:36px;word-break:break-word;letter-spacing:.5px}
 .plats{display:flex;gap:5px}
-.pb{
-flex:1;padding:7px 4px;border-radius:2px;border:1px solid var(–b);
-background:var(–d3);color:var(–mu);
-font-family:‘Orbitron’,sans-serif;font-size:8px;font-weight:700;letter-spacing:1px;
-cursor:pointer;transition:.18s;text-align:center;
-}
-.pb.active{background:rgba(0,200,212,.08);border-color:var(–c);color:var(–c);box-shadow:0 0 8px rgba(0,200,212,.1)}
-
-/* ACTION BUTTONS */
+.pb{flex:1;padding:7px 4px;border-radius:2px;border:1px solid rgba(0,200,212,.12);background:#0c0c20;color:#444466;font-family:‘Orbitron’,sans-serif;font-size:8px;font-weight:700;letter-spacing:1px;cursor:pointer;transition:.18s;text-align:center}
+.pb.active{background:rgba(0,200,212,.08);border-color:#00c8d4;color:#00c8d4}
 .acts{display:flex;flex-direction:column;gap:6px}
-.btn-cp{
-width:100%;padding:11px;background:var(–d3);border:1px solid var(–b);border-radius:3px;
-color:var(–t2);font-family:‘Orbitron’,sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;
-cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;gap:6px;
-}
-.btn-cp:hover{border-color:var(–c);color:var(–c);box-shadow:0 0 10px rgba(0,200,212,.1)}
-.btn-cp.copied{border-color:var(–g);color:var(–g);box-shadow:0 0 10px rgba(0,255,136,.1)}
-
-.btn-mc{
-width:100%;padding:11px;
-background:linear-gradient(90deg,rgba(0,200,212,.08),rgba(204,45,143,.08));
-border:1px solid rgba(0,200,212,.3);border-radius:3px;
-color:var(–c);font-family:‘Orbitron’,sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;
-cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;gap:6px;
-}
-.btn-mc:hover{background:linear-gradient(90deg,rgba(0,200,212,.15),rgba(204,45,143,.15));box-shadow:0 0 15px rgba(0,200,212,.15);transform:translateY(-1px)}
-
-.mc-hint{text-align:center;font-family:‘Orbitron’,sans-serif;font-size:7px;color:var(–mu);letter-spacing:1px}
-
-/* STATS BAR */
-.stats{
-display:flex;border-top:1px solid var(–b);
-background:rgba(4,4,12,.9);
-}
-.stat{flex:1;padding:8px 4px;text-align:center;border-right:1px solid var(–b)}
+.btn-cp{width:100%;padding:11px;background:#0c0c20;border:1px solid rgba(0,200,212,.12);border-radius:3px;color:#9090b8;font-family:‘Orbitron’,sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;gap:6px}
+.btn-cp:hover{border-color:#00c8d4;color:#00c8d4}
+.btn-cp.copied{border-color:#00ff88;color:#00ff88}
+.btn-mc{width:100%;padding:11px;background:linear-gradient(90deg,rgba(0,200,212,.08),rgba(204,45,143,.08));border:1px solid rgba(0,200,212,.3);border-radius:3px;color:#00c8d4;font-family:‘Orbitron’,sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;gap:6px}
+.btn-mc:hover{background:linear-gradient(90deg,rgba(0,200,212,.15),rgba(204,45,143,.15));transform:translateY(-1px)}
+.mc-hint{text-align:center;font-family:‘Orbitron’,sans-serif;font-size:7px;color:#444466;letter-spacing:1px}
+.stats{display:flex;border-top:1px solid rgba(0,200,212,.12);background:rgba(4,4,12,.9)}
+.stat{flex:1;padding:8px 4px;text-align:center;border-right:1px solid rgba(0,200,212,.12)}
 .stat:last-child{border-right:none}
-.stat-n{font-family:‘Orbitron’,sans-serif;font-size:14px;font-weight:900;color:var(–c);text-shadow:0 0 10px rgba(0,200,212,.3)}
-.stat-l{font-family:‘Orbitron’,sans-serif;font-size:6px;letter-spacing:2px;color:var(–mu);margin-top:2px}
+.stat-n{font-family:‘Orbitron’,sans-serif;font-size:14px;font-weight:900;color:#00c8d4;text-shadow:0 0 10px rgba(0,200,212,.3)}
+.stat-l{font-family:‘Orbitron’,sans-serif;font-size:6px;letter-spacing:2px;color:#444466;margin-top:2px}
 
 /* SETTINGS MODAL */
 .ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);backdrop-filter:blur(10px);z-index:500;align-items:center;justify-content:center}
 .ov.open{display:flex}
-.mo{
-background:var(–d2);border:1px solid rgba(0,200,212,.3);border-radius:6px;padding:28px;
-width:400px;max-width:92vw;
-box-shadow:0 0 40px rgba(0,200,212,.1),inset 0 0 40px rgba(0,0,0,.5);
-animation:moIn .25s ease;
-}
-@keyframes moIn{from{opacity:0;transform:scale(.96) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
-.mo-title{font-family:‘Orbitron’,sans-serif;font-size:20px;font-weight:900;letter-spacing:4px;background:linear-gradient(90deg,var(–c),var(–m));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:20px}
+.mo{background:#080816;border:1px solid rgba(0,200,212,.3);border-radius:6px;padding:28px;width:400px;max-width:92vw;box-shadow:0 0 40px rgba(0,200,212,.1);animation:moIn .25s ease}
+.mo-title{font-family:‘Orbitron’,sans-serif;font-size:20px;font-weight:900;letter-spacing:4px;background:linear-gradient(90deg,#00c8d4,#cc2d8f);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:20px}
 .mo-f{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
-.mo-hint{font-size:11px;color:var(–mu);line-height:1.7;letter-spacing:.5px}
-.mo-hint a{color:var(–c);text-decoration:none}
-.mo-sep{height:1px;background:var(–b);margin:14px 0}
+.mo-hint{font-size:11px;color:#444466;line-height:1.7;letter-spacing:.5px}
+.mo-hint a{color:#00c8d4;text-decoration:none}
+.mo-sep{height:1px;background:rgba(0,200,212,.12);margin:14px 0}
 .mo-acts{display:flex;gap:8px;justify-content:flex-end}
-.btn-cancel{padding:8px 18px;background:var(–d3);border:1px solid var(–b);border-radius:3px;color:var(–mu);font-family:‘Orbitron’,sans-serif;font-size:9px;font-weight:700;letter-spacing:1px;cursor:pointer}
-.btn-save{padding:8px 22px;background:var(–c);border:none;border-radius:3px;color:#000;font-family:‘Orbitron’,sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;cursor:pointer;transition:.2s}
-.btn-save:hover{opacity:.88;box-shadow:0 0 15px rgba(0,200,212,.3)}
+.btn-cancel{padding:8px 18px;background:#0c0c20;border:1px solid rgba(0,200,212,.12);border-radius:3px;color:#444466;font-family:‘Orbitron’,sans-serif;font-size:9px;font-weight:700;letter-spacing:1px;cursor:pointer}
+.btn-save{padding:8px 22px;background:#00c8d4;border:none;border-radius:3px;color:#000;font-family:‘Orbitron’,sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;cursor:pointer;transition:.2s}
+.btn-save:hover{opacity:.88}
 
 /* TOAST */
 .toast{position:fixed;bottom:16px;right:16px;padding:10px 16px;border-radius:3px;font-family:‘Orbitron’,sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;z-index:999;transform:translateY(14px);opacity:0;transition:all .3s cubic-bezier(.34,1.56,.64,1);pointer-events:none;display:flex;align-items:center;gap:6px}
 .toast.show{transform:translateY(0);opacity:1}
-.toast.ok{background:var(–d2);border:1px solid var(–g);color:var(–g);box-shadow:0 0 20px rgba(0,255,136,.1)}
-.toast.err{background:var(–d2);border:1px solid var(–r);color:var(–r);box-shadow:0 0 20px rgba(255,51,85,.1)}
-.toast.warn{background:var(–d2);border:1px solid var(–y);color:var(–y);box-shadow:0 0 20px rgba(255,215,0,.1)}
-
-/* LOADING TERMINAL */
-.terminal{margin:16px;background:var(–d2);border:1px solid var(–b);border-radius:4px;padding:16px;font-family:‘Orbitron’,sans-serif;font-size:9px;color:var(–c);letter-spacing:2px;line-height:2;animation:fadeUp .3s ease}
-.t-line{opacity:0;animation:typeIn .1s ease forwards}
-.t-line:nth-child(1){animation-delay:.1s}
-.t-line:nth-child(2){animation-delay:.3s}
-.t-line:nth-child(3){animation-delay:.6s}
-.t-line:nth-child(4){animation-delay:.9s}
-.t-line:nth-child(5){animation-delay:1.2s}
-@keyframes typeIn{from{opacity:0;transform:translateX(-4px)}to{opacity:1;transform:translateX(0)}}
-.t-cursor{display:inline-block;width:6px;height:10px;background:var(–c);animation:blink .8s step-end infinite;vertical-align:middle}
+.toast.ok{background:#080816;border:1px solid #00ff88;color:#00ff88;box-shadow:0 0 20px rgba(0,255,136,.1)}
+.toast.err{background:#080816;border:1px solid #ff3355;color:#ff3355;box-shadow:0 0 20px rgba(255,51,85,.1)}
+.toast.warn{background:#080816;border:1px solid #ffd700;color:#ffd700;box-shadow:0 0 20px rgba(255,215,0,.1)}
 </style>
 
 </head>
 <body>
 
-<!-- TOPBAR -->
-
 <div class="topbar">
-  <div class="logo-wrap">
-    <div class="logo">GEO<span style="color:var(--m)">DM</span>US</div>
-    <div class="sys-badge"><div class="sys-dot"></div>MEME.OS v3.0</div>
+  <div style="display:flex;align-items:center;gap:10px">
+    <div class="logo">GEO<span>DM</span>US</div>
+    <div class="sys-badge"><div class="sys-dot"></div>MEME.OS V3.0</div>
   </div>
   <div class="tr">
-    <div class="api-status no" id="apiPill" onclick="openSett()">
-      <div class="sd"></div><span id="apiTxt">NO KEY</span>
+    <div class="api-pill no" id="apiPill" onclick="openSett()">
+      <div class="sd"></div><span id="apiTxt">NO API KEY</span>
     </div>
     <button class="btn-cfg" onclick="openSett()">⚙ CONFIG</button>
   </div>
 </div>
-
-<!-- BREADCRUMB -->
 
 <div class="bc">
   <a href="/contentos">← CONTENTOS</a>
   <span class="bc-sep">//</span>
   <a href="/">HOME</a>
   <span class="bc-sep">//</span>
-  <span style="color:var(--c)">MEME.OS</span>
+  <span style="color:#00c8d4">MEME.OS</span>
 </div>
 
-<!-- WORKSPACE -->
-
 <div class="ws">
-
-  <!-- LEFT -->
 
   <div class="pl">
     <div class="ph">
@@ -498,29 +243,25 @@ animation:moIn .25s ease;
       <div class="ph-cnt" id="mcnt">31</div>
     </div>
     <button class="btn-gen" onclick="genMode()">[ + ] GENERATE NEW MEME</button>
-    <div class="search-wrap">
-      <span class="si">▶</span>
+    <div class="sw">
+      <span class="sw-i">▶</span>
       <input placeholder="SEARCH MEMES..." oninput="filterM(this.value)">
     </div>
     <div class="ml" id="mList"></div>
   </div>
 
-  <!-- CENTER -->
-
   <div class="pc" id="pCenter">
-    <div class="empty">
+    <div class="empty-wrap">
       <div class="empty-glyph">⚡</div>
       <div class="empty-title">MEME.OS</div>
       <div class="empty-sub">SELECT A MEME FROM THE LIBRARY TO WORKSHOP IT WITH AI — OR GENERATE A NEW ONE FROM ANY TOPIC.</div>
     </div>
   </div>
 
-  <!-- RIGHT -->
-
   <div class="pr">
     <div class="ph"><div class="ph-lbl">POST PANEL</div></div>
     <div class="post-body">
-      <div class="cap-area">
+      <div class="cap-wrap">
         <div class="sec-lbl">CAPTION</div>
         <textarea id="capTA" placeholder="WORKSHOP A MEME TO GENERATE A CAPTION..." oninput="updCC()"></textarea>
         <div class="chr" id="chrR">0 / 2200</div>
@@ -548,14 +289,13 @@ animation:moIn .25s ease;
       </div>
     </div>
     <div class="stats">
-      <div class="stat"><div class="stat-n" id="stTotal">0</div><div class="stat-l">TOTAL</div></div>
+      <div class="stat"><div class="stat-n" id="stTotal">31</div><div class="stat-l">TOTAL</div></div>
       <div class="stat"><div class="stat-n" id="stDone">0</div><div class="stat-l">DONE</div></div>
       <div class="stat"><div class="stat-n" id="stGen">0</div><div class="stat-l">GENERATED</div></div>
     </div>
   </div>
-</div>
 
-<!-- SETTINGS -->
+</div>
 
 <div class="ov" id="settOv" onclick="if(event.target===this)closeSett()">
   <div class="mo">
@@ -563,7 +303,7 @@ animation:moIn .25s ease;
     <div class="mo-f">
       <div class="sec-lbl">GEMINI API KEY</div>
       <input type="password" class="fi" id="gKey" placeholder="AIza...">
-      <div class="mo-hint">FREE TIER — 1,500 REQ/DAY, NO BILLING.<br>GET YOURS AT <a href="https://aistudio.google.com" target="_blank">AISTUDIO.GOOGLE.COM</a><br>→ GET API KEY → CREATE API KEY IN NEW PROJECT</div>
+      <div class="mo-hint">FREE — 1,500 REQ/DAY, NO BILLING NEEDED.<br>GET YOURS AT <a href="https://aistudio.google.com" target="_blank">AISTUDIO.GOOGLE.COM</a><br>GET API KEY → CREATE API KEY IN NEW PROJECT</div>
     </div>
     <div class="mo-sep"></div>
     <div class="mo-acts">
@@ -576,48 +316,42 @@ animation:moIn .25s ease;
 <div class="toast" id="toast"></div>
 
 <script>
-// ── DATA ──────────────────────────────────────────────────────
-const MEMES = [
-  // AI HUMOR
-  {id:1,  s:"POV",                                    p:"CLAUDE CODE IS DOWN AND THEY ASK YOU TO WRITE CODE MANUALLY",              c:"AI Humor",    r:"Suffering",   visual:"Woman crying and smoking dramatically — extreme reaction to minor inconvenience"},
-  {id:2,  s:"2 HOURS BEFORE DEADLINE",                p:"DEVELOPER vs CLAUDE CODE — CAT DRIVING CALMLY, DOG PANICKING",            c:"AI Humor",    r:"Panicking",   visual:"Husky dog howling in passenger seat, calm cat driving — labels: Developer / Claude Code"},
-  {id:3,  s:"YOUR FRIEND",                            p:"PRESENTING WHAT HE MADE USING HIS $200 AI TOOLS",                        c:"AI Humor",    r:"Suffering",   visual:"Jian Yang from Silicon Valley showing Not Hotdog app — proud face, bad product"},
-  {id:4,  s:"AI WILL NOT REPLACE ME",                 p:"ME: [2 + 11 - 1 = TWO ELEVEN]",                                         c:"AI Humor",    r:"Suffering",   visual:"Peter Griffin thinking bubble showing wrong math answer"},
-  {id:5,  s:"FEEDING CHATGPT MY COMPANY'S ENTIRE CONFIDENTIAL DATA", p:"JUST TO DRAFT ONE EMAIL",                                 c:"AI Humor",    r:"Panicking",   visual:"Remy from Ratatouille dumping everything into a cooking pot"},
-  {id:6,  s:"STARTUP IDEA: BUILD INTERACTIVE CHARTS IN THE CHAT",    p:"CLAUDE THE VERY NEXT DAY:",                               c:"AI Humor",    r:"Unbothered",  visual:"Ryan Gosling unbothered face — already did it, not impressed"},
-  {id:7,  s:"STRONG ENGINEERS BUILD C > FOUNDATIONS > COMFORT > PYTHON > AI", p:"VIBE CODING > WEAK ENGINEERS > COLLAPSE > STRONG ENGINEERS", c:"AI Humor", r:"Unbothered", visual:"Batman looking at himself in mirror — cycle of engineering"},
-  // AI DISRUPTION
-  {id:8,  s:"PLUMBERS AND ELECTRICIANS",              p:"SEEING AI REPLACE EVERYONE WHO WENT TO COLLEGE",                        c:"AI Disruption",r:"Unbothered",  visual:"Jon Hamm vibing and dancing to Turn The Lights Off — completely unbothered"},
-  {id:9,  s:"AI MODELS FOR MILITARY USE",             p:"IT'S SO OVER",                                                          c:"AI Disruption",r:"Suffering",   visual:"Ultron robot from Avengers — menacing stare"},
-  {id:10, s:"THE SAME PEOPLE WHO SAID LEARN TO CODE", p:"ARE NOW SAYING SOFTWARE ITSELF IS BEING REPLACED",                     c:"AI Disruption",r:"Unbothered",  visual:"Christian Bale confused stare into crowd — processing the irony"},
-  {id:11, s:"PULMONOLOGIST WITH 20 YEARS EXPERIENCE", p:"SAYS HE'S ABOUT TO LOSE HIS JOB TO AI",                               c:"AI Disruption",r:"Suffering",   visual:"X-ray scan on screen — doctor pointing at their own replacement"},
-  {id:12, s:"AI IS GETTING OUT OF CONTROL",           p:"SOMEONE SHOOT IT",                                                      c:"AI Disruption",r:"Panicking",   visual:"Mickey Mouse being shot at — chaos energy"},
-  // TECH NEWS
-  {id:13, s:"CHINA'S RESPONSE TO ANTHROPIC",          p:"不客气 / YOU ARE WELCOME",                                              c:"Tech News",   r:"Unbothered",  visual:"Jian Yang from Silicon Valley saying You are welcome — smug face"},
-  {id:14, s:"THE MARKET WHENEVER",                    p:"ANTHROPIC TWEETS SOME SHIT",                                           c:"Tech News",   r:"Panicking",   visual:"Washing machine door exploding open — pure chaos"},
-  {id:15, s:"BREAKING: META LAYING OFF 20%",          p:"TO OFFSET RISING AI COSTS",                                            c:"Tech News",   r:"Suffering",   visual:"Cillian Murphy as Oppenheimer — cold calculated stare"},
-  {id:16, s:"THIS IS WHY RAM IS SO EXPENSIVE",        p:"SAM ALTMAN AND DARIO AMODEI HUGGING",                                  c:"Tech News",   r:"Unbothered",  visual:"Sam Altman and Dario Amodei embracing at tech conference"},
-  {id:17, s:"PERPLEXITY STEPPING INTO BLOOMBERG TERRITORY", p:"AND THIS TIME IT ACTUALLY LOOKS SERIOUS",                       c:"Tech News",   r:"Winning",     visual:"Perplexity Terminal Bloomberg-style dashboard — sleek financial UI"},
-  {id:18, s:"WE NEVER SAID WE WERE GOING TO INVEST $100 BILLION IN ONE ROUND", p:"THEY INVITED US TO INVEST UP TO $100 BILLION", c:"Tech News", r:"Unbothered",  visual:"Jensen Huang in leather jacket speaking to press — TVBS Taiwan news chyron"},
-  {id:19, s:"2 STICKS OF RAM COSTS $900",             p:"BECAUSE OF THIS BTW",                                                  c:"Tech News",   r:"Suffering",   visual:"Epstein pointing finger up — blame face"},
-  {id:20, s:"GEMINI 3 PRO VS GEMINI 3.1 PRO",        p:"ONE DRAWS A PELICAN, ONE ANIMATES IT RIDING A BIKE",                  c:"Tech News",   r:"Winning",     visual:"Side by side comparison — static pelican vs animated pelican on bicycle"},
-  // AI FUTURE
-  {id:21, s:"CHATGPT IN 2030",                        p:"YOU'RE NOT A PERSON — YOU ARE A MACHINE",                             c:"AI Future",   r:"Suffering",   visual:"Phone abandoned face-down on floor — dramatic breakup scene"},
-  {id:22, s:"THIS SCENE MADE WITH SEEDANCE 2.0",      p:"IT COST ABOUT $60 TO MAKE",                                           c:"AI Future",   r:"Winning",     visual:"Cinematic fantasy throne room scene — AI-generated film quality"},
-  {id:23, s:"THIS USED TO TAKE HUGE PRODUCTION TEAMS AND MILLIONS", p:"NOW IT'S A FEW PROMPTS AND $9 IN AI CREDITS",           c:"AI Future",   r:"Winning",     visual:"Photorealistic dinosaur charging — Jurassic Park quality, AI made"},
-  {id:24, s:"DEVELOPER BUILDS PALANTIR-LIKE DASHBOARD SOLO", p:"WITH NEW AI MODELS",                                           c:"AI Future",   r:"Winning",     visual:"WorldView 3D surveillance globe dashboard — military-grade UI"},
-  {id:25, s:"THIS IS AI DECIPHERING A 2,000 YEAR OLD GREEK MANUSCRIPT", p:"THE FUTURE IS HERE",                               c:"AI Future",   r:"Winning",     visual:"Neural network diagram processing ancient scroll fragments"},
-  {id:26, s:"THIS AI WON'T REPLACE HOLLYWOOD",        p:"IT WILL LET US CREATE BETTER FILMS THAN HOLLYWOOD",                  c:"AI Future",   r:"Winning",     visual:"Cinematic AI-generated film shot — photorealistic actor, explosion background"},
-  {id:27, s:"THIS IS SCARY — GEOSPY AI CAN TRACK YOUR EXACT LOCATION", p:"USING SOCIAL MEDIA PHOTOS IN 2 SECS IN 3D",         c:"AI Future",   r:"Panicking",   visual:"3D map zooming into exact NYC street location from one photo"},
-  {id:28, s:"FROM THE DOJO TO THE WORLD",             p:"THE ULTIMATE MARTIAL ARTS ROBOT AGIBOT A3 IS HERE",                  c:"AI Future",   r:"Winning",     visual:"White humanoid robot sparring with human in martial arts dojo"},
-  // JOBS & MONEY
-  {id:29, s:">$10K/MONTH SALARY",                     p:"THEY'RE INTERVIEWING THE AI AGENT ITSELF",                           c:"Jobs & Money", r:"Unbothered",  visual:"Cillian Murphy as Tommy Shelby — intense boardroom stare"},
-  {id:30, s:"HOW VPN WORKS",                          p:"CAT PRETENDS TO BE A SERVER SO YOU CAN BROWSE PRIVATELY",            c:"Tech Explain", r:"Unbothered",  visual:"Diagram showing cat intercepting DNS request — you on the right looking confused"},
-  {id:31, s:"THE STRANGEST PART ABOUT AI ISN'T WHAT IT CAN DO", p:"IT'S WHAT IT'S LEARNING TO DO ENTIRELY ON ITS OWN",       c:"AI Future",   r:"Panicking",   visual:"Neural network input/output diagram — Bengali translation it wasn't trained for"},
+var MEMES = [
+  {id:1,  s:"POV",                                         p:"CLAUDE CODE IS DOWN AND THEY ASK YOU TO WRITE CODE MANUALLY",              c:"AI Humor",     r:"Suffering",  v:"Woman crying and smoking dramatically — extreme reaction to minor inconvenience"},
+  {id:2,  s:"2 HOURS BEFORE DEADLINE",                     p:"DEVELOPER vs CLAUDE CODE — CAT DRIVING CALMLY, DOG PANICKING",            c:"AI Humor",     r:"Panicking",  v:"Husky dog howling in passenger seat, calm cat driving — labels: Developer / Claude Code"},
+  {id:3,  s:"YOUR FRIEND",                                 p:"PRESENTING WHAT HE MADE USING HIS $200 AI TOOLS",                        c:"AI Humor",     r:"Suffering",  v:"Jian Yang from Silicon Valley showing Not Hotdog app — proud face, terrible product"},
+  {id:4,  s:"AI WILL NOT REPLACE ME",                      p:"ME: [2 + 11 - 1 = TWO ELEVEN]",                                         c:"AI Humor",     r:"Suffering",  v:"Peter Griffin thinking bubble showing completely wrong math answer"},
+  {id:5,  s:"FEEDING CHATGPT MY COMPANY'S ENTIRE CONFIDENTIAL DATA", p:"JUST TO DRAFT ONE EMAIL",                                      c:"AI Humor",     r:"Panicking",  v:"Remy from Ratatouille dumping everything into a boiling pot"},
+  {id:6,  s:"STARTUP IDEA: BUILD INTERACTIVE CHARTS IN CHAT", p:"CLAUDE THE VERY NEXT DAY:",                                          c:"AI Humor",     r:"Unbothered", v:"Ryan Gosling unbothered stare — already built it, not impressed"},
+  {id:7,  s:"STRONG ENGINEERS BUILD C > FOUNDATIONS > PYTHON > AI", p:"VIBE CODING > WEAK ENGINEERS > COLLAPSE > STRONG ENGINEERS",   c:"AI Humor",     r:"Unbothered", v:"Batman looking in mirror — the cycle of engineering repeating itself"},
+  {id:8,  s:"PLUMBERS AND ELECTRICIANS",                   p:"SEEING AI REPLACE EVERYONE WHO WENT TO COLLEGE",                        c:"AI Disruption",r:"Unbothered", v:"Jon Hamm vibing and dancing to Turn The Lights Off — completely unbothered"},
+  {id:9,  s:"AI MODELS FOR MILITARY USE",                  p:"IT'S SO OVER",                                                          c:"AI Disruption",r:"Suffering",  v:"Ultron robot from Avengers — red eyes, menacing stare"},
+  {id:10, s:"THE SAME PEOPLE WHO SAID LEARN TO CODE",      p:"ARE NOW SAYING SOFTWARE ITSELF IS BEING REPLACED",                     c:"AI Disruption",r:"Unbothered", v:"Christian Bale confused stare into crowd — processing the irony"},
+  {id:11, s:"PULMONOLOGIST WITH 20 YEARS EXPERIENCE",      p:"SAYS HE IS ABOUT TO LOSE HIS JOB TO AI",                              c:"AI Disruption",r:"Suffering",  v:"X-ray scan on screen — doctor pointing at their own replacement"},
+  {id:12, s:"AI IS GETTING OUT OF CONTROL",                p:"SOMEONE NEEDS TO STOP IT",                                             c:"AI Disruption",r:"Panicking",  v:"Mickey Mouse getting shot at in a warzone — pure chaos energy"},
+  {id:13, s:"CHINA'S RESPONSE TO ANTHROPIC",               p:"NOT KEQUI / YOU ARE WELCOME",                                          c:"Tech News",    r:"Unbothered", v:"Jian Yang from Silicon Valley saying You are welcome — smug unbothered face"},
+  {id:14, s:"THE MARKET WHENEVER",                         p:"ANTHROPIC TWEETS SOME SHIT",                                           c:"Tech News",    r:"Panicking",  v:"Washing machine door exploding open — pure unpredictable chaos"},
+  {id:15, s:"BREAKING: META LAYING OFF 20%",               p:"TO OFFSET RISING AI COSTS",                                            c:"Tech News",    r:"Suffering",  v:"Cillian Murphy as Oppenheimer — cold calculated stare of doom"},
+  {id:16, s:"THIS IS WHY RAM IS SO EXPENSIVE",             p:"SAM ALTMAN AND DARIO AMODEI HUGGING",                                  c:"Tech News",    r:"Unbothered", v:"Sam Altman and Dario Amodei embracing warmly at tech conference"},
+  {id:17, s:"PERPLEXITY STEPPING INTO BLOOMBERG TERRITORY",p:"AND THIS TIME IT ACTUALLY LOOKS SERIOUS",                             c:"Tech News",    r:"Winning",    v:"Perplexity Terminal Bloomberg-style financial dashboard — legitimately impressive"},
+  {id:18, s:"WE NEVER SAID WE WERE GOING TO INVEST $100B", p:"THEY INVITED US TO INVEST UP TO $100 BILLION",                        c:"Tech News",    r:"Unbothered", v:"Jensen Huang in leather jacket speaking to press — TVBS Taiwan news chyron"},
+  {id:19, s:"2 STICKS OF RAM COSTS $900",                  p:"BECAUSE OF THIS BTW",                                                  c:"Tech News",    r:"Suffering",  v:"Jeffrey Epstein pointing finger — blame face"},
+  {id:20, s:"GEMINI 3 PRO VS GEMINI 3.1 PRO",             p:"ONE DRAWS A PELICAN, ONE ANIMATES IT RIDING A BIKE",                  c:"Tech News",    r:"Winning",    v:"Side by side — static ugly pelican vs beautifully animated pelican on bicycle"},
+  {id:21, s:"CHATGPT IN 2030",                             p:"YOU ARE NOT A PERSON — YOU ARE A MACHINE",                            c:"AI Future",    r:"Suffering",  v:"Phone abandoned face-down on floor — dramatic movie breakup scene"},
+  {id:22, s:"THIS SCENE MADE WITH SEEDANCE 2.0",           p:"IT COST ABOUT $60 TO MAKE",                                           c:"AI Future",    r:"Winning",    v:"Cinematic fantasy throne room — AI-generated Hollywood film quality"},
+  {id:23, s:"THIS USED TO TAKE HUGE PRODUCTION TEAMS",     p:"NOW IT IS A FEW PROMPTS AND $9 IN AI CREDITS",                       c:"AI Future",    r:"Winning",    v:"Photorealistic dinosaur charging — Jurassic Park quality, made by one person"},
+  {id:24, s:"DEVELOPER BUILDS PALANTIR-LIKE DASHBOARD SOLO",p:"WITH NEW AI MODELS",                                                 c:"AI Future",    r:"Winning",    v:"WorldView 3D surveillance globe dashboard — military-grade UI"},
+  {id:25, s:"THIS IS AI DECIPHERING A 2000 YEAR OLD GREEK MANUSCRIPT", p:"THE FUTURE IS HERE",                                      c:"AI Future",    r:"Winning",    v:"Neural network diagram processing ancient scroll fragments"},
+  {id:26, s:"THIS AI WONT REPLACE HOLLYWOOD",              p:"IT WILL LET US CREATE BETTER FILMS THAN HOLLYWOOD",                  c:"AI Future",    r:"Winning",    v:"Cinematic AI-generated film shot — photorealistic actors, epic background"},
+  {id:27, s:"THIS IS SCARY — GEOSPY AI",                   p:"CAN TRACK YOUR EXACT LOCATION FROM A PHOTO IN 2 SECS IN 3D",         c:"AI Future",    r:"Panicking",  v:"3D map zooming into exact NYC street location from a single social media photo"},
+  {id:28, s:"FROM THE DOJO TO THE WORLD",                  p:"THE ULTIMATE MARTIAL ARTS ROBOT AGIBOT A3 IS HERE",                  c:"AI Future",    r:"Winning",    v:"White humanoid robot sparring with human in Chinese martial arts dojo"},
+  {id:29, s:">$10K PER MONTH SALARY",                      p:"THEY ARE INTERVIEWING THE AI AGENT ITSELF",                          c:"Jobs & Money", r:"Unbothered", v:"Cillian Murphy as Tommy Shelby — intense boardroom stare"},
+  {id:30, s:"HOW VPN WORKS",                               p:"CAT PRETENDS TO BE A SERVER SO YOU CAN BROWSE PRIVATELY",            c:"Tech Explain", r:"Unbothered", v:"Diagram showing cat intercepting DNS — confused person on the right"},
+  {id:31, s:"THE STRANGEST PART ABOUT AI",                 p:"IS WHAT IT IS LEARNING TO DO ENTIRELY ON ITS OWN",                  c:"AI Future",    r:"Panicking",  v:"Neural network input/output — Bengali translation AI was never trained for"}
 ];
 
-const V = {
-  "GeoDMus":  ["#GeoDMus","#ChicagoAgency","#DigitalMarketing","#ChicagoBusiness","#AIMarketing","#WebDesignChicago"],
+var V = {
+  "GeoDMus":   ["#GeoDMus","#ChicagoAgency","#DigitalMarketing","#ChicagoBusiness","#AIMarketing","#WebDesignChicago"],
   "Juice Yoga":["#JuiceYogaBody","#WellnessChicago","#Yoga","#HealthyLiving","#Mindfulness"],
   "Creativo":  ["#Creativo","#CreativeMarketplace","#Freelance","#CreativePros"],
   "Glow Guide":["#GlowGuide","#InfluencerMarketing","#ContentCreator","#BrandDeals"],
@@ -626,274 +360,456 @@ const V = {
   "YSK":       ["#YourSplashyKicks","#Sneakers","#SneakerHead","#KickGame"]
 };
 
-// ── STATE ─────────────────────────────────────────────────────
-let aM=null, aR='Unbothered', aV='GeoDMus';
-let ws=JSON.parse(localStorage.getItem('gdm_ws')||'{}');
-let genCount=parseInt(localStorage.getItem('gdm_gen')||'0');
+var aM = null;
+var aR = 'Unbothered';
+var aV = 'GeoDMus';
+var ws = JSON.parse(localStorage.getItem('gdm_ws') || '{}');
+var genCount = parseInt(localStorage.getItem('gdm_gen') || '0');
 
-// ── INIT ──────────────────────────────────────────────────────
-function init(){renderML(MEMES);renderVG();updHT();chkKey();updStats()}
-
-function chkKey(){
-  const k=localStorage.getItem('gdm_gemini_key');
-  const p=document.getElementById('apiPill'),t=document.getElementById('apiTxt');
-  if(k&&k.length>10){p.className='api-status ok';t.textContent='GEMINI READY'}
-  else{p.className='api-status no';t.textContent='NO API KEY'}
+function init() {
+  renderML(MEMES);
+  renderVG();
+  updHT();
+  chkKey();
+  updStats();
 }
 
-function updStats(){
-  const done=Object.keys(ws).length;
-  document.getElementById('stTotal').textContent=MEMES.length;
-  document.getElementById('stDone').textContent=done;
-  document.getElementById('stGen').textContent=genCount;
+function chkKey() {
+  var k = localStorage.getItem('gdm_gemini_key');
+  var p = document.getElementById('apiPill');
+  var t = document.getElementById('apiTxt');
+  if (k && k.length > 10) {
+    p.className = 'api-pill ok';
+    t.textContent = 'GEMINI READY';
+  } else {
+    p.className = 'api-pill no';
+    t.textContent = 'NO API KEY';
+  }
 }
 
-// ── MEME LIST ─────────────────────────────────────────────────
-function renderML(list){
-  document.getElementById('mList').innerHTML=list.map(function(m){
-    var isActive=aM&&aM.id===m.id;
-    var vis=m.visual?(m.visual.length>48?m.visual.slice(0,48)+'…':m.visual):'';
-    return '<div class="mc '+(ws[m.id]?'done':'')+(isActive?' active':'')+'" id="mc'+m.id+'" onclick="selM('+m.id+')">'+
-      '<div style="font-family:Orbitron,sans-serif;font-size:8px;color:#444466;letter-spacing:1px;margin-bottom:3px">['+String(m.id).padStart(2,'0')+'] '+m.c.toUpperCase()+'</div>'+
-      '<div style="background:#0a0a18;padding:7px 8px;border-radius:3px;margin:3px 0;border-left:2px solid rgba(0,200,212,.3)">'+
-        '<div style="font-size:9px;font-weight:700;letter-spacing:2px;color:#888899;margin-bottom:2px;text-transform:uppercase">'+m.s+'</div>'+
-        '<div style="font-size:11px;font-weight:600;color:#e0e0ff;line-height:1.3">'+(m.p.length>55?m.p.slice(0,55)+'…':m.p)+'</div>'+
-      '</div>'+
-      (vis?'<div style="font-size:8px;color:#007a82;font-family:Barlow Condensed,sans-serif;letter-spacing:.5px;margin-bottom:4px;line-height:1.4">🎬 '+vis+'</div>':'')+
-      '<div style="display:flex;gap:3px;flex-wrap:wrap">'+
-        '<span style="font-size:8px;letter-spacing:1px;padding:1px 5px;border-radius:2px;background:#181830;color:#444466;border:1px solid rgba(255,255,255,.04)">'+m.r+'</span>'+
-        '<span style="font-size:8px;font-weight:700;letter-spacing:1px;padding:1px 5px;border-radius:2px;'+(ws[m.id]?'background:rgba(0,255,136,.1);color:#00ff88;border:1px solid rgba(0,255,136,.2)':'background:rgba(68,68,102,.1);color:#444466;border:1px solid rgba(68,68,102,.15)')+'">'+(ws[m.id]?'✓ DONE':'FRESH')+'</span>'+
-      '</div>'+
-    '</div>';
-  }).join('');
+function updStats() {
+  var done = Object.keys(ws).length;
+  document.getElementById('stTotal').textContent = MEMES.length;
+  document.getElementById('stDone').textContent = done;
+  document.getElementById('stGen').textContent = genCount;
 }
 
-function filterM(q){
-  renderML(q?MEMES.filter(m=>
-    m.s.toLowerCase().includes(q.toLowerCase())||
-    m.p.toLowerCase().includes(q.toLowerCase())||
-    m.c.toLowerCase().includes(q.toLowerCase())
-  ):MEMES);
+function renderML(list) {
+  var html = '';
+  for (var i = 0; i < list.length; i++) {
+    var m = list[i];
+    var isActive = aM && aM.id === m.id;
+    var isDone = ws[m.id];
+    var vis = m.v ? (m.v.length > 50 ? m.v.slice(0, 50) + '...' : m.v) : '';
+    var punch = m.p.length > 55 ? m.p.slice(0, 55) + '...' : m.p;
+    html += '<div class="mc' + (isDone ? ' done' : '') + (isActive ? ' active' : '') + '" id="mc' + m.id + '" onclick="selM(' + m.id + ')">';
+    html += '<div style="font-family:Orbitron,sans-serif;font-size:8px;color:#444466;letter-spacing:1px;margin-bottom:3px">[' + String(m.id).padStart(2,'0') + '] ' + m.c.toUpperCase() + '</div>';
+    html += '<div style="background:#0a0a18;padding:7px 8px;border-radius:3px;margin:3px 0;border-left:2px solid rgba(0,200,212,.3)">';
+    html += '<div style="font-size:9px;font-weight:700;letter-spacing:2px;color:#888899;margin-bottom:2px;text-transform:uppercase">' + m.s + '</div>';
+    html += '<div style="font-size:11px;font-weight:600;color:#e0e0ff;line-height:1.3">' + punch + '</div>';
+    html += '</div>';
+    if (vis) {
+      html += '<div style="font-size:8px;color:#006670;font-family:Barlow Condensed,sans-serif;letter-spacing:.5px;margin-bottom:4px;line-height:1.4">&#127916; ' + vis + '</div>';
+    }
+    html += '<div style="display:flex;gap:3px;flex-wrap:wrap">';
+    html += '<span style="font-size:8px;letter-spacing:1px;padding:1px 5px;border-radius:2px;background:#181830;color:#444466;border:1px solid rgba(255,255,255,.04)">' + m.r + '</span>';
+    if (isDone) {
+      html += '<span style="font-size:8px;font-weight:700;letter-spacing:1px;padding:1px 5px;border-radius:2px;background:rgba(0,255,136,.1);color:#00ff88;border:1px solid rgba(0,255,136,.2)">&#10003; DONE</span>';
+    } else {
+      html += '<span style="font-size:8px;font-weight:700;letter-spacing:1px;padding:1px 5px;border-radius:2px;background:rgba(68,68,102,.1);color:#444466;border:1px solid rgba(68,68,102,.15)">FRESH</span>';
+    }
+    html += '</div></div>';
+  }
+  document.getElementById('mList').innerHTML = html;
 }
 
-function selM(id){
-  aM=MEMES.find(m=>m.id===id);aR=aM.r;
-  document.querySelectorAll('.mc').forEach(c=>c.classList.remove('active'));
-  document.getElementById('mc'+id) && document.getElementById('mc'+id).classList.add('active');
+function filterM(q) {
+  if (!q) { renderML(MEMES); return; }
+  var ql = q.toLowerCase();
+  var filtered = [];
+  for (var i = 0; i < MEMES.length; i++) {
+    var m = MEMES[i];
+    if (m.s.toLowerCase().indexOf(ql) > -1 || m.p.toLowerCase().indexOf(ql) > -1 || m.c.toLowerCase().indexOf(ql) > -1) {
+      filtered.push(m);
+    }
+  }
+  renderML(filtered);
+}
+
+function selM(id) {
+  for (var i = 0; i < MEMES.length; i++) {
+    if (MEMES[i].id === id) { aM = MEMES[i]; break; }
+  }
+  aR = aM.r;
+  var cards = document.querySelectorAll('.mc');
+  for (var j = 0; j < cards.length; j++) { cards[j].classList.remove('active'); }
+  var el = document.getElementById('mc' + id);
+  if (el) el.classList.add('active');
   renderWP();
 }
 
-// ── WORKSHOP PANEL ────────────────────────────────────────────
-function renderWP(){
-  const c=document.getElementById('pCenter');
-  c.innerHTML=`
-    <div class="mhero">
-      <div class="hero-id">MEME_ID: ${String(aM.id).padStart(3,'0')} // ${aM.c.toUpperCase()}</div>
-      <div style="background:#000;border-radius:4px;padding:20px 18px;margin-bottom:12px;border-left:3px solid var(--c);position:relative;">
-        <div style="font-family:'Orbitron',sans-serif;font-size:8px;letter-spacing:2px;color:rgba(255,255,255,.2);margin-bottom:8px;">@GEODM.US</div>
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:3px;color:rgba(255,255,255,.3);margin-bottom:4px;">${aM.s}</div>
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(18px,2.5vw,26px);letter-spacing:2px;color:#fff;line-height:1.15;text-shadow:0 2px 20px rgba(0,0,0,.8);">${aM.p}</div>
-        <div style="margin-top:12px;padding:10px 12px;background:rgba(0,200,212,.06);border:1px solid rgba(0,200,212,.15);border-radius:3px;font-size:10px;color:rgba(0,200,212,.6);font-family:'Orbitron',sans-serif;letter-spacing:1px;">🎬 VISUAL: ${aM.visual||'REACTION VIDEO — WORKSHOP TO GENERATE VISUAL SUGGESTION'}</div>
-      </div>
-      <div class="hero-meta"><span class="hero-tag">${aM.r}</span><span class="hero-tag">${aM.c}</span><span class="hero-tag">@GEODM.US</span></div>
-    </div>
-    <div class="wctrl">
-      <div>
-        <div class="ctrl-lbl">REACTION TYPE</div>
-        <div class="rg">${['Unbothered','Panicking','Winning','Suffering'].map(r=>`<div class="rb ${r===aR?'active':''}" onclick="setR('${r}',this)">${r.toUpperCase()}</div>`).join('')}</div>
-      </div>
-      <div class="tc">
-        <div class="fg">
-          <div class="ctrl-lbl">VENTURE</div>
-          <select class="fi" id="vSel" onchange="setV(this.value)">${Object.keys(V).map(v=>`<option value="${v}" ${v===aV?'selected':''}>${v}</option>`).join('')}</select>
-        </div>
-        <div class="fg">
-          <div class="ctrl-lbl">TARGET AUDIENCE</div>
-          <input class="fi" id="audI" placeholder="e.g. CHICAGO FOUNDERS">
-        </div>
-      </div>
-    </div>
-    <div class="bwrap">
-      <button class="bws" id="btnWS" onclick="doWS()">
-        <div class="sp"></div><span class="bi">⚡</span><span class="bl">WORKSHOP THIS MEME</span>
-      </button>
-    </div>
-    <div id="brWrap"></div>`;
+function buildReactionGrid(selected, fn) {
+  var reactions = ['Unbothered','Panicking','Winning','Suffering'];
+  var html = '<div class="rg">';
+  for (var i = 0; i < reactions.length; i++) {
+    var r = reactions[i];
+    html += '<div class="rb' + (r === selected ? ' active' : '') + '" onclick="' + fn + '(\'' + r + '\',this)">' + r.toUpperCase() + '</div>';
+  }
+  html += '</div>';
+  return html;
 }
 
-// ── GENERATE MODE ─────────────────────────────────────────────
-function genMode(){
-  aM=null;aR='Unbothered';
-  document.querySelectorAll('.mc').forEach(c=>c.classList.remove('active'));
-  document.getElementById('pCenter').innerHTML=`
-    <div class="gm">
-      <div class="gm-hdr"><span class="gm-badge">// NEW MEME</span><div class="gm-title">GENERATE FROM SCRATCH</div></div>
-      <div class="fg" style="margin-bottom:12px">
-        <div class="ctrl-lbl">TOPIC / NEWS PEG</div>
-        <input class="fi" id="topI" placeholder="e.g. ANTHROPIC RELEASED NEW MODEL, CHICAGO RENT GOING UP">
-      </div>
-      <div class="tc" style="margin-bottom:12px">
-        <div class="fg"><div class="ctrl-lbl">WHO'S THE SUBJECT</div><input class="fi" id="subI" placeholder="e.g. AGENCY FOUNDERS"></div>
-        <div class="fg"><div class="ctrl-lbl">VENTURE</div><select class="fi" id="vSelG" onchange="setV(this.value)">${Object.keys(V).map(v=>`<option value="${v}" ${v===aV?'selected':''}>${v}</option>`).join('')}</select></div>
-      </div>
-      <div style="margin-bottom:20px">
-        <div class="ctrl-lbl">REACTION TYPE</div>
-        <div class="rg">${['Unbothered','Panicking','Winning','Suffering'].map(r=>`<div class="rb ${r===aR?'active':''}" onclick="setR('${r}',this)">${r.toUpperCase()}</div>`).join('')}</div>
-      </div>
-    </div>
-    <div class="bwrap">
-      <button class="bws" id="btnWS" onclick="doGen()">
-        <div class="sp"></div><span class="bi">✨</span><span class="bl">GENERATE MEME</span>
-      </button>
-    </div>
-    <div id="brWrap"></div>`;
+function buildVentureSelect(elId) {
+  var keys = Object.keys(V);
+  var html = '<select class="fi" id="' + elId + '" onchange="setV(this.value)">';
+  for (var i = 0; i < keys.length; i++) {
+    html += '<option value="' + keys[i] + '"' + (keys[i] === aV ? ' selected' : '') + '>' + keys[i] + '</option>';
+  }
+  html += '</select>';
+  return html;
 }
 
-function setR(r,el){aR=r;el.closest('.rg').querySelectorAll('.rb').forEach(b=>b.classList.remove('active'));el.classList.add('active')}
-function setV(v){aV=v;updHT();document.querySelectorAll('.vc').forEach(c=>c.classList.toggle('active',c.dataset.v===v))}
-
-// ── TERMINAL LOADING ──────────────────────────────────────────
-function showTerminal(){
-  const w=document.getElementById('brWrap');
-  if(!w)return;
-  w.innerHTML=`
-    <div class="terminal">
-      <div class="t-line">> INITIALIZING GEMINI 2.0 FLASH...</div>
-      <div class="t-line">> ANALYZING MEME STRUCTURE...</div>
-      <div class="t-line">> RUNNING HUMOR MECHANICS ENGINE...</div>
-      <div class="t-line">> GENERATING BREAKDOWN...</div>
-      <div class="t-line">> AWAITING RESPONSE <span class="t-cursor"></span></div>
-    </div>`;
+function renderWP() {
+  var c = document.getElementById('pCenter');
+  var html = '';
+  html += '<div class="mhero">';
+  html += '<div class="hero-inner">';
+  html += '<div class="hero-id">MEME_ID: ' + String(aM.id).padStart(3,'0') + ' // ' + aM.c.toUpperCase() + '</div>';
+  html += '<div class="hero-handle">@GEODM.US</div>';
+  html += '<div class="hero-setup">' + aM.s + '</div>';
+  html += '<div class="hero-punch">' + aM.p + '</div>';
+  html += '</div>';
+  html += '<div class="hero-visual">&#127916; VISUAL: ' + (aM.v || 'REACTION VIDEO — WORKSHOP TO GENERATE VISUAL SUGGESTION') + '</div>';
+  html += '<div class="hero-meta">';
+  html += '<span class="hero-tag">' + aM.r + '</span>';
+  html += '<span class="hero-tag">' + aM.c + '</span>';
+  html += '<span class="hero-tag">@GEODM.US</span>';
+  html += '</div></div>';
+  html += '<div class="wctrl">';
+  html += '<div><div class="ctrl-lbl">REACTION TYPE</div>' + buildReactionGrid(aR, 'setR') + '</div>';
+  html += '<div class="tc">';
+  html += '<div class="fg"><div class="ctrl-lbl">VENTURE</div>' + buildVentureSelect('vSel') + '</div>';
+  html += '<div class="fg"><div class="ctrl-lbl">TARGET AUDIENCE</div><input class="fi" id="audI" placeholder="e.g. CHICAGO FOUNDERS"></div>';
+  html += '</div></div>';
+  html += '<div class="bwrap">';
+  html += '<button class="bws" id="btnWS" onclick="doWS()">';
+  html += '<div class="bws-bg"></div>';
+  html += '<div class="bws-content"><div class="sp" id="wsSpinner"></div><span class="bi">&#9889;</span><span class="bl">WORKSHOP THIS MEME</span></div>';
+  html += '</button></div>';
+  html += '<div id="brWrap"></div>';
+  c.innerHTML = html;
 }
 
-// ── GEMINI — WORKSHOP ─────────────────────────────────────────
-async function doWS(){
-  const k=localStorage.getItem('gdm_gemini_key');
-  if(!k){toast('ADD GEMINI API KEY IN CONFIG','warn');openSett();return}
-  const btn=document.getElementById('btnWS');
-  btn.classList.add('loading');btn.disabled=true;
+function genMode() {
+  aM = null;
+  aR = 'Unbothered';
+  var cards = document.querySelectorAll('.mc');
+  for (var i = 0; i < cards.length; i++) { cards[i].classList.remove('active'); }
+  var c = document.getElementById('pCenter');
+  var html = '';
+  html += '<div class="gm">';
+  html += '<div class="gm-hdr"><span class="gm-badge">// NEW MEME</span><div class="gm-title">GENERATE FROM SCRATCH</div></div>';
+  html += '<div class="fg" style="margin-bottom:12px"><div class="ctrl-lbl">TOPIC / NEWS PEG</div><input class="fi" id="topI" placeholder="e.g. ANTHROPIC RELEASED NEW MODEL, CHICAGO RENT GOING UP"></div>';
+  html += '<div class="tc" style="margin-bottom:12px">';
+  html += '<div class="fg"><div class="ctrl-lbl">WHO IS THE SUBJECT</div><input class="fi" id="subI" placeholder="e.g. AGENCY FOUNDERS"></div>';
+  html += '<div class="fg"><div class="ctrl-lbl">VENTURE</div>' + buildVentureSelect('vSelG') + '</div>';
+  html += '</div>';
+  html += '<div style="margin-bottom:20px"><div class="ctrl-lbl">REACTION TYPE</div>' + buildReactionGrid(aR, 'setR') + '</div>';
+  html += '</div>';
+  html += '<div class="bwrap">';
+  html += '<button class="bws" id="btnWS" onclick="doGen()">';
+  html += '<div class="bws-bg"></div>';
+  html += '<div class="bws-content"><div class="sp" id="wsSpinner"></div><span class="bi">&#10024;</span><span class="bl">GENERATE MEME</span></div>';
+  html += '</button></div>';
+  html += '<div id="brWrap"></div>';
+  c.innerHTML = html;
+}
+
+function setR(r, el) {
+  aR = r;
+  var btns = el.closest('.rg').querySelectorAll('.rb');
+  for (var i = 0; i < btns.length; i++) { btns[i].classList.remove('active'); }
+  el.classList.add('active');
+}
+
+function setV(v) {
+  aV = v;
+  updHT();
+  var chips = document.querySelectorAll('.vc');
+  for (var i = 0; i < chips.length; i++) {
+    chips[i].classList.toggle('active', chips[i].getAttribute('data-v') === v);
+  }
+}
+
+function showTerminal() {
+  var w = document.getElementById('brWrap');
+  if (!w) return;
+  w.innerHTML = '<div class="terminal">' +
+    '<div class="t-line">&gt; INITIALIZING GEMINI 2.0 FLASH...</div>' +
+    '<div class="t-line">&gt; ANALYZING MEME STRUCTURE...</div>' +
+    '<div class="t-line">&gt; RUNNING HUMOR MECHANICS ENGINE...</div>' +
+    '<div class="t-line">&gt; GENERATING BREAKDOWN...</div>' +
+    '<div class="t-line">&gt; AWAITING RESPONSE <span class="t-cursor"></span></div>' +
+    '</div>';
+}
+
+function btnLoad(on) {
+  var btn = document.getElementById('btnWS');
+  if (!btn) return;
+  if (on) {
+    btn.disabled = true;
+    btn.classList.add('loading');
+    var sp = btn.querySelector('.sp');
+    var bi = btn.querySelector('.bi');
+    var bl = btn.querySelector('.bl');
+    if (sp) sp.style.display = 'block';
+    if (bi) bi.style.display = 'none';
+    if (bl) bl.style.display = 'none';
+  } else {
+    btn.disabled = false;
+    btn.classList.remove('loading');
+    var sp2 = btn.querySelector('.sp');
+    var bi2 = btn.querySelector('.bi');
+    var bl2 = btn.querySelector('.bl');
+    if (sp2) sp2.style.display = 'none';
+    if (bi2) bi2.style.display = '';
+    if (bl2) bl2.style.display = '';
+  }
+}
+
+function doWS() {
+  var k = localStorage.getItem('gdm_gemini_key');
+  if (!k) { toast('ADD GEMINI API KEY IN CONFIG', 'warn'); openSett(); return; }
+  var venEl = document.getElementById('vSel');
+  var audEl = document.getElementById('audI');
+  var ven = venEl ? venEl.value : aV;
+  var aud = audEl ? audEl.value : '';
+  btnLoad(true);
   showTerminal();
-  const ven=document.getElementById('vSel') && document.getElementById('vSel').value||aV;
-  const aud=document.getElementById('audI') && document.getElementById('audI').value||'';
-  const prompt=`You are a viral meme consultant for ${ven}, a Chicago digital agency run by Giovanni Salazar.\n\nAnalyze this meme:\nSetup: ${aM.s}\nPunchline: ${aM.p}\nReaction: ${aR}${aud?'\nAudience: '+aud:''}\n\nMeme DNA: Plain text on black sets scenario. Visual IS the emotional punchline. Specificity wins over generality. Two audiences share it: person IN meme (pride) + person WATCHING (relatability).\n\nReturn ONLY valid JSON no markdown no backticks:\n{"text_line":"IMPROVED ALL CAPS SETUP LINE","visual_suggestion":"EXACT clip character or moment to find — very specific emotion and scene","visual_search":"3-5 word YouTube search query","audio_suggestion":"Specific song title + artist OR exact audio vibe","audio_search":"3-4 word search query","why_it_works":"2-3 sentences on humor mechanics","who_shares_this":"exactly who shares this and why — be specific not generic","improvements":"1-2 concrete ways to sharpen the punchline","caption":"conversational caption under 180 chars ends with question or observation not salesy"}`;
-  try{
-    const b=await callG(prompt,k);
-    ws[aM.id]=true;localStorage.setItem('gdm_ws',JSON.stringify(ws));
-    renderML(MEMES);document.getElementById('mc'+aM.id) && document.getElementById('mc'+aM.id).classList.add('active','done');
-    document.getElementById('capTA').value=b.caption||'';updCC();
+  var prompt = 'You are a viral meme consultant for ' + ven + ', a Chicago digital agency run by Giovanni Salazar.\n\n' +
+    'Analyze this meme:\nSetup: ' + aM.s + '\nPunchline: ' + aM.p + '\nReaction: ' + aR + (aud ? '\nAudience: ' + aud : '') + '\n\n' +
+    'Meme DNA: Plain text on black sets scenario. Visual IS the emotional punchline. Specificity wins over generality. Two audiences share it.\n\n' +
+    'Return ONLY valid JSON no markdown no backticks:\n' +
+    '{"text_line":"IMPROVED ALL CAPS SETUP LINE","visual_suggestion":"EXACT clip character or moment to find","visual_search":"3-5 word YouTube search query","audio_suggestion":"Specific song title plus artist OR exact audio vibe","audio_search":"3-4 word search query","why_it_works":"2-3 sentences on humor mechanics","who_shares_this":"exactly who shares this and why","improvements":"1-2 concrete ways to sharpen the punchline","caption":"conversational caption under 180 chars ends with question or observation not salesy"}';
+  callG(prompt, k, function(b) {
+    ws[aM.id] = true;
+    localStorage.setItem('gdm_ws', JSON.stringify(ws));
+    renderML(MEMES);
+    var mc = document.getElementById('mc' + aM.id);
+    if (mc) { mc.classList.add('active'); mc.classList.add('done'); }
+    var ta = document.getElementById('capTA');
+    if (ta) ta.value = b.caption || '';
+    updCC();
     renderBR(b);
-    btn.classList.add('success');setTimeout(()=>btn.classList.remove('success'),2000);
-    updStats();toast('BREAKDOWN READY','ok');
-  }catch(e){document.getElementById('brWrap').innerHTML='';toast(fErr(e.message),'err')}
-  btn.classList.remove('loading');btn.disabled=false;
+    btnLoad(false);
+    updStats();
+    toast('BREAKDOWN READY', 'ok');
+  }, function(msg) {
+    var w = document.getElementById('brWrap');
+    if (w) w.innerHTML = '';
+    btnLoad(false);
+    toast(fErr(msg), 'err');
+  });
 }
 
-// ── GEMINI — GENERATE ─────────────────────────────────────────
-async function doGen(){
-  const k=localStorage.getItem('gdm_gemini_key');
-  if(!k){toast('ADD GEMINI API KEY IN CONFIG','warn');openSett();return}
-  const top=document.getElementById('topI') && document.getElementById('topI').value && document.getElementById('topI').value.trim();
-  if(!top){toast('ENTER A TOPIC FIRST','warn');return}
-  const btn=document.getElementById('btnWS');
-  btn.classList.add('loading');btn.disabled=true;
+function doGen() {
+  var k = localStorage.getItem('gdm_gemini_key');
+  if (!k) { toast('ADD GEMINI API KEY IN CONFIG', 'warn'); openSett(); return; }
+  var topEl = document.getElementById('topI');
+  var subEl = document.getElementById('subI');
+  var venEl = document.getElementById('vSelG');
+  var top = topEl ? topEl.value.trim() : '';
+  if (!top) { toast('ENTER A TOPIC FIRST', 'warn'); return; }
+  var sub = subEl ? subEl.value : 'Chicago entrepreneurs';
+  var ven = venEl ? venEl.value : aV;
+  btnLoad(true);
   showTerminal();
-  const ven=document.getElementById('vSelG') && document.getElementById('vSelG').value||aV;
-  const sub=document.getElementById('subI') && document.getElementById('subI').value||'Chicago entrepreneurs';
-  const prompt=`You are a viral meme consultant for ${ven}, a Chicago digital agency.\n\nCreate a brand new meme:\nTopic: ${top}\nSubject: ${sub}\nReaction: ${aR}\n\nMeme DNA: Plain text on black sets scenario. Visual IS emotional punchline. Specificity wins. Two audiences share it.\n\nReturn ONLY valid JSON no markdown no backticks:\n{"text_line":"ALL CAPS SETUP LINE","visual_suggestion":"EXACT clip to find — specific character moment emotion","visual_search":"3-5 word YouTube search","audio_suggestion":"song + artist or audio vibe","audio_search":"3-4 word search","why_it_works":"2-3 sentences on humor mechanics","who_shares_this":"specific audience and why","caption":"under 180 chars conversational ends with question"}`;
-  try{
-    const b=await callG(prompt,k);
-    genCount++;localStorage.setItem('gdm_gen',genCount);
-    document.getElementById('capTA').value=b.caption||'';updCC();
+  var prompt = 'You are a viral meme consultant for ' + ven + ', a Chicago digital agency.\n\n' +
+    'Create a brand new meme:\nTopic: ' + top + '\nSubject: ' + sub + '\nReaction: ' + aR + '\n\n' +
+    'Meme DNA: Plain text on black sets scenario. Visual IS emotional punchline. Specificity wins.\n\n' +
+    'Return ONLY valid JSON no markdown no backticks:\n' +
+    '{"text_line":"ALL CAPS SETUP LINE","visual_suggestion":"EXACT clip to find","visual_search":"3-5 word YouTube search","audio_suggestion":"song plus artist or audio vibe","audio_search":"3-4 word search","why_it_works":"2-3 sentences on humor mechanics","who_shares_this":"specific audience and why","caption":"under 180 chars conversational ends with question"}';
+  callG(prompt, k, function(b) {
+    genCount++;
+    localStorage.setItem('gdm_gen', genCount);
+    var ta = document.getElementById('capTA');
+    if (ta) ta.value = b.caption || '';
+    updCC();
     renderBR(b);
-    btn.classList.add('success');setTimeout(()=>btn.classList.remove('success'),2000);
-    updStats();toast('MEME GENERATED','ok');
-  }catch(e){document.getElementById('brWrap').innerHTML='';toast(fErr(e.message),'err')}
-  btn.classList.remove('loading');btn.disabled=false;
+    btnLoad(false);
+    updStats();
+    toast('MEME GENERATED', 'ok');
+  }, function(msg) {
+    var w = document.getElementById('brWrap');
+    if (w) w.innerHTML = '';
+    btnLoad(false);
+    toast(fErr(msg), 'err');
+  });
 }
 
-// ── API CALL ──────────────────────────────────────────────────
-async function callG(prompt,key){
-  const res=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:prompt}]}]})});
-  if(!res.ok){const e=await res.json().catch(()=>({}));throw new Error(e.error && e.error.message||'HTTP '+res.status)}
-  const data=await res.json();
-  const raw=data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0] && data.candidates[0].content.parts[0].text||'';
-  try{return JSON.parse(raw.replace(/```json|```/g,'').trim())}
-  catch{throw new Error('UNEXPECTED FORMAT')}
+function callG(prompt, key, onSuccess, onError) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + key, true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState !== 4) return;
+    if (xhr.status === 200) {
+      try {
+        var data = JSON.parse(xhr.responseText);
+        var candidates = data.candidates;
+        var raw = candidates && candidates[0] && candidates[0].content && candidates[0].content.parts && candidates[0].content.parts[0] ? candidates[0].content.parts[0].text : '';
+        var clean = raw.replace(/```json/g,'').replace(/```/g,'').trim();
+        var result = JSON.parse(clean);
+        onSuccess(result);
+      } catch(e) {
+        onError('AI RETURNED UNEXPECTED FORMAT — TRY AGAIN');
+      }
+    } else {
+      try {
+        var err = JSON.parse(xhr.responseText);
+        onError(err.error && err.error.message ? err.error.message : 'HTTP ' + xhr.status);
+      } catch(e) {
+        onError('HTTP ' + xhr.status);
+      }
+    }
+  };
+  xhr.send(JSON.stringify({contents:[{parts:[{text:prompt}]}]}));
 }
 
-function fErr(m){
-  if(m.includes('quota')||m.includes('RESOURCE_EXHAUSTED'))return '⏳ QUOTA EXCEEDED — KEYS ACTIVATE WITHIN 1HR';
-  if(m.includes('API_KEY')||m.includes('invalid')||m.includes('400'))return '🔑 INVALID KEY — CHECK CONFIG';
-  if(m.includes('UNEXPECTED'))return '🔄 AI GLITCH — HIT WORKSHOP AGAIN';
-  return '❌ '+m.slice(0,60);
+function fErr(m) {
+  if (m.indexOf('quota') > -1 || m.indexOf('RESOURCE_EXHAUSTED') > -1) return 'QUOTA EXCEEDED — KEY ACTIVATES WITHIN 1HR';
+  if (m.indexOf('API_KEY') > -1 || m.indexOf('invalid') > -1 || m.indexOf('400') > -1) return 'INVALID KEY — CHECK CONFIG';
+  if (m.indexOf('UNEXPECTED') > -1) return 'AI GLITCH — HIT WORKSHOP AGAIN';
+  return m.slice(0, 60);
 }
 
-// ── BREAKDOWN ─────────────────────────────────────────────────
-function renderBR(b){
-  const w=document.getElementById('brWrap');if(!w)return;
-  const vq=encodeURIComponent(b.visual_search||b.visual_suggestion ? b.visual_suggestion.slice(0,30) : ''||'');
-  const sq=encodeURIComponent(b.audio_search||b.audio_suggestion ? b.audio_suggestion.slice(0,25) : ''||'');
-  w.innerHTML=`
-    <div class="brwrap">
-      <div class="br-hdr">⚡ AI BREAKDOWN</div>
-      <div class="brc">
-        <div class="brc-h"><span class="brc-i">✍️</span><span class="brc-l">TEXT LINE</span></div>
-        <div class="brc-b"><div class="tld">${b.text_line||'—'}</div><button class="but" onclick='useT(${JSON.stringify(b.text_line||"")})'>↓ USE THIS TEXT</button></div>
-      </div>
-      <div class="brc">
-        <div class="brc-h"><span class="brc-i">🎬</span><span class="brc-l">VISUAL TO FIND</span></div>
-        <div class="brc-b"><div class="bvt">${b.visual_suggestion||'—'}</div><div class="sbs"><a class="sb sb-yt" href="https://www.youtube.com/results?search_query=${vq}" target="_blank">▶ YOUTUBE</a><a class="sb sb-ig" href="https://www.instagram.com/explore/tags/${vq}/" target="_blank">📷 INSTAGRAM</a><a class="sb sb-x" href="https://x.com/search?q=${vq}&f=video" target="_blank">𝕏 X SEARCH</a></div></div>
-      </div>
-      <div class="brc">
-        <div class="brc-h"><span class="brc-i">🎵</span><span class="brc-l">AUDIO / SONG</span></div>
-        <div class="brc-b"><div class="bvt">${b.audio_suggestion||'—'}</div><div class="sbs"><a class="sb sb-sp" href="https://open.spotify.com/search/${sq}" target="_blank">♫ SPOTIFY</a><a class="sb sb-yt" href="https://www.youtube.com/results?search_query=${sq}" target="_blank">▶ YOUTUBE</a><a class="sb sb-tt" href="https://www.tiktok.com/music/search?q=${sq}" target="_blank">♪ TIKTOK</a></div></div>
-      </div>
-      <div class="brc">
-        <div class="brc-h"><span class="brc-i">🧠</span><span class="brc-l">WHY IT WORKS</span></div>
-        <div class="brc-b"><div class="wt">${b.why_it_works||'—'}</div></div>
-      </div>
-      <div class="brc">
-        <div class="brc-h"><span class="brc-i">👥</span><span class="brc-l">WHO SHARES THIS</span></div>
-        <div class="brc-b"><div class="wt" style="font-style:italic">${b.who_shares_this||'—'}</div></div>
-      </div>
-      ${b.improvements?`<div class="brc"><div class="brc-h"><span class="brc-i">🔪</span><span class="brc-l">MAKE IT SHARPER</span></div><div class="brc-b"><div class="wt">${b.improvements}</div></div></div>`:''}
-    </div>`;
+function renderBR(b) {
+  var w = document.getElementById('brWrap');
+  if (!w) return;
+  var vq = encodeURIComponent(b.visual_search || '');
+  var sq = encodeURIComponent(b.audio_search || '');
+  var html = '<div class="brwrap">';
+  html += '<div class="br-hdr">&#9889; AI BREAKDOWN</div>';
+
+  html += '<div class="brc"><div class="brc-h"><span class="brc-i">&#9999;&#65039;</span><span class="brc-l">TEXT LINE</span></div><div class="brc-b">';
+  html += '<div class="tld">' + (b.text_line || '—') + '</div>';
+  html += '<button class="but" onclick="useT(\'' + encodeURIComponent(b.text_line || '') + '\')">&#8595; USE THIS TEXT</button>';
+  html += '</div></div>';
+
+  html += '<div class="brc"><div class="brc-h"><span class="brc-i">&#127916;</span><span class="brc-l">VISUAL TO FIND</span></div><div class="brc-b">';
+  html += '<div class="bvt">' + (b.visual_suggestion || '—') + '</div>';
+  html += '<div class="sbs">';
+  html += '<a class="sb sb-yt" href="https://www.youtube.com/results?search_query=' + vq + '" target="_blank">&#9654; YOUTUBE</a>';
+  html += '<a class="sb sb-ig" href="https://www.instagram.com/explore/tags/' + vq + '/" target="_blank">&#128247; INSTAGRAM</a>';
+  html += '<a class="sb sb-x" href="https://x.com/search?q=' + vq + '&f=video" target="_blank">&#120143; X SEARCH</a>';
+  html += '</div></div></div>';
+
+  html += '<div class="brc"><div class="brc-h"><span class="brc-i">&#127925;</span><span class="brc-l">AUDIO / SONG</span></div><div class="brc-b">';
+  html += '<div class="bvt">' + (b.audio_suggestion || '—') + '</div>';
+  html += '<div class="sbs">';
+  html += '<a class="sb sb-sp" href="https://open.spotify.com/search/' + sq + '" target="_blank">&#9835; SPOTIFY</a>';
+  html += '<a class="sb sb-yt" href="https://www.youtube.com/results?search_query=' + sq + '" target="_blank">&#9654; YOUTUBE</a>';
+  html += '<a class="sb sb-tt" href="https://www.tiktok.com/music/search?q=' + sq + '" target="_blank">&#9836; TIKTOK</a>';
+  html += '</div></div></div>';
+
+  html += '<div class="brc"><div class="brc-h"><span class="brc-i">&#129504;</span><span class="brc-l">WHY IT WORKS</span></div><div class="brc-b">';
+  html += '<div class="wt">' + (b.why_it_works || '—') + '</div></div></div>';
+
+  html += '<div class="brc"><div class="brc-h"><span class="brc-i">&#128101;</span><span class="brc-l">WHO SHARES THIS</span></div><div class="brc-b">';
+  html += '<div class="wt" style="font-style:italic">' + (b.who_shares_this || '—') + '</div></div></div>';
+
+  if (b.improvements) {
+    html += '<div class="brc"><div class="brc-h"><span class="brc-i">&#128298;</span><span class="brc-l">MAKE IT SHARPER</span></div><div class="brc-b">';
+    html += '<div class="wt">' + b.improvements + '</div></div></div>';
+  }
+
+  html += '</div>';
+  w.innerHTML = html;
 }
 
-function useT(t){const ta=document.getElementById('capTA');ta.value=t+(ta.value?'\n\n'+ta.value:'');updCC();toast('TEXT ADDED TO CAPTION','ok')}
-
-// ── POST PANEL ────────────────────────────────────────────────
-function renderVG(){
-  document.getElementById('vGrid').innerHTML=Object.keys(V).map(v=>`<div class="vc ${v===aV?'active':''}" data-v="${v}" onclick="setV('${v}')">${v.toUpperCase()}</div>`).join('');
-}
-function updHT(){document.getElementById('hBox').textContent=(V[aV]||[]).join(' ')}
-function updCC(){const l=document.getElementById('capTA').value.length,el=document.getElementById('chrR');el.textContent=l+' / 2200';el.className='chr'+(l>2200?' ov':'')}
-
-async function cpAll(){
-  const cap=document.getElementById('capTA').value;
-  const tags=document.getElementById('hBox').textContent;
-  const full=[cap,tags].filter(Boolean).join('\n\n');
-  try{
-    await navigator.clipboard.writeText(full);
-    const b=document.getElementById('btnCp');
-    b.innerHTML='[ ✓ ] COPIED!';b.classList.add('copied');
-    setTimeout(()=>{b.innerHTML='[ 📋 ] COPY CAPTION + TAGS';b.classList.remove('copied')},2200);
-    toast('COPIED TO CLIPBOARD','ok');
-  }catch{toast('COPY FAILED — SELECT MANUALLY','err')}
+function useT(encoded) {
+  var t = decodeURIComponent(encoded);
+  var ta = document.getElementById('capTA');
+  if (!ta) return;
+  ta.value = t + (ta.value ? '\n\n' + ta.value : '');
+  updCC();
+  toast('TEXT ADDED TO CAPTION', 'ok');
 }
 
-// ── SETTINGS ──────────────────────────────────────────────────
-function openSett(){document.getElementById('gKey').value=localStorage.getItem('gdm_gemini_key')||'';document.getElementById('settOv').classList.add('open')}
-function closeSett(){document.getElementById('settOv').classList.remove('open')}
-function saveSett(){const k=document.getElementById('gKey').value.trim();if(k){localStorage.setItem('gdm_gemini_key',k);chkKey();toast('CONFIG SAVED','ok')}closeSett()}
+function renderVG() {
+  var keys = Object.keys(V);
+  var html = '';
+  for (var i = 0; i < keys.length; i++) {
+    var v = keys[i];
+    html += '<div class="vc' + (v === aV ? ' active' : '') + '" data-v="' + v + '" onclick="setV(\'' + v + '\')">' + v.toUpperCase() + '</div>';
+  }
+  document.getElementById('vGrid').innerHTML = html;
+}
 
-// ── TOAST ─────────────────────────────────────────────────────
-function toast(msg,type='ok'){
-  const el=document.getElementById('toast');
-  const i={ok:'■',err:'✕',warn:'▲'};
-  el.innerHTML=`<span>${i[type]||'•'}</span> ${msg}`;
-  el.className='toast show '+type;
-  clearTimeout(el._t);el._t=setTimeout(()=>el.className='toast',3500);
+function updHT() {
+  var tags = V[aV] || [];
+  document.getElementById('hBox').textContent = tags.join(' ');
+}
+
+function updCC() {
+  var ta = document.getElementById('capTA');
+  if (!ta) return;
+  var l = ta.value.length;
+  var el = document.getElementById('chrR');
+  el.textContent = l + ' / 2200';
+  el.className = 'chr' + (l > 2200 ? ' ov' : '');
+}
+
+function cpAll() {
+  var cap = document.getElementById('capTA').value;
+  var tags = document.getElementById('hBox').textContent;
+  var parts = [];
+  if (cap) parts.push(cap);
+  if (tags) parts.push(tags);
+  var full = parts.join('\n\n');
+  try {
+    navigator.clipboard.writeText(full).then(function() {
+      var btn = document.getElementById('btnCp');
+      btn.innerHTML = '[ &#10003; ] COPIED!';
+      btn.classList.add('copied');
+      setTimeout(function() {
+        btn.innerHTML = '[ &#128203; ] COPY CAPTION + TAGS';
+        btn.classList.remove('copied');
+      }, 2200);
+      toast('COPIED TO CLIPBOARD', 'ok');
+    });
+  } catch(e) {
+    toast('COPY FAILED — SELECT MANUALLY', 'err');
+  }
+}
+
+function openSett() {
+  document.getElementById('gKey').value = localStorage.getItem('gdm_gemini_key') || '';
+  document.getElementById('settOv').classList.add('open');
+}
+
+function closeSett() {
+  document.getElementById('settOv').classList.remove('open');
+}
+
+function saveSett() {
+  var k = document.getElementById('gKey').value.trim();
+  if (k) {
+    localStorage.setItem('gdm_gemini_key', k);
+    chkKey();
+    toast('CONFIG SAVED', 'ok');
+  }
+  closeSett();
+}
+
+function toast(msg, type) {
+  type = type || 'ok';
+  var el = document.getElementById('toast');
+  var icons = {ok:'&#9632;', err:'&#10005;', warn:'&#9650;'};
+  el.innerHTML = '<span>' + (icons[type] || '&#8226;') + '</span> ' + msg;
+  el.className = 'toast show ' + type;
+  clearTimeout(el._t);
+  el._t = setTimeout(function() { el.className = 'toast'; }, 3500);
 }
 
 init();
