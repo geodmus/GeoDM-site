@@ -578,41 +578,41 @@ animation:moIn .25s ease;
 // ── DATA ──────────────────────────────────────────────────────
 const MEMES = [
   // AI HUMOR
-  {id:1,  s:"POV",                                    p:"CLAUDE CODE IS DOWN AND THEY ASK YOU TO WRITE CODE MANUALLY",              c:"AI Humor",    r:"Suffering"},
-  {id:2,  s:"2 HOURS BEFORE DEADLINE",                p:"DEVELOPER vs CLAUDE CODE — CAT DRIVING CALMLY, DOG PANICKING",            c:"AI Humor",    r:"Panicking"},
-  {id:3,  s:"YOUR FRIEND",                            p:"PRESENTING WHAT HE MADE USING HIS $200 AI TOOLS",                        c:"AI Humor",    r:"Suffering"},
-  {id:4,  s:"AI WILL NOT REPLACE ME",                 p:"ME: [2 + 11 - 1 = TWO ELEVEN]",                                         c:"AI Humor",    r:"Suffering"},
-  {id:5,  s:"FEEDING CHATGPT MY COMPANY'S ENTIRE CONFIDENTIAL DATA", p:"JUST TO DRAFT ONE EMAIL",                                 c:"AI Humor",    r:"Panicking"},
-  {id:6,  s:"STARTUP IDEA: BUILD INTERACTIVE CHARTS IN THE CHAT",    p:"CLAUDE THE VERY NEXT DAY:",                               c:"AI Humor",    r:"Unbothered"},
-  {id:7,  s:"STRONG ENGINEERS BUILD C > FOUNDATIONS > COMFORT > PYTHON > AI", p:"VIBE CODING > WEAK ENGINEERS > COLLAPSE > STRONG ENGINEERS", c:"AI Humor", r:"Unbothered"},
+  {id:1,  s:"POV",                                    p:"CLAUDE CODE IS DOWN AND THEY ASK YOU TO WRITE CODE MANUALLY",              c:"AI Humor",    r:"Suffering",   visual:"Woman crying and smoking dramatically — extreme reaction to minor inconvenience"},
+  {id:2,  s:"2 HOURS BEFORE DEADLINE",                p:"DEVELOPER vs CLAUDE CODE — CAT DRIVING CALMLY, DOG PANICKING",            c:"AI Humor",    r:"Panicking",   visual:"Husky dog howling in passenger seat, calm cat driving — labels: Developer / Claude Code"},
+  {id:3,  s:"YOUR FRIEND",                            p:"PRESENTING WHAT HE MADE USING HIS $200 AI TOOLS",                        c:"AI Humor",    r:"Suffering",   visual:"Jian Yang from Silicon Valley showing Not Hotdog app — proud face, bad product"},
+  {id:4,  s:"AI WILL NOT REPLACE ME",                 p:"ME: [2 + 11 - 1 = TWO ELEVEN]",                                         c:"AI Humor",    r:"Suffering",   visual:"Peter Griffin thinking bubble showing wrong math answer"},
+  {id:5,  s:"FEEDING CHATGPT MY COMPANY'S ENTIRE CONFIDENTIAL DATA", p:"JUST TO DRAFT ONE EMAIL",                                 c:"AI Humor",    r:"Panicking",   visual:"Remy from Ratatouille dumping everything into a cooking pot"},
+  {id:6,  s:"STARTUP IDEA: BUILD INTERACTIVE CHARTS IN THE CHAT",    p:"CLAUDE THE VERY NEXT DAY:",                               c:"AI Humor",    r:"Unbothered",  visual:"Ryan Gosling unbothered face — already did it, not impressed"},
+  {id:7,  s:"STRONG ENGINEERS BUILD C > FOUNDATIONS > COMFORT > PYTHON > AI", p:"VIBE CODING > WEAK ENGINEERS > COLLAPSE > STRONG ENGINEERS", c:"AI Humor", r:"Unbothered", visual:"Batman looking at himself in mirror — cycle of engineering"},
   // AI DISRUPTION
-  {id:8,  s:"PLUMBERS AND ELECTRICIANS",              p:"SEEING AI REPLACE EVERYONE WHO WENT TO COLLEGE",                        c:"AI Disruption",r:"Unbothered"},
-  {id:9,  s:"AI MODELS FOR MILITARY USE",             p:"IT'S SO OVER",                                                          c:"AI Disruption",r:"Suffering"},
-  {id:10, s:"THE SAME PEOPLE WHO SAID LEARN TO CODE", p:"ARE NOW SAYING SOFTWARE ITSELF IS BEING REPLACED",                     c:"AI Disruption",r:"Unbothered"},
-  {id:11, s:"PULMONOLOGIST WITH 20 YEARS EXPERIENCE", p:"SAYS HE'S ABOUT TO LOSE HIS JOB TO AI",                               c:"AI Disruption",r:"Suffering"},
-  {id:12, s:"AI IS GETTING OUT OF CONTROL",           p:"[VISUAL IS THE PUNCHLINE]",                                            c:"AI Disruption",r:"Panicking"},
+  {id:8,  s:"PLUMBERS AND ELECTRICIANS",              p:"SEEING AI REPLACE EVERYONE WHO WENT TO COLLEGE",                        c:"AI Disruption",r:"Unbothered",  visual:"Jon Hamm vibing and dancing to Turn The Lights Off — completely unbothered"},
+  {id:9,  s:"AI MODELS FOR MILITARY USE",             p:"IT'S SO OVER",                                                          c:"AI Disruption",r:"Suffering",   visual:"Ultron robot from Avengers — menacing stare"},
+  {id:10, s:"THE SAME PEOPLE WHO SAID LEARN TO CODE", p:"ARE NOW SAYING SOFTWARE ITSELF IS BEING REPLACED",                     c:"AI Disruption",r:"Unbothered",  visual:"Christian Bale confused stare into crowd — processing the irony"},
+  {id:11, s:"PULMONOLOGIST WITH 20 YEARS EXPERIENCE", p:"SAYS HE'S ABOUT TO LOSE HIS JOB TO AI",                               c:"AI Disruption",r:"Suffering",   visual:"X-ray scan on screen — doctor pointing at their own replacement"},
+  {id:12, s:"AI IS GETTING OUT OF CONTROL",           p:"SOMEONE SHOOT IT",                                                      c:"AI Disruption",r:"Panicking",   visual:"Mickey Mouse being shot at — chaos energy"},
   // TECH NEWS
-  {id:13, s:"CHINA'S RESPONSE TO ANTHROPIC",          p:"不客气 / YOU ARE WELCOME",                                              c:"Tech News",   r:"Unbothered"},
-  {id:14, s:"THE MARKET WHENEVER",                    p:"ANTHROPIC TWEETS SOME SHIT",                                           c:"Tech News",   r:"Panicking"},
-  {id:15, s:"BREAKING: META LAYING OFF 20%",          p:"TO OFFSET RISING AI COSTS",                                            c:"Tech News",   r:"Suffering"},
-  {id:16, s:"THIS IS WHY RAM IS SO EXPENSIVE",        p:"SAM ALTMAN AND DARIO AMODEI HUGGING AT CONFERENCE",                   c:"Tech News",   r:"Unbothered"},
-  {id:17, s:"PERPLEXITY STEPPING INTO BLOOMBERG TERRITORY", p:"AND THIS TIME IT ACTUALLY LOOKS SERIOUS",                       c:"Tech News",   r:"Winning"},
-  {id:18, s:"WE NEVER SAID WE WERE GOING TO INVEST $100 BILLION IN ONE ROUND", p:"THEY INVITED US TO INVEST UP TO $100 BILLION", c:"Tech News", r:"Unbothered"},
-  {id:19, s:"2 STICKS OF RAM COSTS $900",             p:"BECAUSE OF THIS BTW",                                                  c:"Tech News",   r:"Suffering"},
-  {id:20, s:"GEMINI 3 PRO VS GEMINI 3.1 PRO",        p:"[SIDE BY SIDE COMPARISON — VISUAL IS PUNCHLINE]",                     c:"Tech News",   r:"Winning"},
+  {id:13, s:"CHINA'S RESPONSE TO ANTHROPIC",          p:"不客气 / YOU ARE WELCOME",                                              c:"Tech News",   r:"Unbothered",  visual:"Jian Yang from Silicon Valley saying You are welcome — smug face"},
+  {id:14, s:"THE MARKET WHENEVER",                    p:"ANTHROPIC TWEETS SOME SHIT",                                           c:"Tech News",   r:"Panicking",   visual:"Washing machine door exploding open — pure chaos"},
+  {id:15, s:"BREAKING: META LAYING OFF 20%",          p:"TO OFFSET RISING AI COSTS",                                            c:"Tech News",   r:"Suffering",   visual:"Cillian Murphy as Oppenheimer — cold calculated stare"},
+  {id:16, s:"THIS IS WHY RAM IS SO EXPENSIVE",        p:"SAM ALTMAN AND DARIO AMODEI HUGGING",                                  c:"Tech News",   r:"Unbothered",  visual:"Sam Altman and Dario Amodei embracing at tech conference"},
+  {id:17, s:"PERPLEXITY STEPPING INTO BLOOMBERG TERRITORY", p:"AND THIS TIME IT ACTUALLY LOOKS SERIOUS",                       c:"Tech News",   r:"Winning",     visual:"Perplexity Terminal Bloomberg-style dashboard — sleek financial UI"},
+  {id:18, s:"WE NEVER SAID WE WERE GOING TO INVEST $100 BILLION IN ONE ROUND", p:"THEY INVITED US TO INVEST UP TO $100 BILLION", c:"Tech News", r:"Unbothered",  visual:"Jensen Huang in leather jacket speaking to press — TVBS Taiwan news chyron"},
+  {id:19, s:"2 STICKS OF RAM COSTS $900",             p:"BECAUSE OF THIS BTW",                                                  c:"Tech News",   r:"Suffering",   visual:"Epstein pointing finger up — blame face"},
+  {id:20, s:"GEMINI 3 PRO VS GEMINI 3.1 PRO",        p:"ONE DRAWS A PELICAN, ONE ANIMATES IT RIDING A BIKE",                  c:"Tech News",   r:"Winning",     visual:"Side by side comparison — static pelican vs animated pelican on bicycle"},
   // AI FUTURE
-  {id:21, s:"CHATGPT IN 2030",                        p:"YOU'RE NOT A PERSON — YOU ARE A MACHINE",                             c:"AI Future",   r:"Suffering"},
-  {id:22, s:"THIS SCENE MADE WITH SEEDANCE 2.0",      p:"IT COST ABOUT $60 TO MAKE",                                           c:"AI Future",   r:"Winning"},
-  {id:23, s:"THIS USED TO TAKE HUGE PRODUCTION TEAMS AND MILLIONS", p:"NOW IT'S A FEW PROMPTS AND $9 IN AI CREDITS",           c:"AI Future",   r:"Winning"},
-  {id:24, s:"DEVELOPER BUILDS PALANTIR-LIKE DASHBOARD SOLO", p:"WITH NEW AI MODELS",                                           c:"AI Future",   r:"Winning"},
-  {id:25, s:"THIS IS AI DECIPHERING A 2,000 YEAR OLD GREEK MANUSCRIPT", p:"THE FUTURE IS HERE",                               c:"AI Future",   r:"Winning"},
-  {id:26, s:"THIS AI WON'T REPLACE HOLLYWOOD",        p:"IT WILL LET US CREATE BETTER FILMS THAN HOLLYWOOD",                  c:"AI Future",   r:"Winning"},
-  {id:27, s:"THIS IS SCARY — GEOSPY AI CAN TRACK YOUR EXACT LOCATION", p:"USING SOCIAL MEDIA PHOTOS IN 2 SECS IN 3D",         c:"AI Future",   r:"Panicking"},
-  {id:28, s:"FROM THE DOJO TO THE WORLD",             p:"THE ULTIMATE MARTIAL ARTS ROBOT AGIBOT A3 IS HERE",                  c:"AI Future",   r:"Winning"},
-  // JOBS/MONEY
-  {id:29, s:">10K/MONTH SALARY",                      p:"THEY'RE INTERVIEWING THE AI AGENT ITSELF",                           c:"Jobs & Money", r:"Unbothered"},
-  {id:30, s:"HOW VPN WORKS?",                         p:"[DIAGRAM IS THE PUNCHLINE]",                                          c:"Tech Explain", r:"Unbothered"},
-  {id:31, s:"THE STRANGEST PART ABOUT AI ISN'T WHAT IT CAN DO", p:"IT'S WHAT IT'S LEARNING TO DO ENTIRELY ON ITS OWN",       c:"AI Future",   r:"Panicking"},
+  {id:21, s:"CHATGPT IN 2030",                        p:"YOU'RE NOT A PERSON — YOU ARE A MACHINE",                             c:"AI Future",   r:"Suffering",   visual:"Phone abandoned face-down on floor — dramatic breakup scene"},
+  {id:22, s:"THIS SCENE MADE WITH SEEDANCE 2.0",      p:"IT COST ABOUT $60 TO MAKE",                                           c:"AI Future",   r:"Winning",     visual:"Cinematic fantasy throne room scene — AI-generated film quality"},
+  {id:23, s:"THIS USED TO TAKE HUGE PRODUCTION TEAMS AND MILLIONS", p:"NOW IT'S A FEW PROMPTS AND $9 IN AI CREDITS",           c:"AI Future",   r:"Winning",     visual:"Photorealistic dinosaur charging — Jurassic Park quality, AI made"},
+  {id:24, s:"DEVELOPER BUILDS PALANTIR-LIKE DASHBOARD SOLO", p:"WITH NEW AI MODELS",                                           c:"AI Future",   r:"Winning",     visual:"WorldView 3D surveillance globe dashboard — military-grade UI"},
+  {id:25, s:"THIS IS AI DECIPHERING A 2,000 YEAR OLD GREEK MANUSCRIPT", p:"THE FUTURE IS HERE",                               c:"AI Future",   r:"Winning",     visual:"Neural network diagram processing ancient scroll fragments"},
+  {id:26, s:"THIS AI WON'T REPLACE HOLLYWOOD",        p:"IT WILL LET US CREATE BETTER FILMS THAN HOLLYWOOD",                  c:"AI Future",   r:"Winning",     visual:"Cinematic AI-generated film shot — photorealistic actor, explosion background"},
+  {id:27, s:"THIS IS SCARY — GEOSPY AI CAN TRACK YOUR EXACT LOCATION", p:"USING SOCIAL MEDIA PHOTOS IN 2 SECS IN 3D",         c:"AI Future",   r:"Panicking",   visual:"3D map zooming into exact NYC street location from one photo"},
+  {id:28, s:"FROM THE DOJO TO THE WORLD",             p:"THE ULTIMATE MARTIAL ARTS ROBOT AGIBOT A3 IS HERE",                  c:"AI Future",   r:"Winning",     visual:"White humanoid robot sparring with human in martial arts dojo"},
+  // JOBS & MONEY
+  {id:29, s:">$10K/MONTH SALARY",                     p:"THEY'RE INTERVIEWING THE AI AGENT ITSELF",                           c:"Jobs & Money", r:"Unbothered",  visual:"Cillian Murphy as Tommy Shelby — intense boardroom stare"},
+  {id:30, s:"HOW VPN WORKS",                          p:"CAT PRETENDS TO BE A SERVER SO YOU CAN BROWSE PRIVATELY",            c:"Tech Explain", r:"Unbothered",  visual:"Diagram showing cat intercepting DNS request — you on the right looking confused"},
+  {id:31, s:"THE STRANGEST PART ABOUT AI ISN'T WHAT IT CAN DO", p:"IT'S WHAT IT'S LEARNING TO DO ENTIRELY ON ITS OWN",       c:"AI Future",   r:"Panicking",   visual:"Neural network input/output diagram — Bengali translation it wasn't trained for"},
 ];
 
 const V = {
@@ -649,16 +649,22 @@ function updStats(){
 
 // ── MEME LIST ─────────────────────────────────────────────────
 function renderML(list){
-  document.getElementById('mList').innerHTML=list.map((m,i)=>`
-    <div class="mc ${ws[m.id]?'done':''} ${aM?.id===m.id?'active':''}" id="mc${m.id}" onclick="selM(${m.id})">
-      <div class="mc-num">[${String(m.id).padStart(2,'0')}] ${m.c.toUpperCase()}</div>
-      <div class="mc-s">${m.s}</div>
-      <div class="mc-p">${m.p.length>58?m.p.slice(0,58)+'…':m.p}</div>
-      <div class="mc-tags">
-        <span class="mc-tag">${m.r}</span>
-        <span class="mc-st ${ws[m.id]?'done':'fresh'}">${ws[m.id]?'✓ DONE':'FRESH'}</span>
-      </div>
-    </div>`).join('');
+  document.getElementById('mList').innerHTML=list.map(function(m){
+    var isActive=aM&&aM.id===m.id;
+    var vis=m.visual?(m.visual.length>48?m.visual.slice(0,48)+'…':m.visual):'';
+    return '<div class="mc '+(ws[m.id]?'done':'')+(isActive?' active':'')+'" id="mc'+m.id+'" onclick="selM('+m.id+')">'+
+      '<div class="mc-num">['+String(m.id).padStart(2,'0')+'] '+m.c.toUpperCase()+'</div>'+
+      '<div style="background:#000;padding:7px 8px;border-radius:3px;margin:3px 0;border-left:2px solid rgba(0,200,212,.25)">'+
+        '<div class="mc-s">'+m.s+'</div>'+
+        '<div class="mc-p">'+(m.p.length>55?m.p.slice(0,55)+'…':m.p)+'</div>'+
+      '</div>'+
+      (vis?'<div style="font-size:8px;color:rgba(0,200,212,.4);font-family:Barlow Condensed,sans-serif;letter-spacing:.5px;margin-bottom:4px;line-height:1.4">🎬 '+vis+'</div>':'')+
+      '<div class="mc-tags">'+
+        '<span class="mc-tag">'+m.r+'</span>'+
+        '<span class="mc-st '+(ws[m.id]?'done':'fresh')+'">'+(ws[m.id]?'✓ DONE':'FRESH')+'</span>'+
+      '</div>'+
+    '</div>';
+  }).join('');
 }
 
 function filterM(q){
@@ -672,7 +678,7 @@ function filterM(q){
 function selM(id){
   aM=MEMES.find(m=>m.id===id);aR=aM.r;
   document.querySelectorAll('.mc').forEach(c=>c.classList.remove('active'));
-  document.getElementById('mc'+id)?.classList.add('active');
+  document.getElementById('mc'+id) && document.getElementById('mc'+id).classList.add('active');
   renderWP();
 }
 
@@ -682,9 +688,13 @@ function renderWP(){
   c.innerHTML=`
     <div class="mhero">
       <div class="hero-id">MEME_ID: ${String(aM.id).padStart(3,'0')} // ${aM.c.toUpperCase()}</div>
-      <div class="hero-s">${aM.s}</div>
-      <div class="hero-p">${aM.p}</div>
-      <div class="hero-meta"><span class="hero-tag">${aM.r}</span><span class="hero-tag">@GEODM.US</span></div>
+      <div style="background:#000;border-radius:4px;padding:20px 18px;margin-bottom:12px;border-left:3px solid var(--c);position:relative;">
+        <div style="font-family:'Orbitron',sans-serif;font-size:8px;letter-spacing:2px;color:rgba(255,255,255,.2);margin-bottom:8px;">@GEODM.US</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:3px;color:rgba(255,255,255,.3);margin-bottom:4px;">${aM.s}</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(18px,2.5vw,26px);letter-spacing:2px;color:#fff;line-height:1.15;text-shadow:0 2px 20px rgba(0,0,0,.8);">${aM.p}</div>
+        <div style="margin-top:12px;padding:10px 12px;background:rgba(0,200,212,.06);border:1px solid rgba(0,200,212,.15);border-radius:3px;font-size:10px;color:rgba(0,200,212,.6);font-family:'Orbitron',sans-serif;letter-spacing:1px;">🎬 VISUAL: ${aM.visual||'REACTION VIDEO — WORKSHOP TO GENERATE VISUAL SUGGESTION'}</div>
+      </div>
+      <div class="hero-meta"><span class="hero-tag">${aM.r}</span><span class="hero-tag">${aM.c}</span><span class="hero-tag">@GEODM.US</span></div>
     </div>
     <div class="wctrl">
       <div>
@@ -762,13 +772,13 @@ async function doWS(){
   const btn=document.getElementById('btnWS');
   btn.classList.add('loading');btn.disabled=true;
   showTerminal();
-  const ven=document.getElementById('vSel')?.value||aV;
-  const aud=document.getElementById('audI')?.value||'';
+  const ven=document.getElementById('vSel') && document.getElementById('vSel').value||aV;
+  const aud=document.getElementById('audI') && document.getElementById('audI').value||'';
   const prompt=`You are a viral meme consultant for ${ven}, a Chicago digital agency run by Giovanni Salazar.\n\nAnalyze this meme:\nSetup: ${aM.s}\nPunchline: ${aM.p}\nReaction: ${aR}${aud?'\nAudience: '+aud:''}\n\nMeme DNA: Plain text on black sets scenario. Visual IS the emotional punchline. Specificity wins over generality. Two audiences share it: person IN meme (pride) + person WATCHING (relatability).\n\nReturn ONLY valid JSON no markdown no backticks:\n{"text_line":"IMPROVED ALL CAPS SETUP LINE","visual_suggestion":"EXACT clip character or moment to find — very specific emotion and scene","visual_search":"3-5 word YouTube search query","audio_suggestion":"Specific song title + artist OR exact audio vibe","audio_search":"3-4 word search query","why_it_works":"2-3 sentences on humor mechanics","who_shares_this":"exactly who shares this and why — be specific not generic","improvements":"1-2 concrete ways to sharpen the punchline","caption":"conversational caption under 180 chars ends with question or observation not salesy"}`;
   try{
     const b=await callG(prompt,k);
     ws[aM.id]=true;localStorage.setItem('gdm_ws',JSON.stringify(ws));
-    renderML(MEMES);document.getElementById('mc'+aM.id)?.classList.add('active','done');
+    renderML(MEMES);document.getElementById('mc'+aM.id) && document.getElementById('mc'+aM.id).classList.add('active','done');
     document.getElementById('capTA').value=b.caption||'';updCC();
     renderBR(b);
     btn.classList.add('success');setTimeout(()=>btn.classList.remove('success'),2000);
@@ -781,13 +791,13 @@ async function doWS(){
 async function doGen(){
   const k=localStorage.getItem('gdm_gemini_key');
   if(!k){toast('ADD GEMINI API KEY IN CONFIG','warn');openSett();return}
-  const top=document.getElementById('topI')?.value?.trim();
+  const top=document.getElementById('topI') && document.getElementById('topI').value && document.getElementById('topI').value.trim();
   if(!top){toast('ENTER A TOPIC FIRST','warn');return}
   const btn=document.getElementById('btnWS');
   btn.classList.add('loading');btn.disabled=true;
   showTerminal();
-  const ven=document.getElementById('vSelG')?.value||aV;
-  const sub=document.getElementById('subI')?.value||'Chicago entrepreneurs';
+  const ven=document.getElementById('vSelG') && document.getElementById('vSelG').value||aV;
+  const sub=document.getElementById('subI') && document.getElementById('subI').value||'Chicago entrepreneurs';
   const prompt=`You are a viral meme consultant for ${ven}, a Chicago digital agency.\n\nCreate a brand new meme:\nTopic: ${top}\nSubject: ${sub}\nReaction: ${aR}\n\nMeme DNA: Plain text on black sets scenario. Visual IS emotional punchline. Specificity wins. Two audiences share it.\n\nReturn ONLY valid JSON no markdown no backticks:\n{"text_line":"ALL CAPS SETUP LINE","visual_suggestion":"EXACT clip to find — specific character moment emotion","visual_search":"3-5 word YouTube search","audio_suggestion":"song + artist or audio vibe","audio_search":"3-4 word search","why_it_works":"2-3 sentences on humor mechanics","who_shares_this":"specific audience and why","caption":"under 180 chars conversational ends with question"}`;
   try{
     const b=await callG(prompt,k);
@@ -803,9 +813,9 @@ async function doGen(){
 // ── API CALL ──────────────────────────────────────────────────
 async function callG(prompt,key){
   const res=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:prompt}]}]})});
-  if(!res.ok){const e=await res.json().catch(()=>({}));throw new Error(e.error?.message||'HTTP '+res.status)}
+  if(!res.ok){const e=await res.json().catch(()=>({}));throw new Error(e.error && e.error.message||'HTTP '+res.status)}
   const data=await res.json();
-  const raw=data.candidates?.[0]?.content?.parts?.[0]?.text||'';
+  const raw=data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0] && data.candidates[0].content.parts[0].text||'';
   try{return JSON.parse(raw.replace(/```json|```/g,'').trim())}
   catch{throw new Error('UNEXPECTED FORMAT')}
 }
@@ -820,8 +830,8 @@ function fErr(m){
 // ── BREAKDOWN ─────────────────────────────────────────────────
 function renderBR(b){
   const w=document.getElementById('brWrap');if(!w)return;
-  const vq=encodeURIComponent(b.visual_search||b.visual_suggestion?.slice(0,30)||'');
-  const sq=encodeURIComponent(b.audio_search||b.audio_suggestion?.slice(0,25)||'');
+  const vq=encodeURIComponent(b.visual_search||b.visual_suggestion ? b.visual_suggestion.slice(0,30) : ''||'');
+  const sq=encodeURIComponent(b.audio_search||b.audio_suggestion ? b.audio_suggestion.slice(0,25) : ''||'');
   w.innerHTML=`
     <div class="brwrap">
       <div class="br-hdr">⚡ AI BREAKDOWN</div>
