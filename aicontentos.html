@@ -19,7 +19,7 @@
 
 /* GRID BG */
 body{
-background:var(–d);color:var(–t);
+background:#04040c;color:#e0e0ff;
 font-family:‘Barlow Condensed’,sans-serif;
 min-height:100vh;overflow-x:hidden;
 background-image:
@@ -248,21 +248,22 @@ select.fi option{background:var(–d2)}
 .bwrap{padding:0 16px 16px}
 .bws{
 width:100%;padding:16px;border:none;border-radius:4px;
-background:linear-gradient(90deg,var(–c),var(–m));
+background:#00c8d4;
 color:#000;font-family:‘Orbitron’,sans-serif;font-size:14px;font-weight:900;letter-spacing:4px;
-cursor:pointer;transition:.25s;display:flex;align-items:center;justify-content:center;gap:10px;
-position:relative;overflow:hidden;
+cursor:pointer;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:10px;
+position:relative;overflow:hidden;-webkit-appearance:none;appearance:none;
 }
 .bws::before{
 content:’’;position:absolute;inset:0;
-background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.2) 50%,transparent 100%);
-transform:translateX(-100%);transition:transform .5s;
+background:linear-gradient(90deg,#00c8d4,#cc2d8f);
+z-index:0;
 }
-.bws:hover::before{transform:translateX(100%)}
-.bws:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,200,212,.4),0 0 0 1px rgba(0,200,212,.3)}
+.bws .bi,.bws .bl,.bws .sp{position:relative;z-index:1}
+.bws:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,200,212,.4)}
 .bws:disabled{opacity:.35;cursor:not-allowed;transform:none;box-shadow:none}
-.bws.loading{background:linear-gradient(90deg,rgba(0,200,212,.5),rgba(204,45,143,.5));cursor:wait}
-.bws.success{background:linear-gradient(90deg,var(–g),#00a86b)}
+.bws.loading{opacity:.7;cursor:wait}
+.bws.loading::before{background:linear-gradient(90deg,rgba(0,200,212,.6),rgba(204,45,143,.6))}
+.bws.success::before{background:linear-gradient(90deg,#00ff88,#00a86b)}
 
 /* SPINNER */
 .sp{width:16px;height:16px;border:2px solid rgba(0,0,0,.3);border-top-color:#000;border-radius:50%;animation:spin .6s linear infinite;display:none}
@@ -653,15 +654,15 @@ function renderML(list){
     var isActive=aM&&aM.id===m.id;
     var vis=m.visual?(m.visual.length>48?m.visual.slice(0,48)+'…':m.visual):'';
     return '<div class="mc '+(ws[m.id]?'done':'')+(isActive?' active':'')+'" id="mc'+m.id+'" onclick="selM('+m.id+')">'+
-      '<div class="mc-num">['+String(m.id).padStart(2,'0')+'] '+m.c.toUpperCase()+'</div>'+
-      '<div style="background:#000;padding:7px 8px;border-radius:3px;margin:3px 0;border-left:2px solid rgba(0,200,212,.25)">'+
-        '<div class="mc-s">'+m.s+'</div>'+
-        '<div class="mc-p">'+(m.p.length>55?m.p.slice(0,55)+'…':m.p)+'</div>'+
+      '<div style="font-family:Orbitron,sans-serif;font-size:8px;color:#444466;letter-spacing:1px;margin-bottom:3px">['+String(m.id).padStart(2,'0')+'] '+m.c.toUpperCase()+'</div>'+
+      '<div style="background:#0a0a18;padding:7px 8px;border-radius:3px;margin:3px 0;border-left:2px solid rgba(0,200,212,.3)">'+
+        '<div style="font-size:9px;font-weight:700;letter-spacing:2px;color:#888899;margin-bottom:2px;text-transform:uppercase">'+m.s+'</div>'+
+        '<div style="font-size:11px;font-weight:600;color:#e0e0ff;line-height:1.3">'+(m.p.length>55?m.p.slice(0,55)+'…':m.p)+'</div>'+
       '</div>'+
-      (vis?'<div style="font-size:8px;color:rgba(0,200,212,.4);font-family:Barlow Condensed,sans-serif;letter-spacing:.5px;margin-bottom:4px;line-height:1.4">🎬 '+vis+'</div>':'')+
-      '<div class="mc-tags">'+
-        '<span class="mc-tag">'+m.r+'</span>'+
-        '<span class="mc-st '+(ws[m.id]?'done':'fresh')+'">'+(ws[m.id]?'✓ DONE':'FRESH')+'</span>'+
+      (vis?'<div style="font-size:8px;color:#007a82;font-family:Barlow Condensed,sans-serif;letter-spacing:.5px;margin-bottom:4px;line-height:1.4">🎬 '+vis+'</div>':'')+
+      '<div style="display:flex;gap:3px;flex-wrap:wrap">'+
+        '<span style="font-size:8px;letter-spacing:1px;padding:1px 5px;border-radius:2px;background:#181830;color:#444466;border:1px solid rgba(255,255,255,.04)">'+m.r+'</span>'+
+        '<span style="font-size:8px;font-weight:700;letter-spacing:1px;padding:1px 5px;border-radius:2px;'+(ws[m.id]?'background:rgba(0,255,136,.1);color:#00ff88;border:1px solid rgba(0,255,136,.2)':'background:rgba(68,68,102,.1);color:#444466;border:1px solid rgba(68,68,102,.15)')+'">'+(ws[m.id]?'✓ DONE':'FRESH')+'</span>'+
       '</div>'+
     '</div>';
   }).join('');
