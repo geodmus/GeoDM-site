@@ -11,182 +11,168 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --black:   #0a0a0a;
-  --black2:  #111111;
-  --black3:  #1a1a1a;
-  --orange:  #f4621f;
-  --orange2: #ff7733;
-  --orange3: #ffaa77;
-  --cyan:    #4fc8d4;
-  --cyan2:   #7dd8e0;
-  --cyan3:   #b0ecf0;
-  --white:   #ffffff;
-  --gray:    #999999;
-  --lgray:   #cccccc;
+--black: #0a0a0a;
+--black2: #111111;
+--black3: #1a1a1a;
+--orange: #f4621f;
+--orange2: #ff7733;
+--orange3: #ffaa77;
+--cyan: #4fc8d4;
+--cyan2: #7dd8e0;
+--cyan3: #b0ecf0;
+--white: #ffffff;
+--gray: #999999;
+--lgray: #cccccc;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior:smooth; }
 body { background:var(--black); color:var(--white); font-family:'DM Sans',Arial,sans-serif; overflow-x:hidden; }
-
-/* ── TOPBAR ── */
-.topbar { background:var(–orange); color:var(–black); text-align:center; padding:9px 20px; font-size:13px; font-weight:700; letter-spacing:.5px; position:relative; z-index:20; }
-
-/* ── COUNTDOWN ── */
-.countdown-strip { background:var(–black2); border-bottom:2px solid var(–orange); padding:14px 40px; display:flex; align-items:center; justify-content:center; gap:20px; flex-wrap:wrap; position:relative; z-index:10; }
-.cd-label { font-family:‘Bebas Neue’,‘Arial Black’,Impact,sans-serif; font-size:15px; letter-spacing:3px; color:var(–white); }
+/* TOPBAR */
+.topbar { background:var(--orange); color:var(--black); text-align:center; padding:9px 20px; font-size:13px; font-weight:700; letter-spacing:.5px; position:relative; z-index:20; }
+/* COUNTDOWN */
+.countdown-strip { background:var(--black2); border-bottom:2px solid var(--orange); padding:14px 40px; display:flex; align-items:center; justify-content:center; gap:20px; flex-wrap:wrap; position:relative; z-index:10; }
+.cd-label { font-family:'Bebas Neue','Arial Black',Impact,sans-serif; font-size:15px; letter-spacing:3px; color:var(--white); }
 .countdown-timer { display:flex; gap:6px; align-items:center; }
-.cd-block { display:flex; flex-direction:column; align-items:center; background:var(–black3); border:1px solid var(–orange); border-radius:6px; padding:8px 14px; min-width:62px; }
-.cd-num { font-family:‘Bebas Neue’,‘Arial Black’,Impact,sans-serif; font-size:30px; color:var(–orange); line-height:1; letter-spacing:2px; }
-.cd-lbl { font-size:9px; letter-spacing:2px; color:var(–gray); text-transform:uppercase; margin-top:2px; font-weight:600; }
-.cd-sep { font-family:‘Bebas Neue’,Impact,sans-serif; font-size:26px; color:var(–orange); margin-bottom:12px; opacity:.6; }
-.cd-cta { background:var(–orange); color:var(–black); padding:10px 22px; border-radius:4px; font-weight:800; font-size:12px; letter-spacing:2px; text-transform:uppercase; text-decoration:none; white-space:nowrap; transition:background .2s; }
-.cd-cta:hover { background:var(–orange2); }
-
-/* ── NAV ── */
+.cd-block { display:flex; flex-direction:column; align-items:center; background:var(--black3); border:1px solid var(--orange); border-radius:6px; padding:8px 14px; min-width:62px; }
+.cd-num { font-family:'Bebas Neue','Arial Black',Impact,sans-serif; font-size:30px; color:var(--orange); line-height:1; letter-spacing:2px; }
+.cd-lbl { font-size:9px; letter-spacing:2px; color:var(--gray); text-transform:uppercase; margin-top:2px; font-weight:600; }
+.cd-sep { font-family:'Bebas Neue',Impact,sans-serif; font-size:26px; color:var(--orange); margin-bottom:12px; opacity:.6; }
+.cd-cta { background:var(--orange); color:var(--black); padding:10px 22px; border-radius:4px; font-weight:800; font-size:12px; letter-spacing:2px; text-transform:uppercase; text-decoration:none; white-space:nowrap; transition:background .2s; }
+.cd-cta:hover { background:var(--orange2); }
+/* NAV */
 nav { position:sticky; top:0; z-index:100; background:rgba(10,10,10,.97); backdrop-filter:blur(12px); border-bottom:1px solid rgba(244,98,31,.3); padding:0 40px; display:flex; justify-content:space-between; align-items:center; height:68px; }
 .premier-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
-.logo-premier { font-family:‘Bebas Neue’,‘Arial Black’,Impact,sans-serif; font-size:26px; color:var(–orange); letter-spacing:2px; font-style:italic; line-height:1; }
-.logo-sub-text { font-size:8px; color:var(–cyan); letter-spacing:2.5px; text-transform:uppercase; font-weight:600; margin-top:2px; }
+.logo-premier { font-family:'Bebas Neue','Arial Black',Impact,sans-serif; font-size:26px; color:var(--orange); letter-spacing:2px; font-style:italic; line-height:1; }
+.logo-sub-text { font-size:8px; color:var(--cyan); letter-spacing:2.5px; text-transform:uppercase; font-weight:600; margin-top:2px; }
 .logo-text-block { display:flex; flex-direction:column; }
 .nav-right { display:flex; align-items:center; gap:20px; }
-.nav-phone { font-size:16px; font-weight:700; color:var(–cyan); text-decoration:none; }
-.btn { display:inline-block; padding:11px 26px; border-radius:4px; font-weight:700; font-size:12px; letter-spacing:1.5px; text-transform:uppercase; text-decoration:none; transition:all .2s; cursor:pointer; border:none; font-family:‘DM Sans’,sans-serif; }
-.btn-orange { background:var(–orange); color:var(–black); }
-.btn-orange:hover { background:var(–orange2); transform:translateY(-2px); box-shadow:0 6px 20px rgba(244,98,31,.45); }
-.btn-cyan { background:transparent; color:var(–cyan); border:1.5px solid rgba(79,200,212,.5); }
-.btn-cyan:hover { border-color:var(–cyan); background:rgba(79,200,212,.1); }
-
-/* ── HERO ── */
+.nav-phone { font-size:16px; font-weight:700; color:var(--cyan); text-decoration:none; }
+.btn { display:inline-block; padding:11px 26px; border-radius:4px; font-weight:700; font-size:12px; letter-spacing:1.5px; text-transform:uppercase; text-decoration:none; transition:all .2s; cursor:pointer; border:none; font-family:'DM Sans',sans-serif; }
+.btn-orange { background:var(--orange); color:var(--black); }
+.btn-orange:hover { background:var(--orange2); transform:translateY(-2px); box-shadow:0 6px 20px rgba(244,98,31,.45); }
+.btn-cyan { background:transparent; color:var(--cyan); border:1.5px solid rgba(79,200,212,.5); }
+.btn-cyan:hover { border-color:var(--cyan); background:rgba(79,200,212,.1); }
+/* HERO */
 .hero { position:relative; min-height:86vh; display:flex; align-items:center; padding:80px 40px; overflow:hidden; }
 .hero-bg { position:absolute; inset:0; background:radial-gradient(ellipse 60% 60% at 75% 40%,rgba(244,98,31,.1) 0%,transparent 65%),radial-gradient(ellipse 40% 40% at 10% 70%,rgba(79,200,212,.07) 0%,transparent 50%),linear-gradient(160deg,#0a0a0a 0%,#111 100%); }
 .hero-stripes { position:absolute; inset:0; background-image:repeating-linear-gradient(-45deg,transparent,transparent 50px,rgba(244,98,31,.02) 50px,rgba(244,98,31,.02) 51px); pointer-events:none; }
 .hero-content { position:relative; z-index:2; max-width:620px; }
-.hero-badge { display:inline-flex; align-items:center; gap:10px; background:rgba(244,98,31,.12); border:1px solid rgba(244,98,31,.4); border-left:4px solid var(–orange); padding:10px 18px; border-radius:4px; margin-bottom:28px; animation:fadeUp .5s ease both; }
-.hero-badge-text { font-size:11px; color:var(–orange3); letter-spacing:2px; text-transform:uppercase; font-weight:700; }
-.hero-h1 { font-family:‘Bebas Neue’,‘Arial Black’,Impact,sans-serif; font-size:clamp(54px,8vw,90px); line-height:.95; letter-spacing:1px; margin-bottom:24px; animation:fadeUp .5s ease .1s both; }
-.hero-h1 .lw { display:block; color:var(–white); }
-.hero-h1 .lo { display:block; color:var(–orange) !important; -webkit-text-fill-color:var(–orange) !important; }
-.hero-h1 .lc { display:block; color:var(–cyan) !important; -webkit-text-fill-color:var(–cyan) !important; }
+.hero-badge { display:inline-flex; align-items:center; gap:10px; background:rgba(244,98,31,.12); border:1px solid rgba(244,98,31,.4); border-left:4px solid var(--orange); padding:10px 18px; border-radius:4px; margin-bottom:28px; animation:fadeUp .5s ease both; }
+.hero-badge-text { font-size:11px; color:var(--orange3); letter-spacing:2px; text-transform:uppercase; font-weight:700; }
+.hero-h1 { font-family:'Bebas Neue','Arial Black',Impact,sans-serif; font-size:clamp(54px,8vw,90px); line-height:.95; letter-spacing:1px; margin-bottom:24px; animation:fadeUp .5s ease .1s both; }
+.hero-h1 .lw { display:block; color:var(--white); }
+.hero-h1 .lo { display:block; color:var(--orange) !important; -webkit-text-fill-color:var(--orange) !important; }
+.hero-h1 .lc { display:block; color:var(--cyan) !important; -webkit-text-fill-color:var(--cyan) !important; }
 .hero-sub { font-size:17px; line-height:1.75; color:rgba(255,255,255,.65); max-width:500px; margin-bottom:36px; animation:fadeUp .5s ease .2s both; }
-.hero-sub strong { color:var(–white); font-weight:600; }
+.hero-sub strong { color:var(--white); font-weight:600; }
 .hero-ctas { display:flex; gap:14px; flex-wrap:wrap; margin-bottom:52px; animation:fadeUp .5s ease .3s both; }
 .hero-stats { display:flex; gap:28px; flex-wrap:wrap; animation:fadeUp .5s ease .4s both; }
 .stat-item { display:flex; flex-direction:column; gap:2px; }
-.stat-num { font-family:‘Bebas Neue’,‘Arial Black’,Impact,sans-serif; font-size:36px; color:var(–orange); line-height:1; letter-spacing:1px; }
-.stat-lbl { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(–gray); font-weight:600; }
+.stat-num { font-family:'Bebas Neue','Arial Black',Impact,sans-serif; font-size:36px; color:var(--orange); line-height:1; letter-spacing:1px; }
+.stat-lbl { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); font-weight:600; }
 .stat-div { width:1px; background:rgba(255,255,255,.1); align-self:stretch; }
-
 /* Hero card */
-.hero-card { position:absolute; right:60px; top:50%; transform:translateY(-50%); z-index:2; background:var(–black2); border:1px solid rgba(244,98,31,.3); border-top:3px solid var(–orange); border-radius:10px; padding:32px 28px; width:290px; box-shadow:0 20px 60px rgba(0,0,0,.6); animation:fadeUp .5s ease .5s both; }
-.hc-title { font-family:‘Bebas Neue’,‘Arial Black’,Impact,sans-serif; font-size:20px; letter-spacing:2px; color:var(–white); margin-bottom:4px; text-align:center; margin-top:12px; }
-.hc-sub { font-size:12px; color:var(–gray); margin-bottom:20px; text-align:center; line-height:1.5; }
-.hc-input { width:100%; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:5px; padding:12px 14px; color:var(–white); font-family:‘DM Sans’,sans-serif; font-size:14px; margin-bottom:10px; outline:none; transition:border-color .2s; }
-.hc-input:focus { border-color:var(–orange); background:rgba(244,98,31,.06); }
+.hero-card { position:absolute; right:60px; top:50%; transform:translateY(-50%); z-index:2; background:var(--black2); border:1px solid rgba(244,98,31,.3); border-top:3px solid var(--orange); border-radius:10px; padding:32px 28px; width:290px; box-shadow:0 20px 60px rgba(0,0,0,.6); animation:fadeUp .5s ease .5s both; }
+.hc-title { font-family:'Bebas Neue','Arial Black',Impact,sans-serif; font-size:20px; letter-spacing:2px; color:var(--white); margin-bottom:4px; text-align:center; margin-top:12px; }
+.hc-sub { font-size:12px; color:var(--gray); margin-bottom:20px; text-align:center; line-height:1.5; }
+.hc-input { width:100%; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:5px; padding:12px 14px; color:var(--white); font-family:'DM Sans',sans-serif; font-size:14px; margin-bottom:10px; outline:none; transition:border-color .2s; }
+.hc-input:focus { border-color:var(--orange); background:rgba(244,98,31,.06); }
 .hc-input::placeholder { color:rgba(255,255,255,.3); }
 .hc-btn { width:100%; padding:13px; font-size:13px; border-radius:5px; letter-spacing:1px; margin-top:4px; }
-.hc-note { font-size:11px; color:var(–gray); text-align:center; margin-top:12px; line-height:1.5; }
-
-/* ── SECTIONS ── */
+.hc-note { font-size:11px; color:var(--gray); text-align:center; margin-top:12px; line-height:1.5; }
+/* SECTIONS */
 .sec { position:relative; z-index:2; padding:90px 40px; max-width:1200px; margin:0 auto; }
-.eyebrow { display:block; font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(–cyan); font-weight:700; margin-bottom:12px; }
-.sec-title { font-family:‘Bebas Neue’,‘Arial Black’,Impact,sans-serif; font-size:clamp(34px,5vw,56px); letter-spacing:1px; line-height:1; margin-bottom:14px; color:var(–white); }
-.sec-title .o { color:var(–orange) !important; -webkit-text-fill-color:var(–orange) !important; }
-.sec-title .c { color:var(–cyan) !important; -webkit-text-fill-color:var(–cyan) !important; }
-.sec-sub { font-size:16px; color:var(–gray); line-height:1.7; max-width:480px; }
-
-/* ── SERVICES ── */
+.eyebrow { display:block; font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--cyan); font-weight:700; margin-bottom:12px; }
+.sec-title { font-family:'Bebas Neue','Arial Black',Impact,sans-serif; font-size:clamp(34px,5vw,56px); letter-spacing:1px; line-height:1; margin-bottom:14px; color:var(--white); }
+.sec-title .o { color:var(--orange) !important; -webkit-text-fill-color:var(--orange) !important; }
+.sec-title .c { color:var(--cyan) !important; -webkit-text-fill-color:var(--cyan) !important; }
+.sec-sub { font-size:16px; color:var(--gray); line-height:1.7; max-width:480px; }
+/* SERVICES */
 .svc-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:52px; }
-.svc-card { background:var(–black2); border:1px solid rgba(255,255,255,.07); border-radius:8px; padding:28px 24px; transition:all .3s; position:relative; overflow:hidden; }
-.svc-card::after { content:’’; position:absolute; bottom:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(–orange),var(–cyan)); transform:scaleX(0); transition:transform .3s; transform-origin:left; }
+.svc-card { background:var(--black2); border:1px solid rgba(255,255,255,.07); border-radius:8px; padding:28px 24px; transition:all .3s; position:relative; overflow:hidden; }
+.svc-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--orange),var(--cyan)); transform:scaleX(0); transition:transform .3s; transform-origin:left; }
 .svc-card:hover { border-color:rgba(244,98,31,.25); background:rgba(244,98,31,.04); transform:translateY(-4px); }
 .svc-card:hover::after { transform:scaleX(1); }
 .svc-icon { font-size:30px; margin-bottom:16px; }
-.svc-name { font-family:‘Bebas Neue’,‘Arial Black’,Impact,sans-serif; font-size:19px; letter-spacing:1px; color:var(–white); margin-bottom:8px; }
-.svc-desc { font-size:13px; color:var(–gray); line-height:1.7; }
-
-/* ── STORY ── */
-.story-wrap { background:var(–black2); border-top:1px solid rgba(255,255,255,.05); border-bottom:1px solid rgba(255,255,255,.05); }
+.svc-name { font-family:'Bebas Neue','Arial Black',Impact,sans-serif; font-size:19px; letter-spacing:1px; color:var(--white); margin-bottom:8px; }
+.svc-desc { font-size:13px; color:var(--gray); line-height:1.7; }
+/* STORY */
+.story-wrap { background:var(--black2); border-top:1px solid rgba(255,255,255,.05); border-bottom:1px solid rgba(255,255,255,.05); }
 .story-grid { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:center; }
-.story-signage { background:var(–black); border:2px solid rgba(244,98,31,.3); border-radius:10px; padding:32px; display:flex; flex-direction:column; align-items:center; gap:18px; position:relative; overflow:hidden; }
-.story-signage::before { content:’’; position:absolute; inset:0; background:repeating-linear-gradient(-45deg,transparent,transparent 20px,rgba(244,98,31,.02) 20px,rgba(244,98,31,.02) 21px); }
-.story-addr { font-size:26px; font-weight:800; color:var(–white); letter-spacing:2px; position:relative; z-index:1; }
-.story-phone { font-family:‘Bebas Neue’,Impact,sans-serif; font-size:20px; color:var(–cyan); letter-spacing:3px; position:relative; z-index:1; }
+.story-signage { background:var(--black); border:2px solid rgba(244,98,31,.3); border-radius:10px; padding:32px; display:flex; flex-direction:column; align-items:center; gap:18px; position:relative; overflow:hidden; }
+.story-signage::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(-45deg,transparent,transparent 20px,rgba(244,98,31,.02) 20px,rgba(244,98,31,.02) 21px); }
+.story-addr { font-size:26px; font-weight:800; color:var(--white); letter-spacing:2px; position:relative; z-index:1; }
+.story-phone { font-family:'Bebas Neue',Impact,sans-serif; font-size:20px; color:var(--cyan); letter-spacing:3px; position:relative; z-index:1; }
 .story-svcs { display:flex; flex-direction:column; gap:6px; width:100%; position:relative; z-index:1; }
-.story-svc-row { display:flex; align-items:center; gap:8px; font-size:13px; color:var(–white); font-weight:600; }
-.story-dot { width:8px; height:8px; border-radius:50%; background:var(–cyan); flex-shrink:0; }
-.story-badge { position:absolute; bottom:-14px; right:-14px; background:var(–orange); color:var(–black); padding:14px 18px; border-radius:8px; text-align:center; box-shadow:0 8px 24px rgba(244,98,31,.5); }
-.story-badge-num { font-family:‘Bebas Neue’,Impact,sans-serif; font-size:36px; line-height:1; }
+.story-svc-row { display:flex; align-items:center; gap:8px; font-size:13px; color:var(--white); font-weight:600; }
+.story-dot { width:8px; height:8px; border-radius:50%; background:var(--cyan); flex-shrink:0; }
+.story-badge { position:absolute; bottom:-14px; right:-14px; background:var(--orange); color:var(--black); padding:14px 18px; border-radius:8px; text-align:center; box-shadow:0 8px 24px rgba(244,98,31,.5); }
+.story-badge-num { font-family:'Bebas Neue',Impact,sans-serif; font-size:36px; line-height:1; }
 .story-badge-lbl { font-size:8px; letter-spacing:2px; text-transform:uppercase; font-weight:800; }
 .story-content { display:flex; flex-direction:column; gap:18px; }
 .story-p { font-size:15px; color:rgba(255,255,255,.65); line-height:1.85; }
-.story-p strong { color:var(–white); font-weight:600; }
-.story-quote { background:rgba(79,200,212,.08); border-left:3px solid var(–cyan); padding:14px 18px; border-radius:0 6px 6px 0; font-size:14px; font-style:italic; color:rgba(255,255,255,.8); line-height:1.7; }
+.story-p strong { color:var(--white); font-weight:600; }
+.story-quote { background:rgba(79,200,212,.08); border-left:3px solid var(--cyan); padding:14px 18px; border-radius:0 6px 6px 0; font-size:14px; font-style:italic; color:rgba(255,255,255,.8); line-height:1.7; }
 .team-pills { display:flex; gap:10px; flex-wrap:wrap; }
-.team-pill { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); padding:7px 14px; border-radius:100px; font-size:12px; color:var(–lgray); }
-
-/* ── REVIEWS ── */
-.reviews-wrap { background:var(–black3); }
+.team-pill { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); padding:7px 14px; border-radius:100px; font-size:12px; color:var(--lgray); }
+/* REVIEWS */
+.reviews-wrap { background:var(--black3); }
 .reviews-hdr { text-align:center; margin-bottom:48px; }
 .rating-row { display:flex; align-items:center; justify-content:center; gap:20px; margin:18px 0; flex-wrap:wrap; }
-.rating-big { font-family:‘Bebas Neue’,Impact,sans-serif; font-size:80px; color:var(–orange); line-height:1; letter-spacing:2px; filter:drop-shadow(0 0 20px rgba(244,98,31,.4)); }
+.rating-big { font-family:'Bebas Neue',Impact,sans-serif; font-size:80px; color:var(--orange); line-height:1; letter-spacing:2px; filter:drop-shadow(0 0 20px rgba(244,98,31,.4)); }
 .rating-detail { display:flex; flex-direction:column; gap:4px; }
-.rating-stars { font-size:26px; color:var(–orange); letter-spacing:4px; }
-.rating-count { font-size:12px; color:var(–gray); letter-spacing:2px; text-transform:uppercase; }
+.rating-stars { font-size:26px; color:var(--orange); letter-spacing:4px; }
+.rating-count { font-size:12px; color:var(--gray); letter-spacing:2px; text-transform:uppercase; }
 .reviews-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
-.rev-card { background:var(–black2); border:1px solid rgba(255,255,255,.07); border-radius:8px; padding:24px; transition:all .3s; }
+.rev-card { background:var(--black2); border:1px solid rgba(255,255,255,.07); border-radius:8px; padding:24px; transition:all .3s; }
 .rev-card:hover { border-color:rgba(244,98,31,.2); transform:translateY(-3px); }
-.rev-stars { color:var(–orange); font-size:13px; letter-spacing:2px; margin-bottom:12px; }
+.rev-stars { color:var(--orange); font-size:13px; letter-spacing:2px; margin-bottom:12px; }
 .rev-text { font-size:13px; color:rgba(255,255,255,.65); line-height:1.75; margin-bottom:18px; font-style:italic; }
 .rev-author { display:flex; align-items:center; gap:10px; }
-.rev-av { width:34px; height:34px; background:linear-gradient(135deg,var(–orange),var(–black3)); border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; flex-shrink:0; }
-.rev-name { font-weight:600; font-size:13px; color:var(–white); }
-.rev-date { font-size:10px; color:var(–gray); margin-top:2px; }
-
-/* ── FORM ── */
-.form-wrap { background:var(–black2); border-top:1px solid rgba(255,255,255,.05); }
+.rev-av { width:34px; height:34px; background:linear-gradient(135deg,var(--orange),var(--black3)); border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; flex-shrink:0; }
+.rev-name { font-weight:600; font-size:13px; color:var(--white); }
+.rev-date { font-size:10px; color:var(--gray); margin-top:2px; }
+/* FORM */
+.form-wrap { background:var(--black2); border-top:1px solid rgba(255,255,255,.05); }
 .form-inner { max-width:680px; margin:0 auto; }
-.form-box { background:var(–black3); border:1px solid rgba(244,98,31,.25); border-top:4px solid var(–orange); border-radius:12px; padding:52px 44px; }
-.form-title { font-family:‘Bebas Neue’,‘Arial Black’,Impact,sans-serif; font-size:38px; letter-spacing:2px; text-align:center; margin-bottom:6px; color:var(–white); }
-.form-title .o { color:var(–orange) !important; -webkit-text-fill-color:var(–orange) !important; }
-.form-sub { text-align:center; font-size:14px; color:var(–gray); margin-bottom:36px; line-height:1.6; }
+.form-box { background:var(--black3); border:1px solid rgba(244,98,31,.25); border-top:4px solid var(--orange); border-radius:12px; padding:52px 44px; }
+.form-title { font-family:'Bebas Neue','Arial Black',Impact,sans-serif; font-size:38px; letter-spacing:2px; text-align:center; margin-bottom:6px; color:var(--white); }
+.form-title .o { color:var(--orange) !important; -webkit-text-fill-color:var(--orange) !important; }
+.form-sub { text-align:center; font-size:14px; color:var(--gray); margin-bottom:36px; line-height:1.6; }
 .form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px; }
 .fg { display:flex; flex-direction:column; gap:6px; margin-bottom:14px; }
-label { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(–gray); font-weight:700; }
-input,select,textarea { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); border-radius:5px; padding:13px 15px; color:var(–white); font-family:‘DM Sans’,sans-serif; font-size:14px; transition:all .2s; width:100%; outline:none; }
-input:focus,select:focus,textarea:focus { border-color:var(–orange); background:rgba(244,98,31,.06); box-shadow:0 0 0 3px rgba(244,98,31,.12); }
-select option { background:var(–black2); }
+label { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); font-weight:700; }
+input,select,textarea { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); border-radius:5px; padding:13px 15px; color:var(--white); font-family:'DM Sans',sans-serif; font-size:14px; transition:all .2s; width:100%; outline:none; }
+input:focus,select:focus,textarea:focus { border-color:var(--orange); background:rgba(244,98,31,.06); box-shadow:0 0 0 3px rgba(244,98,31,.12); }
+select option { background:var(--black2); }
 textarea { resize:vertical; min-height:88px; }
 .form-btn { width:100%; padding:17px; font-size:14px; letter-spacing:2px; border-radius:5px; margin-top:4px; }
-.form-note { text-align:center; font-size:11px; color:var(–gray); margin-top:14px; line-height:1.6; }
-
-/* ── CTA STRIP ── */
-.cta-strip { background:linear-gradient(135deg,var(–orange),#c84e10); padding:64px 40px; text-align:center; position:relative; overflow:hidden; }
-.cta-strip::before { content:’’; position:absolute; inset:0; background:repeating-linear-gradient(-45deg,transparent,transparent 28px,rgba(0,0,0,.06) 28px,rgba(0,0,0,.06) 29px); }
-.cta-title { font-family:‘Bebas Neue’,‘Arial Black’,Impact,sans-serif; font-size:clamp(30px,5vw,50px); color:var(–black); letter-spacing:3px; margin-bottom:10px; position:relative; z-index:1; }
+.form-note { text-align:center; font-size:11px; color:var(--gray); margin-top:14px; line-height:1.6; }
+/* CTA STRIP */
+.cta-strip { background:linear-gradient(135deg,var(--orange),#c84e10); padding:64px 40px; text-align:center; position:relative; overflow:hidden; }
+.cta-strip::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(-45deg,transparent,transparent 28px,rgba(0,0,0,.06) 28px,rgba(0,0,0,.06) 29px); }
+.cta-title { font-family:'Bebas Neue','Arial Black',Impact,sans-serif; font-size:clamp(30px,5vw,50px); color:var(--black); letter-spacing:3px; margin-bottom:10px; position:relative; z-index:1; }
 .cta-sub { font-size:15px; color:rgba(0,0,0,.65); margin-bottom:32px; position:relative; z-index:1; }
 .cta-info { display:flex; justify-content:center; gap:48px; flex-wrap:wrap; position:relative; z-index:1; }
 .cta-item { display:flex; flex-direction:column; align-items:center; gap:3px; }
 .cta-lbl { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:rgba(0,0,0,.55); font-weight:700; }
-.cta-val { font-size:17px; font-weight:700; color:var(–black); text-decoration:none; }
-
-/* ── FOOTER ── */
+.cta-val { font-size:17px; font-weight:700; color:var(--black); text-decoration:none; }
+/* FOOTER */
 footer { background:#060606; padding:44px 40px 28px; border-top:1px solid rgba(244,98,31,.2); }
 .footer-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1.5fr 1fr 1fr; gap:48px; margin-bottom:36px; }
-.footer-desc { font-size:13px; color:var(–gray); line-height:1.7; margin-top:12px; }
-.footer-col-title { font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(–cyan); font-weight:700; margin-bottom:16px; }
+.footer-desc { font-size:13px; color:var(--gray); line-height:1.7; margin-top:12px; }
+.footer-col-title { font-size:10px; letter-spacing:2.5px; text-transform:uppercase; color:var(--cyan); font-weight:700; margin-bottom:16px; }
 .footer-links { display:flex; flex-direction:column; gap:8px; }
-.footer-link { font-size:13px; color:var(–gray); text-decoration:none; transition:color .2s; }
-.footer-link:hover { color:var(–white); }
+.footer-link { font-size:13px; color:var(--gray); text-decoration:none; transition:color .2s; }
+.footer-link:hover { color:var(--white); }
 .footer-bottom { max-width:1100px; margin:0 auto; padding-top:20px; border-top:1px solid rgba(255,255,255,.05); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; }
 .footer-copy { font-size:11px; color:rgba(153,153,153,.5); }
 .footer-powered { font-size:10px; color:rgba(153,153,153,.35); letter-spacing:1px; }
 .footer-powered a { color:rgba(79,200,212,.55); text-decoration:none; transition:color .2s; }
-.footer-powered a:hover { color:var(–cyan); }
-
-/* ── ANIMATION ── */
+.footer-powered a:hover { color:var(--cyan); }
+/* ANIMATION */
 @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
-
-/* ── RESPONSIVE ── */
+/* RESPONSIVE */
 @media (max-width:960px) {
 nav { padding:0 16px; }
 .nav-phone { display:none; }
@@ -206,7 +192,6 @@ nav { padding:0 16px; }
 .cd-num { font-size:26px; }
 }
 </style>
-
 </head>
 <body>
 
@@ -217,105 +202,104 @@ nav { padding:0 16px; }
 <!-- LIVE COUNTDOWN -->
 
 <div class="countdown-strip">
-  <div class="cd-label">⏰ Time Until Tax Deadline:</div>
-  <div class="countdown-timer">
-    <div class="cd-block"><div class="cd-num" id="cd-days">00</div><div class="cd-lbl">Days</div></div>
-    <div class="cd-sep">:</div>
-    <div class="cd-block"><div class="cd-num" id="cd-hours">00</div><div class="cd-lbl">Hours</div></div>
-    <div class="cd-sep">:</div>
-    <div class="cd-block"><div class="cd-num" id="cd-mins">00</div><div class="cd-lbl">Mins</div></div>
-    <div class="cd-sep">:</div>
-    <div class="cd-block"><div class="cd-num" id="cd-secs">00</div><div class="cd-lbl">Secs</div></div>
-  </div>
-  <a href="#book" class="cd-cta">File Now →</a>
+<div class="cd-label">⏰ Time Until Tax Deadline:</div>
+<div class="countdown-timer">
+<div class="cd-block"><div class="cd-num" id="cd-days">00</div><div class="cd-lbl">Days</div></div>
+<div class="cd-sep">:</div>
+<div class="cd-block"><div class="cd-num" id="cd-hours">00</div><div class="cd-lbl">Hours</div></div>
+<div class="cd-sep">:</div>
+<div class="cd-block"><div class="cd-num" id="cd-mins">00</div><div class="cd-lbl">Mins</div></div>
+<div class="cd-sep">:</div>
+<div class="cd-block"><div class="cd-num" id="cd-secs">00</div><div class="cd-lbl">Secs</div></div>
+</div>
+<a href="#book" class="cd-cta">File Now →</a>
 </div>
 
 <!-- NAV -->
 
 <nav>
-  <a href="#" class="premier-logo">
-    <svg width="42" height="42" viewBox="0 0 42 42" fill="none">
-      <rect x="9" y="9" width="24" height="24" rx="2" stroke="#4fc8d4" stroke-width="2" fill="rgba(79,200,212,0.06)" transform="rotate(45 21 21)"/>
-      <path d="M12 21 L18 28 L31 14" stroke="#f4621f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-    </svg>
-    <div class="logo-text-block">
-      <div class="logo-premier">PREMIER</div>
-      <div class="logo-sub-text">Tax & Financial Services</div>
-    </div>
-  </a>
-  <div class="nav-right">
-    <a href="tel:3126103838" class="nav-phone">📞 (312) 610-3838</a>
-    <a href="#book" class="btn btn-orange">Book Now</a>
-  </div>
+<a href="#" class="premier-logo">
+<svg width="42" height="42" viewBox="0 0 42 42" fill="none">
+<rect x="9" y="9" width="24" height="24" rx="2" stroke="#4fc8d4" stroke-width="2" fill="rgba(79,200,212,0.06)" transform="rotate(45 21 21)"/>
+<path d="M12 21 L18 28 L31 14" stroke="#f4621f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>
+<div class="logo-text-block">
+<div class="logo-premier">PREMIER</div>
+<div class="logo-sub-text">Tax & Financial Services</div>
+</div>
+</a>
+<div class="nav-right">
+<a href="tel:3126103838" class="nav-phone">📞 (312) 610-3838</a>
+<a href="#book" class="btn btn-orange">Book Now</a>
+</div>
 </nav>
 
 <!-- HERO -->
 
 <section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-stripes"></div>
-  <div class="hero-content">
-    <div class="hero-badge">
-      <span style="color:var(--orange);font-size:13px;letter-spacing:2px;">★★★★★</span>
-      <span class="hero-badge-text">5.0 Stars · 201 Google Reviews · Chicago South Side</span>
-    </div>
-    <h1 class="hero-h1">
-      <span class="lw">Chicago's</span>
-      <span class="lo">#1 Rated</span>
-      <span class="lc">Tax Service.</span>
-    </h1>
-    <p class="hero-sub">Personal & business taxes done right — <strong>guaranteed.</strong> Free e-file, financial consultation, credit repair, bookkeeping, and notary. <strong>We come to you.</strong></p>
-    <div class="hero-ctas">
-      <a href="#book" class="btn btn-orange">Book My Appointment →</a>
-      <a href="tel:3126103838" class="btn btn-cyan">Call Now</a>
-    </div>
-    <div class="hero-stats">
-      <div class="stat-item"><div class="stat-num">5.0</div><div class="stat-lbl">★ Google Rating</div></div>
-      <div class="stat-div"></div>
-      <div class="stat-item"><div class="stat-num">201</div><div class="stat-lbl">5-Star Reviews</div></div>
-      <div class="stat-div"></div>
-      <div class="stat-item"><div class="stat-num">10+</div><div class="stat-lbl">Years on 79th</div></div>
-      <div class="stat-div"></div>
-      <div class="stat-item"><div class="stat-num">FREE</div><div class="stat-lbl">E-File Included</div></div>
-    </div>
-  </div>
-
-  <div class="hero-card">
-    <div style="display:flex;justify-content:center;">
-      <svg width="160" height="46" viewBox="0 0 160 46" fill="none">
-        <rect x="3" y="10" width="26" height="26" rx="1.5" stroke="#4fc8d4" stroke-width="2" fill="rgba(79,200,212,0.06)" transform="rotate(45 16 23)"/>
-        <path d="M7 23 L14 31 L26 15" stroke="#f4621f" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <text x="38" y="30" font-family="'Bebas Neue','Arial Black',Impact,sans-serif" font-size="30" fill="#f4621f" letter-spacing="2" font-style="italic">PREMIER</text>
-        <text x="38" y="42" font-family="'DM Sans',Arial,sans-serif" font-size="7" fill="#4fc8d4" letter-spacing="2.5" font-weight="700">TAX &amp; FINANCIAL SERVICES</text>
-      </svg>
-    </div>
-    <div class="hc-title">GET YOUR MAX REFUND</div>
-    <div class="hc-sub">Quick callback — we'll call within the hour.</div>
-    <input class="hc-input" type="text" placeholder="Your Name" id="hcName">
-    <input class="hc-input" type="tel" placeholder="Phone Number" id="hcPhone">
-    <button class="btn btn-orange hc-btn" onclick="quickRequest()">Request Callback →</button>
-    <p class="hc-note" id="hcNote">📞 Or call us: (312) 610-3838</p>
-  </div>
+<div class="hero-bg"></div>
+<div class="hero-stripes"></div>
+<div class="hero-content">
+<div class="hero-badge">
+<span style="color:var(--orange);font-size:13px;letter-spacing:2px;">★★★★★</span>
+<span class="hero-badge-text">5.0 Stars · 201 Google Reviews · Chicago South Side</span>
+</div>
+<h1 class="hero-h1">
+<span class="lw">Chicago's</span>
+<span class="lo">#1 Rated</span>
+<span class="lc">Tax Service.</span>
+</h1>
+<p class="hero-sub">Personal & business taxes done right — <strong>guaranteed.</strong> Free e-file, financial consultation, credit repair, bookkeeping, and notary. <strong>We come to you.</strong></p>
+<div class="hero-ctas">
+<a href="#book" class="btn btn-orange">Book My Appointment →</a>
+<a href="tel:3126103838" class="btn btn-cyan">Call Now</a>
+</div>
+<div class="hero-stats">
+<div class="stat-item"><div class="stat-num">5.0</div><div class="stat-lbl">★ Google Rating</div></div>
+<div class="stat-div"></div>
+<div class="stat-item"><div class="stat-num">201</div><div class="stat-lbl">5-Star Reviews</div></div>
+<div class="stat-div"></div>
+<div class="stat-item"><div class="stat-num">10+</div><div class="stat-lbl">Years on 79th</div></div>
+<div class="stat-div"></div>
+<div class="stat-item"><div class="stat-num">FREE</div><div class="stat-lbl">E-File Included</div></div>
+</div>
+</div>
+<div class="hero-card">
+<div style="display:flex;justify-content:center;">
+<svg width="160" height="46" viewBox="0 0 160 46" fill="none">
+<rect x="3" y="10" width="26" height="26" rx="1.5" stroke="#4fc8d4" stroke-width="2" fill="rgba(79,200,212,0.06)" transform="rotate(45 16 23)"/>
+<path d="M7 23 L14 31 L26 15" stroke="#f4621f" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<text x="38" y="30" font-family="'Bebas Neue','Arial Black',Impact,sans-serif" font-size="30" fill="#f4621f" letter-spacing="2" font-style="italic">PREMIER</text>
+<text x="38" y="42" font-family="'DM Sans',Arial,sans-serif" font-size="7" fill="#4fc8d4" letter-spacing="2.5" font-weight="700">TAX &amp; FINANCIAL SERVICES</text>
+</svg>
+</div>
+<div class="hc-title">GET YOUR MAX REFUND</div>
+<div class="hc-sub">Quick callback — we'll call within the hour.</div>
+<input class="hc-input" type="text" placeholder="Your Name" id="hcName">
+<input class="hc-input" type="tel" placeholder="Phone Number" id="hcPhone">
+<button class="btn btn-orange hc-btn" onclick="quickRequest()">Request Callback →</button>
+<p class="hc-note" id="hcNote">📞 Or call us: (312) 610-3838</p>
+</div>
 </section>
 
 <!-- SERVICES -->
 
 <div style="background:var(--black);position:relative;z-index:2;">
 <div class="sec">
-  <span class="eyebrow">What We Handle</span>
-  <h2 class="sec-title">Full-Service <span class="o">Financial</span> Solutions</h2>
-  <p class="sec-sub">From simple personal returns to complex business filings — everything under one roof on Chicago's South Side.</p>
-  <div class="svc-grid">
-    <div class="svc-card"><div class="svc-icon">🧾</div><div class="svc-name">Personal Tax Prep</div><div class="svc-desc">Individual returns filed accurately and fast. We find every deduction so you walk out with your maximum refund.</div></div>
-    <div class="svc-card"><div class="svc-icon">🏢</div><div class="svc-name">Business Tax Filing</div><div class="svc-desc">LLCs, S-Corps, sole proprietors — we handle your business taxes so you can focus on running your business.</div></div>
-    <div class="svc-card"><div class="svc-icon">📚</div><div class="svc-name">Bookkeeping</div><div class="svc-desc">Clean books year-round. Accurate records mean better tax outcomes and smarter business decisions.</div></div>
-    <div class="svc-card"><div class="svc-icon">💳</div><div class="svc-name">Credit Repair</div><div class="svc-desc">Improve your credit profile so you qualify for better rates, loans, and opportunities.</div></div>
-    <div class="svc-card"><div class="svc-icon">🏠</div><div class="svc-name">Property Tax Appeal</div><div class="svc-desc">Overpaying Cook County property taxes? We appeal your assessment and put real money back in your pocket.</div></div>
-    <div class="svc-card"><div class="svc-icon">💡</div><div class="svc-name">Financial Consultation</div><div class="svc-desc">Strategic financial guidance for building wealth, starting a business, or planning your next move.</div></div>
-    <div class="svc-card"><div class="svc-icon">🏗️</div><div class="svc-name">Business Start Up</div><div class="svc-desc">Launching a new business? We help you set it up right — structure, taxes, and financial foundation from day one.</div></div>
-    <div class="svc-card"><div class="svc-icon">📋</div><div class="svc-name">Notary Public</div><div class="svc-desc">Certified notary services in-office. Quick, professional, and affordable for all your document needs.</div></div>
-    <div class="svc-card"><div class="svc-icon">🚗</div><div class="svc-name">We Come To You</div><div class="svc-desc">Can't make it in? No problem. Mobile tax service available anywhere in the Chicago area.</div></div>
-  </div>
+<span class="eyebrow">What We Handle</span>
+<h2 class="sec-title">Full-Service <span class="o">Financial</span> Solutions</h2>
+<p class="sec-sub">From simple personal returns to complex business filings — everything under one roof on Chicago's South Side.</p>
+<div class="svc-grid">
+<div class="svc-card"><div class="svc-icon">🧾</div><div class="svc-name">Personal Tax Prep</div><div class="svc-desc">Individual returns filed accurately and fast. We find every deduction so you walk out with your maximum refund.</div></div>
+<div class="svc-card"><div class="svc-icon">🏢</div><div class="svc-name">Business Tax Filing</div><div class="svc-desc">LLCs, S-Corps, sole proprietors — we handle your business taxes so you can focus on running your business.</div></div>
+<div class="svc-card"><div class="svc-icon">📚</div><div class="svc-name">Bookkeeping</div><div class="svc-desc">Clean books year-round. Accurate records mean better tax outcomes and smarter business decisions.</div></div>
+<div class="svc-card"><div class="svc-icon">💳</div><div class="svc-name">Credit Repair</div><div class="svc-desc">Improve your credit profile so you qualify for better rates, loans, and opportunities.</div></div>
+<div class="svc-card"><div class="svc-icon">🏠</div><div class="svc-name">Property Tax Appeal</div><div class="svc-desc">Overpaying Cook County property taxes? We appeal your assessment and put real money back in your pocket.</div></div>
+<div class="svc-card"><div class="svc-icon">💡</div><div class="svc-name">Financial Consultation</div><div class="svc-desc">Strategic financial guidance for building wealth, starting a business, or planning your next move.</div></div>
+<div class="svc-card"><div class="svc-icon">🏗️</div><div class="svc-name">Business Start Up</div><div class="svc-desc">Launching a new business? We help you set it up right — structure, taxes, and financial foundation from day one.</div></div>
+<div class="svc-card"><div class="svc-icon">📋</div><div class="svc-name">Notary Public</div><div class="svc-desc">Certified notary services in-office. Quick, professional, and affordable for all your document needs.</div></div>
+<div class="svc-card"><div class="svc-icon">🚗</div><div class="svc-name">We Come To You</div><div class="svc-desc">Can't make it in? No problem. Mobile tax service available anywhere in the Chicago area.</div></div>
+</div>
 </div>
 </div>
 
@@ -323,49 +307,45 @@ nav { padding:0 16px; }
 
 <div class="story-wrap">
 <div class="sec">
-  <div class="story-grid">
-    <div style="position:relative;">
-      <div class="story-signage">
-        <svg width="220" height="62" viewBox="0 0 220 62" fill="none">
-          <rect x="4" y="13" width="36" height="36" rx="2" stroke="#4fc8d4" stroke-width="2.5" fill="rgba(79,200,212,0.06)" transform="rotate(45 22 31)"/>
-          <path d="M9 31 L19 43 L36 19" stroke="#f4621f" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <text x="50" y="38" font-family="'Bebas Neue','Arial Black',Impact,sans-serif" font-size="38" fill="#f4621f" letter-spacing="3" font-style="italic">PREMIER</text>
-          <text x="50" y="54" font-family="'DM Sans',Arial,sans-serif" font-size="9" fill="#4fc8d4" letter-spacing="2.5" font-weight="700">TAX &amp; FINANCIAL SERVICES</text>
-        </svg>
-        <div class="story-addr">2537 W 79TH ST</div>
-        <div class="story-phone">312-610-3838</div>
-        <div class="story-svcs">
-          <div class="story-svc-row"><div class="story-dot"></div>Personal & Business Income Tax</div>
-          <div class="story-svc-row"><div class="story-dot"></div>Financial Consultation</div>
-          <div class="story-svc-row"><div class="story-dot"></div>Business Start Up</div>
-          <div class="story-svc-row"><div class="story-dot"></div>Credit Repair</div>
-          <div class="story-svc-row"><div class="story-dot"></div>Notary Public</div>
-          <div class="story-svc-row"><div class="story-dot"></div>Free Credit Consultation</div>
-        </div>
-      </div>
-      <div class="story-badge"><div class="story-badge-num">5.0★</div><div class="story-badge-lbl">Google Rating</div></div>
-    </div>
-
-```
-<div class="story-content">
-  <div>
-    <span class="eyebrow">Our Story</span>
-    <h2 class="sec-title">Built on the <span class="o">South Side.</span><br>Built for the <span class="c">Community.</span></h2>
-  </div>
-  <p class="story-p">Premier Tax & Financial Services was born right here at <strong>2537 W 79th Street</strong> with one mission: give hardworking families and small business owners access to the same quality financial services that were always reserved for other parts of town.</p>
-  <p class="story-p">Led by <strong>Reshawn Parker</strong> and a dedicated team including <strong>Roxanne, Malik, and Jamina</strong>, Premier Tax has spent over a decade earning the trust of this community one return at a time.</p>
-  <div class="story-quote">"Ms. Roxanne & Rayshaun really care about this business and the clients. It's my first time using their services but it won't be the last." — Google Review, April 2024</div>
-  <p class="story-p">With a <strong>perfect 5.0 rating across 201 Google reviews</strong>, Premier Tax isn't just a tax office — it's a cornerstone of the South Side community.</p>
-  <div class="team-pills">
-    <span class="team-pill">👤 Reshawn Parker</span>
-    <span class="team-pill">👤 Roxanne</span>
-    <span class="team-pill">👤 Malik</span>
-    <span class="team-pill">👤 Jamina</span>
-  </div>
+<div class="story-grid">
+<div style="position:relative;">
+<div class="story-signage">
+<svg width="220" height="62" viewBox="0 0 220 62" fill="none">
+<rect x="4" y="13" width="36" height="36" rx="2" stroke="#4fc8d4" stroke-width="2.5" fill="rgba(79,200,212,0.06)" transform="rotate(45 22 31)"/>
+<path d="M9 31 L19 43 L36 19" stroke="#f4621f" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<text x="50" y="38" font-family="'Bebas Neue','Arial Black',Impact,sans-serif" font-size="38" fill="#f4621f" letter-spacing="3" font-style="italic">PREMIER</text>
+<text x="50" y="54" font-family="'DM Sans',Arial,sans-serif" font-size="9" fill="#4fc8d4" letter-spacing="2.5" font-weight="700">TAX &amp; FINANCIAL SERVICES</text>
+</svg>
+<div class="story-addr">2537 W 79TH ST</div>
+<div class="story-phone">312-610-3838</div>
+<div class="story-svcs">
+<div class="story-svc-row"><div class="story-dot"></div>Personal & Business Income Tax</div>
+<div class="story-svc-row"><div class="story-dot"></div>Financial Consultation</div>
+<div class="story-svc-row"><div class="story-dot"></div>Business Start Up</div>
+<div class="story-svc-row"><div class="story-dot"></div>Credit Repair</div>
+<div class="story-svc-row"><div class="story-dot"></div>Notary Public</div>
+<div class="story-svc-row"><div class="story-dot"></div>Free Credit Consultation</div>
 </div>
-```
-
-  </div>
+</div>
+<div class="story-badge"><div class="story-badge-num">5.0★</div><div class="story-badge-lbl">Google Rating</div></div>
+</div>
+<div class="story-content">
+<div>
+<span class="eyebrow">Our Story</span>
+<h2 class="sec-title">Built on the <span class="o">South Side.</span><br>Built for the <span class="c">Community.</span></h2>
+</div>
+<p class="story-p">Premier Tax & Financial Services was born right here at <strong>2537 W 79th Street</strong> with one mission: give hardworking families and small business owners access to the same quality financial services that were always reserved for other parts of town.</p>
+<p class="story-p">Led by <strong>Reshawn Parker</strong> and a dedicated team including <strong>Roxanne, Malik, and Jamina</strong>, Premier Tax has spent over a decade earning the trust of this community one return at a time.</p>
+<div class="story-quote">"Ms. Roxanne &amp; Rayshaun really care about this business and the clients. It's my first time using their services but it won't be the last." — Google Review, April 2024</div>
+<p class="story-p">With a <strong>perfect 5.0 rating across 201 Google reviews</strong>, Premier Tax isn't just a tax office — it's a cornerstone of the South Side community.</p>
+<div class="team-pills">
+<span class="team-pill">👤 Reshawn Parker</span>
+<span class="team-pill">👤 Roxanne</span>
+<span class="team-pill">👤 Malik</span>
+<span class="team-pill">👤 Jamina</span>
+</div>
+</div>
+</div>
 </div>
 </div>
 
@@ -373,22 +353,22 @@ nav { padding:0 16px; }
 
 <div class="reviews-wrap">
 <div class="sec">
-  <div class="reviews-hdr">
-    <span class="eyebrow">What Our Clients Say</span>
-    <h2 class="sec-title">Real People. <span class="o">Real Results.</span></h2>
-    <div class="rating-row">
-      <div class="rating-big">5.0</div>
-      <div class="rating-detail"><div class="rating-stars">★★★★★</div><div class="rating-count">201 Verified Google Reviews</div></div>
-    </div>
-  </div>
-  <div class="reviews-grid">
-    <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Premier Tax have been servicing me for about 5 years now. Each year I leave even more satisfied than the last. Roxanne and Shawn are the best!! Their hospitality and courtesy are top notch."</p><div class="rev-author"><div class="rev-av">ST</div><div><div class="rev-name">Sydney Thomas-Clay</div><div class="rev-date">Google · 5-Year Client</div></div></div></div>
-    <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Very great atmosphere. My tax preparer Malik was very knowledgeable and helpful. Wonderful tax service — best I've experienced."</p><div class="rev-author"><div class="rev-av">OP</div><div><div class="rev-name">Otis Patterson</div><div class="rev-date">Google Review</div></div></div></div>
-    <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Excellence! Professional courteous service as soon as you walk through the door. Staff take time to listen and address your individual tax needs."</p><div class="rev-author"><div class="rev-av">MT</div><div><div class="rev-name">Marsha T.</div><div class="rev-date">Google Review</div></div></div></div>
-    <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"I have trusted this company for four years. The staff are professional and knowledgeable. The environment is comfortable and safe."</p><div class="rev-author"><div class="rev-av">C</div><div><div class="rev-name">4-Year Client</div><div class="rev-date">Google · April 2024</div></div></div></div>
-    <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Roxanne did a wonderful job helping me out. Ms. Roxanne & Rayshaun really care about this business and the clients. First time but won't be the last."</p><div class="rev-author"><div class="rev-av">A</div><div><div class="rev-name">April 2024 Client</div><div class="rev-date">Google Review</div></div></div></div>
-    <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Thanks Ryan. Very knowledgeable on all tax issues. This company definitely deserves five stars. Excellent service."</p><div class="rev-author"><div class="rev-av">SP</div><div><div class="rev-name">Shawn P.</div><div class="rev-date">Yelp Review</div></div></div></div>
-  </div>
+<div class="reviews-hdr">
+<span class="eyebrow">What Our Clients Say</span>
+<h2 class="sec-title">Real People. <span class="o">Real Results.</span></h2>
+<div class="rating-row">
+<div class="rating-big">5.0</div>
+<div class="rating-detail"><div class="rating-stars">★★★★★</div><div class="rating-count">201 Verified Google Reviews</div></div>
+</div>
+</div>
+<div class="reviews-grid">
+<div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Premier Tax have been servicing me for about 5 years now. Each year I leave even more satisfied than the last. Roxanne and Shawn are the best!! Their hospitality and courtesy are top notch."</p><div class="rev-author"><div class="rev-av">ST</div><div><div class="rev-name">Sydney Thomas-Clay</div><div class="rev-date">Google · 5-Year Client</div></div></div></div>
+<div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Very great atmosphere. My tax preparer Malik was very knowledgeable and helpful. Wonderful tax service — best I've experienced."</p><div class="rev-author"><div class="rev-av">OP</div><div><div class="rev-name">Otis Patterson</div><div class="rev-date">Google Review</div></div></div></div>
+<div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Excellence! Professional courteous service as soon as you walk through the door. Staff take time to listen and address your individual tax needs."</p><div class="rev-author"><div class="rev-av">MT</div><div><div class="rev-name">Marsha T.</div><div class="rev-date">Google Review</div></div></div></div>
+<div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"I have trusted this company for four years. The staff are professional and knowledgeable. The environment is comfortable and safe."</p><div class="rev-author"><div class="rev-av">C</div><div><div class="rev-name">4-Year Client</div><div class="rev-date">Google · April 2024</div></div></div></div>
+<div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Roxanne did a wonderful job helping me out. Ms. Roxanne &amp; Rayshaun really care about this business and the clients. First time but won't be the last."</p><div class="rev-author"><div class="rev-av">A</div><div><div class="rev-name">April 2024 Client</div><div class="rev-date">Google Review</div></div></div></div>
+<div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Thanks Ryan. Very knowledgeable on all tax issues. This company definitely deserves five stars. Excellent service."</p><div class="rev-author"><div class="rev-av">SP</div><div><div class="rev-name">Shawn P.</div><div class="rev-date">Yelp Review</div></div></div></div>
+</div>
 </div>
 </div>
 
@@ -396,150 +376,150 @@ nav { padding:0 16px; }
 
 <div class="form-wrap" id="book">
 <div class="sec">
-  <div class="form-inner">
-    <div class="form-box">
-      <h2 class="form-title">Book Your <span class="o">Free</span> Consultation</h2>
-      <p class="form-sub">Fill out the form and we'll reach out within 24 hours. Tax deadline is April 15th — spots filling fast.</p>
-      <form id="mainForm" onsubmit="handleSubmit(event)">
-        <div class="form-row">
-          <div class="fg"><label>First Name</label><input type="text" placeholder="John" required></div>
-          <div class="fg"><label>Last Name</label><input type="text" placeholder="Smith" required></div>
-        </div>
-        <div class="form-row">
-          <div class="fg"><label>Phone Number</label><input type="tel" placeholder="(312) 555-0000" required></div>
-          <div class="fg"><label>Email (Optional)</label><input type="email" placeholder="john@email.com"></div>
-        </div>
-        <div class="fg">
-          <label>What do you need help with?</label>
-          <select required>
-            <option value="" disabled selected>Select a service...</option>
-            <option>Personal Tax Return</option>
-            <option>Business Tax Filing</option>
-            <option>Both Personal & Business</option>
-            <option>Bookkeeping</option>
-            <option>Credit Repair</option>
-            <option>Property Tax Appeal</option>
-            <option>Business Start Up</option>
-            <option>Financial Consultation</option>
-            <option>Notary Services</option>
-            <option>Not Sure — Need Guidance</option>
-          </select>
-        </div>
-        <div class="fg"><label>Anything else? (Optional)</label><textarea placeholder="e.g. I run a small LLC and need help with both personal and business returns..."></textarea></div>
-        <button type="submit" class="btn btn-orange form-btn">Request My Appointment →</button>
-        <p class="form-note">🔒 Your info is private and never shared. We'll call or text within 24 hours.</p>
-      </form>
-      <div id="formSuccess" style="display:none;text-align:center;padding:48px 0;">
-        <div style="font-size:52px;margin-bottom:16px;">✅</div>
-        <h3 style="font-family:'Bebas Neue','Arial Black',Impact,sans-serif;font-size:32px;letter-spacing:2px;color:var(--orange);margin-bottom:10px;">Request Received!</h3>
-        <p style="color:var(--gray);font-size:15px;line-height:1.8;">We'll reach out within 24 hours to confirm your appointment.<br>Or call us at <strong style="color:var(--white)">(312) 610-3838</strong></p>
-      </div>
-    </div>
-  </div>
+<div class="form-inner">
+<div class="form-box">
+<h2 class="form-title">Book Your <span class="o">Free</span> Consultation</h2>
+<p class="form-sub">Fill out the form and we'll reach out within 24 hours. Tax deadline is April 15th — spots filling fast.</p>
+<form id="mainForm" onsubmit="handleSubmit(event)">
+<div class="form-row">
+<div class="fg"><label>First Name</label><input type="text" placeholder="John" required></div>
+<div class="fg"><label>Last Name</label><input type="text" placeholder="Smith" required></div>
+</div>
+<div class="form-row">
+<div class="fg"><label>Phone Number</label><input type="tel" placeholder="(312) 555-0000" required></div>
+<div class="fg"><label>Email (Optional)</label><input type="email" placeholder="john@email.com"></div>
+</div>
+<div class="fg">
+<label>What do you need help with?</label>
+<select required>
+<option value="" disabled selected>Select a service...</option>
+<option>Personal Tax Return</option>
+<option>Business Tax Filing</option>
+<option>Both Personal & Business</option>
+<option>Bookkeeping</option>
+<option>Credit Repair</option>
+<option>Property Tax Appeal</option>
+<option>Business Start Up</option>
+<option>Financial Consultation</option>
+<option>Notary Services</option>
+<option>Not Sure — Need Guidance</option>
+</select>
+</div>
+<div class="fg"><label>Anything else? (Optional)</label><textarea placeholder="e.g. I run a small LLC and need help with both personal and business returns..."></textarea></div>
+<button type="submit" class="btn btn-orange form-btn">Request My Appointment →</button>
+<p class="form-note">🔒 Your info is private and never shared. We'll call or text within 24 hours.</p>
+</form>
+<div id="formSuccess" style="display:none;text-align:center;padding:48px 0;">
+<div style="font-size:52px;margin-bottom:16px;">✅</div>
+<h3 style="font-family:'Bebas Neue','Arial Black',Impact,sans-serif;font-size:32px;letter-spacing:2px;color:var(--orange);margin-bottom:10px;">Request Received!</h3>
+<p style="color:var(--gray);font-size:15px;line-height:1.8;">We'll reach out within 24 hours to confirm your appointment.<br>Or call us at <strong style="color:var(--white)">(312) 610-3838</strong></p>
+</div>
+</div>
+</div>
 </div>
 </div>
 
 <!-- CTA STRIP -->
 
 <div class="cta-strip">
-  <div class="cta-title">Don't Miss the April 15th Deadline.</div>
-  <p class="cta-sub">Walk in, call, or book online — we make filing simple and stress-free.</p>
-  <div class="cta-info">
-    <div class="cta-item"><span class="cta-lbl">📞 Phone</span><a href="tel:3126103838" class="cta-val">(312) 610-3838</a></div>
-    <div class="cta-item"><span class="cta-lbl">✉️ Email</span><a href="mailto:Rashawn@premiergroup.io" class="cta-val" style="font-size:13px">Rashawn@premiergroup.io</a></div>
-    <div class="cta-item"><span class="cta-lbl">📍 Address</span><div class="cta-val" style="font-size:12px">2537 W 79th St, Chicago IL 60652</div></div>
-    <div class="cta-item"><span class="cta-lbl">🕐 Hours</span><div class="cta-val" style="font-size:11px">Mon–Fri 8AM–8:30PM · Sat–Sun 9:30AM–6PM</div></div>
-  </div>
+<div class="cta-title">Don't Miss the April 15th Deadline.</div>
+<p class="cta-sub">Walk in, call, or book online — we make filing simple and stress-free.</p>
+<div class="cta-info">
+<div class="cta-item"><span class="cta-lbl">📞 Phone</span><a href="tel:3126103838" class="cta-val">(312) 610-3838</a></div>
+<div class="cta-item"><span class="cta-lbl">✉️ Email</span><a href="mailto:Rashawn@premiergroup.io" class="cta-val" style="font-size:13px">Rashawn@premiergroup.io</a></div>
+<div class="cta-item"><span class="cta-lbl">📍 Address</span><div class="cta-val" style="font-size:12px">2537 W 79th St, Chicago IL 60652</div></div>
+<div class="cta-item"><span class="cta-lbl">🕐 Hours</span><div class="cta-val" style="font-size:11px">Mon–Fri 8AM–8:30PM · Sat–Sun 9:30AM–6PM</div></div>
+</div>
 </div>
 
 <!-- FOOTER -->
 
 <footer>
-  <div class="footer-inner">
-    <div>
-      <svg width="180" height="50" viewBox="0 0 180 50" fill="none">
-        <rect x="3" y="11" width="28" height="28" rx="1.5" stroke="#4fc8d4" stroke-width="2" fill="rgba(79,200,212,0.06)" transform="rotate(45 17 25)"/>
-        <path d="M7 25 L14 33 L27 17" stroke="#f4621f" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <text x="38" y="30" font-family="'Bebas Neue','Arial Black',Impact,sans-serif" font-size="28" fill="#f4621f" letter-spacing="2" font-style="italic">PREMIER</text>
-        <text x="38" y="43" font-family="'DM Sans',Arial,sans-serif" font-size="7.5" fill="#4fc8d4" letter-spacing="2.5" font-weight="700">TAX &amp; FINANCIAL SERVICES</text>
-      </svg>
-      <div class="footer-desc">Chicago's most trusted tax preparation and financial services firm. Serving the South Side community with integrity and care for over a decade. 5.0 stars. 201 reviews. Your maximum refund guaranteed.</div>
-    </div>
-    <div>
-      <div class="footer-col-title">Services</div>
-      <div class="footer-links">
-        <span class="footer-link">Personal Tax Preparation</span>
-        <span class="footer-link">Business Tax Filing</span>
-        <span class="footer-link">Bookkeeping</span>
-        <span class="footer-link">Credit Repair</span>
-        <span class="footer-link">Property Tax Appeal</span>
-        <span class="footer-link">Financial Consultation</span>
-        <span class="footer-link">Business Start Up</span>
-        <span class="footer-link">Notary Public</span>
-      </div>
-    </div>
-    <div>
-      <div class="footer-col-title">Contact</div>
-      <div class="footer-links">
-        <a href="tel:3126103838" class="footer-link">📞 (312) 610-3838</a>
-        <a href="mailto:Rashawn@premiergroup.io" class="footer-link">✉️ Rashawn@premiergroup.io</a>
-        <span class="footer-link">📍 2537 W 79th St, Chicago IL 60652</span>
-        <span class="footer-link">Mon–Fri: 8:00AM – 8:30PM</span>
-        <span class="footer-link">Sat–Sun: 9:30AM – 6:00PM</span>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <div class="footer-copy">© 2026 Premier Tax & Financial Services. All rights reserved.</div>
-    <div class="footer-powered">Digital presence by <a href="https://geodm.us" target="_blank">GeoDMus — Geo Digital Media</a></div>
-  </div>
+<div class="footer-inner">
+<div>
+<svg width="180" height="50" viewBox="0 0 180 50" fill="none">
+<rect x="3" y="11" width="28" height="28" rx="1.5" stroke="#4fc8d4" stroke-width="2" fill="rgba(79,200,212,0.06)" transform="rotate(45 17 25)"/>
+<path d="M7 25 L14 33 L27 17" stroke="#f4621f" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<text x="38" y="30" font-family="'Bebas Neue','Arial Black',Impact,sans-serif" font-size="28" fill="#f4621f" letter-spacing="2" font-style="italic">PREMIER</text>
+<text x="38" y="43" font-family="'DM Sans',Arial,sans-serif" font-size="7.5" fill="#4fc8d4" letter-spacing="2.5" font-weight="700">TAX &amp; FINANCIAL SERVICES</text>
+</svg>
+<div class="footer-desc">Chicago's most trusted tax preparation and financial services firm. Serving the South Side community with integrity and care for over a decade. 5.0 stars. 201 reviews. Your maximum refund guaranteed.</div>
+</div>
+<div>
+<div class="footer-col-title">Services</div>
+<div class="footer-links">
+<span class="footer-link">Personal Tax Preparation</span>
+<span class="footer-link">Business Tax Filing</span>
+<span class="footer-link">Bookkeeping</span>
+<span class="footer-link">Credit Repair</span>
+<span class="footer-link">Property Tax Appeal</span>
+<span class="footer-link">Financial Consultation</span>
+<span class="footer-link">Business Start Up</span>
+<span class="footer-link">Notary Public</span>
+</div>
+</div>
+<div>
+<div class="footer-col-title">Contact</div>
+<div class="footer-links">
+<a href="tel:3126103838" class="footer-link">📞 (312) 610-3838</a>
+<a href="mailto:Rashawn@premiergroup.io" class="footer-link">✉️ Rashawn@premiergroup.io</a>
+<span class="footer-link">📍 2537 W 79th St, Chicago IL 60652</span>
+<span class="footer-link">Mon–Fri: 8:00AM – 8:30PM</span>
+<span class="footer-link">Sat–Sun: 9:30AM – 6:00PM</span>
+</div>
+</div>
+</div>
+<div class="footer-bottom">
+<div class="footer-copy">© 2026 Premier Tax & Financial Services. All rights reserved.</div>
+<div class="footer-powered">Digital presence by <a href="https://geodm.us" target="_blank">GeoDMus — Geo Digital Media</a></div>
+</div>
 </footer>
 
 <script>
 // LIVE COUNTDOWN
 function updateCountdown() {
-  var deadline = new Date('2026-04-15T23:59:59-05:00').getTime();
-  var now = new Date().getTime();
-  var diff = deadline - now;
-  if (diff <= 0) { ['cd-days','cd-hours','cd-mins','cd-secs'].forEach(function(id){ document.getElementById(id).textContent='00'; }); return; }
-  var d = Math.floor(diff/86400000);
-  var h = Math.floor((diff%86400000)/3600000);
-  var m = Math.floor((diff%3600000)/60000);
-  var s = Math.floor((diff%60000)/1000);
-  document.getElementById('cd-days').textContent  = d<10?'0'+d:d;
-  document.getElementById('cd-hours').textContent = h<10?'0'+h:h;
-  document.getElementById('cd-mins').textContent  = m<10?'0'+m:m;
-  document.getElementById('cd-secs').textContent  = s<10?'0'+s:s;
+var deadline = new Date('2026-04-15T23:59:59-05:00').getTime();
+var now = new Date().getTime();
+var diff = deadline - now;
+if (diff <= 0) { ['cd-days','cd-hours','cd-mins','cd-secs'].forEach(function(id){ document.getElementById(id).textContent='00'; }); return; }
+var d = Math.floor(diff/86400000);
+var h = Math.floor((diff%86400000)/3600000);
+var m = Math.floor((diff%3600000)/60000);
+var s = Math.floor((diff%60000)/1000);
+document.getElementById('cd-days').textContent = d<10?'0'+d:d;
+document.getElementById('cd-hours').textContent = h<10?'0'+h:h;
+document.getElementById('cd-mins').textContent = m<10?'0'+m:m;
+document.getElementById('cd-secs').textContent = s<10?'0'+s:s;
 }
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
 // FORM
 function handleSubmit(e) {
-  e.preventDefault();
-  document.getElementById('mainForm').style.display='none';
-  document.getElementById('formSuccess').style.display='block';
-  document.getElementById('formSuccess').scrollIntoView({behavior:'smooth',block:'center'});
+e.preventDefault();
+document.getElementById('mainForm').style.display='none';
+document.getElementById('formSuccess').style.display='block';
+document.getElementById('formSuccess').scrollIntoView({behavior:'smooth',block:'center'});
 }
 
 // QUICK CALLBACK
 function quickRequest() {
-  var n=document.getElementById('hcName').value.trim();
-  var p=document.getElementById('hcPhone').value.trim();
-  if(!n||!p){alert('Please enter your name and phone number.');return;}
-  var note=document.getElementById('hcNote');
-  note.innerHTML="✅ Got it! We'll call you within the hour.";
-  note.style.color='#4fc8d4';
-  document.getElementById('hcName').value='';
-  document.getElementById('hcPhone').value='';
+var n=document.getElementById('hcName').value.trim();
+var p=document.getElementById('hcPhone').value.trim();
+if(!n||!p){alert('Please enter your name and phone number.');return;}
+var note=document.getElementById('hcNote');
+note.innerHTML="✅ Got it! We'll call you within the hour.";
+note.style.color='#4fc8d4';
+document.getElementById('hcName').value='';
+document.getElementById('hcPhone').value='';
 }
 
 // SMOOTH SCROLL
 document.querySelectorAll('a[href^="#"]').forEach(function(a){
-  a.addEventListener('click',function(e){
-    var t=document.querySelector(a.getAttribute('href'));
-    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
-  });
+a.addEventListener('click',function(e){
+var t=document.querySelector(a.getAttribute('href'));
+if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+});
 });
 </script>
 
