@@ -1,7 +1,24 @@
 User-agent: *
 Allow: /
+Disallow: /content.html
+
+# AI & LLM Crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: GoogleExtendedBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
 
 Sitemap: https://geodm.us/sitemap.xml
-
-# Keep content studio private from indexing
-Disallow: /content.html
