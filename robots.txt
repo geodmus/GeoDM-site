@@ -1,9 +1,20 @@
+# ===== Global Rules =====
 User-agent: *
 Allow: /
 Disallow: /content.html
 
-# AI & LLM Crawlers
+# ===== Core Search Engines =====
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# ===== AI / LLM Crawlers =====
 User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
 Allow: /
 
 User-agent: ClaudeBot
@@ -12,13 +23,9 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
-User-agent: GoogleExtendedBot
-Allow: /
+# ===== Optional: Control crawl rate =====
+# User-agent: *
+# Crawl-delay: 5
 
-User-agent: OAI-SearchBot
-Allow: /
-
-User-agent: anthropic-ai
-Allow: /
-
+# ===== Sitemap =====
 Sitemap: https://geodm.us/sitemap.xml
