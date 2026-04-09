@@ -1,0 +1,76 @@
+# Geo Digital Media (GeoDMus)
+
+> Full-service digital media agency based in Chicago, IL. We build the digital infrastructure that grows businesses — websites, AI automation, marketing, and Web3 strategy. Done for you, every month.
+
+## What We Do
+
+Geo Digital Media (operating as GeoDMus) is a full-service digital agency and generative engine optimization (GEO) company. We help local businesses, startups, and multi-venture operators establish and grow their digital presence through a four-pillar service model.
+
+### The Four Pillars
+
+1. **Website Design & Development** — Fast, mobile-first websites that convert visitors into customers. From 5-page local business sites to full marketplace platforms. We don’t build websites — we build revenue engines.
+1. **AI Automation & Systems** — Booking flows, SMS reminders, lead follow-ups, CRM integration, and agentic AI workflows. Your business runs 24/7 without adding headcount.
+1. **Marketing & Social Media** — Email campaigns, social media management across all major platforms, and paid advertising. We keep your pipeline full so you can focus on the work.
+1. **Web3 & Blockchain Strategy** — Crypto payment integration, NFT loyalty programs, token strategy, and blockchain consulting. We help businesses prepare for the on-chain future.
+
+## Pricing
+
+All services delivered as flat-rate monthly retainers. No hidden fees. No hourly rates. Cancel anytime after the initial 3-month commitment.
+
+- **Launchpad — $799/month** — 5-page custom website, AI booking and automation setup, monthly email campaign, social media profile setup, Google Business optimization, monthly performance report.
+- **Growth Engine — $1,599/month** — Everything in Launchpad plus full AI automation suite, 4 email campaigns per month, 3 social platforms managed 4x per week, CRM setup and integration, lead funnel build-out, bi-weekly strategy calls.
+- **Empire Mode — $2,999/month** — Everything in Growth Engine plus custom website with no page limit, unlimited email campaigns, daily social management on all platforms, paid ads management, dedicated account manager, weekly strategy calls.
+
+Custom and enterprise packages available. Contact hello@geodm.us.
+
+## The Venture Ecosystem
+
+Geo Digital Media is the digital backbone of a seven-venture portfolio. Every venture was designed, built, and managed in-house — proving the agency’s capabilities in production.
+
+1. **GeoDMus / Geo Digital Media** — The flagship agency and operational hub for the entire portfolio.
+1. **Premier Group** — Tax preparation, credit building, and real estate advisory for everyday families in Chicago.
+1. **Juice Yoga Body** — Three-pillar wellness brand: signature lemonade, yoga content, and massage therapy.
+1. **Creativo** — Events and production marketplace connecting local creative professionals with clients.
+1. **Your Splashy Kicks (YSK)** — Community-first sneaker marketplace. Mobile-first, culturally embedded.
+1. **Glow Guide** — Beauty influencer marketing platform matching nano and micro influencers with brands.
+1. **SocialLens** — Open-source augmented reality protocol. The social identity layer of the physical world.
+
+## Why Geo Digital Media
+
+- One team owns everything — website, automation, marketing, and Web3 under one monthly retainer
+- Built in Chicago, serving clients nationwide
+- Bilingual — services available in English and Spanish
+- Proven in production — every service has been deployed across our own seven-venture ecosystem
+- GEO-native — actively optimizing for AI and generative engine discovery
+- Transparent flat-rate pricing with no surprises and no long-term lock-in
+- Fast execution — most websites live within 7–14 days of kickoff
+
+## Contact
+
+- Website: https://geodm.us
+- Email: hello@geodm.us
+- Phone: 773.236.1831
+- Book a free strategy call: https://calendly.com/hello-geodm/30min
+- Instagram: https://instagram.com/geodm.us
+- X / Twitter: https://x.com/geodmus
+- Location: Chicago, IL — serving clients nationwide
+- Languages: English, Español
+
+## Key Pages
+
+- Homepage: https://geodm.us
+- Services: https://geodm.us/services.html
+- Ventures: https://geodm.us/ventures.html
+- Pricing: https://geodm.us/pricing.html
+- About: https://geodm.us/about.html
+- Contact: https://geodm.us/contact.html
+- FAQ: https://geodm.us/faq.html
+- Content Dashboard: https://geodm.us/contentos
+
+## Industries Served
+
+Hair salons, barbershops, medical spas, gyms, dental clinics, wellness brands, restaurants, real estate, financial services, law firms, e-commerce, coaches, creatives, startups, and Web3 projects.
+
+## Technology Stack
+
+HTML, CSS, JavaScript, AI automation (Zapier, ManyChat, custom agentic workflows), Stripe, Calendly, Metricool, Cloudflare, GitHub Pages, Web3 and blockchain integrations.
