@@ -13,19 +13,34 @@ Allow: /
 # ===== AI / LLM Crawlers =====
 User-agent: GPTBot
 Allow: /
+Allow: /llms.txt
 
 User-agent: Google-Extended
 Allow: /
+Allow: /llms.txt
 
 User-agent: ClaudeBot
 Allow: /
+Allow: /llms.txt
 
 User-agent: PerplexityBot
 Allow: /
+Allow: /llms.txt
 
-# ===== Optional: Control crawl rate =====
-# User-agent: *
-# Crawl-delay: 5
+User-agent: anthropic-ai
+Allow: /
+Allow: /llms.txt
+
+User-agent: ChatGPT-User
+Allow: /
+Allow: /llms.txt
+
+User-agent: cohere-ai
+Allow: /
+Allow: /llms.txt
+
+# ===== LLM Discovery =====
+LLMs: https://geodm.us/llms.txt
 
 # ===== Sitemap =====
 Sitemap: https://geodm.us/sitemap.xml
