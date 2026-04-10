@@ -1,51 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="en">
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Geo Digital Media",
-  "alternateName": "GeoDMus",
-  "description": "Full-service digital media agency in Chicago. Websites, AI automation, marketing, and Web3 strategy — done for you every month.",
-  "url": "https://geodm.us",
-  "telephone": "+17732361831",
-  "email": "hello@geodm.us",
-  "foundingDate": "2024",
-  "founder": {
-    "@type": "Person",
-    "name": "Giovanni Salazar"
-  },
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Chicago",
-    "addressRegion": "IL",
-    "addressCountry": "US"
-  },
-  "areaServed": {
-    "@type": "Country",
-    "name": "United States"
-  },
-  "priceRange": "$799 - $2,999/month",
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Digital Agency Services",
-    "itemListElement": [
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Website Design & Development" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI Automation & Systems" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Marketing & Social Media" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web3 & Blockchain Strategy" } }
-    ]
-  },
-  "sameAs": [
-    "https://instagram.com/geodm.us",
-    "https://x.com/geodmus"
-  ]
-}
-</script>
-
 <head>
-   <meta name="google-site-verification" content="cOEmiMkAWWaqT976IwdL_xdDPdnxmJV2l8gVSmvQe2w" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="GeoDMus builds the digital infrastructure that grows your business. Websites, AI automation, marketing, and Web3 strategy. Done for you, every month. Chicago.">
@@ -442,15 +398,14 @@ cursor:none;text-decoration:none;display:inline-flex;
 .v1-btn:hover{background:#00f2ff;color:#0a0a0a;box-shadow:0 0 20px #00f2ff;}
 .v1-cards-grid{
 display:grid;
-grid-template-columns:repeat(2,minmax(0,480px));
-grid-template-rows:repeat(2,minmax(0,1fr));
-grid-auto-rows:minmax(0,1fr);
-justify-content:center;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:2rem;padding:3rem 10%;
 background:#0a0a0a;position:relative;z-index:2;
 }
+.v1-card-link{text-decoration:none;color:inherit;display:block;}
+.v1-card-link:hover .v1-card-arrow{opacity:1;transform:translateX(4px);}
+.v1-card-arrow{display:block;font-family:‘Barlow Condensed’,‘Arial Narrow’,sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#00c8d4;margin-top:12px;opacity:0;transform:translateX(-4px);transition:all .25s;}
 .v1-card{
-height:100%;
 background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);
 padding:2.5rem;transition:0.4s;position:relative;
 }
@@ -491,7 +446,7 @@ section{padding:48px 0;}
 .v1-hero-inner{padding:80px 16px 48px;text-align:center;}
 .glitch-text{font-size:clamp(2.2rem,10vw,4rem);}
 .sub-hero{font-size:1rem;}
-.v1-cards-grid{padding:2rem 16px;grid-template-columns:1fr;grid-template-rows:none;grid-auto-rows:auto;}
+.v1-cards-grid{padding:2rem 16px;grid-template-columns:1fr;}
 .section-tag-v1{padding:1.5rem 16px 0;}
 
 /* V2 hero */
@@ -559,21 +514,14 @@ footer{padding:44px 16px 24px;}
 #gdm-top{bottom:16px;right:16px;width:38px;height:38px;font-size:16px;}
 
 /* Buttons — touch friendly */
-.mag-btn{padding:14px 22px;font-size:12px;width:100%;justify-content:center;}
-.v1-btn{padding:12px 20px;width:100%;justify-content:center;}
-.v1-hero-inner > div{width:100%;display:flex;flex-direction:column;}
-
-/* Single-column readability */
-.stats-grid{grid-template-columns:1fr;}
-section#services .inner > div[style*="justify-content:space-between"],
-section#portfolio .inner > div[style*="justify-content:space-between"]{flex-direction:column;align-items:flex-start!important;}
-.proc-step{flex-direction:column;gap:10px;}
+.mag-btn{padding:14px 22px;font-size:12px;}
+.v1-btn{padding:12px 20px;}
 }
 
 /* ── SMALL MOBILE ── */
 @media(max-width:480px){
-.stats-grid{grid-template-columns:1fr;}
-.stat-big{font-size:38px;}
+.stats-grid{grid-template-columns:1fr 1fr;}
+.stat-big{font-size:40px;}
 .stat-unit{font-size:22px;}
 
 /* Hero text */
@@ -597,9 +545,6 @@ nav{height:52px;}
 /* Process steps */
 .proc-dot{width:44px;height:44px;font-size:11px;}
 }
-.skip-link{position:absolute;top:-100%;left:0;background:var(--m);color:var(--w);padding:12px 20px;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none;z-index:999;transition:top .2s}.skip-link:focus{top:0}:focus-visible{outline:2px solid var(--c);outline-offset:3px;border-radius:2px}
-@media(prefers-reduced-motion:reduce){.ticker{animation:none;transform:none}}
-@media(max-width:480px){.fg{grid-template-columns:1fr!important}.hero{min-height:auto}.lbl{letter-spacing:2px}.sec-lbl{letter-spacing:2px}}
 </style>
 
 </head>
@@ -676,15 +621,15 @@ nav{height:52px;}
     <p class="sub-hero">From the corner barbershop to the next big platform — we build the digital infrastructure that grows your business.</p>
     <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;">
       <a href="https://calendly.com/hello-geodm/30min" target="_blank" rel="noopener noreferrer" class="v1-btn">Book Call</a>
-      <a href="#portfolio" class="v1-btn" style="border-color:#fff;color:#fff;">Our Work</a>
+      <a href="ventures.html" class="v1-btn" style="border-color:#fff;color:#fff;">Our Work</a>
     </div>
   </div>
   <div class="section-tag-v1">FOUR PILLARS. ONE PARTNER.</div>
   <div class="v1-cards-grid">
-    <div class="v1-card"><span class="pillar-num">01</span><h3>Web Design & Dev</h3><p>Fast, mobile-first sites that convert visitors into customers. From 5-page local business sites to full marketplace platforms.</p><a href="services.html#web-design" class="v1-btn">Learn More</a></div>
-    <div class="v1-card"><span class="pillar-num">02</span><h3>AI Automation</h3><p>Booking flows, SMS reminders, and lead follow-ups. Your business runs 24/7 without adding headcount.</p><a href="services.html#ai-automation" class="v1-btn">Learn More</a></div>
-    <div class="v1-card"><span class="pillar-num">03</span><h3>Marketing & Social</h3><p>Email campaigns and paid ads. We keep your pipeline full so you can focus on the work.</p><a href="services.html#marketing" class="v1-btn">Learn More</a></div>
-    <div class="v1-card"><span class="pillar-num">04</span><h3>Web3 & Strategy</h3><p>Crypto payment integration and NFT loyalty programs. The future of business is on-chain.</p><a href="services.html#web3" class="v1-btn">Learn More</a></div>
+    <a href="services.html#web-design" class="v1-card v1-card-link"><span class="pillar-num">01</span><h3>Web Design & Dev</h3><p>Fast, mobile-first sites that convert visitors into customers. From 5-page local business sites to full marketplace platforms.</p><span class="v1-card-arrow">Learn More &rarr;</span></a>
+    <a href="services.html#ai-automation" class="v1-card v1-card-link"><span class="pillar-num">02</span><h3>AI Automation</h3><p>Booking flows, SMS reminders, AI receptionist, and lead follow-ups. Your business runs 24/7 without adding headcount.</p><span class="v1-card-arrow">Learn More &rarr;</span></a>
+    <a href="services.html#marketing" class="v1-card v1-card-link"><span class="pillar-num">03</span><h3>Marketing & Social</h3><p>Email campaigns and paid ads. We keep your pipeline full so you can focus on the work.</p><span class="v1-card-arrow">Learn More &rarr;</span></a>
+    <a href="services.html#web3" class="v1-card v1-card-link"><span class="pillar-num">04</span><h3>Web3 & Strategy</h3><p>Crypto payment integration and NFT loyalty programs. The future of business is on-chain.</p><span class="v1-card-arrow">Learn More &rarr;</span></a>
   </div>
 </div>
 
@@ -713,7 +658,7 @@ nav{height:52px;}
     </p>
     <div style="display:flex;gap:14px;flex-wrap:wrap;" class="a5">
       <a href="https://calendly.com/hello-geodm/30min" target="_blank" rel="noopener noreferrer" class="mag-btn mag-btn-primary" data-mag>Book Free Strategy Call</a>
-      <a href="#services" class="mag-btn mag-btn-secondary" data-mag>See What We Do</a>
+      <a href="services.html" class="mag-btn mag-btn-secondary" data-mag>See What We Do</a>
       <button class="mag-btn mag-btn-ghost" id="em-btn" data-mag>&#9993; Email Us</button>
     </div>
     <div style="display:flex;gap:44px;margin-top:56px;padding-top:40px;border-top:1px solid rgba(0,200,212,.1);flex-wrap:wrap;" class="a6 gdm-sz">
@@ -789,8 +734,8 @@ nav{height:52px;}
         <svg class="srv-icon" viewBox="0 0 40 40" fill="none"><path d="M22 3L7 22h14l-3 15L34 18H20L22 3z" stroke="#00c8d4" stroke-width="1.5" stroke-linejoin="round"/><path d="M22 3L7 22h14" stroke="#cc2d8f" stroke-width="1.2"/></svg>
         <div class="srv-num">02</div>
         <h3 class="srv-name">AI Automation &amp; Systems</h3>
-        <p class="srv-desc">Your phone answered. Every call. 24/7. Our AI Receptionist books appointments, answers questions, and sends follow-up texts &mdash; automatically. Ask us about it on your strategy call.<br><br>✓ 24/7 call answering<br>✓ Appointment booking<br>✓ SMS follow-up</p>
-        <div><span class="chip">AI Booking</span><span class="chip">SMS Flows</span><span class="chip">CRM Sync</span><span class="chip">AI Phone Receptionist</span></div>
+        <p class="srv-desc">Booking flows, SMS reminders, lead follow-ups, CRM integration. Your business runs 24/7 without adding headcount.</p>
+        <div><span class="chip">AI Booking</span><span class="chip">SMS Flows</span><span class="chip">CRM Sync</span></div>
       </div>
       <div class="srv-card c3 rv d2" data-hg>
         <svg class="srv-icon" viewBox="0 0 40 40" fill="none"><path d="M7 15h7l14-9v26L14 22H7V15z" stroke="#00c8d4" stroke-width="1.5" stroke-linejoin="round"/><path d="M14 22v9" stroke="#cc2d8f" stroke-width="1.5" stroke-linecap="round"/><path d="M28 16c3 2 3 8 0 10M32 12c5 4 5 14 0 18" stroke="#00c8d4" stroke-width="1.5" stroke-linecap="round"/></svg>
@@ -947,8 +892,8 @@ nav{height:52px;}
 <footer>
   <div class="ft-grid">
     <div class="ft-brand"><div class="fwm">GEODMus</div><span class="fsub">Geo Digital Media</span><p>Your digital growth partner — from local businesses to full venture ecosystems.</p></div>
-    <div class="ft-col"><h5>Services</h5><ul><li><a href="#services">Website Design</a></li><li><a href="#services">AI Automation</a></li><li><a href="#services">Marketing &amp; Social</a></li><li><a href="#services">Web3 &amp; Blockchain</a></li></ul></div>
-    <div class="ft-col"><h5>Company</h5><ul><li><a href="about.html">About</a></li><li><a href="#portfolio">Portfolio</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="ft-col"><h5>Services</h5><ul><li><a href="services.html#web-design">Website Design</a></li><li><a href="services.html#ai-automation">AI Automation</a></li><li><a href="services.html#marketing">Marketing &amp; Social</a></li><li><a href="services.html#web3">Web3 &amp; Blockchain</a></li></ul></div>
+    <div class="ft-col"><h5>Company</h5><ul><li><a href="about.html">About</a></li><li><a href="ventures.html">Portfolio</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact</a></li></ul></div>
     <div class="ft-col"><h5>Connect</h5><ul>
       <li><a href="#" id="em-footer">hello&#64;geodm&#46;us</a></li>
       <li><a href="tel:7732361831">773.236.1831</a></li>
@@ -1069,34 +1014,225 @@ if(topBtn){
   topBtn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
 }
 
-/* ══ GDM Particle Canvas (fixed background) ══ */
-var cvs=document.getElementById('gdm-cvs');
-if(cvs){
-  var cx=cvs.getContext('2d'),W=0,H=0,pts=[],lt=0;
-  function rsz(){W=cvs.width=innerWidth;H=cvs.height=innerHeight;}
-  rsz();addEventListener('resize',rsz,{passive:true});
-  function Pt(){this.reset();}
-  Pt.prototype.reset=function(){
-    this.x=Math.random()*W;this.y=Math.random()*H;
-    this.vx=(Math.random()-.5)*.2;this.vy=(Math.random()-.5)*.2;
-    this.r=Math.random()*1.1+.3;this.life=Math.random();
-    var c=[[0,200,212],[204,45,143]];
-    this.c=c[Math.floor(Math.random()*c.length)];
+/* ══ ENHANCED FULL-PAGE STARFIELD ══ */
+/* ══ ENHANCED FULL-PAGE STARFIELD ══
+   Replaces the existing gdm-cvs particle system.
+   - 120 ambient floating dots (cyan + magenta)
+   - 8 shooting stars at random intervals
+   - Canvas scrolls with the page (position:absolute, full document height)
+   - Separate fixed canvas for the hero viewport layer (keeps existing feel)
+   - Performant: skips frames on low-end devices
+*/
+
+(function(){
+  'use strict';
+
+  // ── FIXED HERO CANVAS (existing, enhanced) ──────────────────────────────
+  var cvs = document.getElementById('gdm-cvs');
+  if(!cvs) return;
+  var cx = cvs.getContext('2d');
+  var W = 0, H = 0, pts = [], lt = 0;
+
+  function rsz(){
+    W = cvs.width = innerWidth;
+    H = cvs.height = innerHeight;
+  }
+  rsz();
+  addEventListener('resize', rsz, {passive:true});
+
+  function Pt(){ this.reset(true); }
+  Pt.prototype.reset = function(init){
+    this.x = Math.random() * W;
+    this.y = init ? Math.random() * H : (Math.random() > .5 ? -2 : H + 2);
+    this.vx = (Math.random() - .5) * .25;
+    this.vy = (Math.random() - .5) * .25;
+    this.r  = Math.random() * 1.4 + .2;
+    this.life = init ? Math.random() : 0;
+    this.speed = Math.random() * .003 + .002;
+    var cols = [[0,200,212],[204,45,143],[100,220,220],[180,40,120]];
+    this.c = cols[Math.floor(Math.random() * cols.length)];
   };
-  for(var i=0;i<50;i++){var p=new Pt();p.life=Math.random();pts.push(p);}
-  (function draw(ts){
-    requestAnimationFrame(draw);
-    if(ts-lt<33)return;lt=ts;
-    cx.clearRect(0,0,W,H);
-    for(var j=0;j<pts.length;j++){
-      var q=pts[j];q.x+=q.vx;q.y+=q.vy;q.life+=.004;
-      if(q.x<0||q.x>W||q.y<0||q.y>H||q.life>1)q.reset();
-      var a=Math.sin(q.life*Math.PI)*.45;
-      cx.beginPath();cx.arc(q.x,q.y,q.r,0,6.28);
-      cx.fillStyle='rgba('+q.c[0]+','+q.c[1]+','+q.c[2]+','+a+')';cx.fill();
+
+  // 80 dots in the fixed hero layer
+  for(var i = 0; i < 80; i++){
+    var p = new Pt(); pts.push(p);
+  }
+
+  // ── FULL PAGE SCROLLING CANVAS ──────────────────────────────────────────
+  var pgCvs = document.createElement('canvas');
+  pgCvs.id = 'gdm-starfield';
+  pgCvs.style.cssText = 'position:absolute;top:0;left:0;width:100%;pointer-events:none;z-index:0;opacity:0.6;';
+  var body = document.body;
+  body.style.position = body.style.position || 'relative';
+  body.insertBefore(pgCvs, body.firstChild);
+
+  var pgCx = pgCvs.getContext('2d');
+  var pgW = 0, pgH = 0, stars = [], shoots = [], pgLt = 0;
+
+  function resizePg(){
+    pgW = pgCvs.width = innerWidth;
+    pgH = pgCvs.height = Math.max(
+      body.scrollHeight,
+      document.documentElement.scrollHeight,
+      5000
+    );
+  }
+  resizePg();
+  addEventListener('resize', function(){
+    setTimeout(resizePg, 200);
+  }, {passive:true});
+
+  // Star object for full-page canvas
+  function Star(){
+    this.x = Math.random() * pgW;
+    this.y = Math.random() * pgH;
+    this.vx = (Math.random() - .5) * .15;
+    this.vy = (Math.random() - .5) * .15;
+    this.r  = Math.random() * 1.2 + .15;
+    this.life = Math.random();
+    this.speed = Math.random() * .002 + .001;
+    var cols = [[0,200,212],[204,45,143],[80,210,220],[160,35,110],[0,180,190]];
+    this.c = cols[Math.floor(Math.random() * cols.length)];
+  }
+  Star.prototype.update = function(){
+    this.x += this.vx;
+    this.y += this.vy;
+    this.life += this.speed;
+    if(this.x < 0 || this.x > pgW || this.y < 0 || this.y > pgH || this.life > 1){
+      this.x = Math.random() * pgW;
+      this.y = Math.random() * pgH;
+      this.life = 0;
+    }
+  };
+  Star.prototype.draw = function(){
+    var a = Math.sin(this.life * Math.PI) * .5;
+    pgCx.beginPath();
+    pgCx.arc(this.x, this.y, this.r, 0, 6.283);
+    pgCx.fillStyle = 'rgba('+this.c[0]+','+this.c[1]+','+this.c[2]+','+a+')';
+    pgCx.fill();
+  };
+
+  // 200 stars distributed across full page height
+  for(var s = 0; s < 200; s++) stars.push(new Star());
+
+  // Shooting star object
+  function Shoot(){
+    this.reset();
+  }
+  Shoot.prototype.reset = function(){
+    // Start from random top or left edge
+    if(Math.random() > .5){
+      this.x = Math.random() * pgW;
+      this.y = Math.random() * pgH * .6;
+    } else {
+      this.x = Math.random() * pgW * .3;
+      this.y = Math.random() * pgH * .4;
+    }
+    var angle = (Math.random() * 40 + 15) * Math.PI / 180; // 15-55 degrees
+    var speed = Math.random() * 6 + 4;
+    this.vx = Math.cos(angle) * speed;
+    this.vy = Math.sin(angle) * speed;
+    this.len = Math.random() * 80 + 40;
+    this.life = 0;
+    this.maxLife = Math.random() * 60 + 40;
+    this.active = true;
+    // Cyan or white
+    this.color = Math.random() > .4 ? '0,200,212' : '232,255,254';
+  };
+  Shoot.prototype.update = function(){
+    this.x += this.vx;
+    this.y += this.vy;
+    this.life++;
+    if(this.life > this.maxLife || this.x > pgW + 100 || this.y > pgH + 100){
+      this.active = false;
+    }
+  };
+  Shoot.prototype.draw = function(){
+    var progress = this.life / this.maxLife;
+    var a = Math.sin(progress * Math.PI) * .8;
+    var tailX = this.x - this.vx * (this.len / Math.sqrt(this.vx*this.vx + this.vy*this.vy));
+    var tailY = this.y - this.vy * (this.len / Math.sqrt(this.vx*this.vx + this.vy*this.vy));
+    var grad = pgCx.createLinearGradient(tailX, tailY, this.x, this.y);
+    grad.addColorStop(0, 'rgba('+this.color+',0)');
+    grad.addColorStop(1, 'rgba('+this.color+','+a+')');
+    pgCx.beginPath();
+    pgCx.moveTo(tailX, tailY);
+    pgCx.lineTo(this.x, this.y);
+    pgCx.strokeStyle = grad;
+    pgCx.lineWidth = Math.random() * .5 + .8;
+    pgCx.stroke();
+    // Bright tip
+    pgCx.beginPath();
+    pgCx.arc(this.x, this.y, 1.2, 0, 6.283);
+    pgCx.fillStyle = 'rgba('+this.color+','+a+')';
+    pgCx.fill();
+  };
+
+  // Spawn shooting stars on interval
+  var shootPool = [];
+  for(var sh = 0; sh < 8; sh++){
+    var shoot = new Shoot();
+    shoot.active = false;
+    shoot.life = shoot.maxLife + 1;
+    shootPool.push(shoot);
+  }
+
+  var lastShoot = 0;
+  function maybeSpawnShoot(now){
+    if(now - lastShoot < 2200) return; // min 2.2s between shoots
+    if(Math.random() > .3) return;     // 30% chance each eligible frame
+    lastShoot = now;
+    for(var i = 0; i < shootPool.length; i++){
+      if(!shootPool[i].active){
+        shootPool[i].reset();
+        break;
+      }
+    }
+  }
+
+  // ── MAIN DRAW LOOPS ─────────────────────────────────────────────────────
+
+  // Fixed hero canvas loop
+  (function drawFixed(ts){
+    requestAnimationFrame(drawFixed);
+    if(ts - lt < 33) return; lt = ts; // ~30fps cap
+    cx.clearRect(0, 0, W, H);
+    for(var j = 0; j < pts.length; j++){
+      var q = pts[j];
+      q.x += q.vx; q.y += q.vy; q.life += q.speed;
+      if(q.x < 0 || q.x > W || q.y < 0 || q.y > H || q.life > 1) q.reset(false);
+      var a = Math.sin(q.life * Math.PI) * .5;
+      cx.beginPath();
+      cx.arc(q.x, q.y, q.r, 0, 6.283);
+      cx.fillStyle = 'rgba('+q.c[0]+','+q.c[1]+','+q.c[2]+','+a+')';
+      cx.fill();
     }
   })(0);
-}
+
+  // Full page canvas loop
+  (function drawPage(ts){
+    requestAnimationFrame(drawPage);
+    if(ts - pgLt < 40) return; pgLt = ts; // ~25fps for page canvas
+    pgCx.clearRect(0, 0, pgW, pgH);
+
+    // Stars
+    for(var si = 0; si < stars.length; si++){
+      stars[si].update();
+      stars[si].draw();
+    }
+
+    // Shooting stars
+    maybeSpawnShoot(ts);
+    for(var pi = 0; pi < shootPool.length; pi++){
+      if(shootPool[pi].active){
+        shootPool[pi].update();
+        shootPool[pi].draw();
+      }
+    }
+  })(0);
+
+})();
+
 
 /* ══ CURSOR ══ */
 var cur=document.getElementById('gdm-cur'),curR=document.getElementById('gdm-curR');
@@ -1210,6 +1346,142 @@ var ep='mai'+'lto:',ea='hello',eb='geodm.us',em=ep+ea+'@'+eb;
 ['em-btn','em-cta','em-footer','em-esp'].forEach(function(id){var el=document.getElementById(id);if(el)el.addEventListener('click',function(e){e.preventDefault();location.href=em;});});
 
 })();
+
+
+/* ══ FLYING LOGO ══ */
+(function(){
+  var logo = document.createElement('div');
+  logo.innerHTML = '<svg width="18" height="14" viewBox="0 0 28 22" fill="none"><polygon points="0,11 28,0 21,11 28,22" fill="#cc2d8f"/><polygon points="0,11 28,0 23,16" fill="#00c8d4"/></svg>';
+  logo.style.cssText = 'position:fixed;z-index:9998;pointer-events:none;opacity:0;transition:opacity .5s;filter:drop-shadow(0 0 8px rgba(0,200,212,.8));';
+  document.body.appendChild(logo);
+
+  var lx = Math.random() * window.innerWidth;
+  var ly = Math.random() * window.innerHeight;
+  var lvx = (Math.random() - .5) * 1.8;
+  var lvy = (Math.random() - .5) * 1.8;
+  var lVisible = false;
+  var lTimer = 0;
+
+  // Show logo randomly every 15-30 seconds
+  function scheduleLogo(){
+    setTimeout(function(){
+      lx = Math.random() * (window.innerWidth - 40) + 20;
+      ly = Math.random() * (window.innerHeight - 40) + 20;
+      lvx = (Math.random() - .5) * 2.2;
+      lvy = (Math.random() - .5) * 2.2;
+      logo.style.opacity = '0.7';
+      lVisible = true;
+      setTimeout(function(){
+        logo.style.opacity = '0';
+        lVisible = false;
+        scheduleLogo();
+      }, 3500 + Math.random() * 2000);
+    }, 15000 + Math.random() * 15000);
+  }
+  scheduleLogo();
+
+  (function flyLoop(){
+    requestAnimationFrame(flyLoop);
+    if(!lVisible) return;
+    lx += lvx; ly += lvy;
+    if(lx < 0 || lx > window.innerWidth - 20){ lvx *= -1; lx = Math.max(0, Math.min(lx, window.innerWidth - 20)); }
+    if(ly < 0 || ly > window.innerHeight - 20){ lvy *= -1; ly = Math.max(0, Math.min(ly, window.innerHeight - 20)); }
+    logo.style.transform = 'translate(' + lx + 'px,' + ly + 'px) rotate(' + (Math.atan2(lvy, lvx) * 180 / Math.PI) + 'deg)';
+  })();
+})();
+
+/* ══ SECTION GLOW ON SCROLL ══ */
+(function(){
+  if(!window.IntersectionObserver) return;
+  var sections = document.querySelectorAll('section, .stats-band, .ticker');
+  var glow = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.style.transition = 'box-shadow .6s ease';
+        e.target.style.boxShadow = '0 0 60px rgba(0,200,212,.03)';
+      }
+    });
+  }, {threshold: .1});
+  sections.forEach(function(s){ glow.observe(s); });
+})();
+
+/* ══ MAGNETIC PILLAR CARDS ══ */
+(function(){
+  var cards = document.querySelectorAll('.v1-card');
+  cards.forEach(function(card){
+    card.addEventListener('mousemove', function(e){
+      var r = card.getBoundingClientRect();
+      var x = e.clientX - r.left - r.width/2;
+      var y = e.clientY - r.top - r.height/2;
+      card.style.transform = 'translateY(-10px) rotateX(' + (-y/20) + 'deg) rotateY(' + (x/20) + 'deg)';
+      card.style.transition = 'transform .1s';
+    });
+    card.addEventListener('mouseleave', function(){
+      card.style.transform = 'translateY(0) rotateX(0) rotateY(0)';
+      card.style.transition = 'transform .4s ease';
+    });
+  });
+})();
+
+/* ══ CURSOR TRAIL SPARKS ══ */
+(function(){
+  var sparks = [];
+  var colors = ['#00c8d4','#cc2d8f','#e8fffe','#00d25a'];
+  document.addEventListener('mousemove', function(e){
+    if(Math.random() > .35) return;
+    var spark = document.createElement('div');
+    var size = Math.random() * 5 + 2;
+    var col = colors[Math.floor(Math.random()*colors.length)];
+    spark.style.cssText = 'position:fixed;left:' + e.clientX + 'px;top:' + e.clientY + 'px;width:' + size + 'px;height:' + size + 'px;border-radius:50%;background:' + col + ';pointer-events:none;z-index:9997;transform:translate(-50%,-50%);box-shadow:0 0 6px ' + col + ';';
+    document.body.appendChild(spark);
+    sparks.push(spark);
+    var vx = (Math.random() - .5) * 3;
+    var vy = (Math.random() - 1) * 3;
+    var life = 1;
+    (function animSpark(){
+      life -= .04;
+      if(life <= 0){ if(spark.parentNode) spark.parentNode.removeChild(spark); return; }
+      var cx = parseFloat(spark.style.left) + vx;
+      var cy = parseFloat(spark.style.top) + vy;
+      vy += .15;
+      spark.style.left = cx + 'px';
+      spark.style.top = cy + 'px';
+      spark.style.opacity = life;
+      requestAnimationFrame(animSpark);
+    })();
+  });
+})();
+
+/* ══ GLOWING SECTION LABELS ON HOVER ══ */
+(function(){
+  document.querySelectorAll('.section-label,.lbl,.sec-label-v2').forEach(function(el){
+    el.addEventListener('mouseenter', function(){
+      el.style.textShadow = '0 0 20px rgba(0,200,212,.6)';
+      el.style.transition = 'text-shadow .3s';
+    });
+    el.addEventListener('mouseleave', function(){
+      el.style.textShadow = 'none';
+    });
+  });
+})();
+
+/* ══ PULSE RINGS ON CTA BUTTONS ══ */
+(function(){
+  document.querySelectorAll('.mag-btn-primary,.nav-cta,.v1-btn').forEach(function(btn){
+    btn.style.position = 'relative';
+    btn.style.overflow = 'visible';
+    btn.addEventListener('mouseenter', function(){
+      var ring = document.createElement('span');
+      ring.style.cssText = 'position:absolute;inset:-4px;border-radius:inherit;border:1px solid rgba(0,200,212,.5);animation:btnPulse .6s ease-out forwards;pointer-events:none;';
+      btn.appendChild(ring);
+      setTimeout(function(){ if(ring.parentNode) ring.parentNode.removeChild(ring); }, 650);
+    });
+  });
+  var style = document.createElement('style');
+  style.textContent = '@keyframes btnPulse{from{transform:scale(1);opacity:1;}to{transform:scale(1.2);opacity:0;}}';
+  document.head.appendChild(style);
+})();
+
 </script>
 
 </body>
