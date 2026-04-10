@@ -442,12 +442,15 @@ cursor:none;text-decoration:none;display:inline-flex;
 .v1-btn:hover{background:#00f2ff;color:#0a0a0a;box-shadow:0 0 20px #00f2ff;}
 .v1-cards-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+grid-template-columns:repeat(2,minmax(0,480px));
+grid-template-rows:repeat(2,minmax(0,1fr));
+grid-auto-rows:minmax(0,1fr);
 justify-content:center;
 gap:2rem;padding:3rem 10%;
 background:#0a0a0a;position:relative;z-index:2;
 }
 .v1-card{
+height:100%;
 background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);
 padding:2.5rem;transition:0.4s;position:relative;
 }
@@ -488,7 +491,7 @@ section{padding:48px 0;}
 .v1-hero-inner{padding:80px 16px 48px;text-align:center;}
 .glitch-text{font-size:clamp(2.2rem,10vw,4rem);}
 .sub-hero{font-size:1rem;}
-.v1-cards-grid{padding:2rem 16px;grid-template-columns:1fr;}
+.v1-cards-grid{padding:2rem 16px;grid-template-columns:1fr;grid-template-rows:none;grid-auto-rows:auto;}
 .section-tag-v1{padding:1.5rem 16px 0;}
 
 /* V2 hero */
@@ -786,7 +789,7 @@ nav{height:52px;}
         <svg class="srv-icon" viewBox="0 0 40 40" fill="none"><path d="M22 3L7 22h14l-3 15L34 18H20L22 3z" stroke="#00c8d4" stroke-width="1.5" stroke-linejoin="round"/><path d="M22 3L7 22h14" stroke="#cc2d8f" stroke-width="1.2"/></svg>
         <div class="srv-num">02</div>
         <h3 class="srv-name">AI Automation &amp; Systems</h3>
-        <p class="srv-desc">Your phone answered. Every call. 24/7.<br><br>Most businesses lose customers the moment they miss a call. Our AI Receptionist answers every call instantly &mdash; books appointments, answers questions, sends SMS confirmations, and never calls in sick. For less than a part-time employee, your business is always open.<br><br>✓ 24/7 call answering<br>✓ Appointment booking to your calendar<br>✓ SMS follow-up after every call<br>✓ Call summaries sent to you daily<br>✓ Bilingual &mdash; English &amp; Español<br><br>Available as an add-on to any plan. Ask us about it on your strategy call.</p>
+        <p class="srv-desc">Your phone answered. Every call. 24/7. Our AI Receptionist books appointments, answers questions, and sends follow-up texts &mdash; automatically. Ask us about it on your strategy call.<br><br>✓ 24/7 call answering<br>✓ Appointment booking<br>✓ SMS follow-up</p>
         <div><span class="chip">AI Booking</span><span class="chip">SMS Flows</span><span class="chip">CRM Sync</span><span class="chip">AI Phone Receptionist</span></div>
       </div>
       <div class="srv-card c3 rv d2" data-hg>
