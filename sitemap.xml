@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- MAIN PAGES -->
   <url><loc>https://geodm.us/</loc><priority>1.0</priority><changefreq>weekly</changefreq></url>
   <url><loc>https://geodm.us/services.html</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://geodm.us/ventures.html</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
@@ -7,6 +9,8 @@
   <url><loc>https://geodm.us/about.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://geodm.us/contact.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://geodm.us/faq.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+
+  <!-- VENTURE PAGES -->
   <url><loc>https://geodm.us/premier-group.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://geodm.us/juice-yoga-body.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://geodm.us/creativo.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
@@ -14,8 +18,25 @@
   <url><loc>https://geodm.us/glow-guide.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://geodm.us/sociallens.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://geodm.us/pay.html</loc><priority>0.5</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://geodm.us/aicontentos.html</loc><priority>0.5</priority><changefreq>monthly</changefreq></url>
+
+  <!-- SERVICE PAGES -->
+  <url><loc>https://geodm.us/web-design-chicago.html</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://geodm.us/ai-automation-chicago.html</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://geodm.us/social-media-marketing-chicago.html</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://geodm.us/web3-blockchain-chicago.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+
+  <!-- LOCATION PAGES -->
+  <url><loc>https://geodm.us/digital-agency-chicagoland.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://geodm.us/web-design-evanston.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://geodm.us/web-design-naperville.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://geodm.us/digital-agency-northwest-indiana.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+
+  <!-- TOOLS -->
   <url><loc>https://geodm.us/contentos</loc><priority>0.5</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://geodm.us/aicontentos.html</loc><priority>0.5</priority><changefreq>monthly</changefreq></url>
+
+  <!-- AI DISCOVERY -->
   <url><loc>https://geodm.us/llms.txt</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://geodm.us/index.md</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+
 </urlset>
