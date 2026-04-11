@@ -402,9 +402,6 @@ grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:2rem;padding:3rem 10%;
 background:#0a0a0a;position:relative;z-index:2;
 }
-.v1-card-link{text-decoration:none;color:inherit;display:block;}
-.v1-card-link:hover .v1-card-arrow{opacity:1;transform:translateX(4px);}
-.v1-card-arrow{display:block;font-family:‘Barlow Condensed’,‘Arial Narrow’,sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#00c8d4;margin-top:12px;opacity:0;transform:translateX(-4px);transition:all .25s;}
 .v1-card{
 background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);
 padding:2.5rem;transition:0.4s;position:relative;
@@ -626,10 +623,10 @@ nav{height:52px;}
   </div>
   <div class="section-tag-v1">FOUR PILLARS. ONE PARTNER.</div>
   <div class="v1-cards-grid">
-    <a href="services.html#web-design" class="v1-card v1-card-link"><span class="pillar-num">01</span><h3>Web Design & Dev</h3><p>Fast, mobile-first sites that convert visitors into customers. From 5-page local business sites to full marketplace platforms.</p><span class="v1-card-arrow">Learn More &rarr;</span></a>
-    <a href="services.html#ai-automation" class="v1-card v1-card-link"><span class="pillar-num">02</span><h3>AI Automation</h3><p>Booking flows, SMS reminders, AI receptionist, and lead follow-ups. Your business runs 24/7 without adding headcount.</p><span class="v1-card-arrow">Learn More &rarr;</span></a>
-    <a href="services.html#marketing" class="v1-card v1-card-link"><span class="pillar-num">03</span><h3>Marketing & Social</h3><p>Email campaigns and paid ads. We keep your pipeline full so you can focus on the work.</p><span class="v1-card-arrow">Learn More &rarr;</span></a>
-    <a href="services.html#web3" class="v1-card v1-card-link"><span class="pillar-num">04</span><h3>Web3 & Strategy</h3><p>Crypto payment integration and NFT loyalty programs. The future of business is on-chain.</p><span class="v1-card-arrow">Learn More &rarr;</span></a>
+    <div class="v1-card"><span class="pillar-num">01</span><h3>Web Design & Dev</h3><p>Fast, mobile-first sites that convert visitors into customers. From 5-page local business sites to full marketplace platforms.</p></div>
+    <div class="v1-card"><span class="pillar-num">02</span><h3>AI Automation</h3><p>Booking flows, SMS reminders, and lead follow-ups. Your business runs 24/7 without adding headcount.</p></div>
+    <div class="v1-card"><span class="pillar-num">03</span><h3>Marketing & Social</h3><p>Email campaigns and paid ads. We keep your pipeline full so you can focus on the work.</p></div>
+    <div class="v1-card"><span class="pillar-num">04</span><h3>Web3 & Strategy</h3><p>Crypto payment integration and NFT loyalty programs. The future of business is on-chain.</p></div>
   </div>
 </div>
 
@@ -1014,453 +1011,338 @@ if(topBtn){
   topBtn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
 }
 
-})(); // close legacy IIFE
-
-/* ══ GDM MASTER ENGINE v3 ══
-   Single optimized loop. All effects unified.
-   Mobile-aware. Visibility-aware. No conflicts.
+/* ══ ENHANCED FULL-PAGE STARFIELD ══ */
+/* ══ ENHANCED FULL-PAGE STARFIELD ══
+   Replaces the existing gdm-cvs particle system.
+   - 120 ambient floating dots (cyan + magenta)
+   - 8 shooting stars at random intervals
+   - Canvas scrolls with the page (position:absolute, full document height)
+   - Separate fixed canvas for the hero viewport layer (keeps existing feel)
+   - Performant: skips frames on low-end devices
 */
+
 (function(){
-'use strict';
+  'use strict';
 
-// ── DEVICE DETECTION ──────────────────────────────────────────────────────
-var isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) || window.innerWidth < 768;
-var isTouch = 'ontouchstart' in window;
-var hidden = false;
-document.addEventListener('visibilitychange', function(){ hidden = document.hidden; });
+  // ── FIXED HERO CANVAS (existing, enhanced) ──────────────────────────────
+  var cvs = document.getElementById('gdm-cvs');
+  if(!cvs) return;
+  var cx = cvs.getContext('2d');
+  var W = 0, H = 0, pts = [], lt = 0;
 
-// ── MASTER CLOCK ──────────────────────────────────────────────────────────
-var FPS = isMobile ? 30 : 60;
-var INTERVAL = 1000 / FPS;
-var lastTick = 0;
-
-// ── FIXED HERO CANVAS ─────────────────────────────────────────────────────
-var cvs = document.getElementById('gdm-cvs');
-var cx, W = 0, H = 0;
-if(cvs){
-  cx = cvs.getContext('2d');
-  function rsz(){ W = cvs.width = innerWidth; H = cvs.height = innerHeight; }
-  rsz(); addEventListener('resize', rsz, {passive:true});
-}
-
-function HeroDot(){
-  this.x = Math.random()*W; this.y = Math.random()*H;
-  this.vx = (Math.random()-.5)*.3; this.vy = (Math.random()-.5)*.3;
-  this.r = Math.random()*1.5+.2; this.life = Math.random();
-  this.spd = Math.random()*.003+.002;
-  var c = [[0,200,212],[204,45,143],[80,220,220],[160,40,120]];
-  this.c = c[Math.floor(Math.random()*c.length)];
-}
-HeroDot.prototype.tick = function(){
-  this.x+=this.vx; this.y+=this.vy; this.life+=this.spd;
-  if(this.x<0||this.x>W||this.y<0||this.y>H||this.life>1){
-    this.x=Math.random()*W; this.y=Math.random()*H; this.life=0;
+  function rsz(){
+    W = cvs.width = innerWidth;
+    H = cvs.height = innerHeight;
   }
-};
-HeroDot.prototype.draw = function(){
-  var a=Math.sin(this.life*Math.PI)*.55;
-  cx.beginPath(); cx.arc(this.x,this.y,this.r,0,6.283);
-  cx.fillStyle='rgba('+this.c[0]+','+this.c[1]+','+this.c[2]+','+a+')';
-  cx.fill();
-};
-var heroDots=[];
-var heroDotCount = isMobile ? 40 : 100;
-for(var i=0;i<heroDotCount;i++) heroDots.push(new HeroDot());
+  rsz();
+  addEventListener('resize', rsz, {passive:true});
 
-// ── FULL PAGE STARFIELD CANVAS ────────────────────────────────────────────
-var pgCvs = document.createElement('canvas');
-pgCvs.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.55;';
-document.body.appendChild(pgCvs);
-var pgCx = pgCvs.getContext('2d');
-var pgW=0, pgH=0;
+  function Pt(){ this.reset(true); }
+  Pt.prototype.reset = function(init){
+    this.x = Math.random() * W;
+    this.y = init ? Math.random() * H : (Math.random() > .5 ? -2 : H + 2);
+    this.vx = (Math.random() - .5) * .25;
+    this.vy = (Math.random() - .5) * .25;
+    this.r  = Math.random() * 1.4 + .2;
+    this.life = init ? Math.random() : 0;
+    this.speed = Math.random() * .003 + .002;
+    var cols = [[0,200,212],[204,45,143],[100,220,220],[180,40,120]];
+    this.c = cols[Math.floor(Math.random() * cols.length)];
+  };
 
-function resizePg(){
-  pgW = pgCvs.width = innerWidth;
-  pgH = pgCvs.height = innerHeight;
-}
-resizePg();
-addEventListener('resize',function(){ setTimeout(resizePg,300); },{passive:true});
-
-function Star(){
-  this.x=Math.random()*pgW; this.y=Math.random()*pgH;
-  this.vx=(Math.random()-.5)*.18; this.vy=(Math.random()-.5)*.18;
-  this.r=Math.random()*1.4+.15; this.life=Math.random();
-  this.spd=Math.random()*.002+.001;
-  // More color variety - whites and blues too
-  var c=['0,200,212','204,45,143','180,240,255','255,255,255','0,160,180','200,50,130','100,220,240'];
-  this.c=c[Math.floor(Math.random()*c.length)];
-}
-Star.prototype.tick=function(){
-  this.x+=this.vx; this.y+=this.vy; this.life+=this.spd;
-  if(this.x<0||this.x>pgW||this.y<0||this.y>pgH||this.life>1){
-    this.x=Math.random()*pgW; this.y=Math.random()*pgH; this.life=0;
+  // 80 dots in the fixed hero layer
+  for(var i = 0; i < 80; i++){
+    var p = new Pt(); pts.push(p);
   }
-};
-Star.prototype.draw=function(){
-  var a=Math.sin(this.life*Math.PI)*.6;
-  pgCx.beginPath(); pgCx.arc(this.x,this.y,this.r,0,6.283);
-  pgCx.fillStyle='rgba('+this.c+','+a+')'; pgCx.fill();
-};
 
-// Dense star clusters - more stars in certain vertical bands
-var stars=[];
-var starCount = isMobile ? 120 : 350;
-for(var si=0;si<starCount;si++) stars.push(new Star());
+  // ── FULL PAGE SCROLLING CANVAS ──────────────────────────────────────────
+  var pgCvs = document.createElement('canvas');
+  pgCvs.id = 'gdm-starfield';
+  pgCvs.style.cssText = 'position:absolute;top:0;left:0;width:100%;pointer-events:none;z-index:0;opacity:0.6;';
+  var body = document.body;
+  body.style.position = body.style.position || 'relative';
+  body.insertBefore(pgCvs, body.firstChild);
 
-// Extra bright accent stars
-function BrightStar(){
-  this.x=Math.random()*pgW; this.y=Math.random()*pgH;
-  this.r=Math.random()*.8+.4; this.life=Math.random();
-  this.spd=Math.random()*.004+.002;
-  this.pulse=Math.random()*Math.PI*2;
-}
-BrightStar.prototype.tick=function(){
-  this.life+=this.spd; this.pulse+=.05;
-  if(this.life>1){ this.x=Math.random()*pgW; this.y=Math.random()*pgH; this.life=0; }
-};
-BrightStar.prototype.draw=function(){
-  var a=Math.sin(this.life*Math.PI)*(.4+Math.sin(this.pulse)*.15);
-  pgCx.beginPath(); pgCx.arc(this.x,this.y,this.r,0,6.283);
-  pgCx.fillStyle='rgba(255,255,255,'+a+')'; pgCx.fill();
-};
-var brightStars=[];
-var brightCount = isMobile ? 30 : 80;
-for(var bi=0;bi<brightCount;bi++) brightStars.push(new BrightStar());
+  var pgCx = pgCvs.getContext('2d');
+  var pgW = 0, pgH = 0, stars = [], shoots = [], pgLt = 0;
 
-// ── SHOOTING STARS ────────────────────────────────────────────────────────
-function Shoot(){
-  this.active=false; this.reset();
-}
-Shoot.prototype.reset=function(){
-  this.x=Math.random()*pgW*.7;
-  this.y=Math.random()*pgH*.5;
-  var angle=(Math.random()*35+10)*Math.PI/180;
-  var spd=Math.random()*7+5;
-  this.vx=Math.cos(angle)*spd; this.vy=Math.sin(angle)*spd;
-  this.len=Math.random()*100+60;
-  this.life=0; this.maxLife=Math.random()*50+35;
-  this.active=true;
-  this.col=Math.random()>.4?'0,200,212':'232,255,254';
-};
-Shoot.prototype.tick=function(){
-  this.x+=this.vx; this.y+=this.vy; this.life++;
-  if(this.life>this.maxLife||this.x>pgW+100||this.y>pgH+100) this.active=false;
-};
-Shoot.prototype.draw=function(){
-  var prog=this.life/this.maxLife;
-  var a=Math.sin(prog*Math.PI)*.9;
-  var mag=Math.sqrt(this.vx*this.vx+this.vy*this.vy);
-  var tx=this.x-this.vx*(this.len/mag);
-  var ty=this.y-this.vy*(this.len/mag);
-  var g=pgCx.createLinearGradient(tx,ty,this.x,this.y);
-  g.addColorStop(0,'rgba('+this.col+',0)');
-  g.addColorStop(1,'rgba('+this.col+','+a+')');
-  pgCx.beginPath(); pgCx.moveTo(tx,ty); pgCx.lineTo(this.x,this.y);
-  pgCx.strokeStyle=g; pgCx.lineWidth=1.2; pgCx.stroke();
-  pgCx.beginPath(); pgCx.arc(this.x,this.y,1.5,0,6.283);
-  pgCx.fillStyle='rgba('+this.col+','+a+')'; pgCx.fill();
-};
-var shoots=[];
-var shootCount = isMobile ? 3 : 8;
-for(var shi=0;shi<shootCount;shi++){ var sh=new Shoot(); sh.active=false; shoots.push(sh); }
-var lastShoot=0;
-function spawnShoot(ts){
-  if(ts-lastShoot < (isMobile?4000:2000)) return;
-  if(Math.random()>.25) return;
-  lastShoot=ts;
-  for(var pi=0;pi<shoots.length;pi++){
-    if(!shoots[pi].active){ shoots[pi].reset(); break; }
+  function resizePg(){
+    pgW = pgCvs.width = innerWidth;
+    pgH = pgCvs.height = Math.max(
+      body.scrollHeight,
+      document.documentElement.scrollHeight,
+      5000
+    );
   }
-}
+  resizePg();
+  addEventListener('resize', function(){
+    setTimeout(resizePg, 200);
+  }, {passive:true});
 
-// ── CURSOR SYSTEM ─────────────────────────────────────────────────────────
-var cur=document.getElementById('gdm-cur'),curR=document.getElementById('gdm-curR');
-var mx=-100,my=-100,rx=-100,ry=-100;
-if(cur&&curR&&!isTouch){
-  cur.style.opacity='0'; curR.style.opacity='0';
-  addEventListener('mousemove',function(e){ mx=e.clientX; my=e.clientY; cur.style.opacity='1'; curR.style.opacity='1'; },{passive:true});
-  addEventListener('mouseover',function(e){ if(e.target.closest('a,button,[data-mag]')){ cur.style.background='#cc2d8f'; curR.style.borderColor='rgba(204,45,143,.6)'; } },{passive:true});
-  addEventListener('mouseout',function(e){ if(e.target.closest('a,button,[data-mag]')){ cur.style.background='#00c8d4'; curR.style.borderColor='rgba(0,200,212,.6)'; } },{passive:true});
-}
-
-// ── LIGHTNING TRAIL ───────────────────────────────────────────────────────
-var lightningCanvas = document.createElement('canvas');
-lightningCanvas.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9996;';
-document.body.appendChild(lightningCanvas);
-var ltCx=lightningCanvas.getContext('2d');
-var ltW=0,ltH=0;
-function resizeLt(){ ltW=lightningCanvas.width=innerWidth; ltH=lightningCanvas.height=innerHeight; }
-resizeLt(); addEventListener('resize',resizeLt,{passive:true});
-
-var zapPoints=[],lastMx=-999,lastMy=-999,zapThrottle=0;
-var zapLines=[];
-
-function ZapLine(x1,y1,x2,y2){
-  this.x1=x1;this.y1=y1;this.x2=x2;this.y2=y2;
-  this.life=1;
-  this.col=Math.random()>.5?'0,200,212':'180,100,255';
-  this.segments=[];
-  // Build jagged lightning path
-  var dx=x2-x1,dy=y2-y1,steps=4+Math.floor(Math.random()*4);
-  var pts=[{x:x1,y:y1}];
-  for(var s=1;s<steps;s++){
-    var t=s/steps;
-    pts.push({
-      x:x1+dx*t+(Math.random()-.5)*20,
-      y:y1+dy*t+(Math.random()-.5)*20
-    });
+  // Star object for full-page canvas
+  function Star(){
+    this.x = Math.random() * pgW;
+    this.y = Math.random() * pgH;
+    this.vx = (Math.random() - .5) * .15;
+    this.vy = (Math.random() - .5) * .15;
+    this.r  = Math.random() * 1.2 + .15;
+    this.life = Math.random();
+    this.speed = Math.random() * .002 + .001;
+    var cols = [[0,200,212],[204,45,143],[80,210,220],[160,35,110],[0,180,190]];
+    this.c = cols[Math.floor(Math.random() * cols.length)];
   }
-  pts.push({x:x2,y:y2});
-  this.pts=pts;
-}
-ZapLine.prototype.tick=function(){ this.life-=.08; };
-ZapLine.prototype.draw=function(){
-  if(this.life<=0) return;
-  ltCx.beginPath();
-  ltCx.moveTo(this.pts[0].x,this.pts[0].y);
-  for(var i=1;i<this.pts.length;i++) ltCx.lineTo(this.pts[i].x,this.pts[i].y);
-  ltCx.strokeStyle='rgba('+this.col+','+this.life*.8+')';
-  ltCx.lineWidth=Math.random()*1.5+.5;
-  ltCx.shadowBlur=8;
-  ltCx.shadowColor='rgba('+this.col+',.6)';
-  ltCx.stroke();
-  ltCx.shadowBlur=0;
-};
-
-if(!isTouch){
-  addEventListener('mousemove',function(e){
-    zapThrottle++;
-    if(zapThrottle%3!==0) return; // every 3rd move
-    var dx=e.clientX-lastMx,dy=e.clientY-lastMy;
-    var dist=Math.sqrt(dx*dx+dy*dy);
-    if(dist>15 && zapLines.length<20){
-      zapLines.push(new ZapLine(lastMx,lastMy,e.clientX,e.clientY));
+  Star.prototype.update = function(){
+    this.x += this.vx;
+    this.y += this.vy;
+    this.life += this.speed;
+    if(this.x < 0 || this.x > pgW || this.y < 0 || this.y > pgH || this.life > 1){
+      this.x = Math.random() * pgW;
+      this.y = Math.random() * pgH;
+      this.life = 0;
     }
-    lastMx=e.clientX; lastMy=e.clientY;
-  },{passive:true});
-}
+  };
+  Star.prototype.draw = function(){
+    var a = Math.sin(this.life * Math.PI) * .5;
+    pgCx.beginPath();
+    pgCx.arc(this.x, this.y, this.r, 0, 6.283);
+    pgCx.fillStyle = 'rgba('+this.c[0]+','+this.c[1]+','+this.c[2]+','+a+')';
+    pgCx.fill();
+  };
 
-// ── PIXEL SHATTER ON CLICK ────────────────────────────────────────────────
-var pixels=[];
-function Pixel(x,y){
-  this.x=x; this.y=y;
-  this.size=Math.random()*6+2;
-  this.vx=(Math.random()-.5)*8;
-  this.vy=(Math.random()-1.2)*7;
-  this.life=1;
-  this.rot=Math.random()*360;
-  this.rotV=(Math.random()-.5)*15;
-  var cols=['#00c8d4','#cc2d8f','#e8fffe','#00d4aa','#8800ff'];
-  this.col=cols[Math.floor(Math.random()*cols.length)];
-}
-Pixel.prototype.tick=function(){
-  this.x+=this.vx; this.y+=this.vy;
-  this.vy+=.35; // gravity
-  this.vx*=.96;
-  this.life-=.025;
-  this.rot+=this.rotV;
-};
-Pixel.prototype.draw=function(){
-  ltCx.save();
-  ltCx.globalAlpha=this.life;
-  ltCx.translate(this.x,this.y);
-  ltCx.rotate(this.rot*Math.PI/180);
-  ltCx.fillStyle=this.col;
-  ltCx.shadowBlur=4; ltCx.shadowColor=this.col;
-  ltCx.fillRect(-this.size/2,-this.size/2,this.size,this.size);
-  ltCx.shadowBlur=0;
-  ltCx.restore();
-};
+  // 200 stars distributed across full page height
+  for(var s = 0; s < 200; s++) stars.push(new Star());
 
-// ── INK SPLATTER ON CLICK ─────────────────────────────────────────────────
-var inkDrops=[];
-function InkDrop(x,y){
-  this.x=x; this.y=y;
-  this.r=Math.random()*3+1;
-  this.maxR=Math.random()*40+20;
-  this.life=1;
-  this.vx=(Math.random()-.5)*5;
-  this.vy=(Math.random()-1)*5;
-  var cols=['rgba(0,200,212','rgba(204,45,143','rgba(0,212,170','rgba(136,0,255'];
-  this.col=cols[Math.floor(Math.random()*cols.length)];
-}
-InkDrop.prototype.tick=function(){
-  this.x+=this.vx; this.y+=this.vy;
-  this.vy+=.2;
-  this.r=Math.min(this.r+1.5,this.maxR);
-  this.life-=.03;
-};
-InkDrop.prototype.draw=function(){
-  ltCx.beginPath();
-  ltCx.arc(this.x,this.y,this.r,0,6.283);
-  ltCx.fillStyle=this.col+','+this.life*.4+')';
-  ltCx.fill();
-};
-
-addEventListener('click',function(e){
-  // 15 pixels shatter
-  for(var p=0;p<15;p++) pixels.push(new Pixel(e.clientX,e.clientY));
-  // 8 ink drops
-  for(var d=0;d<8;d++) inkDrops.push(new InkDrop(e.clientX,e.clientY));
-});
-
-// ── FLYING LOGO ───────────────────────────────────────────────────────────
-var flyLogo=null,flx=200,fly_y=200,flvx=2.2,flvy=1.8,flVisible=false;
-if(!isTouch){
-  flyLogo=document.createElement('div');
-  flyLogo.innerHTML='<svg width="22" height="18" viewBox="0 0 28 22" fill="none"><polygon points="0,11 28,0 21,11 28,22" fill="#cc2d8f"/><polygon points="0,11 28,0 23,16" fill="#00c8d4"/></svg>';
-  flyLogo.style.cssText='position:fixed;z-index:9998;pointer-events:none;opacity:0;transition:opacity .6s;filter:drop-shadow(0 0 10px rgba(0,200,212,.9));';
-  document.body.appendChild(flyLogo);
-  function scheduleFly(){
-    setTimeout(function(){
-      flx=Math.random()*(innerWidth-60)+30;
-      fly_y=Math.random()*(innerHeight-60)+30;
-      flvx=(Math.random()-.5)*3.5; flvy=(Math.random()-.5)*3.5;
-      if(Math.abs(flvx)<1) flvx=1.5;
-      if(Math.abs(flvy)<1) flvy=1.5;
-      flyLogo.style.opacity='.85';
-      flVisible=true;
-      setTimeout(function(){
-        flyLogo.style.opacity='0';
-        flVisible=false;
-        scheduleFly();
-      },4000+Math.random()*3000);
-    },8000+Math.random()*10000);
+  // Shooting star object
+  function Shoot(){
+    this.reset();
   }
-  scheduleFly();
-}
+  Shoot.prototype.reset = function(){
+    // Start from random top or left edge
+    if(Math.random() > .5){
+      this.x = Math.random() * pgW;
+      this.y = Math.random() * pgH * .6;
+    } else {
+      this.x = Math.random() * pgW * .3;
+      this.y = Math.random() * pgH * .4;
+    }
+    var angle = (Math.random() * 40 + 15) * Math.PI / 180; // 15-55 degrees
+    var speed = Math.random() * 6 + 4;
+    this.vx = Math.cos(angle) * speed;
+    this.vy = Math.sin(angle) * speed;
+    this.len = Math.random() * 80 + 40;
+    this.life = 0;
+    this.maxLife = Math.random() * 60 + 40;
+    this.active = true;
+    // Cyan or white
+    this.color = Math.random() > .4 ? '0,200,212' : '232,255,254';
+  };
+  Shoot.prototype.update = function(){
+    this.x += this.vx;
+    this.y += this.vy;
+    this.life++;
+    if(this.life > this.maxLife || this.x > pgW + 100 || this.y > pgH + 100){
+      this.active = false;
+    }
+  };
+  Shoot.prototype.draw = function(){
+    var progress = this.life / this.maxLife;
+    var a = Math.sin(progress * Math.PI) * .8;
+    var tailX = this.x - this.vx * (this.len / Math.sqrt(this.vx*this.vx + this.vy*this.vy));
+    var tailY = this.y - this.vy * (this.len / Math.sqrt(this.vx*this.vx + this.vy*this.vy));
+    var grad = pgCx.createLinearGradient(tailX, tailY, this.x, this.y);
+    grad.addColorStop(0, 'rgba('+this.color+',0)');
+    grad.addColorStop(1, 'rgba('+this.color+','+a+')');
+    pgCx.beginPath();
+    pgCx.moveTo(tailX, tailY);
+    pgCx.lineTo(this.x, this.y);
+    pgCx.strokeStyle = grad;
+    pgCx.lineWidth = Math.random() * .5 + .8;
+    pgCx.stroke();
+    // Bright tip
+    pgCx.beginPath();
+    pgCx.arc(this.x, this.y, 1.2, 0, 6.283);
+    pgCx.fillStyle = 'rgba('+this.color+','+a+')';
+    pgCx.fill();
+  };
 
-// ── MAGNETIC CARDS ────────────────────────────────────────────────────────
-if(!isTouch){
-  document.querySelectorAll('.v1-card,.mag-card').forEach(function(card){
-    card.style.transition='transform .4s ease';
-    card.addEventListener('mousemove',function(e){
-      var r=card.getBoundingClientRect();
-      var x=e.clientX-r.left-r.width/2;
-      var y=e.clientY-r.top-r.height/2;
-      card.style.transform='translateY(-8px) rotateX('+(- y/22)+'deg) rotateY('+(x/22)+'deg)';
-      card.style.transition='transform .08s';
-    });
-    card.addEventListener('mouseleave',function(){
-      card.style.transform='';
-      card.style.transition='transform .4s ease';
-    });
-  });
-}
+  // Spawn shooting stars on interval
+  var shootPool = [];
+  for(var sh = 0; sh < 8; sh++){
+    var shoot = new Shoot();
+    shoot.active = false;
+    shoot.life = shoot.maxLife + 1;
+    shootPool.push(shoot);
+  }
 
-// ── PULSE RINGS ───────────────────────────────────────────────────────────
-if(!isTouch){
-  var pStyle=document.createElement('style');
-  pStyle.textContent='@keyframes gdmPulse{from{transform:scale(1);opacity:.8}to{transform:scale(1.25);opacity:0}}';
-  document.head.appendChild(pStyle);
-  document.querySelectorAll('.mag-btn-primary,.nav-cta,.v1-btn').forEach(function(btn){
-    btn.style.position='relative'; btn.style.overflow='visible';
-    btn.addEventListener('mouseenter',function(){
-      var ring=document.createElement('span');
-      ring.style.cssText='position:absolute;inset:-4px;border-radius:inherit;border:1px solid rgba(0,200,212,.5);animation:gdmPulse .6s ease-out forwards;pointer-events:none;';
-      btn.appendChild(ring);
-      setTimeout(function(){ if(ring.parentNode) ring.parentNode.removeChild(ring); },650);
-    });
-  });
-}
-
-// ── SECTION LABELS GLOW ───────────────────────────────────────────────────
-document.querySelectorAll('.section-label,.lbl').forEach(function(el){
-  el.addEventListener('mouseenter',function(){ el.style.textShadow='0 0 18px rgba(0,200,212,.7)'; });
-  el.addEventListener('mouseleave',function(){ el.style.textShadow=''; });
-});
-
-// ── TRAIL DOTS (legacy compat) ────────────────────────────────────────────
-var trailDots=[],trailMax=8;
-for(var ti=0;ti<trailMax;ti++){
-  var td=document.createElement('div');
-  td.className='trail-dot';
-  td.style.cssText='position:fixed;width:'+(trailMax-ti)*2.5+'px;height:'+(trailMax-ti)*2.5+'px;border-radius:50%;background:#00c8d4;pointer-events:none;z-index:9995;opacity:0;transform:translate(-50%,-50%);transition:none;';
-  document.body.appendChild(td);
-  trailDots.push({el:td,x:-100,y:-100});
-}
-
-// ══════════════════════════════════════════════════════════════════════════
-// MASTER RENDER LOOP — everything runs here
-// ══════════════════════════════════════════════════════════════════════════
-function masterLoop(ts){
-  requestAnimationFrame(masterLoop);
-  if(hidden) return;
-  if(ts - lastTick < INTERVAL) return;
-  lastTick = ts;
-
-  // ── Hero canvas ──
-  if(cvs && cx){
-    cx.clearRect(0,0,W,H);
-    for(var hi=0;hi<heroDots.length;hi++){
-      heroDots[hi].tick(); heroDots[hi].draw();
+  var lastShoot = 0;
+  function maybeSpawnShoot(now){
+    if(now - lastShoot < 2200) return; // min 2.2s between shoots
+    if(Math.random() > .3) return;     // 30% chance each eligible frame
+    lastShoot = now;
+    for(var i = 0; i < shootPool.length; i++){
+      if(!shootPool[i].active){
+        shootPool[i].reset();
+        break;
+      }
     }
   }
 
-  // ── Page starfield ──
-  pgCx.clearRect(0,0,pgW,pgH);
-  for(var sti=0;sti<stars.length;sti++){ stars[sti].tick(); stars[sti].draw(); }
-  for(var bri=0;bri<brightStars.length;bri++){ brightStars[bri].tick(); brightStars[bri].draw(); }
+  // ── MAIN DRAW LOOPS ─────────────────────────────────────────────────────
 
-  // ── Shooting stars ──
-  spawnShoot(ts);
-  for(var ssi=0;ssi<shoots.length;ssi++){
-    if(shoots[ssi].active){ shoots[ssi].tick(); shoots[ssi].draw(); }
-  }
-
-  // ── Cursor ──
-  if(cur&&curR&&!isTouch){
-    cur.style.transform='translate('+(mx-4)+'px,'+(my-4)+'px)';
-    rx+=(mx-rx-15)*.12; ry+=(my-ry-15)*.12;
-    curR.style.transform='translate('+rx+'px,'+ry+'px)';
-  }
-
-  // ── Trail dots ──
-  if(!isTouch){
-    for(var tri=trailDots.length-1;tri>=0;tri--){
-      var prev=tri===0?{x:mx,y:my}:trailDots[tri-1];
-      trailDots[tri].x+=(prev.x-trailDots[tri].x)*.3;
-      trailDots[tri].y+=(prev.y-trailDots[tri].y)*.3;
-      var d=trailDots[tri];
-      d.el.style.left=d.x+'px'; d.el.style.top=d.y+'px';
-      d.el.style.opacity=(tri===0&&mx>0)?'0.5':'0.25';
+  // Fixed hero canvas loop
+  (function drawFixed(ts){
+    requestAnimationFrame(drawFixed);
+    if(ts - lt < 33) return; lt = ts; // ~30fps cap
+    cx.clearRect(0, 0, W, H);
+    for(var j = 0; j < pts.length; j++){
+      var q = pts[j];
+      q.x += q.vx; q.y += q.vy; q.life += q.speed;
+      if(q.x < 0 || q.x > W || q.y < 0 || q.y > H || q.life > 1) q.reset(false);
+      var a = Math.sin(q.life * Math.PI) * .5;
+      cx.beginPath();
+      cx.arc(q.x, q.y, q.r, 0, 6.283);
+      cx.fillStyle = 'rgba('+q.c[0]+','+q.c[1]+','+q.c[2]+','+a+')';
+      cx.fill();
     }
-  }
+  })(0);
 
-  // ── Lightning + click effects canvas ──
-  ltCx.clearRect(0,0,ltW,ltH);
+  // Full page canvas loop
+  (function drawPage(ts){
+    requestAnimationFrame(drawPage);
+    if(ts - pgLt < 40) return; pgLt = ts; // ~25fps for page canvas
+    pgCx.clearRect(0, 0, pgW, pgH);
 
-  // Zap lines
-  for(var zi=zapLines.length-1;zi>=0;zi--){
-    zapLines[zi].tick(); zapLines[zi].draw();
-    if(zapLines[zi].life<=0) zapLines.splice(zi,1);
-  }
+    // Stars
+    for(var si = 0; si < stars.length; si++){
+      stars[si].update();
+      stars[si].draw();
+    }
 
-  // Pixels
-  for(var pxi=pixels.length-1;pxi>=0;pxi--){
-    pixels[pxi].tick(); pixels[pxi].draw();
-    if(pixels[pxi].life<=0) pixels.splice(pxi,1);
-  }
-
-  // Ink drops
-  for(var ini=inkDrops.length-1;ini>=0;ini--){
-    inkDrops[ini].tick(); inkDrops[ini].draw();
-    if(inkDrops[ini].life<=0) inkDrops.splice(ini,1);
-  }
-
-  // ── Flying logo ──
-  if(flVisible && flyLogo){
-    flx+=flvx; fly_y+=flvy;
-    if(flx<0||flx>innerWidth-25){ flvx*=-1; flx=Math.max(0,Math.min(flx,innerWidth-25)); }
-    if(fly_y<0||fly_y>innerHeight-25){ flvy*=-1; fly_y=Math.max(0,Math.min(fly_y,innerHeight-25)); }
-    flyLogo.style.transform='translate('+flx+'px,'+fly_y+'px) rotate('+(Math.atan2(flvy,flvx)*180/Math.PI)+'deg)';
-  }
-}
-
-requestAnimationFrame(masterLoop);
+    // Shooting stars
+    maybeSpawnShoot(ts);
+    for(var pi = 0; pi < shootPool.length; pi++){
+      if(shootPool[pi].active){
+        shootPool[pi].update();
+        shootPool[pi].draw();
+      }
+    }
+  })(0);
 
 })();
 
+
+/* ══ CURSOR ══ */
+var cur=document.getElementById('gdm-cur'),curR=document.getElementById('gdm-curR');
+if(cur&&curR){
+  var mx=-30,my=-30,rx=-30,ry=-30;
+  cur.style.opacity='0';curR.style.opacity='0';
+  addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.opacity='1';curR.style.opacity='1';},{passive:true});
+  (function loop(){
+    cur.style.transform='translate('+(mx-4)+'px,'+(my-4)+'px)';
+    rx+=(mx-rx-15)*.11;ry+=(my-ry-15)*.11;
+    curR.style.transform='translate('+rx+'px,'+ry+'px)';
+    requestAnimationFrame(loop);
+  })();
+  addEventListener('mouseover',function(e){
+    if(e.target.closest('a,button,[data-mag]')){cur.style.background='#cc2d8f';curR.style.borderColor='rgba(204,45,143,.6)';}
+  },{passive:true});
+  addEventListener('mouseout',function(e){
+    if(e.target.closest('a,button,[data-mag]')){cur.style.background='#00c8d4';curR.style.borderColor='rgba(0,200,212,.6)';}
+  },{passive:true});
+}
+
+/* ══ CURSOR TRAIL ══ */
+var trailDots=[],trailMax=8;
+for(var ti=0;ti<trailMax;ti++){
+  var td=document.createElement('div');
+  td.className='cur-trail';
+  td.style.opacity=((ti+1)/trailMax*0.35).toFixed(2);
+  td.style.transform='scale('+(0.3+ti/trailMax*0.7)+')';
+  document.body.appendChild(td);
+  trailDots.push({el:td,x:-30,y:-30});
+}
+var tmx=-30,tmy=-30;
+addEventListener('mousemove',function(e){tmx=e.clientX;tmy=e.clientY;},{passive:true});
+(function trailLoop(){
+  var lx=tmx,ly=tmy;
+  for(var i=trailDots.length-1;i>=0;i--){
+    var d=trailDots[i];
+    if(i===0){d.x+=(lx-d.x)*.35;d.y+=(ly-d.y)*.35;}
+    else{d.x+=(trailDots[i-1].x-d.x)*.45;d.y+=(trailDots[i-1].y-d.y)*.45;}
+    d.el.style.transform='translate('+(d.x-2)+'px,'+(d.y-2)+'px) scale('+(0.3+(i+1)/trailDots.length*0.5)+')';
+  }
+  requestAnimationFrame(trailLoop);
+})();
+
+/* ══ MAGNETIC BUTTONS ══ */
+document.querySelectorAll('[data-mag]').forEach(function(b){
+  b.addEventListener('mousemove',function(e){var r=b.getBoundingClientRect(),dx=(e.clientX-(r.left+r.width/2))*.2,dy=(e.clientY-(r.top+r.height/2))*.2;b.style.transform='translate('+dx+'px,'+dy+'px)';});
+  b.addEventListener('mouseleave',function(){b.style.transition='transform .4s cubic-bezier(.23,1,.32,1)';b.style.transform='';});
+  b.addEventListener('mouseenter',function(){b.style.transition='transform .08s';});
+});
+
+/* ══ RIPPLE EFFECT on all buttons/links ══ */
+document.querySelectorAll('.mag-btn,.v1-btn,.p-cta').forEach(function(btn){
+  btn.classList.add('ripple-wrap');
+  btn.addEventListener('click',function(e){
+    var r=btn.getBoundingClientRect(),size=Math.max(r.width,r.height)*2;
+    var rip=document.createElement('span');
+    rip.className='ripple';
+    rip.style.cssText='width:'+size+'px;height:'+size+'px;left:'+(e.clientX-r.left-size/2)+'px;top:'+(e.clientY-r.top-size/2)+'px;';
+    btn.appendChild(rip);
+    setTimeout(function(){rip.remove();},600);
+  });
+});
+
+/* ══ SCROLL REVEAL ══ */
+if(IntersectionObserver){
+  var ro=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('vi');});},{threshold:.07,rootMargin:'0px 0px -30px 0px'});
+  document.querySelectorAll('.rv').forEach(function(el){ro.observe(el);});
+  var so=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.querySelectorAll('[data-count]').forEach(function(el){var t=parseInt(el.dataset.count),s=0,st=t/55,iv=setInterval(function(){s=Math.min(s+st,t);el.textContent=Math.floor(s);if(s>=t)clearInterval(iv);},22);});so.unobserve(e.target);}});},{threshold:.2});
+  document.querySelectorAll('.gdm-sz').forEach(function(z){so.observe(z);});
+}
+
+/* ══ CARD HOVER GLOW ══ */
+document.querySelectorAll('[data-hg]').forEach(function(c){
+  c.addEventListener('mousemove',function(e){var r=c.getBoundingClientRect();c.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');c.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');},{passive:true});
+});
+
+/* ══ ACTIVE PROCESS STEP on scroll ══ */
+var procDots=document.querySelectorAll('.proc-dot');
+if(procDots.length&&IntersectionObserver){
+  var pi2=0;
+  var procObs=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        procDots.forEach(function(d){d.classList.remove('active');});
+        var idx=Array.from(document.querySelectorAll('.proc-step')).indexOf(e.target);
+        var activate=function(n){if(n<procDots.length){procDots[n].classList.add('active');setTimeout(function(){activate(n+1);},320);}};
+        activate(0);
+        procObs.disconnect();
+      }
+    });
+  },{threshold:.4});
+  var procSection=document.querySelector('.proc-track');
+  if(procSection)procObs.observe(procSection);
+}
+
+/* ══ PARALLAX RINGS ══ */
+addEventListener('scroll',function(){var r=document.querySelector('.depth-rings');if(r)r.style.transform='translateY(calc(-50% + '+scrollY*.1+'px))';},{passive:true});
+
+/* ══ TYPEWRITER ══ */
+var tw=document.getElementById('gdm-tw');
+if(tw){var ph=['Your Digital Growth Partner.','Websites That Convert.','Automation That Works 24/7.','Web3 Strategy That Wins.'],pi=0,ci=0,dl=false,pa=0;
+(function type(){if(pa>0){pa--;setTimeout(type,50);return;}var p=ph[pi];if(!dl){tw.textContent=p.substring(0,ci+1);ci++;if(ci===p.length){pa=40;dl=true;}setTimeout(type,70);}else{tw.textContent=p.substring(0,ci-1);ci--;if(ci===0){dl=false;pi=(pi+1)%ph.length;pa=10;}setTimeout(type,35);}})();}
+
+/* ══ HAMBURGER ══ */
+var hb=document.getElementById('ham-btn'),mm=document.getElementById('mobile-menu');
+if(hb&&mm){hb.addEventListener('click',function(){mm.classList.toggle('open');});mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mm.classList.remove('open');});});}
+
+/* ══ EMAIL ══ */
+var ep='mai'+'lto:',ea='hello',eb='geodm.us',em=ep+ea+'@'+eb;
+['em-btn','em-cta','em-footer','em-esp'].forEach(function(id){var el=document.getElementById(id);if(el)el.addEventListener('click',function(e){e.preventDefault();location.href=em;});});
+
+})();
 </script>
 
 </body>
