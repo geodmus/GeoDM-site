@@ -1,0 +1,1 @@
+[paste GDMHero.jsx content]
