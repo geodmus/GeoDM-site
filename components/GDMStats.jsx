@@ -1,0 +1,1 @@
+[paste GDMStats.jsx content]
