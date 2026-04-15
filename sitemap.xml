@@ -9,6 +9,7 @@
   <url><loc>https://geodm.us/about.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://geodm.us/contact.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://geodm.us/faq.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://geodm.us/geo.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
 
   <!-- VENTURE PAGES -->
   <url><loc>https://geodm.us/premier-group.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
