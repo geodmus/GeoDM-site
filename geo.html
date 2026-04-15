@@ -1,128 +1,910 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GEO (Generative Engine Optimization) | Geo Digital Media</title>
-<meta name="description" content="Learn how Geo Digital Media builds Generative Engine Optimization (GEO) infrastructure so your business can be cited by ChatGPT, Perplexity, Claude, Gemini, and Google AI Overviews.">
+<title>GEO — Generative Engine Optimization | GeoDMus</title>
+<meta name="description" content="Generative Engine Optimization (GEO) is replacing SEO as the primary way brands get discovered. GeoDMus was built for this from day one. Read the receipts.">
 <link rel="canonical" href="https://geodm.us/geo.html">
+<link rel="icon" type="image/png" href="gdm.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;700&family=Barlow+Condensed:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#020608;--bg2:#060d0f;--line:rgba(0,200,212,.2);--text:#e8fffe;--muted:#7ca2a6;--cyan:#00c8d4;--mag:#cc2d8f}
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif}
-a{color:inherit}
-.wrap{max-width:1100px;margin:0 auto;padding:0 22px}
-nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(10px);background:rgba(2,6,8,.85);border-bottom:1px solid var(--line)}
-.nav-in{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 0}
-.brand{font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);text-decoration:none}
-.links{display:flex;gap:16px;flex-wrap:wrap}
-.links a{text-decoration:none;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.links a:hover{color:var(--text)}
-.hero{padding:88px 0 58px;background:radial-gradient(circle at 20% 10%,rgba(0,200,212,.18),transparent 40%),radial-gradient(circle at 82% 16%,rgba(204,45,143,.2),transparent 32%),var(--bg)}
-.kicker{display:inline-block;border:1px solid var(--line);padding:8px 12px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px}
-h1{margin:0 0 14px;font-size:clamp(34px,6vw,72px);line-height:.92;text-transform:uppercase}
-.hero p{max-width:760px;color:#a7c6c9;line-height:1.75}
-.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
-.btn{display:inline-block;padding:11px 16px;border:1px solid var(--line);text-decoration:none;font-weight:600;font-size:14px}
-.btn.primary{background:linear-gradient(90deg,var(--cyan),var(--mag));color:#001014;border:0}
-section{padding:70px 0;border-top:1px solid rgba(0,200,212,.08)}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.card{background:linear-gradient(180deg,rgba(8,20,24,.95),rgba(5,12,15,.96));border:1px solid rgba(0,200,212,.14);padding:20px;border-radius:12px}
-.card h3{margin:0 0 8px;font-size:16px;color:var(--cyan);text-transform:uppercase;letter-spacing:.04em}
-.card p{margin:0;color:#a7c6c9;line-height:1.65;font-size:14px}
-.two{display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:start}
-.list{margin:0;padding:0;list-style:none;display:grid;gap:10px}
-.list li{border:1px solid rgba(204,45,143,.25);background:rgba(204,45,143,.07);padding:12px 14px;border-radius:10px;color:#ffd8ef;font-size:14px}
-footer{padding:42px 0;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
-@media (max-width:900px){.grid{grid-template-columns:1fr 1fr}.two{grid-template-columns:1fr}}
-@media (max-width:640px){.grid{grid-template-columns:1fr}.links{display:none}}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:#020608;
+  color:#e8fffe;
+  font-family:'Barlow',sans-serif;
+  font-weight:300;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none;}
+
+/* ── GRID TEXTURE ── */
+body::after{
+content:’’;
+position:fixed;inset:0;z-index:0;
+pointer-events:none;
+background-image:
+linear-gradient(rgba(0,200,212,.018) 1px,transparent 1px),
+linear-gradient(90deg,rgba(0,200,212,.018) 1px,transparent 1px);
+background-size:60px 60px;
+}
+
+/* ── NAV ── */
+nav{
+position:fixed;top:0;left:0;right:0;z-index:500;
+display:flex;align-items:center;justify-content:space-between;
+padding:0 48px;height:64px;
+background:rgba(2,6,8,.95);
+border-bottom:1px solid rgba(0,200,212,.1);
+backdrop-filter:blur(16px);
+}
+.logo-wrap{display:flex;flex-direction:column;line-height:1;gap:3px;}
+.logo-top{font-family:‘Bebas Neue’,Impact,sans-serif;font-size:22px;letter-spacing:.18em;color:#e8fffe;}
+.logo-sub{font-family:‘Barlow Condensed’,sans-serif;font-size:7px;letter-spacing:3px;text-transform:uppercase;color:#4a7a80;}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{font-family:‘Barlow Condensed’,sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#4a7a80;transition:color .2s;}
+.nav-links a:hover,.nav-links a.active{color:#00c8d4;}
+.nav-cta{font-family:‘Barlow Condensed’,sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:10px 22px;border-radius:2px;background:#00c8d4;color:#020608;border:none;cursor:pointer;}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:4px;cursor:pointer;}
+.hamburger span{display:block;width:22px;height:2px;background:#e8fffe;border-radius:2px;}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;bottom:0;background:rgba(2,6,8,.98);z-index:499;flex-direction:column;align-items:center;justify-content:center;gap:28px;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-family:‘Bebas Neue’,Impact,sans-serif;font-size:28px;letter-spacing:3px;color:#e8fffe;}
+
+/* ── HERO ── */
+.geo-hero{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+padding:120px 48px 80px;
+position:relative;
+overflow:hidden;
+}
+.geo-hero-bg{
+position:absolute;inset:0;z-index:0;
+background:
+radial-gradient(ellipse 80% 60% at 60% 40%, rgba(0,200,212,.06) 0%, transparent 60%),
+radial-gradient(ellipse 50% 40% at 20% 80%, rgba(204,45,143,.05) 0%, transparent 60%);
+}
+/* Diagonal slash accent */
+.geo-hero-slash{
+position:absolute;
+top:0;right:0;
+width:45%;height:100%;
+background:linear-gradient(135deg,transparent 40%,rgba(0,200,212,.03) 40%,rgba(0,200,212,.03) 60%,transparent 60%);
+z-index:0;
+}
+.geo-hero-inner{
+max-width:1100px;
+margin:0 auto;
+width:100%;
+position:relative;
+z-index:1;
+}
+.geo-eyebrow{
+font-family:‘Barlow Condensed’,sans-serif;
+font-size:10px;letter-spacing:5px;text-transform:uppercase;
+color:#00c8d4;
+display:flex;align-items:center;gap:12px;
+margin-bottom:20px;
+}
+.geo-eyebrow::before{content:’’;width:32px;height:1px;background:#00c8d4;}
+
+.geo-hero h1{
+font-family:‘Bebas Neue’,Impact,sans-serif;
+font-size:clamp(64px,10vw,140px);
+line-height:.85;
+margin-bottom:32px;
+letter-spacing:.01em;
+}
+.geo-hero h1 .l1{color:#e8fffe;display:block;}
+.geo-hero h1 .l2{
+color:transparent;
+-webkit-text-stroke:1px #00c8d4;
+filter:drop-shadow(0 0 20px rgba(0,200,212,.3));
+display:block;
+}
+.geo-hero h1 .l3{color:#cc2d8f;display:block;text-shadow:0 0 40px rgba(204,45,143,.4);}
+
+.geo-hero-sub{
+font-size:18px;line-height:1.8;
+color:#4a7a80;max-width:600px;
+margin-bottom:48px;
+}
+.geo-hero-sub strong{color:#e8fffe;}
+
+.geo-hero-stats{
+display:flex;gap:48px;flex-wrap:wrap;
+padding-top:40px;
+border-top:1px solid rgba(0,200,212,.08);
+}
+.geo-hero-stat-num{
+font-family:‘Bebas Neue’,Impact,sans-serif;
+font-size:48px;color:#00c8d4;line-height:1;margin-bottom:4px;
+}
+.geo-hero-stat-lbl{
+font-family:‘Barlow Condensed’,sans-serif;
+font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#4a7a80;
+}
+
+/* ── SCROLL INDICATOR ── */
+.scroll-ind{
+position:absolute;bottom:40px;left:48px;
+display:flex;align-items:center;gap:12px;
+font-family:‘Barlow Condensed’,sans-serif;
+font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#2a4a50;
+z-index:1;
+animation:scrollBob 2s ease-in-out infinite;
+}
+.scroll-ind::before{
+content:’’;width:1px;height:32px;background:linear-gradient(transparent,#00c8d4);
+}
+@keyframes scrollBob{0%,100%{transform:translateY(0);}50%{transform:translateY(6px);}}
+
+/* ── MANIFESTO SECTION ── */
+.geo-manifesto{
+padding:120px 48px;
+position:relative;z-index:1;
+background:#020608;
+border-top:1px solid rgba(0,200,212,.06);
+}
+.geo-manifesto-inner{max-width:1100px;margin:0 auto;}
+.geo-manifesto-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:80px;
+align-items:start;
+}
+.geo-manifesto-left h2{
+font-family:‘Bebas Neue’,Impact,sans-serif;
+font-size:clamp(40px,5vw,72px);
+line-height:.9;
+margin-bottom:24px;
+}
+.geo-manifesto-left h2 span{color:#00c8d4;}
+.geo-manifesto-body{
+font-size:15px;line-height:1.9;color:#4a7a80;
+}
+.geo-manifesto-body strong{color:#e8fffe;}
+.geo-manifesto-body p+p{margin-top:20px;}
+
+.geo-term-list{display:flex;flex-direction:column;gap:1px;}
+.geo-term{
+background:#0a1214;
+border:1px solid rgba(0,200,212,.06);
+padding:20px 24px;
+display:flex;gap:20px;
+align-items:flex-start;
+transition:background .2s;
+}
+.geo-term:hover{background:#0d1a1d;border-color:rgba(0,200,212,.15);}
+.geo-term-num{
+font-family:‘JetBrains Mono’,monospace;
+font-size:9px;color:#00c8d4;
+padding-top:3px;flex-shrink:0;
+}
+.geo-term-title{
+font-family:‘Barlow Condensed’,sans-serif;
+font-size:13px;font-weight:700;letter-spacing:2px;
+text-transform:uppercase;color:#e8fffe;
+margin-bottom:6px;
+}
+.geo-term-desc{font-size:12px;color:#4a7a80;line-height:1.65;}
+
+/* ── TICKER ── */
+.geo-ticker-wrap{
+overflow:hidden;
+background:rgba(0,200,212,.04);
+border-top:1px solid rgba(0,200,212,.1);
+border-bottom:1px solid rgba(0,200,212,.1);
+padding:14px 0;
+position:relative;z-index:1;
+}
+.geo-ticker-inner{
+display:flex;gap:48px;white-space:nowrap;
+animation:geoTick 35s linear infinite;
+}
+.geo-ticker-inner span{
+font-family:‘Barlow Condensed’,sans-serif;
+font-size:11px;font-weight:700;
+letter-spacing:3px;text-transform:uppercase;
+color:#4a7a80;flex-shrink:0;
+}
+.geo-ticker-inner span.hot{color:#00c8d4;}
+.geo-ticker-dot{color:#2a4a50 !important;}
+@keyframes geoTick{
+from{transform:translateX(0);}
+to{transform:translateX(-50%);}
+}
+
+/* ── PRESS SECTION ── */
+.geo-press{
+padding:100px 48px;
+position:relative;z-index:1;
+background:#020608;
+}
+.geo-press-inner{max-width:1100px;margin:0 auto;}
+
+.sec-label{
+font-family:‘Barlow Condensed’,sans-serif;
+font-size:10px;letter-spacing:4px;text-transform:uppercase;
+color:#00c8d4;display:flex;align-items:center;gap:10px;margin-bottom:12px;
+}
+.sec-label::before{content:’’;width:24px;height:1px;background:#00c8d4;}
+.sec-h2{
+font-family:‘Bebas Neue’,Impact,sans-serif;
+font-size:clamp(32px,4vw,56px);
+line-height:.95;margin-bottom:48px;
+}
+.sec-h2 span{color:#00c8d4;}
+
+/* STAT BAR */
+.geo-stat-bar{
+display:grid;grid-template-columns:repeat(4,1fr);
+gap:1px;background:rgba(0,200,212,.1);
+margin-bottom:48px;
+}
+.geo-stat-item{
+background:#0a1214;padding:24px 20px;
+}
+.geo-stat-num{
+font-family:‘Bebas Neue’,Impact,sans-serif;
+font-size:40px;color:#00c8d4;line-height:1;margin-bottom:6px;
+}
+.geo-stat-lbl{
+font-family:‘Barlow Condensed’,sans-serif;
+font-size:10px;letter-spacing:2px;text-transform:uppercase;
+color:#4a7a80;line-height:1.5;
+}
+
+/* CARDS */
+.geo-cards-3{
+display:grid;grid-template-columns:repeat(3,1fr);
+gap:1px;background:rgba(0,200,212,.08);
+margin-bottom:1px;
+}
+.geo-cards-2{
+display:grid;grid-template-columns:repeat(2,1fr);
+gap:1px;background:rgba(0,200,212,.08);
+}
+.geo-card{
+background:#0a1214;padding:28px 24px;
+display:flex;flex-direction:column;gap:12px;
+transition:background .2s;
+cursor:pointer;
+position:relative;
+overflow:hidden;
+}
+.geo-card::before{
+content:’’;
+position:absolute;top:0;left:0;right:0;height:1px;
+background:linear-gradient(90deg,transparent,rgba(0,200,212,.2),transparent);
+opacity:0;transition:opacity .3s;
+}
+.geo-card:hover{background:#0d1a1d;}
+.geo-card:hover::before{opacity:1;}
+.geo-card:hover .geo-card-arrow{transform:translateX(4px);color:#00c8d4;}
+.geo-card-source{
+font-family:‘Barlow Condensed’,sans-serif;
+font-size:9px;letter-spacing:3px;text-transform:uppercase;
+color:#00c8d4;display:flex;align-items:center;gap:8px;
+}
+.geo-card-source::before{
+content:’’;width:4px;height:4px;border-radius:50%;
+background:#00c8d4;flex-shrink:0;
+}
+.geo-card-quote{
+font-family:‘Bebas Neue’,Impact,sans-serif;
+font-size:clamp(18px,2vw,24px);line-height:1.1;color:#e8fffe;
+}
+.geo-card-quote span{color:#00c8d4;}
+.geo-card-body{font-size:12px;color:#4a7a80;line-height:1.7;flex:1;}
+.geo-card-footer{
+display:flex;align-items:center;justify-content:space-between;
+padding-top:12px;border-top:1px solid rgba(0,200,212,.06);
+}
+.geo-card-tag{
+font-family:‘Barlow Condensed’,sans-serif;
+font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#2a4a50;
+}
+.geo-card-arrow{font-size:12px;color:#2a4a50;transition:all .2s;}
+.geo-card-feat{
+background:linear-gradient(160deg,#091618,#040c0e);
+border-top:1px solid rgba(0,200,212,.2) !important;
+}
+.geo-card-feat .geo-card-quote{font-size:clamp(22px,2.5vw,30px);}
+
+/* PRINCETON CARD */
+.geo-princeton{
+background:#060d0f;
+border:1px solid rgba(204,45,143,.15);
+padding:40px;
+margin-top:1px;
+position:relative;
+overflow:hidden;
+}
+.geo-princeton::before{
+content:’’;
+position:absolute;top:0;left:0;right:0;height:2px;
+background:linear-gradient(90deg,#cc2d8f,#00c8d4);
+}
+.geo-princeton-label{
+font-family:‘Barlow Condensed’,sans-serif;
+font-size:9px;letter-spacing:3px;text-transform:uppercase;
+color:#cc2d8f;margin-bottom:16px;
+display:flex;align-items:center;gap:8px;
+}
+.geo-princeton-label::before{
+content:’’;width:4px;height:4px;border-radius:50%;background:#cc2d8f;
+}
+.geo-princeton h3{
+font-family:‘Bebas Neue’,Impact,sans-serif;
+font-size:clamp(24px,3vw,40px);
+line-height:1;margin-bottom:16px;color:#e8fffe;
+}
+.geo-princeton-body{
+font-size:13px;color:#4a7a80;line-height:1.8;
+max-width:700px;margin-bottom:24px;
+}
+.geo-princeton-body strong{color:#e8fffe;}
+.geo-princeton-link{
+display:inline-flex;align-items:center;gap:8px;
+font-family:‘Barlow Condensed’,sans-serif;
+font-size:10px;letter-spacing:2px;text-transform:uppercase;
+color:#cc2d8f;border:1px solid rgba(204,45,143,.25);
+padding:10px 20px;transition:all .2s;
+}
+.geo-princeton-link:hover{background:rgba(204,45,143,.08);}
+
+/* ── BOTTOM STRIP ── */
+.geo-press-strip{
+background:#060d0f;
+border:1px solid rgba(0,200,212,.06);
+padding:24px;
+display:flex;align-items:center;
+justify-content:space-between;gap:16px;
+flex-wrap:wrap;margin-top:48px;
+}
+.geo-press-strip-text{
+font-family:‘Barlow Condensed’,sans-serif;
+font-size:13px;letter-spacing:1px;
+text-transform:uppercase;color:#4a7a80;
+}
+.geo-press-strip-text strong{color:#e8fffe;}
+
+/* ── CTA ── */
+.geo-cta{
+padding:100px 48px;
+text-align:center;
+position:relative;z-index:1;
+}
+.geo-cta::before{
+content:’’;position:absolute;top:0;left:0;right:0;height:1px;
+background:linear-gradient(90deg,transparent,#00c8d4,#cc2d8f,transparent);
+}
+.geo-cta h2{
+font-family:‘Bebas Neue’,Impact,sans-serif;
+font-size:clamp(40px,6vw,80px);
+line-height:.9;margin-bottom:20px;
+}
+.geo-cta h2 span{color:#00c8d4;}
+.geo-cta p{
+font-size:15px;color:#4a7a80;
+max-width:480px;margin:0 auto 40px;line-height:1.8;
+}
+.btn-primary{
+display:inline-flex;align-items:center;gap:8px;
+font-family:‘Barlow Condensed’,sans-serif;
+font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+padding:14px 28px;border-radius:2px;
+background:linear-gradient(90deg,#00c8d4,#cc2d8f);
+color:#020608;border:none;cursor:pointer;
+transition:box-shadow .3s;
+}
+.btn-primary:hover{box-shadow:0 0 32px rgba(0,200,212,.4);}
+.btn-ghost{
+display:inline-flex;align-items:center;gap:8px;
+font-family:‘Barlow Condensed’,sans-serif;
+font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+padding:13px 28px;border-radius:2px;
+border:1px solid rgba(0,200,212,.3);color:#00c8d4;
+background:transparent;transition:all .2s;cursor:pointer;
+}
+.btn-ghost:hover{background:rgba(0,200,212,.08);}
+
+/* ── FOOTER ── */
+footer{
+background:#040a0b;
+border-top:1px solid rgba(255,255,255,.04);
+padding:40px 48px 24px;
+position:relative;z-index:1;
+}
+.ft-inner{
+max-width:1100px;margin:0 auto;
+display:flex;justify-content:space-between;
+align-items:center;flex-wrap:wrap;gap:20px;
+}
+.ft-brand{
+font-family:‘Bebas Neue’,Impact,sans-serif;
+font-size:18px;letter-spacing:3px;
+background:linear-gradient(90deg,#00c8d4,#cc2d8f);
+-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.ft-links{display:flex;gap:24px;flex-wrap:wrap;}
+.ft-links a{
+font-family:‘Barlow Condensed’,sans-serif;
+font-size:10px;letter-spacing:2px;text-transform:uppercase;
+color:#4a7a80;transition:color .2s;
+}
+.ft-links a:hover{color:#e8fffe;}
+.ft-copy{
+font-size:11px;color:#4a7a80;width:100%;
+text-align:center;margin-top:16px;padding-top:16px;
+border-top:1px solid rgba(255,255,255,.04);
+}
+
+/* ── ANIMATIONS ── */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
+.rv.vi{opacity:1;transform:translateY(0);}
+.d1{transition-delay:.1s!important;}
+.d2{transition-delay:.2s!important;}
+.d3{transition-delay:.3s!important;}
+.d4{transition-delay:.4s!important;}
+
+/* ── CANVAS ── */
+#geo-canvas{
+position:fixed;inset:0;z-index:0;
+pointer-events:none;opacity:.5;
+}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+nav{padding:0 16px;}
+.nav-links{display:none;}
+.hamburger{display:flex;}
+.geo-hero,.geo-manifesto,.geo-press,.geo-cta{padding-left:16px;padding-right:16px;}
+.geo-manifesto-grid{grid-template-columns:1fr;gap:40px;}
+.geo-stat-bar{grid-template-columns:1fr 1fr;}
+.geo-cards-3,.geo-cards-2{grid-template-columns:1fr;}
+.geo-hero-stats{gap:24px;}
+footer{padding:32px 16px 20px;}
+}
 </style>
+
 </head>
 <body>
+
+<canvas id="geo-canvas"></canvas>
+
+<!-- NAV -->
+
 <nav>
-  <div class="wrap nav-in">
-    <a class="brand" href="index.html">GeoDMus</a>
-    <div class="links">
+  <a href="index.html" class="logo-wrap">
+    <div class="logo-top">GEO<span style="color:#00c8d4;">D</span><span style="color:#cc2d8f;">M</span>us</div>
+    <div class="logo-sub">GEO · AI-Native Digital Infrastructure</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="services.html">Services</a></li>
+    <li><a href="ventures.html">Ventures</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="geo.html" class="active">GEO</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="https://calendly.com/hello-geodm/30min" target="_blank" rel="noopener" class="nav-cta">Free Strategy Call</a>
+  <button class="hamburger" id="ham"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mob">
+  <a href="services.html">Services</a>
+  <a href="ventures.html">Ventures</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="geo.html">GEO</a>
+  <a href="contact.html">Contact</a>
+  <a href="https://calendly.com/hello-geodm/30min" target="_blank" style="background:#00c8d4;color:#020608;padding:12px 28px;font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;">Free Strategy Call</a>
+</div>
+
+<!-- HERO -->
+
+<section class="geo-hero">
+  <div class="geo-hero-bg"></div>
+  <div class="geo-hero-slash"></div>
+  <div class="geo-hero-inner">
+    <div class="geo-eyebrow rv">Generative Engine Optimization</div>
+    <h1 class="rv d1">
+      <span class="l1">THIS ISN'T</span>
+      <span class="l2">A TREND.</span>
+      <span class="l3">IT'S INFRASTRUCTURE.</span>
+    </h1>
+    <p class="geo-hero-sub rv d2">
+      We built for the generative web before most agencies 
+      knew it existed. <strong>Read the receipts.</strong>
+    </p>
+    <div class="geo-hero-stats rv d3">
+      <div>
+        <div class="geo-hero-stat-num" data-count="90">0</div>
+        <div class="geo-hero-stat-lbl">% of top Google results<br>never cited by AI</div>
+      </div>
+      <div>
+        <div class="geo-hero-stat-num" data-count="25">0</div>
+        <div class="geo-hero-stat-lbl">% drop in traditional<br>search volume — Gartner</div>
+      </div>
+      <div>
+        <div class="geo-hero-stat-num">2B+</div>
+        <div class="geo-hero-stat-lbl">Monthly Google AI<br>Overview users</div>
+      </div>
+      <div>
+        <div class="geo-hero-stat-num">900M</div>
+        <div class="geo-hero-stat-lbl">Weekly ChatGPT<br>users searching</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-ind">Scroll</div>
+</section>
+
+<!-- TICKER -->
+
+<div class="geo-ticker-wrap">
+  <div class="geo-ticker-inner" id="geo-ticker">
+    <span class="hot">GENERATIVE ENGINES</span><span class="geo-ticker-dot">◆</span>
+    <span class="hot">MARKDOWN MIRRORS</span><span class="geo-ticker-dot">◆</span>
+    <span class="hot">GEO</span><span class="geo-ticker-dot">◆</span>
+    <span>WIRED</span><span class="geo-ticker-dot">◆</span>
+    <span class="hot">CITATION INFRASTRUCTURE</span><span class="geo-ticker-dot">◆</span>
+    <span class="hot">RETRIEVAL-AUGMENTED GENERATION</span><span class="geo-ticker-dot">◆</span>
+    <span>SEARCH ENGINE LAND</span><span class="geo-ticker-dot">◆</span>
+    <span class="hot">ENTITY DISAMBIGUATION</span><span class="geo-ticker-dot">◆</span>
+    <span class="hot">LLMS.TXT</span><span class="geo-ticker-dot">◆</span>
+    <span>GARTNER</span><span class="geo-ticker-dot">◆</span>
+    <span class="hot">ANSWER ENGINE OPTIMIZATION</span><span class="geo-ticker-dot">◆</span>
+    <span>EMARKETER</span><span class="geo-ticker-dot">◆</span>
+    <span class="hot">KNOWLEDGE GRAPH</span><span class="geo-ticker-dot">◆</span>
+    <span>PRINCETON UNIVERSITY</span><span class="geo-ticker-dot">◆</span>
+    <span class="hot">AI OVERVIEWS</span><span class="geo-ticker-dot">◆</span>
+    <span>LINKEDIN BIG IDEAS 2026</span><span class="geo-ticker-dot">◆</span>
+    <!-- duplicate for seamless loop -->
+    <span class="hot">GENERATIVE ENGINES</span><span class="geo-ticker-dot">◆</span>
+    <span class="hot">MARKDOWN MIRRORS</span><span class="geo-ticker-dot">◆</span>
+    <span class="hot">GEO</span><span class="geo-ticker-dot">◆</span>
+    <span>WIRED</span><span class="geo-ticker-dot">◆</span>
+    <span class="hot">CITATION INFRASTRUCTURE</span><span class="geo-ticker-dot">◆</span>
+    <span class="hot">RETRIEVAL-AUGMENTED GENERATION</span><span class="geo-ticker-dot">◆</span>
+    <span>SEARCH ENGINE LAND</span><span class="geo-ticker-dot">◆</span>
+    <span class="hot">ENTITY DISAMBIGUATION</span><span class="geo-ticker-dot">◆</span>
+    <span class="hot">LLMS.TXT</span><span class="geo-ticker-dot">◆</span>
+    <span>GARTNER</span><span class="geo-ticker-dot">◆</span>
+    <span class="hot">ANSWER ENGINE OPTIMIZATION</span><span class="geo-ticker-dot">◆</span>
+    <span>EMARKETER</span><span class="geo-ticker-dot">◆</span>
+    <span class="hot">KNOWLEDGE GRAPH</span><span class="geo-ticker-dot">◆</span>
+    <span>PRINCETON UNIVERSITY</span><span class="geo-ticker-dot">◆</span>
+    <span class="hot">AI OVERVIEWS</span><span class="geo-ticker-dot">◆</span>
+    <span>LINKEDIN BIG IDEAS 2026</span><span class="geo-ticker-dot">◆</span>
+  </div>
+</div>
+
+<!-- MANIFESTO -->
+
+<section class="geo-manifesto">
+  <div class="geo-manifesto-inner">
+    <div class="geo-manifesto-grid">
+      <div class="geo-manifesto-left rv">
+        <div class="sec-label">What GEO Actually Is</div>
+        <h2>SEO CHASES<br>RANKINGS.<br><span>GEO EARNS</span><br>CITATIONS.</h2>
+        <div class="geo-manifesto-body">
+          <p>Traditional search engine optimization was built for a world where Google returned 10 blue links and users clicked them. That world is ending.</p>
+          <p>Generative engines — ChatGPT, Perplexity, Claude, Gemini, Google AI Overview — don't rank pages. <strong>They synthesize answers from sources they trust and cite.</strong> Getting ranked means nothing if you're not getting cited.</p>
+          <p>GEO is the practice of building your digital presence so that AI systems can parse, trust, and reference your content when generating answers. It requires a completely different architecture than SEO.</p>
+          <p><strong>We built GeoDMus on this architecture from day one.</strong></p>
+        </div>
+      </div>
+      <div class="rv d2">
+        <div class="sec-label">The Technical Stack</div>
+        <div class="geo-term-list">
+          <div class="geo-term">
+            <div class="geo-term-num">01</div>
+            <div>
+              <div class="geo-term-title">llms.txt</div>
+              <div class="geo-term-desc">A plain-text file at your root URL that tells AI crawlers exactly what your business is, what you do, and what to cite you for. The AI equivalent of robots.txt but for discovery not exclusion.</div>
+            </div>
+          </div>
+          <div class="geo-term">
+            <div class="geo-term-num">02</div>
+            <div>
+              <div class="geo-term-title">Markdown Mirrors</div>
+              <div class="geo-term-desc">Clean, stripped markdown versions of every page at a predictable URL. When AI tries to read your site it doesn't have to parse nav bars, popups, and scripts. It reads pure content.</div>
+            </div>
+          </div>
+          <div class="geo-term">
+            <div class="geo-term-num">03</div>
+            <div>
+              <div class="geo-term-title">Schema Markup</div>
+              <div class="geo-term-desc">Structured data that tells AI engines what type of entity you are, what services you offer, where you are, and why you're authoritative. FAQPage, LocalBusiness, Service schemas are not optional.</div>
+            </div>
+          </div>
+          <div class="geo-term">
+            <div class="geo-term-num">04</div>
+            <div>
+              <div class="geo-term-title">Entity Disambiguation</div>
+              <div class="geo-term-desc">Making your brand a recognized, distinct entity in AI knowledge graphs. Consistent NAP, cross-platform presence, and authoritative mentions that help LLMs understand exactly who you are.</div>
+            </div>
+          </div>
+          <div class="geo-term">
+            <div class="geo-term-num">05</div>
+            <div>
+              <div class="geo-term-title">Citation Architecture</div>
+              <div class="geo-term-desc">Structuring your content so LLMs have clean, quotable, citable sentences. Short, direct answers. Inverted pyramid writing. Content that reads like a source, not a sales page.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRESS -->
+
+<section class="geo-press">
+  <div class="geo-press-inner">
+    <div class="sec-label rv">The Receipts</div>
+    <h2 class="sec-h2 rv d1">WHAT THE WORLD<br><span>IS SAYING</span></h2>
+
+```
+<!-- STAT BAR -->
+<div class="geo-stat-bar rv d2">
+  <div class="geo-stat-item">
+    <div class="geo-stat-num" data-count="25">0</div>
+    <div class="geo-stat-lbl">% drop in traditional search — Gartner 2026</div>
+  </div>
+  <div class="geo-stat-item">
+    <div class="geo-stat-num" data-count="90">0</div>
+    <div class="geo-stat-lbl">% of Google top results never cited by AI</div>
+  </div>
+  <div class="geo-stat-item">
+    <div class="geo-stat-num">2-7</div>
+    <div class="geo-stat-lbl">Domains cited per AI response — Search Engine Land</div>
+  </div>
+  <div class="geo-stat-item">
+    <div class="geo-stat-num">13wk</div>
+    <div class="geo-stat-lbl">Half of AI citations are less than 13 weeks old</div>
+  </div>
+</div>
+
+<!-- CARDS ROW 1 -->
+<div class="geo-cards-3 rv d2">
+  <a href="https://aimagazine.com/news/geo-set-to-eclipse-seo-in-2026" target="_blank" rel="noopener" class="geo-card geo-card-feat">
+    <div class="geo-card-source">AI Magazine · Jan 2026</div>
+    <div class="geo-card-quote">GEO Is Set To <span>Eclipse SEO</span> In 2026</div>
+    <div class="geo-card-body">LinkedIn's Big Ideas 2026 list says GEO looks set to replace SEO as the primary way brands get discovered. Content is no longer judged on keyword relevance — it's judged on alignment with the AI's internal knowledge graph.</div>
+    <div class="geo-card-footer"><span class="geo-card-tag">Industry Report</span><span class="geo-card-arrow">→</span></div>
+  </a>
+  <a href="https://searchengineland.com/mastering-generative-engine-optimization-in-2026-full-guide-469142" target="_blank" rel="noopener" class="geo-card">
+    <div class="geo-card-source">Search Engine Land · Feb 2026</div>
+    <div class="geo-card-quote">GEO Is No Longer <span>Optional</span></div>
+    <div class="geo-card-body">If traditional SEO was about earning a spot among 10 blue links, GEO is about earning a place among the 2 to 7 domains LLMs typically cite. The payoff is an implicit endorsement no organic listing could ever deliver.</div>
+    <div class="geo-card-footer"><span class="geo-card-tag">Full Guide</span><span class="geo-card-arrow">→</span></div>
+  </a>
+  <a href="https://kdhnews.com/online_features/press_releases/generative-engine-optimization-vs-seo-2026-traffic-report-announced/article_f0eeafa1-fb1c-5a16-8912-efe545c8d44e.html" target="_blank" rel="noopener" class="geo-card">
+    <div class="geo-card-source">Gartner · Mar 2026</div>
+    <div class="geo-card-quote">Traditional Search <span>Drops 25%</span></div>
+    <div class="geo-card-body">Ranking well on Google no longer guarantees visibility in AI-generated answers. AI systems prioritize content structured for comprehension and citation — not keyword density and backlink volume.</div>
+    <div class="geo-card-footer"><span class="geo-card-tag">Traffic Report</span><span class="geo-card-arrow">→</span></div>
+  </a>
+</div>
+
+<!-- CARDS ROW 2 -->
+<div class="geo-cards-2 rv d3">
+  <a href="https://www.emarketer.com/content/generative-engine-optimization-2026" target="_blank" rel="noopener" class="geo-card">
+    <div class="geo-card-source">eMarketer · Nov 2025</div>
+    <div class="geo-card-quote">Brands Must Manage GEO <span>Separately From SEO</span></div>
+    <div class="geo-card-body">Fewer than 10% of sources cited in ChatGPT, Gemini, and Copilot rank in the top 10 Google results for the same query. SEO tactics won't guarantee AI visibility. Success depends on treating AI as a branding channel entirely.</div>
+    <div class="geo-card-footer"><span class="geo-card-tag">Brand Strategy</span><span class="geo-card-arrow">→</span></div>
+  </a>
+  <a href="https://www.frase.io/blog/what-is-generative-engine-optimization-geo" target="_blank" rel="noopener" class="geo-card">
+    <div class="geo-card-source">Frase.io · Apr 2026</div>
+    <div class="geo-card-quote">50% Of AI Citations Are <span>Less Than 13 Weeks Old</span></div>
+    <div class="geo-card-body">AI citation decay is GEO's unique challenge. Content ChatGPT cited last month gets replaced by fresher sources this month. Brands that don't publish structured, AI-optimized content consistently lose ground every single week.</div>
+    <div class="geo-card-footer"><span class="geo-card-tag">Research</span><span class="geo-card-arrow">→</span></div>
+  </a>
+</div>
+
+<!-- PRINCETON -->
+<div class="geo-princeton rv d3">
+  <div class="geo-princeton-label">Where It All Started</div>
+  <h3>THE PRINCETON PAPER<br>THAT COINED THE TERM</h3>
+  <p class="geo-princeton-body">
+    The term "Generative Engine Optimization" was first coined in academic research from Princeton University, the University of Chicago, IIT Delhi, and Georgia Tech in 2023. The paper — <strong>"GEO: Generative Engine Optimization"</strong> — established the foundational framework for optimizing content to be retrieved and cited by AI systems. We were building on this research while most agencies were still debating whether AI search was real.
+  </p>
+  <a href="https://arxiv.org/abs/2311.09735" target="_blank" rel="noopener" class="geo-princeton-link">Read The Original Research →</a>
+</div>
+
+<div class="geo-press-strip rv">
+  <div class="geo-press-strip-text"><strong>We didn't wait for the industry to catch up.</strong> &nbsp;·&nbsp; Built for the generative web from day one.</div>
+  <a href="https://calendly.com/hello-geodm/30min" target="_blank" rel="noopener" style="font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#00c8d4;border:1px solid rgba(0,200,212,.2);padding:10px 20px;transition:all .2s;">Book A Strategy Call →</a>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- CTA -->
+
+<section class="geo-cta rv">
+  <h2>READY TO BUILD<br><span>CITATION INFRASTRUCTURE?</span></h2>
+  <p>Most agencies will figure this out in 2027. Your competitors are still optimizing for 10 blue links. Let's build what actually works.</p>
+  <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+    <a href="https://calendly.com/hello-geodm/30min" target="_blank" rel="noopener" class="btn-primary">Book Free Strategy Call</a>
+    <a href="services.html" class="btn-ghost">See Our Services</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+  <div class="ft-inner">
+    <div class="ft-brand">GEODMus</div>
+    <div class="ft-links">
       <a href="services.html">Services</a>
       <a href="ventures.html">Ventures</a>
       <a href="pricing.html">Pricing</a>
-      <a href="about.html">About</a>
-      <a href="faq.html">FAQ</a>
+      <a href="geo.html">GEO</a>
       <a href="contact.html">Contact</a>
     </div>
+    <div class="ft-copy">&copy; 2026 Geo Digital Media &middot; GeoDMus &middot; hello@geodm.us &middot; GEO-Native &middot; AI-Ready &middot; Built for the Generative Web</div>
   </div>
-</nav>
-
-<header class="hero">
-  <div class="wrap">
-    <span class="kicker">Generative Engine Optimization</span>
-    <h1>Be Found by AI.<br>Be Cited with Authority.</h1>
-    <p>
-      GEO is not traditional SEO with a new label. It is the operational layer that helps large language models understand,
-      trust, and cite your business in real answers. At Geo Digital Media, we engineer your content and structure so AI systems
-      can retrieve the right facts and present them with confidence.
-    </p>
-    <div class="cta-row">
-      <a class="btn primary" href="https://calendly.com/hello-geodm/30min" target="_blank" rel="noopener noreferrer">Book a GEO Strategy Call</a>
-      <a class="btn" href="services.html">Explore Services</a>
-    </div>
-  </div>
-</header>
-
-<section>
-  <div class="wrap">
-    <h2>What GEO Includes</h2>
-    <div class="grid">
-      <article class="card"><h3>Entity Clarity</h3><p>We disambiguate your brand, locations, offerings, and people so LLMs map your business to the right intent and market.</p></article>
-      <article class="card"><h3>Structured Data</h3><p>Schema markup, semantic HTML, and FAQ architecture that improves machine readability across assistants and AI search layers.</p></article>
-      <article class="card"><h3>Citation Assets</h3><p>We build trustworthy pages and supporting documents designed to be pulled, quoted, and referenced by generative engines.</p></article>
-      <article class="card"><h3>Answer-Ready Content</h3><p>Content blocks engineered for question-answer retrieval, comparison prompts, and local service recommendation flows.</p></article>
-      <article class="card"><h3>Technical Hygiene</h3><p>Speed, crawlability, canonicalization, and clean markup so your sources remain stable and indexable for both bots and LLM tools.</p></article>
-      <article class="card"><h3>Measurement</h3><p>Track branded prompts, mention quality, and citation visibility trends to understand AI discovery performance over time.</p></article>
-    </div>
-  </div>
-</section>
-
-<section style="background:var(--bg2)">
-  <div class="wrap two">
-    <div>
-      <h2>Why Businesses Are Switching to GEO</h2>
-      <p style="color:#a7c6c9;line-height:1.8">
-        Buyers increasingly start with AI answers, not blue links. If your business information is incomplete, inconsistent,
-        or hard to parse, AI assistants can skip you entirely. GEO closes that gap by building the citation infrastructure
-        your competitors likely still lack.
-      </p>
-      <p style="color:#a7c6c9;line-height:1.8">
-        The result: stronger recommendation eligibility, clearer positioning, and better visibility in the exact channels where
-        high-intent users ask what to buy, who to hire, and which local providers to trust.
-      </p>
-    </div>
-    <aside>
-      <h2>Core Deliverables</h2>
-      <ul class="list">
-        <li>GEO audit + priority roadmap</li>
-        <li>Schema and semantic implementation</li>
-        <li>FAQ and citation-page architecture</li>
-        <li>Local entity and service normalization</li>
-        <li>AI discovery reporting framework</li>
-      </ul>
-    </aside>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <h2>Ready to Build Your GEO Stack?</h2>
-    <p style="color:#a7c6c9;max-width:720px;line-height:1.8">We'll review your current web footprint and show where AI engines are likely failing to cite you today. Then we'll map exactly what to fix first.</p>
-    <div class="cta-row">
-      <a class="btn primary" href="https://calendly.com/hello-geodm/30min" target="_blank" rel="noopener noreferrer">Book Free Strategy Call</a>
-      <a class="btn" href="contact.html">Contact GeoDMus</a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">© 2026 Geo Digital Media · GEO-Native · AI-Ready · Built for the Generative Web</div>
 </footer>
+
+<script>
+(function(){
+  // Nav
+  var ham=document.getElementById('ham'),mob=document.getElementById('mob');
+  if(ham&&mob){
+    ham.addEventListener('click',function(){mob.classList.toggle('open');});
+    mob.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mob.classList.remove('open');});});
+  }
+
+  // Scroll reveal
+  if(window.IntersectionObserver){
+    var ro=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('vi');});
+    },{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+    document.querySelectorAll('.rv').forEach(function(el){ro.observe(el);});
+  } else {
+    document.querySelectorAll('.rv').forEach(function(el){el.classList.add('vi');});
+  }
+
+  // Count up
+  var counted = false;
+  function countUp(){
+    if(counted) return;
+    counted = true;
+    document.querySelectorAll('[data-count]').forEach(function(el){
+      var target = parseInt(el.getAttribute('data-count'));
+      var duration = 2000;
+      var start = null;
+      function step(ts){
+        if(!start) start = ts;
+        var progress = Math.min((ts-start)/duration, 1);
+        var ease = progress*(2-progress);
+        el.textContent = Math.floor(ease*target);
+        if(progress < 1) requestAnimationFrame(step);
+        else el.textContent = target;
+      }
+      requestAnimationFrame(step);
+    });
+  }
+  var statsObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting) countUp(); });
+  },{threshold:.3});
+  var statsEl = document.querySelector('.geo-hero-stats');
+  if(statsEl) statsObs.observe(statsEl);
+
+  // Canvas particles
+  var cvs = document.getElementById('geo-canvas');
+  if(!cvs) return;
+  var cx = cvs.getContext('2d');
+  var W=0,H=0;
+  function rsz(){ W=cvs.width=innerWidth; H=cvs.height=innerHeight; }
+  rsz(); addEventListener('resize',rsz,{passive:true});
+
+  var pts=[];
+  function Pt(){
+    this.x=Math.random()*W; this.y=Math.random()*H;
+    this.vx=(Math.random()-.5)*.2; this.vy=(Math.random()-.5)*.2;
+    this.r=Math.random()*1.2+.2; this.life=Math.random();
+    this.spd=Math.random()*.003+.001;
+    var c=['0,200,212','204,45,143','100,220,220'];
+    this.c=c[Math.floor(Math.random()*c.length)];
+  }
+  Pt.prototype.tick=function(){
+    this.x+=this.vx; this.y+=this.vy; this.life+=this.spd;
+    if(this.x<0||this.x>W||this.y<0||this.y>H||this.life>1){
+      this.x=Math.random()*W; this.y=Math.random()*H; this.life=0;
+    }
+  };
+  Pt.prototype.draw=function(){
+    var a=Math.sin(this.life*Math.PI)*.5;
+    cx.beginPath(); cx.arc(this.x,this.y,this.r,0,6.283);
+    cx.fillStyle='rgba('+this.c+','+a+')'; cx.fill();
+  };
+  var isMobile=window.innerWidth<768;
+  for(var i=0;i<(isMobile?40:80);i++) pts.push(new Pt());
+
+  // Shooting stars
+  var shoots=[];
+  function Shoot(){
+    this.x=Math.random()*W*.7; this.y=Math.random()*H*.4;
+    var a=(Math.random()*35+10)*Math.PI/180;
+    var spd=Math.random()*6+4;
+    this.vx=Math.cos(a)*spd; this.vy=Math.sin(a)*spd;
+    this.len=Math.random()*90+50;
+    this.life=0; this.max=Math.random()*50+30;
+    this.active=true;
+  }
+  Shoot.prototype.tick=function(){
+    this.x+=this.vx; this.y+=this.vy; this.life++;
+    if(this.life>this.max||this.x>W+50||this.y>H+50) this.active=false;
+  };
+  Shoot.prototype.draw=function(){
+    var p=this.life/this.max,a=Math.sin(p*Math.PI)*.85;
+    var mag=Math.sqrt(this.vx*this.vx+this.vy*this.vy);
+    var tx=this.x-this.vx*(this.len/mag),ty=this.y-this.vy*(this.len/mag);
+    var g=cx.createLinearGradient(tx,ty,this.x,this.y);
+    g.addColorStop(0,'rgba(0,200,212,0)');
+    g.addColorStop(1,'rgba(0,200,212,'+a+')');
+    cx.beginPath(); cx.moveTo(tx,ty); cx.lineTo(this.x,this.y);
+    cx.strokeStyle=g; cx.lineWidth=1.2; cx.stroke();
+  };
+  for(var si=0;si<4;si++){var sh=new Shoot();sh.active=false;shoots.push(sh);}
+  var lastShoot=0;
+
+  // Click effect
+  addEventListener('click',function(e){
+    for(var p=0;p<8;p++){
+      var el=document.createElement('div');
+      var size=Math.random()*5+2;
+      var colors=['#00c8d4','#cc2d8f','#e8fffe'];
+      var col=colors[Math.floor(Math.random()*colors.length)];
+      var vx=(Math.random()-.5)*8,vy=(Math.random()-1.2)*7;
+      el.style.cssText='position:fixed;left:'+e.clientX+'px;top:'+e.clientY+'px;width:'+size+'px;height:'+size+'px;background:'+col+';pointer-events:none;z-index:9997;border-radius:1px;';
+      document.body.appendChild(el);
+      var life=1;
+      (function(el,vx,vy){
+        (function anim(){
+          life-=.03; vx*=.96; vy+=.3;
+          if(life<=0){if(el.parentNode)el.parentNode.removeChild(el);return;}
+          el.style.left=(parseFloat(el.style.left)+vx)+'px';
+          el.style.top=(parseFloat(el.style.top)+vy)+'px';
+          el.style.opacity=life;
+          requestAnimationFrame(anim);
+        })();
+      })(el,vx,vy);
+    }
+  });
+
+  // Master loop
+  var lt=0,FPS=isMobile?30:60,INTERVAL=1000/FPS;
+  (function loop(ts){
+    requestAnimationFrame(loop);
+    if(ts-lt<INTERVAL)return; lt=ts;
+    cx.clearRect(0,0,W,H);
+    for(var i=0;i<pts.length;i++){pts[i].tick();pts[i].draw();}
+    if(ts-lastShoot>3000&&Math.random()>.7){
+      lastShoot=ts;
+      for(var pi=0;pi<shoots.length;pi++){
+        if(!shoots[pi].active){shoots[pi]=new Shoot();break;}
+      }
+    }
+    for(var si=0;si<shoots.length;si++){
+      if(shoots[si].active){shoots[si].tick();shoots[si].draw();}
+    }
+  })(0);
+
+})();
+</script>
+
 </body>
 </html>
