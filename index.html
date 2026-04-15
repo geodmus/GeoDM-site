@@ -109,7 +109,7 @@ background:rgba(0,200,212,.8);pointer-events:none;
 border-radius:1px;animation:shardFly .45s ease-out forwards;
 }
 @keyframes rippleOut{to{transform:scale(4);opacity:0;}}
-@keyframes shardFly{to{transform:translate(var(--sx),var(--sy));opacity:0;}}
+@keyframes shardFly{to{transform:translate(var(–sx),var(–sy));opacity:0;}}
 
 /* ── GLOW PULSE on stat numbers ── */
 .stat-big,.stat-n{animation:numGlow 3s ease-in-out infinite;}
@@ -516,9 +516,9 @@ footer{padding:44px 16px 24px;}
 
 /* Mobile performance */
 nav, .mobile-menu{
-  background:#020608;
-  backdrop-filter:none!important;
-  -webkit-backdrop-filter:none!important;
+background:#020608;
+backdrop-filter:none!important;
+-webkit-backdrop-filter:none!important;
 }
 .splash-mark,.logo-top,.port-hero-svg{filter:none!important;}
 .touch-device .depth-rings,.touch-device .dring{display:none!important;}
@@ -560,19 +560,40 @@ nav{height:52px;}
 }
 
 /* GEO TEASER */
-.geo-teaser{padding:90px 0;background:linear-gradient(180deg,#060d0f 0%,#020608 100%);position:relative;z-index:2}
-.geo-teaser-wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:stretch}
-.geo-teaser-main,.geo-teaser-side{border:1px solid rgba(0,200,212,.16);background:linear-gradient(180deg,rgba(8,20,24,.95),rgba(6,14,18,.97));padding:30px}
-.geo-teaser-kicker{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#00c8d4;border:1px solid rgba(0,200,212,.3);padding:7px 10px;margin-bottom:16px}
-.geo-teaser-title{font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(40px,6vw,78px);line-height:.9;color:#e8fffe;margin:0 0 16px}
-.geo-teaser-copy{color:#97aeb2;line-height:1.8;font-size:15px;max-width:680px;margin:0 0 22px}
-.geo-teaser-actions{display:flex;gap:10px;flex-wrap:wrap}
-.geo-teaser-list{display:grid;gap:8px;margin:0;padding:0;list-style:none}
-.geo-teaser-list li{padding:10px 12px;border:1px solid rgba(204,45,143,.28);background:rgba(204,45,143,.09);font-size:13px;letter-spacing:.02em;color:#ffd7ef}
+.geo-teaser{padding:100px 0;background:linear-gradient(180deg,#060d0f 0%,#020608 100%);position:relative;z-index:2;overflow:hidden;}
+.geo-teaser::before{content:’’;position:absolute;top:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#00c8d4,#cc2d8f,#00c8d4,transparent);}
+.geo-teaser-wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:2px;align-items:stretch;}
+.geo-teaser-main{border:1px solid rgba(0,200,212,.3);border-right:none;background:linear-gradient(135deg,rgba(0,200,212,.04) 0%,rgba(6,14,18,.98) 60%);padding:48px 40px;position:relative;overflow:hidden;}
+.geo-teaser-main::after{content:‘GEO’;position:absolute;bottom:-20px;right:-10px;font-family:‘Bebas Neue’,Impact,sans-serif;font-size:140px;color:rgba(0,200,212,.03);pointer-events:none;line-height:1;}
+.geo-teaser-side{border:1px solid rgba(0,200,212,.3);background:rgba(2,8,10,.97);padding:48px 36px;}
+.geo-teaser-kicker{display:inline-flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#00c8d4;border:1px solid rgba(0,200,212,.4);padding:7px 14px;margin-bottom:20px;background:rgba(0,200,212,.05);box-shadow:0 0 20px rgba(0,200,212,.08);}
+.geo-teaser-title{font-family:‘Bebas Neue’,Impact,sans-serif;font-size:clamp(48px,6vw,84px);line-height:.88;color:#e8fffe;margin:0 0 20px;text-shadow:0 0 60px rgba(0,200,212,.1);}
+.geo-teaser-copy{color:#7a9ea6;line-height:1.85;font-size:15px;max-width:680px;margin:0 0 28px;}
+.geo-teaser-actions{display:flex;gap:10px;flex-wrap:wrap;}
+.geo-teaser-list{display:grid;gap:6px;margin:0;padding:0;list-style:none;}
+.geo-teaser-list li{
+padding:12px 16px;
+border:1px solid rgba(0,200,212,.25);
+background:rgba(0,200,212,.04);
+font-size:13px;letter-spacing:.04em;color:#e8fffe;
+display:flex;align-items:center;gap:10px;
+transition:background .25s,border-color .25s,transform .25s;
+cursor:default;
+}
+.geo-teaser-list li:hover{
+background:rgba(0,200,212,.1);
+border-color:#00c8d4;
+transform:translateX(4px);
+}
+.geo-teaser-list li::before{
+content:’›’;color:#00c8d4;font-size:16px;flex-shrink:0;
+transition:transform .2s;
+}
+.geo-teaser-list li:hover::before{transform:translateX(3px);}
 @media (max-width:960px){.geo-teaser-wrap{grid-template-columns:1fr}.geo-teaser-main,.geo-teaser-side{padding:24px}}
 .geo-ticker{background:rgba(0,200,212,.04);border-top:1px solid rgba(0,200,212,.1);border-bottom:1px solid rgba(0,200,212,.1);padding:14px 0;overflow:hidden;position:relative;z-index:2}
 .geo-ticker-track{display:flex;width:max-content;animation:geoTickerScroll 35s linear infinite}
-.geo-ticker-content{display:flex;align-items:center;white-space:nowrap;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#2a4a50;padding-right:40px}
+.geo-ticker-content{display:flex;align-items:center;white-space:nowrap;font-family:‘Barlow Condensed’,sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#2a4a50;padding-right:40px}
 .geo-ticker-dot{color:#1a2a30;margin:0 10px}
 .geo-ticker-hl{color:#00c8d4}
 @keyframes geoTickerScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
@@ -614,6 +635,7 @@ nav{height:52px;}
 <button id="gdm-top" aria-label="Back to top">↑</button>
 
 <canvas id="gdm-cvs" style="position:fixed;inset:0;z-index:0;pointer-events:none;will-change:transform;"></canvas>
+<canvas id="gdm-fx" style="position:fixed;inset:0;z-index:3;pointer-events:none;will-change:transform;"></canvas>
 
 <div id="gdm-cur"></div><div id="gdm-curR"></div>
 
@@ -622,7 +644,7 @@ nav{height:52px;}
 <nav>
   <a href="index.html" class="logo-wrap">
     <div class="logo-top"><svg width="18" height="14" viewBox="0 0 28 22" fill="none"><polygon points="0,11 28,0 21,11 28,22" fill="#cc2d8f"/><polygon points="0,11 28,0 23,16" fill="#00c8d4"/></svg> GEO<span class="logo-d">D</span><span class="logo-m">M</span>us</div>
-    <div class="logo-sub">GEO · AI-Native Digital Infrastructure</div>
+    <div class="logo-sub">Generative Engine Optimization · Digital Media Utility Studio</div>
   </a>
   <ul class="nav-links">
     <li><a href="services.html">Services</a></li>
@@ -651,7 +673,7 @@ nav{height:52px;}
   <canvas id="bg-canvas"></canvas>
   <div class="v1-hero-inner">
     <h1 class="glitch-text" data-value="GEODIGITAL MEDIA">GEODIGITAL MEDIA</h1>
-    <p class="sub-hero">Most agencies optimize for search engines.<br>We optimize for generative engines — the AI<br>systems your customers are already using to<br>find, vet, and choose businesses.<br>ChatGPT. Perplexity. Claude. Google AI<br>Overview. Gemini. We build the digital<br>infrastructure that gets cited, quoted,<br>and recommended across all of them.</p>
+    <p class="sub-hero" style="font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:13px;letter-spacing:4px;text-transform:uppercase;color:#00c8d4;margin-bottom:32px;">Generative Engine Optimization · Digital Media Utility Studio</p>
     <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;">
       <a href="https://calendly.com/hello-geodm/30min" target="_blank" rel="noopener noreferrer" class="v1-btn">Book Call</a>
       <a href="ventures.html" class="v1-btn" style="border-color:#fff;color:#fff;">Our Work</a>
@@ -723,7 +745,6 @@ nav{height:52px;}
   </div>
 </div>
 
-
 <!-- SOCIAL BAR -->
 
 <div class="social-bar">
@@ -784,10 +805,22 @@ nav{height:52px;}
   </div>
 </section>
 
-
-
 <!-- GEO TEASER -->
+
 <section class="geo-teaser">
+  <!-- orbital atmosphere -->
+  <div class="orb-rings" style="position:absolute;right:-120px;top:50%;transform:translateY(-50%);width:480px;height:480px;pointer-events:none;opacity:0.18;z-index:0;">
+    <div class="dring" style="border-color:rgba(0,200,212,.6);"></div>
+    <div class="dring" style="inset:9%;border-color:rgba(204,45,143,.4);animation-delay:.7s;"></div>
+    <div class="dring" style="inset:18%;border-color:rgba(0,200,212,.5);animation-delay:1.4s;"></div>
+    <div class="dring" style="inset:27%;border-color:rgba(204,45,143,.3);animation-delay:2.1s;"></div>
+    <div class="dring" style="inset:36%;border-color:rgba(0,200,212,.4);animation-delay:2.8s;"></div>
+  </div>
+  <div class="orb-rings" style="position:absolute;left:-160px;bottom:-80px;width:360px;height:360px;pointer-events:none;opacity:0.1;z-index:0;">
+    <div class="dring" style="border-color:rgba(0,200,212,.5);animation-direction:reverse;"></div>
+    <div class="dring" style="inset:12%;border-color:rgba(204,45,143,.3);animation-delay:1s;"></div>
+    <div class="dring" style="inset:24%;border-color:rgba(0,200,212,.4);animation-delay:2s;"></div>
+  </div>
   <div class="inner geo-teaser-wrap">
     <div class="geo-teaser-main rv">
       <span class="geo-teaser-kicker">AI Discovery Layer</span>
@@ -855,28 +888,72 @@ nav{height:52px;}
 <div class="section-divider"></div>
 
 <!-- GEO GEMS -->
-<section style="padding:100px 0;background:#020608;position:relative;z-index:2;">
-  <div class="inner" style="display:grid;gap:64px;">
-    <div class="rv">
-      <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(44px,7vw,92px);line-height:.9;color:#e8fffe;">SEO CHASES RANKINGS.</div>
-      <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(44px,7vw,92px);line-height:.9;color:#00c8d4;">GEO EARNS CITATIONS.</div>
-    </div>
-    <div class="rv d1" style="max-width:760px;">
-      <div class="section-label">THE TECHNICAL REALITY</div>
-      <p style="color:#a9aeb1;line-height:1.85;font-size:16px;">Retrieval-Augmented Generation changed<br>everything. Most agencies haven't noticed.<br>When an LLM answers a question it pulls<br>from sources it can parse, structure, and<br>verify. We build those sources.</p>
-    </div>
-    <div class="rv d2" style="max-width:900px;">
-      <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(42px,7vw,88px);line-height:.92;color:#e8fffe;">YOUR COMPETITORS HAVE WEBSITES.</div>
-      <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(42px,7vw,88px);line-height:.92;color:#00c8d4;">YOU HAVE CITATION INFRASTRUCTURE.</div>
-      <p style="margin-top:22px;color:#a9aeb1;line-height:1.85;font-size:16px;">llms.txt. Schema markup. Semantic HTML.<br>Markdown mirrors. FAQPage structured data.<br>Entity disambiguation. Citation architecture.<br>This is not a checklist.<br>This is the infrastructure of AI visibility.</p>
-    </div>
+
+<section style="padding:120px 0;background:#020608;position:relative;z-index:2;overflow:hidden;">
+  <!-- orbital atmosphere left -->
+  <div style="position:absolute;left:-200px;top:10%;width:500px;height:500px;pointer-events:none;opacity:0.12;z-index:0;">
+    <div class="dring" style="border-color:rgba(0,200,212,.5);animation-duration:18s;"></div>
+    <div class="dring" style="inset:10%;border-color:rgba(204,45,143,.3);animation-delay:.5s;animation-duration:14s;"></div>
+    <div class="dring" style="inset:20%;border-color:rgba(0,200,212,.4);animation-delay:1s;animation-duration:10s;"></div>
+    <div class="dring" style="inset:30%;border-color:rgba(204,45,143,.5);animation-delay:1.5s;animation-duration:7s;"></div>
+  </div>
+  <!-- orbital atmosphere right -->
+  <div style="position:absolute;right:-180px;bottom:5%;width:420px;height:420px;pointer-events:none;opacity:0.1;z-index:0;">
+    <div class="dring" style="border-color:rgba(204,45,143,.5);animation-direction:reverse;animation-duration:16s;"></div>
+    <div class="dring" style="inset:14%;border-color:rgba(0,200,212,.4);animation-delay:.8s;animation-duration:11s;"></div>
+    <div class="dring" style="inset:28%;border-color:rgba(204,45,143,.3);animation-delay:1.6s;animation-duration:8s;"></div>
+  </div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(0,200,212,.03) 0%,transparent 65%);pointer-events:none;"></div>
+  <div class="inner" style="display:grid;gap:80px;">
+
+```
+<!-- STATEMENT 1 -->
+<div class="rv" style="position:relative;">
+  <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(48px,8vw,108px);line-height:.85;color:rgba(255,255,255,.18);letter-spacing:-.01em;">SEO CHASES RANKINGS.</div>
+  <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(48px,8vw,108px);line-height:.85;color:#00c8d4;text-shadow:0 0 60px rgba(0,200,212,.4),0 0 120px rgba(0,200,212,.15);letter-spacing:-.01em;">GEO EARNS CITATIONS.</div>
+  <div style="margin-top:24px;width:60px;height:2px;background:linear-gradient(90deg,#00c8d4,transparent);"></div>
+</div>
+
+<!-- TECHNICAL REALITY — tight, punchy -->
+<div class="rv d1" style="display:grid;grid-template-columns:1fr 1fr;gap:2px;max-width:860px;">
+  <div style="background:#060d0f;border:1px solid rgba(0,200,212,.15);border-right:none;padding:32px;">
+    <div style="font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:9px;letter-spacing:4px;color:#00c8d4;margin-bottom:16px;text-transform:uppercase;">The Old Way</div>
+    <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:28px;color:rgba(255,255,255,.25);line-height:1.1;">Rank.<br>Hope.<br>Wait.</div>
+  </div>
+  <div style="background:linear-gradient(135deg,rgba(0,200,212,.06),rgba(6,14,18,.98));border:1px solid rgba(0,200,212,.3);padding:32px;">
+    <div style="font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:9px;letter-spacing:4px;color:#00c8d4;margin-bottom:16px;text-transform:uppercase;">The GEO Way</div>
+    <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:28px;color:#e8fffe;line-height:1.1;text-shadow:0 0 20px rgba(0,200,212,.2);">Get cited.<br>Get chosen.<br>Get paid.</div>
+  </div>
+</div>
+
+<!-- STATEMENT 2 -->
+<div class="rv d2" style="position:relative;">
+  <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(40px,6.5vw,88px);line-height:.85;color:rgba(255,255,255,.18);">YOUR COMPETITORS HAVE WEBSITES.</div>
+  <div style="font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(40px,6.5vw,88px);line-height:.85;color:#00c8d4;text-shadow:0 0 60px rgba(0,200,212,.4),0 0 120px rgba(0,200,212,.15);">YOU HAVE CITATION<br>INFRASTRUCTURE.</div>
+  <div style="margin-top:28px;display:flex;flex-wrap:wrap;gap:8px;">
+    <span style="font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border:1px solid rgba(0,200,212,.3);color:#00c8d4;background:rgba(0,200,212,.05);">llms.txt</span>
+    <span style="font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border:1px solid rgba(0,200,212,.3);color:#00c8d4;background:rgba(0,200,212,.05);">Schema Markup</span>
+    <span style="font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border:1px solid rgba(204,45,143,.3);color:#cc2d8f;background:rgba(204,45,143,.05);">Semantic HTML</span>
+    <span style="font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border:1px solid rgba(0,200,212,.3);color:#00c8d4;background:rgba(0,200,212,.05);">Entity Disambiguation</span>
+    <span style="font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border:1px solid rgba(204,45,143,.3);color:#cc2d8f;background:rgba(204,45,143,.05);">Markdown Mirrors</span>
+    <span style="font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border:1px solid rgba(0,200,212,.3);color:#00c8d4;background:rgba(0,200,212,.05);">Citation Architecture</span>
+  </div>
+</div>
+```
+
   </div>
 </section>
 
 <div class="section-divider"></div>
 <!-- STATS -->
-<section class="stats-band" style="padding:0;">
-  <div class="stats-grid gdm-sz">
+<section class="stats-band" style="padding:0;position:relative;overflow:hidden;">
+  <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:600px;height:600px;pointer-events:none;opacity:0.06;z-index:0;">
+    <div class="dring" style="border-color:rgba(0,200,212,.8);animation-duration:20s;"></div>
+    <div class="dring" style="inset:8%;border-color:rgba(204,45,143,.6);animation-delay:.6s;animation-duration:15s;"></div>
+    <div class="dring" style="inset:16%;border-color:rgba(0,200,212,.7);animation-delay:1.2s;animation-duration:11s;"></div>
+    <div class="dring" style="inset:24%;border-color:rgba(204,45,143,.5);animation-delay:1.8s;animation-duration:8s;"></div>
+  </div>
+  <div class="stats-grid gdm-sz" style="position:relative;z-index:1;">
     <div class="stat-block rv d1"><div style="display:flex;align-items:baseline;gap:2px;"><span style="font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(28px,4vw,42px);color:#00c8d4;">$</span><div class="stat-big" data-count="799">0</div></div><div class="stat-lbl">Starting Per Month</div></div>
     <div class="stat-block rv d2"><div><span class="stat-big" data-count="7">0</span><span class="stat-unit">-14</span></div><div class="stat-lbl">Days to Launch</div></div>
     <div class="stat-block rv d3"><div class="stat-big" data-count="4">0</div><div class="stat-lbl">Service Pillars</div></div>
@@ -1141,35 +1218,32 @@ if(topBtn){
   topBtn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
 }
 
-/* ══ ENHANCED FULL-PAGE STARFIELD ══ */
-/* ══ ENHANCED FULL-PAGE STARFIELD ══
-   Replaces the existing gdm-cvs particle system.
-   - 120 ambient floating dots (cyan + magenta)
-   - 8 shooting stars at random intervals
-   - Canvas scrolls with the page (position:absolute, full document height)
-   - Separate fixed canvas for the hero viewport layer (keeps existing feel)
-   - Performant: skips frames on low-end devices
-*/
-
+/* ══ GEODMUS CANVAS ENGINE ══ */
 (function(){
   'use strict';
 
-  // ── FIXED HERO CANVAS (existing, enhanced) ──────────────────────────────
+  var frameInterval = isMobile ? (1000/30) : (1000/60);
+  var particleCount  = isMobile ? 50 : 120;
+  var shootCount     = isMobile ? 5  : 12;
+
+  // ── CANVAS A: fixed background stars (z-index:0) ────────────────────────
   var cvs = document.getElementById('gdm-cvs');
   if(!cvs) return;
   var cx = cvs.getContext('2d');
-  var W = 0, H = 0, pts = [], lt = 0;
-  var particleCount = isMobile ? 30 : 60;
-  var shootingStarCount = isMobile ? 2 : 4;
-  var frameInterval = isMobile ? (1000/30) : (1000/60);
+  var W = 0, H = 0, lt = 0;
 
-  function rsz(){
-    W = cvs.width = innerWidth;
-    H = cvs.height = innerHeight;
-  }
-  rsz();
-  addEventListener('resize', rsz, {passive:true});
+  function rsz(){ W = cvs.width = innerWidth; H = cvs.height = innerHeight; }
+  rsz(); addEventListener('resize', rsz, {passive:true});
 
+  // ── CANVAS B: fixed FX overlay (z-index:3, above sections) ──────────────
+  var fxCvs = document.getElementById('gdm-fx');
+  var fx = fxCvs.getContext('2d');
+  var FW = 0, FH = 0, flt = 0;
+  function rsz2(){ FW = fxCvs.width = innerWidth; FH = fxCvs.height = innerHeight; }
+  rsz2(); addEventListener('resize', rsz2, {passive:true});
+
+  // ── BACKGROUND PARTICLES ─────────────────────────────────────────────────
+  var pts = [];
   function Pt(){ this.reset(true); }
   Pt.prototype.reset = function(init){
     this.x = Math.random() * W;
@@ -1183,182 +1257,259 @@ if(topBtn){
     this.c = cols[Math.floor(Math.random() * cols.length)];
   };
 
-  // Configured dots in the fixed hero layer
-  for(var i = 0; i < particleCount; i++){
-    var p = new Pt(); pts.push(p);
-  }
+  for(var i = 0; i < particleCount; i++) pts.push(new Pt());
 
-  // ── FULL PAGE SCROLLING CANVAS ──────────────────────────────────────────
-  var pgCvs = document.createElement('canvas');
-  pgCvs.id = 'gdm-starfield';
-  pgCvs.style.cssText = 'position:absolute;top:0;left:0;width:100%;pointer-events:none;z-index:0;opacity:0.6;';
-  var body = document.body;
-  body.style.position = body.style.position || 'relative';
-  body.insertBefore(pgCvs, body.firstChild);
-
-  var pgCx = pgCvs.getContext('2d');
-  var pgW = 0, pgH = 0, stars = [], shoots = [], pgLt = 0;
-
-  function resizePg(){
-    pgW = pgCvs.width = innerWidth;
-    pgH = pgCvs.height = Math.max(
-      body.scrollHeight,
-      document.documentElement.scrollHeight,
-      5000
-    );
-  }
-  resizePg();
-  addEventListener('resize', function(){
-    setTimeout(resizePg, 200);
-  }, {passive:true});
-
-  // Star object for full-page canvas
-  function Star(){
-    this.x = Math.random() * pgW;
-    this.y = Math.random() * pgH;
-    this.vx = (Math.random() - .5) * .15;
-    this.vy = (Math.random() - .5) * .15;
-    this.r  = Math.random() * 1.2 + .15;
-    this.life = Math.random();
-    this.speed = Math.random() * .002 + .001;
-    var cols = [[0,200,212],[204,45,143],[80,210,220],[160,35,110],[0,180,190]];
-    this.c = cols[Math.floor(Math.random() * cols.length)];
-  }
-  Star.prototype.update = function(){
-    this.x += this.vx;
-    this.y += this.vy;
-    this.life += this.speed;
-    if(this.x < 0 || this.x > pgW || this.y < 0 || this.y > pgH || this.life > 1){
-      this.x = Math.random() * pgW;
-      this.y = Math.random() * pgH;
-      this.life = 0;
-    }
-  };
-  Star.prototype.draw = function(){
-    var a = Math.sin(this.life * Math.PI) * .5;
-    pgCx.beginPath();
-    pgCx.arc(this.x, this.y, this.r, 0, 6.283);
-    pgCx.fillStyle = 'rgba('+this.c[0]+','+this.c[1]+','+this.c[2]+','+a+')';
-    pgCx.fill();
-  };
-
-  // Configured stars distributed across full page height
-  for(var s = 0; s < particleCount; s++) stars.push(new Star());
-
-  // Shooting star object
-  function Shoot(){
-    this.reset();
-  }
+  // ── SHOOTING STARS (draw on background canvas) ───────────────────────────
+  function Shoot(){ this.reset(); }
   Shoot.prototype.reset = function(){
-    // Start from random top or left edge
     if(Math.random() > .5){
-      this.x = Math.random() * pgW;
-      this.y = Math.random() * pgH * .6;
+      this.x = Math.random() * W;
+      this.y = Math.random() * H;
     } else {
-      this.x = Math.random() * pgW * .3;
-      this.y = Math.random() * pgH * .4;
+      this.x = Math.random() * W * .4;
+      this.y = Math.random() * H;
     }
-    var angle = (Math.random() * 40 + 15) * Math.PI / 180; // 15-55 degrees
-    var speed = Math.random() * 6 + 4;
+    var angle = (Math.random() * 50 + 10) * Math.PI / 180;
+    var speed = Math.random() * 8 + 5;
     this.vx = Math.cos(angle) * speed;
     this.vy = Math.sin(angle) * speed;
-    this.len = Math.random() * 80 + 40;
+    this.len = Math.random() * 120 + 60;
     this.life = 0;
-    this.maxLife = Math.random() * 60 + 40;
+    this.maxLife = Math.random() * 70 + 40;
     this.active = true;
-    // Cyan or white
-    this.color = Math.random() > .4 ? '0,200,212' : '232,255,254';
+    this.color = Math.random() > .6 ? '0,200,212' : Math.random() > .5 ? '204,45,143' : '232,255,254';
   };
   Shoot.prototype.update = function(){
-    this.x += this.vx;
-    this.y += this.vy;
-    this.life++;
-    if(this.life > this.maxLife || this.x > pgW + 100 || this.y > pgH + 100){
+    this.x += this.vx; this.y += this.vy; this.life++;
+    if(this.life > this.maxLife || this.x > W + 100 || this.y > H + 100){
+      if(this.active){ spawnExplosion(this.x, this.y, this.color); }
       this.active = false;
     }
   };
   Shoot.prototype.draw = function(){
     var progress = this.life / this.maxLife;
-    var a = Math.sin(progress * Math.PI) * .8;
-    var tailX = this.x - this.vx * (this.len / Math.sqrt(this.vx*this.vx + this.vy*this.vy));
-    var tailY = this.y - this.vy * (this.len / Math.sqrt(this.vx*this.vx + this.vy*this.vy));
-    var grad = pgCx.createLinearGradient(tailX, tailY, this.x, this.y);
+    var a = Math.sin(progress * Math.PI) * .9;
+    var spd = Math.sqrt(this.vx*this.vx + this.vy*this.vy);
+    var tailX = this.x - this.vx * (this.len / spd);
+    var tailY = this.y - this.vy * (this.len / spd);
+    var grad = cx.createLinearGradient(tailX, tailY, this.x, this.y);
     grad.addColorStop(0, 'rgba('+this.color+',0)');
     grad.addColorStop(1, 'rgba('+this.color+','+a+')');
-    pgCx.beginPath();
-    pgCx.moveTo(tailX, tailY);
-    pgCx.lineTo(this.x, this.y);
-    pgCx.strokeStyle = grad;
-    pgCx.lineWidth = Math.random() * .5 + .8;
-    pgCx.stroke();
-    // Bright tip
-    pgCx.beginPath();
-    pgCx.arc(this.x, this.y, 1.2, 0, 6.283);
-    pgCx.fillStyle = 'rgba('+this.color+','+a+')';
-    pgCx.fill();
+    cx.beginPath(); cx.moveTo(tailX, tailY); cx.lineTo(this.x, this.y);
+    cx.strokeStyle = grad; cx.lineWidth = 1.2; cx.stroke();
+    cx.beginPath(); cx.arc(this.x, this.y, 1.5, 0, 6.283);
+    cx.fillStyle = 'rgba('+this.color+','+a+')'; cx.fill();
   };
 
-  // Spawn shooting stars on interval
   var shootPool = [];
-  for(var sh = 0; sh < shootingStarCount; sh++){
-    var shoot = new Shoot();
-    shoot.active = false;
-    shoot.life = shoot.maxLife + 1;
-    shootPool.push(shoot);
+  for(var sh = 0; sh < shootCount; sh++){
+    var s2 = new Shoot(); s2.active = false; s2.life = 999; shootPool.push(s2);
   }
-
   var lastShoot = 0;
-  function maybeSpawnShoot(now){
-    if(now - lastShoot < 2200) return; // min 2.2s between shoots
-    if(Math.random() > .3) return;     // 30% chance each eligible frame
+  function maybeSpawn(now){
+    if(now - lastShoot < 1000) return;
+    if(Math.random() > .6) return;
     lastShoot = now;
     for(var i = 0; i < shootPool.length; i++){
-      if(!shootPool[i].active){
-        shootPool[i].reset();
-        break;
-      }
+      if(!shootPool[i].active){ shootPool[i].reset(); break; }
     }
   }
 
-  // ── MAIN DRAW LOOPS ─────────────────────────────────────────────────────
+  // ── ORBITAL PLANET SYSTEM ────────────────────────────────────────────────
+  var orbitSystems = [];
+  var orbitCount = isMobile ? 3 : 6;
 
-  // Fixed hero canvas loop
-  (function drawFixed(ts){
-    requestAnimationFrame(drawFixed);
+  function OrbitSystem(){
+    this.cx = Math.random() * FW;
+    this.cy = Math.random() * FH;
+    this.moons = [];
+    var moonCount = Math.floor(Math.random() * 3) + 2;
+    for(var i = 0; i < moonCount; i++){
+      this.moons.push({
+        radius:  Math.random() * 60 + 30,
+        angle:   Math.random() * Math.PI * 2,
+        speed:   (Math.random() * .004 + .001) * (Math.random() > .5 ? 1 : -1),
+        size:    Math.random() * 1.5 + .4,
+        color:   Math.random() > .5 ? '0,200,212' : '204,45,143',
+        alpha:   Math.random() * .5 + .2,
+      });
+    }
+    // Drift the center slowly
+    this.vx = (Math.random() - .5) * .08;
+    this.vy = (Math.random() - .5) * .08;
+  }
+
+  OrbitSystem.prototype.update = function(){
+    this.cx += this.vx; this.cy += this.vy;
+    if(this.cx < -200) this.cx = FW + 200;
+    if(this.cx > FW + 200) this.cx = -200;
+    if(this.cy < -200) this.cy = FH + 200;
+    if(this.cy > FH + 200) this.cy = -200;
+    for(var i = 0; i < this.moons.length; i++){
+      this.moons[i].angle += this.moons[i].speed;
+    }
+  };
+
+  OrbitSystem.prototype.draw = function(){
+    for(var i = 0; i < this.moons.length; i++){
+      var m = this.moons[i];
+      // Orbit ring
+      fx.beginPath();
+      fx.arc(this.cx, this.cy, m.radius, 0, 6.283);
+      fx.strokeStyle = 'rgba('+m.color+','+(m.alpha * .15)+')';
+      fx.lineWidth = .5;
+      fx.stroke();
+      // Moon dot
+      var mx = this.cx + Math.cos(m.angle) * m.radius;
+      var my = this.cy + Math.sin(m.angle) * m.radius;
+      fx.beginPath();
+      fx.arc(mx, my, m.size, 0, 6.283);
+      fx.fillStyle = 'rgba('+m.color+','+m.alpha+')';
+      fx.fill();
+      // Moon glow
+      fx.beginPath();
+      fx.arc(mx, my, m.size * 2.5, 0, 6.283);
+      fx.fillStyle = 'rgba('+m.color+','+(m.alpha * .15)+')';
+      fx.fill();
+    }
+  };
+
+  for(var oi = 0; oi < orbitCount; oi++) orbitSystems.push(new OrbitSystem());
+
+  // ── SPARK COLLISION SYSTEM ───────────────────────────────────────────────
+  var sparks = [];
+  var sparkTimer = 0;
+
+  function maybeSpark(now){
+    if(now - sparkTimer < 3500) return;
+    if(Math.random() > .4) return;
+    sparkTimer = now;
+    // Pick random position on page
+    var sx = Math.random() * FW;
+    var sy = Math.random() * FH;
+    sparks.push({
+      x: sx, y: sy,
+      flash: 1.0,
+      ring: { r: 0, alpha: .8 },
+      particles: (function(){
+        var arr = [];
+        var n = isMobile ? 5 : 10;
+        for(var i = 0; i < n; i++){
+          var a = Math.random() * Math.PI * 2;
+          var spd = Math.random() * 2.5 + .5;
+          arr.push({ x:sx, y:sy, vx:Math.cos(a)*spd, vy:Math.sin(a)*spd, life:1, decay:.04+Math.random()*.03 });
+        }
+        return arr;
+      })()
+    });
+  }
+
+  // ── MISSING HELPERS ──────────────────────────────────────────────────────
+  var explosions = [];
+
+  function spawnExplosion(x, y, color){
+    var count = isMobile ? 8 : 18;
+    var shards = [];
+    for(var i = 0; i < count; i++){
+      var ang = (Math.PI*2/count)*i + Math.random()*.5;
+      var spd = Math.random()*6+2;
+      shards.push({x:x,y:y,vx:Math.cos(ang)*spd,vy:Math.sin(ang)*spd,
+        life:1,r:Math.random()*2+.5,decay:Math.random()*.025+.015});
+    }
+    explosions.push({x:x,y:y,color:color||'0,200,212',
+      ring:{r:0,alpha:1},flash:1.0,dead:false,shards:shards});
+  }
+
+  function drawExplosions(){
+    for(var ei=explosions.length-1;ei>=0;ei--){
+      var e=explosions[ei];
+      e.flash-=0.1; e.ring.r+=4; e.ring.alpha-=0.035;
+      if(e.flash>0){
+        fx.beginPath(); fx.arc(e.x,e.y,10,0,6.283);
+        fx.fillStyle='rgba('+e.color+','+Math.max(0,e.flash)+')'; fx.fill();
+      }
+      if(e.ring.alpha>0){
+        fx.beginPath(); fx.arc(e.x,e.y,e.ring.r,0,6.283);
+        fx.strokeStyle='rgba('+e.color+','+Math.max(0,e.ring.alpha*.8)+')';
+        fx.lineWidth=2.5; fx.stroke();
+        fx.beginPath(); fx.arc(e.x,e.y,e.ring.r*.65,0,6.283);
+        fx.strokeStyle='rgba('+e.color+','+Math.max(0,e.ring.alpha*.35)+')';
+        fx.lineWidth=1; fx.stroke();
+      }
+      var alive=false;
+      for(var si3=0;si3<e.shards.length;si3++){
+        var sh=e.shards[si3]; if(sh.life<=0) continue;
+        sh.x+=sh.vx; sh.y+=sh.vy; sh.vx*=.91; sh.vy*=.91; sh.life-=sh.decay;
+        fx.beginPath(); fx.arc(sh.x,sh.y,sh.r,0,6.283);
+        fx.fillStyle='rgba('+e.color+','+Math.max(0,sh.life)+')'; fx.fill();
+        alive=true;
+      }
+      if(!alive&&e.ring.alpha<=0) explosions.splice(ei,1);
+    }
+  }
+
+  function drawSparks(){
+    for(var ski=sparks.length-1;ski>=0;ski--){
+      var sp=sparks[ski];
+      sp.flash-=0.09; sp.ring.r+=3; sp.ring.alpha-=0.055;
+      if(sp.flash>0){
+        fx.beginPath(); fx.arc(sp.x,sp.y,5,0,6.283);
+        fx.fillStyle='rgba(232,255,254,'+Math.max(0,sp.flash)+')'; fx.fill();
+      }
+      if(sp.ring.alpha>0){
+        fx.beginPath(); fx.arc(sp.x,sp.y,sp.ring.r,0,6.283);
+        fx.strokeStyle='rgba('+sp.color+','+Math.max(0,sp.ring.alpha*.6)+')';
+        fx.lineWidth=1; fx.stroke();
+      }
+      var alive2=false;
+      for(var spi=0;spi<sp.particles.length;spi++){
+        var par=sp.particles[spi];
+        par.x+=par.vx; par.y+=par.vy; par.life-=par.decay;
+        if(par.life>0){
+          fx.beginPath(); fx.arc(par.x,par.y,1,0,6.283);
+          fx.fillStyle='rgba('+sp.color+','+Math.max(0,par.life)+')'; fx.fill();
+          alive2=true;
+        }
+      }
+      if(!alive2&&sp.ring.alpha<=0) sparks.splice(ski,1);
+    }
+  }
+
+  // ── DRAW LOOP A: background stars + shooting stars (z-index:0) ───────────
+  (function drawBg(ts){
+    requestAnimationFrame(drawBg);
     if(ts - lt < frameInterval) return; lt = ts;
     cx.clearRect(0, 0, W, H);
+    // Ambient particles
     for(var j = 0; j < pts.length; j++){
       var q = pts[j];
       q.x += q.vx; q.y += q.vy; q.life += q.speed;
       if(q.x < 0 || q.x > W || q.y < 0 || q.y > H || q.life > 1) q.reset(false);
       var a = Math.sin(q.life * Math.PI) * .5;
-      cx.beginPath();
-      cx.arc(q.x, q.y, q.r, 0, 6.283);
-      cx.fillStyle = 'rgba('+q.c[0]+','+q.c[1]+','+q.c[2]+','+a+')';
-      cx.fill();
+      cx.beginPath(); cx.arc(q.x, q.y, q.r, 0, 6.283);
+      cx.fillStyle = 'rgba('+q.c[0]+','+q.c[1]+','+q.c[2]+','+a+')'; cx.fill();
+    }
+    // Shooting stars
+    maybeSpawn(ts);
+    for(var pi = 0; pi < shootPool.length; pi++){
+      if(shootPool[pi].active){ shootPool[pi].update(); shootPool[pi].draw(); }
     }
   })(0);
 
-  // Full page canvas loop
-  (function drawPage(ts){
-    requestAnimationFrame(drawPage);
-    if(ts - pgLt < frameInterval) return; pgLt = ts;
-    pgCx.clearRect(0, 0, pgW, pgH);
-
-    // Stars
-    for(var si = 0; si < stars.length; si++){
-      stars[si].update();
-      stars[si].draw();
+  // ── DRAW LOOP B: FX overlay - orbitals, explosions, sparks (z-index:3) ───
+  var flt2 = 0;
+  (function drawFX(ts){
+    requestAnimationFrame(drawFX);
+    if(ts - flt2 < frameInterval) return; flt2 = ts;
+    fx.clearRect(0, 0, FW, FH);
+    // Orbital systems
+    for(var oi2 = 0; oi2 < orbitSystems.length; oi2++){
+      orbitSystems[oi2].update(); orbitSystems[oi2].draw();
     }
-
-    // Shooting stars
-    maybeSpawnShoot(ts);
-    for(var pi = 0; pi < shootPool.length; pi++){
-      if(shootPool[pi].active){
-        shootPool[pi].update();
-        shootPool[pi].draw();
-      }
-    }
+    // Explosions
+    drawExplosions();
+    // Sparks
+    maybeSpark(ts); drawSparks();
   })(0);
 
 })();
