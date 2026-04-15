@@ -1277,12 +1277,13 @@ if(topBtn){
     this.life = 0;
     this.maxLife = Math.random() * 70 + 40;
     this.active = true;
+    this.scale = Math.random() * .8 + .4; // 0.4 tiny → 1.2 massive
     this.color = Math.random() > .6 ? '0,200,212' : Math.random() > .5 ? '204,45,143' : '232,255,254';
   };
   Shoot.prototype.update = function(){
     this.x += this.vx; this.y += this.vy; this.life++;
     if(this.life > this.maxLife || this.x > W + 100 || this.y > H + 100){
-      if(this.active){ spawnExplosion(this.x, this.y, this.color); }
+      if(this.active){ spawnExplosion(this.x, this.y, this.color, this.scale); }
       this.active = false;
     }
   };
@@ -1307,8 +1308,8 @@ if(topBtn){
   }
   var lastShoot = 0;
   function maybeSpawn(now){
-    if(now - lastShoot < 1000) return;
-    if(Math.random() > .6) return;
+    if(now - lastShoot < 1800) return; // toned down from 1000
+    if(Math.random() > .45) return;    // toned down from .6
     lastShoot = now;
     for(var i = 0; i < shootPool.length; i++){
       if(!shootPool[i].active){ shootPool[i].reset(); break; }
@@ -1317,64 +1318,94 @@ if(topBtn){
 
   // ── ORBITAL PLANET SYSTEM ────────────────────────────────────────────────
   var orbitSystems = [];
-  var orbitCount = isMobile ? 3 : 6;
+  var orbitCount = isMobile ? 8 : 16;
+  var pageScrollY = 0;
+  addEventListener('scroll', function(){ pageScrollY = window.scrollY; }, {passive:true});
 
-  function OrbitSystem(){
-    this.cx = Math.random() * FW;
-    this.cy = Math.random() * FH;
+  function OrbitSystem(index, total){
+    // Spread systems across full page height — scroll into them
+    var pageH = Math.max(document.body.scrollHeight, 4000);
+    this.pageY  = (index / total) * pageH + Math.random() * (pageH / total);
+    this.cx     = Math.random() * FW;
+    this.vx     = (Math.random() - .5) * .06;
+    this.vy     = 0; // no vertical drift — position is scroll-based
+
+    // depth: 0 = very far (faint, tiny), 1 = very close (bright, large)
+    // Hard split — no middle ground. Either clearly far or clearly close.
+    this.depth  = Math.random() < .4
+      ? Math.random() * .25          // far tier: 0–0.25
+      : .65 + Math.random() * .35;   // close tier: 0.65–1.0
+
+    var isFar   = this.depth < .35;
+    var minMoons = 3;
+    var maxMoons = isFar ? 5 : (isMobile ? 6 : 8);
+    var moonCount = minMoons + Math.floor(Math.random() * (maxMoons - minMoons + 1));
+
     this.moons = [];
-    var moonCount = Math.floor(Math.random() * 3) + 2;
     for(var i = 0; i < moonCount; i++){
+      var moonDepth = Math.random();
+      // Far systems: tiny radii, close systems: much larger
+      var radiusBase = isFar
+        ? 12 + Math.random() * 45
+        : 50 + Math.random() * 160;
+
+      // Moon size: far=barely visible dot, close=clear bright orb
+      var moonSize = isFar
+        ? .15 + moonDepth * .4
+        : .6 + moonDepth * 2.2 * this.depth;
+
+      // Alpha: far extremely faint, close clearly visible
+      var moonAlpha = isFar
+        ? .04 + moonDepth * .1
+        : .3 + moonDepth * .55 * this.depth;
+
+      // Ring line: far barely there, close visible arc
+      var ringAlpha = isFar
+        ? .02 + Math.random() * .05
+        : .06 + this.depth * .18;
+
       this.moons.push({
-        radius:  Math.random() * 60 + 30,
-        angle:   Math.random() * Math.PI * 2,
-        speed:   (Math.random() * .004 + .001) * (Math.random() > .5 ? 1 : -1),
-        size:    Math.random() * 1.5 + .4,
-        color:   Math.random() > .5 ? '0,200,212' : '204,45,143',
-        alpha:   Math.random() * .5 + .2,
+        radius:    radiusBase,
+        angle:     Math.random() * Math.PI * 2,
+        speed:     (Math.random() * .004 + .0005) * (Math.random() > .5 ? 1 : -1),
+        size:      Math.max(.1, moonSize),
+        color:     Math.random() > .5 ? '0,200,212' : '204,45,143',
+        alpha:     moonAlpha,
+        ringAlpha: ringAlpha,
+        lineW:     isFar ? .2 : (.3 + this.depth * .7),
+        glow:      !isFar && moonAlpha > .3,
       });
     }
-    // Drift the center slowly
-    this.vx = (Math.random() - .5) * .08;
-    this.vy = (Math.random() - .5) * .08;
   }
 
   OrbitSystem.prototype.update = function(){
-    this.cx += this.vx; this.cy += this.vy;
-    if(this.cx < -200) this.cx = FW + 200;
-    if(this.cx > FW + 200) this.cx = -200;
-    if(this.cy < -200) this.cy = FH + 200;
-    if(this.cy > FH + 200) this.cy = -200;
-    for(var i = 0; i < this.moons.length; i++){
-      this.moons[i].angle += this.moons[i].speed;
-    }
+    this.cx += this.vx;
+    if(this.cx < -300) this.cx = FW + 300;
+    if(this.cx > FW + 300) this.cx = -300;
+    for(var i = 0; i < this.moons.length; i++) this.moons[i].angle += this.moons[i].speed;
   };
 
-  OrbitSystem.prototype.draw = function(){
+  OrbitSystem.prototype.draw = function(screenY){
+    // screenY = this.pageY - pageScrollY (where on screen this system sits)
     for(var i = 0; i < this.moons.length; i++){
       var m = this.moons[i];
-      // Orbit ring
       fx.beginPath();
-      fx.arc(this.cx, this.cy, m.radius, 0, 6.283);
-      fx.strokeStyle = 'rgba('+m.color+','+(m.alpha * .15)+')';
-      fx.lineWidth = .5;
+      fx.arc(this.cx, screenY, m.radius, 0, 6.283);
+      fx.strokeStyle = 'rgba('+m.color+','+m.ringAlpha+')';
+      fx.lineWidth = m.lineW;
       fx.stroke();
-      // Moon dot
-      var mx = this.cx + Math.cos(m.angle) * m.radius;
-      var my = this.cy + Math.sin(m.angle) * m.radius;
-      fx.beginPath();
-      fx.arc(mx, my, m.size, 0, 6.283);
-      fx.fillStyle = 'rgba('+m.color+','+m.alpha+')';
-      fx.fill();
-      // Moon glow
-      fx.beginPath();
-      fx.arc(mx, my, m.size * 2.5, 0, 6.283);
-      fx.fillStyle = 'rgba('+m.color+','+(m.alpha * .15)+')';
-      fx.fill();
+      var mx2 = this.cx + Math.cos(m.angle) * m.radius;
+      var my2 = screenY + Math.sin(m.angle) * m.radius;
+      fx.beginPath(); fx.arc(mx2, my2, m.size, 0, 6.283);
+      fx.fillStyle = 'rgba('+m.color+','+m.alpha+')'; fx.fill();
+      if(m.glow){
+        fx.beginPath(); fx.arc(mx2, my2, m.size * 3.5, 0, 6.283);
+        fx.fillStyle = 'rgba('+m.color+','+(m.alpha * .15)+')'; fx.fill();
+      }
     }
   };
 
-  for(var oi = 0; oi < orbitCount; oi++) orbitSystems.push(new OrbitSystem());
+  for(var oi = 0; oi < orbitCount; oi++) orbitSystems.push(new OrbitSystem(oi, orbitCount));
 
   // ── SPARK COLLISION SYSTEM ───────────────────────────────────────────────
   var sparks = [];
@@ -1407,41 +1438,73 @@ if(topBtn){
   // ── MISSING HELPERS ──────────────────────────────────────────────────────
   var explosions = [];
 
-  function spawnExplosion(x, y, color){
-    var count = isMobile ? 8 : 18;
+  function spawnExplosion(x, y, color, scale){
+    scale = scale || 1;
+    // Vary shard count by scale — small ones fewer, big ones more
+    var count = Math.round((isMobile ? 6 : 12) * scale) + 4;
+    // Vary speed by scale
+    var speedMin = 1.5 * scale;
+    var speedMax = 5 * scale + 2;
+    // Flash radius varies too
+    var flashR = Math.round(4 + 10 * scale);
+    // Ring expansion speed
+    var ringSpd = 2.5 + 3 * scale;
+    // Ring fade speed — big ones linger longer
+    var ringFade = 0.055 - (scale * 0.012);
     var shards = [];
     for(var i = 0; i < count; i++){
-      var ang = (Math.PI*2/count)*i + Math.random()*.5;
-      var spd = Math.random()*6+2;
-      shards.push({x:x,y:y,vx:Math.cos(ang)*spd,vy:Math.sin(ang)*spd,
-        life:1,r:Math.random()*2+.5,decay:Math.random()*.025+.015});
+      var ang = (Math.PI*2/count)*i + Math.random()*.6;
+      var spd = Math.random()*(speedMax-speedMin)+speedMin;
+      shards.push({
+        x:x, y:y,
+        vx:Math.cos(ang)*spd, vy:Math.sin(ang)*spd,
+        life:1,
+        r: Math.random() * (1.2 * scale) + .3,
+        decay: Math.random()*.022 + .012
+      });
     }
-    explosions.push({x:x,y:y,color:color||'0,200,212',
-      ring:{r:0,alpha:1},flash:1.0,dead:false,shards:shards});
+    explosions.push({
+      x:x, y:y,
+      color: color||'0,200,212',
+      ring:{ r:0, alpha:1 },
+      flash: 1.0,
+      flashR: flashR,
+      ringSpd: ringSpd,
+      ringFade: ringFade,
+      dead:false,
+      shards:shards
+    });
   }
 
   function drawExplosions(){
     for(var ei=explosions.length-1;ei>=0;ei--){
       var e=explosions[ei];
-      e.flash-=0.1; e.ring.r+=4; e.ring.alpha-=0.035;
+      e.flash -= 0.09;
+      e.ring.r += e.ringSpd;
+      e.ring.alpha -= e.ringFade;
+      // Flash
       if(e.flash>0){
-        fx.beginPath(); fx.arc(e.x,e.y,10,0,6.283);
+        fx.beginPath(); fx.arc(e.x,e.y,e.flashR,0,6.283);
         fx.fillStyle='rgba('+e.color+','+Math.max(0,e.flash)+')'; fx.fill();
       }
+      // Dual expanding rings
       if(e.ring.alpha>0){
         fx.beginPath(); fx.arc(e.x,e.y,e.ring.r,0,6.283);
-        fx.strokeStyle='rgba('+e.color+','+Math.max(0,e.ring.alpha*.8)+')';
-        fx.lineWidth=2.5; fx.stroke();
-        fx.beginPath(); fx.arc(e.x,e.y,e.ring.r*.65,0,6.283);
-        fx.strokeStyle='rgba('+e.color+','+Math.max(0,e.ring.alpha*.35)+')';
-        fx.lineWidth=1; fx.stroke();
+        fx.strokeStyle='rgba('+e.color+','+Math.max(0,e.ring.alpha*.75)+')';
+        fx.lineWidth=1.8; fx.stroke();
+        fx.beginPath(); fx.arc(e.x,e.y,e.ring.r*.6,0,6.283);
+        fx.strokeStyle='rgba('+e.color+','+Math.max(0,e.ring.alpha*.3)+')';
+        fx.lineWidth=.8; fx.stroke();
       }
+      // Shards
       var alive=false;
       for(var si3=0;si3<e.shards.length;si3++){
-        var sh=e.shards[si3]; if(sh.life<=0) continue;
-        sh.x+=sh.vx; sh.y+=sh.vy; sh.vx*=.91; sh.vy*=.91; sh.life-=sh.decay;
-        fx.beginPath(); fx.arc(sh.x,sh.y,sh.r,0,6.283);
-        fx.fillStyle='rgba('+e.color+','+Math.max(0,sh.life)+')'; fx.fill();
+        var sh2=e.shards[si3]; if(sh2.life<=0) continue;
+        sh2.x+=sh2.vx; sh2.y+=sh2.vy;
+        sh2.vx*=.92; sh2.vy*=.92;
+        sh2.life-=sh2.decay;
+        fx.beginPath(); fx.arc(sh2.x,sh2.y,sh2.r,0,6.283);
+        fx.fillStyle='rgba('+e.color+','+Math.max(0,sh2.life)+')'; fx.fill();
         alive=true;
       }
       if(!alive&&e.ring.alpha<=0) explosions.splice(ei,1);
@@ -1502,9 +1565,15 @@ if(topBtn){
     requestAnimationFrame(drawFX);
     if(ts - flt2 < frameInterval) return; flt2 = ts;
     fx.clearRect(0, 0, FW, FH);
-    // Orbital systems
+    // Orbital systems — scroll-based, only draw if on/near screen
     for(var oi2 = 0; oi2 < orbitSystems.length; oi2++){
-      orbitSystems[oi2].update(); orbitSystems[oi2].draw();
+      var sys = orbitSystems[oi2];
+      var screenY = sys.pageY - pageScrollY;
+      var margin = 250; // px buffer outside viewport to still draw
+      if(screenY > -margin && screenY < FH + margin){
+        sys.update();
+        sys.draw(screenY);
+      }
     }
     // Explosions
     drawExplosions();
