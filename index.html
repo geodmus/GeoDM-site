@@ -570,6 +570,12 @@ nav{height:52px;}
 .geo-teaser-list{display:grid;gap:8px;margin:0;padding:0;list-style:none}
 .geo-teaser-list li{padding:10px 12px;border:1px solid rgba(204,45,143,.28);background:rgba(204,45,143,.09);font-size:13px;letter-spacing:.02em;color:#ffd7ef}
 @media (max-width:960px){.geo-teaser-wrap{grid-template-columns:1fr}.geo-teaser-main,.geo-teaser-side{padding:24px}}
+.geo-ticker{background:rgba(0,200,212,.04);border-top:1px solid rgba(0,200,212,.1);border-bottom:1px solid rgba(0,200,212,.1);padding:14px 0;overflow:hidden;position:relative;z-index:2}
+.geo-ticker-track{display:flex;width:max-content;animation:geoTickerScroll 35s linear infinite}
+.geo-ticker-content{display:flex;align-items:center;white-space:nowrap;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#2a4a50;padding-right:40px}
+.geo-ticker-dot{color:#1a2a30;margin:0 10px}
+.geo-ticker-hl{color:#00c8d4}
+@keyframes geoTickerScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 </style>
 
@@ -804,6 +810,47 @@ nav{height:52px;}
     </aside>
   </div>
 </section>
+
+<div class="geo-ticker">
+  <div class="geo-ticker-track">
+    <div class="geo-ticker-content">
+      <span class="geo-ticker-hl">GENERATIVE ENGINES</span><span class="geo-ticker-dot">·</span>
+      <span class="geo-ticker-hl">MARKDOWN MIRRORS</span><span class="geo-ticker-dot">·</span>
+      <span class="geo-ticker-hl">GEO</span><span class="geo-ticker-dot">·</span>
+      <span>WIRED</span><span class="geo-ticker-dot">·</span>
+      <span class="geo-ticker-hl">CITATION INFRASTRUCTURE</span><span class="geo-ticker-dot">·</span>
+      <span class="geo-ticker-hl">RETRIEVAL-AUGMENTED GENERATION</span><span class="geo-ticker-dot">·</span>
+      <span>SEARCH ENGINE LAND</span><span class="geo-ticker-dot">·</span>
+      <span class="geo-ticker-hl">ENTITY DISAMBIGUATION</span><span class="geo-ticker-dot">·</span>
+      <span class="geo-ticker-hl">LLMS.TXT</span><span class="geo-ticker-dot">·</span>
+      <span>GARTNER</span><span class="geo-ticker-dot">·</span>
+      <span class="geo-ticker-hl">ANSWER ENGINE OPTIMIZATION</span><span class="geo-ticker-dot">·</span>
+      <span>EMARKETER</span><span class="geo-ticker-dot">·</span>
+      <span class="geo-ticker-hl">KNOWLEDGE GRAPH</span><span class="geo-ticker-dot">·</span>
+      <span>PRINCETON</span><span class="geo-ticker-dot">·</span>
+      <span class="geo-ticker-hl">AI OVERVIEWS</span><span class="geo-ticker-dot">·</span>
+      <span>LINKEDIN BIG IDEAS 2026</span><span class="geo-ticker-dot">·</span>
+    </div>
+    <div class="geo-ticker-content" aria-hidden="true">
+      <span class="geo-ticker-hl">GENERATIVE ENGINES</span><span class="geo-ticker-dot">·</span>
+      <span class="geo-ticker-hl">MARKDOWN MIRRORS</span><span class="geo-ticker-dot">·</span>
+      <span class="geo-ticker-hl">GEO</span><span class="geo-ticker-dot">·</span>
+      <span>WIRED</span><span class="geo-ticker-dot">·</span>
+      <span class="geo-ticker-hl">CITATION INFRASTRUCTURE</span><span class="geo-ticker-dot">·</span>
+      <span class="geo-ticker-hl">RETRIEVAL-AUGMENTED GENERATION</span><span class="geo-ticker-dot">·</span>
+      <span>SEARCH ENGINE LAND</span><span class="geo-ticker-dot">·</span>
+      <span class="geo-ticker-hl">ENTITY DISAMBIGUATION</span><span class="geo-ticker-dot">·</span>
+      <span class="geo-ticker-hl">LLMS.TXT</span><span class="geo-ticker-dot">·</span>
+      <span>GARTNER</span><span class="geo-ticker-dot">·</span>
+      <span class="geo-ticker-hl">ANSWER ENGINE OPTIMIZATION</span><span class="geo-ticker-dot">·</span>
+      <span>EMARKETER</span><span class="geo-ticker-dot">·</span>
+      <span class="geo-ticker-hl">KNOWLEDGE GRAPH</span><span class="geo-ticker-dot">·</span>
+      <span>PRINCETON</span><span class="geo-ticker-dot">·</span>
+      <span class="geo-ticker-hl">AI OVERVIEWS</span><span class="geo-ticker-dot">·</span>
+      <span>LINKEDIN BIG IDEAS 2026</span><span class="geo-ticker-dot">·</span>
+    </div>
+  </div>
+</div>
 
 <div class="section-divider"></div>
 
