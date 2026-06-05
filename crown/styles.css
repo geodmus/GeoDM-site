@@ -1,0 +1,418 @@
+/* ── Crown of Thorns — Pre-Launch Landing Page ── */
+/* Dark luxury. Ink black. Gold accents. Serif display + clean sans. */
+
+:root {
+  --ink: #0a0a0b;
+  --ink2: #111113;
+  --ink3: #1a1a1e;
+  --ink4: #242428;
+  --gold: #c9a96e;
+  --gold2: #e8c98a;
+  --gold3: #f0dba8;
+  --bone: #f4f0e8;
+  --bone2: #ddd8cc;
+  --gray: #666660;
+  --lgray: #999990;
+  --border: rgba(201,169,110,0.12);
+  --border2: rgba(201,169,110,0.25);
+  --white: #ffffff;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background:var(--ink);
+  color:var(--bone);
+  font-family:'DM Sans','Helvetica Neue',Arial,sans-serif;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── HERO ── */
+.hero {
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+  padding:80px 40px;
+  background:var(--ink);
+}
+.hero::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse 60% 60% at 50% 40%, rgba(201,169,110,0.04) 0%, transparent 70%);
+  pointer-events:none;
+}
+.hero-inner {
+  position:relative;
+  z-index:2;
+  max-width:640px;
+}
+.crown-mark {
+  margin-bottom:48px;
+  display:flex;
+  justify-content:center;
+}
+.crown-svg {
+  width:120px;
+  height:80px;
+  color:var(--gold);
+  opacity:0.8;
+}
+.hero-wordmark {
+  font-family:'Cormorant Garamond','Georgia',serif;
+  font-size:clamp(42px,8vw,72px);
+  font-weight:300;
+  letter-spacing:0.12em;
+  color:var(--bone);
+  line-height:1;
+  margin-bottom:16px;
+}
+.hero-tagline {
+  font-size:11px;
+  letter-spacing:0.35em;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-weight:500;
+  margin-bottom:32px;
+  font-family:'DM Sans',sans-serif;
+}
+.hero-drop {
+  font-family:'Cormorant Garamond','Georgia',serif;
+  font-size:18px;
+  font-style:italic;
+  color:var(--lgray);
+  letter-spacing:0.02em;
+  line-height:1.6;
+}
+
+/* ── WAITLIST ── */
+.waitlist {
+  padding:100px 40px;
+  background:var(--ink2);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  text-align:center;
+}
+.waitlist-inner {
+  max-width:520px;
+  margin:0 auto;
+}
+.waitlist-label {
+  font-size:11px;
+  letter-spacing:0.3em;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-weight:500;
+  margin-bottom:16px;
+}
+.waitlist-title {
+  font-family:'Cormorant Garamond','Georgia',serif;
+  font-size:clamp(32px,5vw,48px);
+  font-weight:300;
+  color:var(--bone);
+  letter-spacing:0.04em;
+  margin-bottom:40px;
+  line-height:1.1;
+}
+.form-row {
+  display:flex;
+  gap:0;
+  max-width:440px;
+  margin:0 auto 16px;
+  border:1px solid var(--border2);
+  border-radius:2px;
+  overflow:hidden;
+}
+.form-input {
+  flex:1;
+  background:rgba(255,255,255,0.03);
+  border:none;
+  padding:16px 20px;
+  color:var(--bone);
+  font-family:'DM Sans',sans-serif;
+  font-size:14px;
+  outline:none;
+  -webkit-appearance:none;
+}
+.form-input::placeholder { color:var(--gray); }
+.form-input:focus { background:rgba(201,169,110,0.05); }
+.form-btn {
+  background:var(--gold);
+  color:var(--ink);
+  border:none;
+  padding:16px 24px;
+  font-family:'DM Sans',sans-serif;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  cursor:pointer;
+  white-space:nowrap;
+  transition:background 0.2s;
+  -webkit-appearance:none;
+}
+.form-btn:hover { background:var(--gold2); }
+.form-note {
+  font-size:12px;
+  color:var(--gray);
+  letter-spacing:0.02em;
+}
+.waitlist-success {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  padding:20px;
+  border:1px solid var(--border2);
+  border-radius:2px;
+  background:rgba(201,169,110,0.05);
+  font-size:14px;
+  color:var(--bone2);
+  margin-top:16px;
+}
+.success-mark {
+  color:var(--gold);
+  font-size:18px;
+}
+
+/* ── CODEX ── */
+.codex {
+  padding:100px 40px;
+  background:var(--ink);
+}
+.codex-inner {
+  max-width:1100px;
+  margin:0 auto;
+}
+.section-eyebrow {
+  font-size:11px;
+  letter-spacing:0.3em;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-weight:500;
+  margin-bottom:16px;
+}
+.codex-title {
+  font-family:'Cormorant Garamond','Georgia',serif;
+  font-size:clamp(36px,5vw,54px);
+  font-weight:300;
+  color:var(--bone);
+  letter-spacing:0.04em;
+  margin-bottom:12px;
+  line-height:1;
+}
+.codex-sub {
+  font-size:15px;
+  color:var(--lgray);
+  margin-bottom:64px;
+  line-height:1.7;
+  max-width:480px;
+}
+.codex-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:var(--border);
+}
+.codex-card {
+  background:var(--ink);
+  padding:48px 36px;
+  position:relative;
+  transition:background 0.3s;
+}
+.codex-card:hover { background:var(--ink2); }
+.codex-card--featured {
+  background:var(--ink2);
+  border-top:1px solid var(--gold);
+}
+.codex-silhouette {
+  height:130px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:32px;
+}
+.codex-silhouette svg {
+  width:80px;
+  height:auto;
+  color:var(--gold);
+}
+.codex-card-label {
+  font-size:10px;
+  letter-spacing:0.35em;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-weight:600;
+  margin-bottom:8px;
+}
+.codex-card-name {
+  font-family:'Cormorant Garamond','Georgia',serif;
+  font-size:28px;
+  font-weight:300;
+  color:var(--bone);
+  letter-spacing:0.04em;
+  margin-bottom:8px;
+}
+.codex-card-latin {
+  font-family:'Cormorant Garamond','Georgia',serif;
+  font-size:14px;
+  font-style:italic;
+  color:var(--lgray);
+  margin-bottom:16px;
+}
+.codex-card-desc {
+  font-size:13px;
+  color:var(--gray);
+  line-height:1.7;
+}
+.codex-featured-mark {
+  position:absolute;
+  top:20px;
+  right:24px;
+  color:var(--gold);
+  font-size:16px;
+  opacity:0.6;
+}
+
+/* ── PHILOSOPHY ── */
+.philosophy {
+  padding:100px 40px;
+  background:var(--ink2);
+  border-top:1px solid var(--border);
+}
+.philosophy-inner {
+  max-width:1100px;
+  margin:0 auto;
+}
+.philosophy-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
+  align-items:center;
+  margin-top:40px;
+}
+.philosophy-title {
+  font-family:'Cormorant Garamond','Georgia',serif;
+  font-size:clamp(36px,4vw,52px);
+  font-weight:300;
+  color:var(--bone);
+  letter-spacing:0.04em;
+  line-height:1.1;
+  margin-bottom:28px;
+}
+.philosophy-body {
+  font-size:15px;
+  color:var(--lgray);
+  line-height:1.85;
+  margin-bottom:48px;
+  max-width:440px;
+}
+.philosophy-languages {
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+.lang-item {
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  padding-left:16px;
+  border-left:1px solid var(--border2);
+}
+.lang-script {
+  font-family:'Cormorant Garamond','Georgia',serif;
+  font-size:18px;
+  font-weight:300;
+  color:var(--bone2);
+  letter-spacing:0.04em;
+}
+.lang-label {
+  font-size:11px;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:var(--gray);
+  font-weight:500;
+}
+.philosophy-mark {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.philosophy-symbol svg {
+  width:200px;
+  height:auto;
+  color:var(--gold);
+  opacity:0.6;
+}
+
+/* ── FOOTER ── */
+footer {
+  padding:60px 40px;
+  background:var(--ink);
+  border-top:1px solid var(--border);
+  text-align:center;
+}
+.footer-inner {
+  max-width:600px;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:12px;
+}
+.footer-brand {
+  font-family:'Cormorant Garamond','Georgia',serif;
+  font-size:22px;
+  font-weight:300;
+  letter-spacing:0.12em;
+  color:var(--bone);
+}
+.footer-tagline {
+  font-size:10px;
+  letter-spacing:0.35em;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-weight:500;
+}
+.footer-links {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-top:8px;
+}
+.footer-links a {
+  font-size:13px;
+  color:var(--lgray);
+  text-decoration:none;
+  transition:color 0.2s;
+}
+.footer-links a:hover { color:var(--gold); }
+.footer-sep { color:var(--gray); }
+.footer-copy {
+  font-size:11px;
+  color:var(--gray);
+  margin-top:8px;
+  letter-spacing:0.03em;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .hero { padding:60px 24px; }
+  .waitlist { padding:80px 24px; }
+  .codex { padding:80px 24px; }
+  .codex-grid { grid-template-columns:1fr; gap:1px; }
+  .philosophy { padding:80px 24px; }
+  .philosophy-grid { grid-template-columns:1fr; gap:48px; }
+  .philosophy-mark { display:none; }
+  footer { padding:48px 24px; }
+}
+@media (max-width: 480px) {
+  .form-row { flex-direction:column; border:none; gap:0; }
+  .form-input { border:1px solid var(--border2); border-radius:2px; margin-bottom:8px; }
+  .form-btn { border-radius:2px; padding:14px; width:100%; }
+  .hero-wordmark { font-size:clamp(36px,10vw,56px); }
+}
