@@ -432,7 +432,7 @@ footer{background:#040a0b;border-top:1px solid rgba(255,255,255,.05);padding:56p
           <span class="info-icon">✉️</span>
           <div>
             <div class="info-label">Email</div>
-            <div class="info-val"><a href="#" id="email-btn-2">hello@geodm.us</a></div>
+            <div class="info-val"><a href="mailto:hello@geodm.us" id="email-btn-2">hello@geodm.us</a></div>
           </div>
         </div>
         <div class="info-item">
@@ -456,7 +456,7 @@ footer{background:#040a0b;border-top:1px solid rgba(255,255,255,.05);padding:56p
             text-transform:uppercase;color:#00c8d4;margin-bottom:8px;">¿Español?</div>
           <p style="font-size:13px;color:#4a7a80;line-height:1.7;">
             ¿Prefieres hablar en español? No hay problema.
-            Escríbenos a <a href="#" id="email-btn-es" style="color:#00c8d4;">hello@geodm.us</a>
+            Escríbenos a <a href="mailto:hello@geodm.us" id="email-btn-es" style="color:#00c8d4;">hello@geodm.us</a>
             o llámanos directamente.
           </p>
         </div>
@@ -691,7 +691,7 @@ footer{background:#040a0b;border-top:1px solid rgba(255,255,255,.05);padding:56p
       <li><a href="faq.html">FAQ</a></li>
     </ul></div>
     <div class="ft-col"><h5>Connect</h5><ul>
-      <li><a href="#" id="ft-email">hello@geodm.us</a></li>
+      <li><a href="mailto:hello@geodm.us" id="ft-email">hello@geodm.us</a></li>
       <li><a href="tel:7732361831">773.236.1831</a></li>
       <li><a href="https://instagram.com/geodm.us" target="_blank" rel="noopener noreferrer">@geodm.us</a></li>
       <li><a href="https://x.com/geodmus" target="_blank" rel="noopener noreferrer">@geodmus</a></li>
@@ -733,13 +733,6 @@ footer{background:#040a0b;border-top:1px solid rgba(255,255,255,.05);padding:56p
       a.addEventListener('click', function(){ mm.classList.remove('open'); });
     });
   }
-
-  // Email links
-  var ep = 'mai'+'lto:', ea = 'hello', eb = 'geodm.us', em = ep+ea+'@'+eb;
-  ['email-btn','email-btn-2','email-btn-es','ft-email'].forEach(function(id){
-    var el = document.getElementById(id);
-    if(el) el.addEventListener('click', function(e){ e.preventDefault(); window.location.href = em; });
-  });
 
   // Scroll reveal
   if(window.IntersectionObserver){

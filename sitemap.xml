@@ -21,10 +21,6 @@
   <url><loc>https://geodm.us/pay.html</loc><priority>0.5</priority><changefreq>monthly</changefreq></url>
 
   <!-- SERVICE PAGES -->
-  <url><loc>https://geodm.us/web-design-chicago.html</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://geodm.us/ai-automation-chicago.html</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://geodm.us/social-media-marketing-chicago.html</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://geodm.us/web3-blockchain-chicago.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
 
   <!-- LOCATION PAGES -->
   <url><loc>https://geodm.us/digital-agency-chicagoland.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>

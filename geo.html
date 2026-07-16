@@ -527,11 +527,11 @@ footer{padding:32px 16px 20px;}
     </p>
     <div class="geo-hero-stats rv d3">
       <div>
-        <div class="geo-hero-stat-num" data-count="90">0</div>
+        <div class="geo-hero-stat-num" data-count="90">90</div>
         <div class="geo-hero-stat-lbl">% of top Google results<br>never cited by AI</div>
       </div>
       <div>
-        <div class="geo-hero-stat-num" data-count="25">0</div>
+        <div class="geo-hero-stat-num" data-count="25">25</div>
         <div class="geo-hero-stat-lbl">% drop in traditional<br>search volume — Gartner</div>
       </div>
       <div>
@@ -657,11 +657,11 @@ footer{padding:32px 16px 20px;}
 <!-- STAT BAR -->
 <div class="geo-stat-bar rv d2">
   <div class="geo-stat-item">
-    <div class="geo-stat-num" data-count="25">0</div>
+    <div class="geo-stat-num" data-count="25">25</div>
     <div class="geo-stat-lbl">% drop in traditional search — Gartner 2026</div>
   </div>
   <div class="geo-stat-item">
-    <div class="geo-stat-num" data-count="90">0</div>
+    <div class="geo-stat-num" data-count="90">90</div>
     <div class="geo-stat-lbl">% of Google top results never cited by AI</div>
   </div>
   <div class="geo-stat-item">
@@ -779,6 +779,7 @@ footer{padding:32px 16px 20px;}
 
   // Count up
   var counted = false;
+  document.querySelectorAll('[data-count]').forEach(function(el){el.textContent='0';});
   function countUp(){
     if(counted) return;
     counted = true;

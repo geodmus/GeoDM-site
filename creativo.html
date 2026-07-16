@@ -151,7 +151,7 @@ footer p{font-size:13px;color:var(--g)}.footer-links{display:flex;gap:24px;justi
   <div class="cs-band fu">
     <h3>CREATIVO IS <span>COMING SOON</span></h3>
     <p>Platform is in development. Domain secured at creativo.community. Get on the early access list.</p>
-    <div class="btns"><a href="#" data-em="1">Join Early Access</a><a href="ventures.html" class="btn2">View All Ventures</a></div>
+    <div class="btns"><a href="mailto:hello@geodm.us">Join Early Access</a><a href="ventures.html" class="btn2">View All Ventures</a></div>
   </div>
 </div>
 </section>
@@ -160,16 +160,6 @@ footer p{font-size:13px;color:var(--g)}.footer-links{display:flex;gap:24px;justi
 const fo=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on')})},{threshold:.08});
 document.querySelectorAll('.fu').forEach(el=>fo.observe(el));
 </script>
-<script>
-(function(){
-  var e=['hello','geodm.us'].join('@');
-  document.querySelectorAll('[data-em]').forEach(function(a){
-    a.setAttribute('href','mailto:'+e);
-    if(a.getAttribute('data-show')==='1')a.textContent=e;
-  });
-})();
-</script>
-<script>(function(){var u="hello",d="geodm"+".us",e=u+"@"+d;document.querySelectorAll("[data-em]").forEach(function(a){a.href="mailto:"+e;if(a.dataset.show)a.textContent=e;});})();</script>
 <script>
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){var m=document.querySelector('.mobile-menu');if(m)m.classList.remove('open')}});
 document.addEventListener('click',function(e){var m=document.querySelector('.mobile-menu');var h=document.querySelector('.hamburger');if(m&&m.classList.contains('open')&&!m.contains(e.target)&&h&&!h.contains(e.target)){m.classList.remove('open')}});
