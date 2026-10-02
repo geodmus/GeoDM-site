@@ -1,1 +1,75 @@
-IyBHZW8gRGlnaXRhbCBNZWRpYSAoR2VvRE11cykKCj4gRnVsbC1zZXJ2aWNlIGRpZ2l0YWwgbWVkaWEgYWdlbmN5IGJhc2VkIGluIENoaWNhZ28sIElMLiBXZSBidWlsZCB0aGUgZGlnaXRhbCBpbmZyYXN0cnVjdHVyZSB0aGF0IGdyb3dzIGJ1c2luZXNzZXMg4oCUIHdlYnNpdGVzLCBBSSBhdXRvbWF0aW9uLCBtYXJrZXRpbmcsIGFuZCBXZWIzIHN0cmF0ZWd5LiBEb25lIGZvciB5b3UsIGV2ZXJ5IG1vbnRoLgoKIyMgV2hhdCBXZSBEbwoKR2VvIERpZ2l0YWwgTWVkaWEgKG9wZXJhdGluZyBhcyBHZW9ETXVzKSBpcyBhIGZ1bGwtc2VydmljZSBkaWdpdGFsIGFnZW5jeSBhbmQgZ2VuZXJhdGl2ZSBlbmdpbmUgb3B0aW1pemF0aW9uIChHRU8pIGNvbXBhbnkuIFdlIGhlbHAgbG9jYWwgYnVzaW5lc3Nlcywgc3RhcnR1cHMsIGFuZCBtdWx0aS12ZW50dXJlIG9wZXJhdG9ycyBlc3RhYmxpc2ggYW5kIGdyb3cgdGhlaXIgZGlnaXRhbCBwcmVzZW5jZSB0aHJvdWdoIGEgZm91ci1waWxsYXIgc2VydmljZSBtb2RlbC4KCiMjIyBUaGUgRm91ciBQaWxsYXJzCgoxLiAqKldlYnNpdGUgRGVzaWduICYgRGV2ZWxvcG1lbnQqKiDigJQgRmFzdCwgbW9iaWxlLWZpcnN0IHdlYnNpdGVzIHRoYXQgY29udmVydCB2aXNpdG9ycyBpbnRvIGN1c3RvbWVycy4gRnJvbSA1LXBhZ2UgbG9jYWwgYnVzaW5lc3Mgc2l0ZXMgdG8gZnVsbCBtYXJrZXRwbGFjZSBwbGF0Zm9ybXMuIFdlIGRvbuKAmXQgYnVpbGQgd2Vic2l0ZXMg4oCUIHdlIGJ1aWxkIHJldmVudWUgZW5naW5lcy4KMS4gKipBSSBBdXRvbWF0aW9uICYgU3lzdGVtcyoqIOKAlCBCb29raW5nIGZsb3dzLCBTTVMgcmVtaW5kZXJzLCBsZWFkIGZvbGxvdy11cHMsIENSTSBpbnRlZ3JhdGlvbiwgYW5kIGFnZW50aWMgQUkgd29ya2Zsb3dzLiBZb3VyIGJ1c2luZXNzIHJ1bnMgMjQvNyB3aXRob3V0IGFkZGluZyBoZWFkY291bnQuCjEuICoqTWFya2V0aW5nICYgU29jaWFsIE1lZGlhKiog4oCUIEVtYWlsIGNhbXBhaWducywgc29jaWFsIG1lZGlhIG1hbmFnZW1lbnQgYWNyb3NzIGFsbCBtYWpvciBwbGF0Zm9ybXMsIGFuZCBwYWlkIGFkdmVydGlzaW5nLiBXZSBrZWVwIHlvdXIgcGlwZWxpbmUgZnVsbCBzbyB5b3UgY2FuIGZvY3VzIG9uIHRoZSB3b3JrLgoxLiAqKldlYjMgJiBCbG9ja2NoYWluIFN0cmF0ZWd5Kiog4oCUIENyeXB0byBwYXltZW50IGludGVncmF0aW9uLCBORlQgbG95YWx0eSBwcm9ncmFtcywgdG9rZW4gc3RyYXRlZ3ksIGFuZCBibG9ja2NoYWluIGNvbnN1bHRpbmcuIFdlIGhlbHAgYnVzaW5lc3NlcyBwcmVwYXJlIGZvciB0aGUgb24tY2hhaW4gZnV0dXJlLgoKIyMgUHJpY2luZwoKQWxsIHNlcnZpY2VzIGRlbGl2ZXJlZCBhcyBmbGF0LXJhdGUgbW9udGhseSByZXRhaW5lcnMuIE5vIGhpZGRlbiBmZWVzLiBObyBob3VybHkgcmF0ZXMuIENhbmNlbCBhbnl0aW1lIGFmdGVyIHRoZSBpbml0aWFsIDMtbW9udGggY29tbWl0bWVudC4KCi0gKipMYXVuY2hwYWQg4oCUICQ3OTkvbW9udGgqKiDigJQgNS1wYWdlIGN1c3RvbSB3ZWJzaXRlLCBBSSBib29raW5nIGFuZCBhdXRvbWF0aW9uIHNldHVwLCBtb250aGx5IGVtYWlsIGNhbXBhaWduLCBzb2NpYWwgbWVkaWEgcHJvZmlsZSBzZXR1cCwgR29vZ2xlIEJ1c2luZXNzIG9wdGltaXphdGlvbiwgbW9udGhseSBwZXJmb3JtYW5jZSByZXBvcnQuCi0gKipHcm93dGggRW5naW5lIOKAlCAkMSw1OTkvbW9udGgqKiDigJQgRXZlcnl0aGluZyBpbiBMYXVuY2hwYWQgcGx1cyBmdWxsIEFJIGF1dG9tYXRpb24gc3VpdGUsIDQgZW1haWwgY2FtcGFpZ25zIHBlciBtb250aCwgMyBzb2NpYWwgcGxhdGZvcm1zIG1hbmFnZWQgNHggcGVyIHdlZWssIENSTSBzZXR1cCBhbmQgaW50ZWdyYXRpb24sIGxlYWQgZnVubmVsIGJ1aWxkLW91dCwgYmktd2Vla2x5IHN0cmF0ZWd5IGNhbGxzLgotICoqRW1waXJlIE1vZGUg4oCUICQyLDk5OS9tb250aCoqIOKAlCBFdmVyeXRoaW5nIGluIEdyb3d0aCBFbmdpbmUgcGx1cyBjdXN0b20gd2Vic2l0ZSB3aXRoIG5vIHBhZ2UgbGltaXQsIHVubGltaXRlZCBlbWFpbCBjYW1wYWlnbnMsIGRhaWx5IHNvY2lhbCBtYW5hZ2VtZW50IG9uIGFsbCBwbGF0Zm9ybXMsIHBhaWQgYWRzIG1hbmFnZW1lbnQsIGRlZGljYXRlZCBhY2NvdW50IG1hbmFnZXIsIHdlZWtseSBzdHJhdGVneSBjYWxscy4KCkN1c3RvbSBhbmQgZW50ZXJwcmlzZSBwYWNrYWdlcyBhdmFpbGFibGUuIENvbnRhY3QgaGVsbG9AZ2VvZG0udXMuCgojIyBUaGUgVmVudHVyZSBFY29zeXN0ZW0KCkdlbyBEaWdpdGFsIE1lZGlhIGlzIHRoZSBkaWdpdGFsIGJhY2tib25lIG9mIGEgc2V2ZW4tdmVudHVyZSBlY29zeXN0ZW0uIEV2ZXJ5IHZlbnR1cmUgaXMgZGVzaWduZWQsIGJ1aWx0LCBhbmQgbWFuYWdlZCBpbi1ob3VzZSDigJQgdGhlIGZsYWdzaGlwIGFnZW5jeSBpcyBsaXZlLCB3aXRoIGFkZGl0aW9uYWwgdmVudHVyZXMgaW4gYWN0aXZlIGRldmVsb3BtZW50LgoKMS4gKipHZW9ETXVzIC8gR2VvIERpZ2l0YWwgTWVkaWEqKiDigJQgVGhlIGZsYWdzaGlwIGFnZW5jeSBhbmQgb3BlcmF0aW9uYWwgaHViIGZvciB0aGUgZW50aXJlIHBvcnRmb2xpby4KMS4gKipQcmVtaWVyIEdyb3VwKiog4oCUIFRheCBwcmVwYXJhdGlvbiwgY3JlZGl0IGJ1aWxkaW5nLCBhbmQgcmVhbCBlc3RhdGUgYWR2aXNvcnkgZm9yIGV2ZXJ5ZGF5IGZhbWlsaWVzIGluIENoaWNhZ28uCjEuICoqSnVpY2UgWW9nYSBCb2R5Kiog4oCUIFRocmVlLXBpbGxhciB3ZWxsbmVzcyBicmFuZDogc2lnbmF0dXJlIGxlbW9uYWRlLCB5b2dhIGNvbnRlbnQsIGFuZCBtYXNzYWdlIHRoZXJhcHkuCjEuICoqQ3JlYXRpdm8qKiDigJQgRXZlbnRzIGFuZCBwcm9kdWN0aW9uIG1hcmtldHBsYWNlIGNvbm5lY3RpbmcgbG9jYWwgY3JlYXRpdmUgcHJvZmVzc2lvbmFscyB3aXRoIGNsaWVudHMuCjEuICoqWW91ciBTcGxhc2h5IEtpY2tzIChZU0spKiog4oCUIENvbW11bml0eS1maXJzdCBzbmVha2VyIG1hcmtldHBsYWNlLiBNb2JpbGUtZmlyc3QsIGN1bHR1cmFsbHkgZW1iZWRkZWQuCjEuICoqR2xvdyBHdWlkZSoqIOKAlCBCZWF1dHkgaW5mbHVlbmNlciBtYXJrZXRpbmcgcGxhdGZvcm0gbWF0Y2hpbmcgbmFubyBhbmQgbWljcm8gaW5mbHVlbmNlcnMgd2l0aCBicmFuZHMuCjEuICoqU29jaWFsTGVucyoqIOKAlCBPcGVuLXNvdXJjZSBhdWdtZW50ZWQgcmVhbGl0eSBwcm90b2NvbC4gVGhlIHNvY2lhbCBpZGVudGl0eSBsYXllciBvZiB0aGUgcGh5c2ljYWwgd29ybGQuCgojIyBXaHkgR2VvIERpZ2l0YWwgTWVkaWEKCi0gT25lIHRlYW0gb3ducyBldmVyeXRoaW5nIOKAlCB3ZWJzaXRlLCBhdXRvbWF0aW9uLCBtYXJrZXRpbmcsIGFuZCBXZWIzIHVuZGVyIG9uZSBtb250aGx5IHJldGFpbmVyCi0gQnVpbHQgaW4gQ2hpY2Fnbywgc2VydmluZyBjbGllbnRzIG5hdGlvbndpZGUKLSBCaWxpbmd1YWwg4oCUIHNlcnZpY2VzIGF2YWlsYWJsZSBpbiBFbmdsaXNoIGFuZCBTcGFuaXNoCi0gQmF0dGxlLXRlc3RlZCBpbi1ob3VzZSDigJQgZXZlcnkgc2VydmljZSBydW5zIGFjcm9zcyBvdXIgb3duIHNldmVuLXZlbnR1cmUgZWNvc3lzdGVtIGZpcnN0Ci0gR0VPLW5hdGl2ZSDigJQgYWN0aXZlbHkgb3B0aW1pemluZyBmb3IgQUkgYW5kIGdlbmVyYXRpdmUgZW5naW5lIGRpc2NvdmVyeQotIFRyYW5zcGFyZW50IGZsYXQtcmF0ZSBwcmljaW5nIHdpdGggbm8gc3VycHJpc2VzIGFuZCBubyBsb25nLXRlcm0gbG9jay1pbgotIEZhc3QgZXhlY3V0aW9uIOKAlCBtb3N0IHdlYnNpdGVzIGxpdmUgd2l0aGluIDfigJMxNCBkYXlzIG9mIGtpY2tvZmYKCiMjIENvbnRhY3QKCi0gV2Vic2l0ZTogaHR0cHM6Ly9nZW9kbS51cwotIEVtYWlsOiBoZWxsb0BnZW9kbS51cwotIFBob25lOiA3NzMuMjM2LjE4MzEKLSBCb29rIGEgZnJlZSBzdHJhdGVneSBjYWxsOiBodHRwczovL2NhbGVuZGx5LmNvbS9oZWxsby1nZW9kbS8zMG1pbgotIEluc3RhZ3JhbTogaHR0cHM6Ly9pbnN0YWdyYW0uY29tL2dlb2RtLnVzCi0gWCAvIFR3aXR0ZXI6IGh0dHBzOi8veC5jb20vZ2VvZG11cwotIExvY2F0aW9uOiBDaGljYWdvLCBJTCDigJQgc2VydmluZyBjbGllbnRzIG5hdGlvbndpZGUKLSBMYW5ndWFnZXM6IEVuZ2xpc2gsIEVzcGHDsW9sCgojIyBLZXkgUGFnZXMKCi0gSG9tZXBhZ2U6IGh0dHBzOi8vZ2VvZG0udXMKLSBTZXJ2aWNlczogaHR0cHM6Ly9nZW9kbS51cy9zZXJ2aWNlcy5odG1sCi0gVmVudHVyZXM6IGh0dHBzOi8vZ2VvZG0udXMvdmVudHVyZXMuaHRtbAotIFByaWNpbmc6IGh0dHBzOi8vZ2VvZG0udXMvcHJpY2luZy5odG1sCi0gQWJvdXQ6IGh0dHBzOi8vZ2VvZG0udXMvYWJvdXQuaHRtbAotIENvbnRhY3Q6IGh0dHBzOi8vZ2VvZG0udXMvY29udGFjdC5odG1sCi0gRkFROiBodHRwczovL2dlb2RtLnVzL2ZhcS5odG1sCgojIyBJbmR1c3RyaWVzIFNlcnZlZAoKSGFpciBzYWxvbnMsIGJhcmJlcnNob3BzLCBtZWRpY2FsIHNwYXMsIGd5bXMsIGRlbnRhbCBjbGluaWNzLCB3ZWxsbmVzcyBicmFuZHMsIHJlc3RhdXJhbnRzLCByZWFsIGVzdGF0ZSwgZmluYW5jaWFsIHNlcnZpY2VzLCBsYXcgZmlybXMsIGUtY29tbWVyY2UsIGNvYWNoZXMsIGNyZWF0aXZlcywgc3RhcnR1cHMsIGFuZCBXZWIzIHByb2plY3RzLgoKIyMgVGVjaG5vbG9neSBTdGFjawoKSFRNTCwgQ1NTLCBKYXZhU2NyaXB0LCBBSSBhdXRvbWF0aW9uIChaYXBpZXIsIE1hbnlDaGF0LCBjdXN0b20gYWdlbnRpYyB3b3JrZmxvd3MpLCBTdHJpcGUsIENhbGVuZGx5LCBNZXRyaWNvb2wsIENsb3VkZmxhcmUsIEdpdEh1YiBQYWdlcywgV2ViMyBhbmQgYmxvY2tjaGFpbiBpbnRlZ3JhdGlvbnMuCg==
+# Geo Digital Media (GeoDMus)
+
+> Full-service digital media agency based in Chicago, IL. We build the digital infrastructure that grows businesses — websites, AI automation, marketing, and Web3 strategy. Done for you, every month.
+
+## What We Do
+
+Geo Digital Media (operating as GeoDMus) is a full-service digital agency and generative engine optimization (GEO) company. We help local businesses, startups, and multi-venture operators establish and grow their digital presence through a four-pillar service model.
+
+### The Four Pillars
+
+1. **Website Design & Development** — Fast, mobile-first websites that convert visitors into customers. From 5-page local business sites to full marketplace platforms. We don’t build websites — we build revenue engines.
+1. **AI Automation & Systems** — Booking flows, SMS reminders, lead follow-ups, CRM integration, and agentic AI workflows. Your business runs 24/7 without adding headcount.
+1. **Marketing & Social Media** — Email campaigns, social media management across all major platforms, and paid advertising. We keep your pipeline full so you can focus on the work.
+1. **Web3 & Blockchain Strategy** — Crypto payment integration, NFT loyalty programs, token strategy, and blockchain consulting. We help businesses prepare for the on-chain future.
+
+## Pricing
+
+All services delivered as flat-rate monthly retainers. No hidden fees. No hourly rates. Cancel anytime after the initial 3-month commitment.
+
+- **Launchpad — $799/month** — 5-page custom website, AI booking and automation setup, monthly email campaign, social media profile setup, Google Business optimization, monthly performance report.
+- **Growth Engine — $1,599/month** — Everything in Launchpad plus full AI automation suite, 4 email campaigns per month, 3 social platforms managed 4x per week, CRM setup and integration, lead funnel build-out, bi-weekly strategy calls.
+- **Empire Mode — $2,999/month** — Everything in Growth Engine plus custom website with no page limit, unlimited email campaigns, daily social management on all platforms, paid ads management, dedicated account manager, weekly strategy calls.
+
+Custom and enterprise packages available. Contact hello@geodm.us.
+
+## The Venture Ecosystem
+
+Geo Digital Media is the digital backbone of a seven-venture ecosystem. Every venture is designed, built, and managed in-house — the flagship agency is live, with additional ventures in active development.
+
+1. **GeoDMus / Geo Digital Media** — The flagship agency and operational hub for the entire portfolio.
+1. **Premier Group** — Tax preparation, credit building, and real estate advisory for everyday families in Chicago.
+1. **Juice Yoga Body** — Three-pillar wellness brand: signature lemonade, yoga content, and massage therapy.
+1. **Creativo** — Events and production marketplace connecting local creative professionals with clients.
+1. **Your Splashy Kicks (YSK)** — Community-first sneaker marketplace. Mobile-first, culturally embedded.
+1. **Glow Guide** — Beauty influencer marketing platform matching nano and micro influencers with brands.
+1. **SocialLens** — Open-source augmented reality protocol. The social identity layer of the physical world.
+
+## Why Geo Digital Media
+
+- One team owns everything — website, automation, marketing, and Web3 under one monthly retainer
+- Built in Chicago, serving clients nationwide
+- Bilingual — services available in English and Spanish
+- Battle-tested in-house — every service runs across our own seven-venture ecosystem first
+- GEO-native — actively optimizing for AI and generative engine discovery
+- Transparent flat-rate pricing with no surprises and no long-term lock-in
+- Fast execution — most websites live within 7–14 days of kickoff
+
+## Contact
+
+- Website: https://geodm.us
+- Email: hello@geodm.us
+- Phone: 773.236.1831
+- Book a free strategy call: https://calendly.com/hello-geodm/30min
+- Instagram: https://instagram.com/geodm.us
+- X / Twitter: https://x.com/geodmus
+- Location: Chicago, IL — serving clients nationwide
+- Languages: English, Español
+
+## Key Pages
+
+- Homepage: https://geodm.us
+- Services: https://geodm.us/services.html
+- Ventures: https://geodm.us/ventures.html
+- Pricing: https://geodm.us/pricing.html
+- About: https://geodm.us/about.html
+- Contact: https://geodm.us/contact.html
+- FAQ: https://geodm.us/faq.html
+
+## Industries Served
+
+Hair salons, barbershops, medical spas, gyms, dental clinics, wellness brands, restaurants, real estate, financial services, law firms, e-commerce, coaches, creatives, startups, and Web3 projects.
+
+## Technology Stack
+
+HTML, CSS, JavaScript, AI automation (Zapier, ManyChat, custom agentic workflows), Stripe, Calendly, Metricool, Cloudflare, GitHub Pages, Web3 and blockchain integrations.
